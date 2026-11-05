@@ -1,0 +1,59 @@
+{
+  "contract": "work-rows",
+  "version": 2,
+  "about": [
+    "How a subject row reads on the Work rail, decided once for the Mac and",
+    "the phone (meet#147 slice 7, from #120). Both platforms build their row",
+    "from Sources/WorkSubjectRowSpec.swift and both test targets run this",
+    "table against it, so the two rows cannot drift apart on a state."
+  ],
+  "rules": [
+    "UNREAD wins: bold title, primary ink, the dot -- unless MUTED, which",
+    "hides the unread entirely (mute is about noise).",
+    "MUTED or SUBDUED is regular weight and secondary ink.",
+    "STARRED carries a small star badge at the leading mark's top-left corner.",
+    "The label reads the title, then unread, starred, muted, in that order."
+  ],
+  "cases": [
+    {
+      "name": "plain subject",
+      "title": "Acme rollout", "hasUnread": false, "isStarred": false, "isMuted": false, "isSubdued": false,
+      "expect": { "showsUnread": false, "showsStarBadge": false, "weight": "medium", "ink": "primary", "trailing": "none", "accessibilityLabel": "Acme rollout" }
+    },
+    {
+      "name": "unread is bold and dotted",
+      "title": "Acme rollout", "hasUnread": true, "isStarred": false, "isMuted": false, "isSubdued": false,
+      "expect": { "showsUnread": true, "showsStarBadge": false, "weight": "semibold", "ink": "primary", "trailing": "unreadDot", "accessibilityLabel": "Acme rollout, unread message" }
+    },
+    {
+      "name": "starred carries a star",
+      "title": "Acme rollout", "hasUnread": false, "isStarred": true, "isMuted": false, "isSubdued": false,
+      "expect": { "showsUnread": false, "showsStarBadge": true, "weight": "medium", "ink": "primary", "trailing": "none", "accessibilityLabel": "Acme rollout, starred" }
+    },
+    {
+      "name": "unread and star both show",
+      "title": "Acme rollout", "hasUnread": true, "isStarred": true, "isMuted": false, "isSubdued": false,
+      "expect": { "showsUnread": true, "showsStarBadge": true, "weight": "semibold", "ink": "primary", "trailing": "unreadDot", "accessibilityLabel": "Acme rollout, unread message, starred" }
+    },
+    {
+      "name": "muted hides the unread",
+      "title": "Acme rollout", "hasUnread": true, "isStarred": false, "isMuted": true, "isSubdued": false,
+      "expect": { "showsUnread": false, "showsStarBadge": false, "weight": "regular", "ink": "secondary", "trailing": "none", "accessibilityLabel": "Acme rollout, muted" }
+    },
+    {
+      "name": "muted and starred still shows the star",
+      "title": "Acme rollout", "hasUnread": false, "isStarred": true, "isMuted": true, "isSubdued": false,
+      "expect": { "showsUnread": false, "showsStarBadge": true, "weight": "regular", "ink": "secondary", "trailing": "none", "accessibilityLabel": "Acme rollout, starred, muted" }
+    },
+    {
+      "name": "subdued is quiet",
+      "title": "Acme rollout", "hasUnread": false, "isStarred": false, "isMuted": false, "isSubdued": true,
+      "expect": { "showsUnread": false, "showsStarBadge": false, "weight": "regular", "ink": "secondary", "trailing": "none", "accessibilityLabel": "Acme rollout" }
+    },
+    {
+      "name": "subdued with unread still shouts",
+      "title": "Acme rollout", "hasUnread": true, "isStarred": false, "isMuted": false, "isSubdued": true,
+      "expect": { "showsUnread": true, "showsStarBadge": false, "weight": "semibold", "ink": "primary", "trailing": "unreadDot", "accessibilityLabel": "Acme rollout, unread message" }
+    }
+  ]
+}

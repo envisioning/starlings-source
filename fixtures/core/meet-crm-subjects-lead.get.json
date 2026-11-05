@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "subjects": [
+    {
+      "id": "aaaaaaaa-0000-4000-8000-000000000002",
+      "kind": "lead",
+      "title": "Example Partners pilot",
+      "subtitle": "Example Partners · Cleo Example · Qualified",
+      "status": "Qualified",
+      "responsible_email": null,
+      "responsible_set_by": null,
+      "responsible_set_at": null,
+      "organization_logo_url": "https://img.example.test/org.png",
+      "organization_id": "aaaaaaaa-0000-4000-8000-000000000003",
+      "organization_name": "Example Partners",
+      "open_tasks": 1,
+      "overdue_tasks": 1,
+      "has_repo": false
+    }
+  ],
+  "has_more": false
+}

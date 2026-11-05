@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "links": [
+    {
+      "id": "aaaaaaaa-0000-4000-8000-0000000000b1",
+      "project_id": "aaaaaaaa-0000-4000-8000-000000000001",
+      "owner": "example-org",
+      "repo": "pilot",
+      "label": "scope",
+      "milestone": "Pilot",
+      "is_primary": true,
+      "linked_by": "ada@example.test",
+      "linked_at": "2026-09-30T09:00:00.000Z"
+    }
+  ]
+}

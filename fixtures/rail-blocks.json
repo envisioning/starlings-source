@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "blocks": {
+    "docs": [
+      {
+        "id": "explore",
+        "key": "docs.explore",
+        "hidesWhenEmpty": false
+      },
+      {
+        "id": "work",
+        "key": "docs.work",
+        "hidesWhenEmpty": false
+      },
+      {
+        "id": "projects",
+        "key": "docs.projects",
+        "hidesWhenEmpty": true
+      },
+      {
+        "id": "leads",
+        "key": "docs.leads",
+        "hidesWhenEmpty": true
+      },
+      {
+        "id": "partners",
+        "key": "docs.partners",
+        "hidesWhenEmpty": true
+      },
+      {
+        "id": "folders",
+        "key": "docs.folders",
+        "hidesWhenEmpty": true
+      },
+      {
+        "id": "library",
+        "key": "docs.library",
+        "hidesWhenEmpty": false
+      }
+    ],
+    "team": [
+      {
+        "id": "you",
+        "key": "team.you",
+        "hidesWhenEmpty": true
+      },
+      {
+        "id": "groups",
+        "key": "team.groups",
+        "hidesWhenEmpty": true
+      },
+      {
+        "id": "people",
+        "key": "team.people",
+        "hidesWhenEmpty": true
+      },
+      {
+        "id": "agents",
+        "key": "team.agents",
+        "hidesWhenEmpty": true
+      }
+    ],
+    "workOverview": [
+      {
+        "id": "inbox",
+        "key": "workOverview.inbox",
+        "hidesWhenEmpty": false
+      },
+      {
+        "id": "quickNotes",
+        "key": "workOverview.quickNotes",
+        "hidesWhenEmpty": true
+      },
+      {
+        "id": "activity",
+        "key": "workOverview.activity",
+        "hidesWhenEmpty": false
+      },
+      {
+        "id": "mine",
+        "key": "workOverview.mine",
+        "hidesWhenEmpty": false
+      },
+      {
+        "id": "unowned",
+        "key": "workOverview.unowned",
+        "hidesWhenEmpty": true
+      }
+    ]
+  }
+}

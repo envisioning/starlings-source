@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  English is the source; values-pt-rBR holds the pt-BR values. Where the iOS
+  catalog (Resources/Localizable.xcstrings) has the same sentence, the English
+  and the pt-BR value are the catalog's. Errors stay English (AGENTS.md), so
+  they are translatable="false".
+-->
+<resources>
+    <string name="app_name" translatable="false">Starlings</string>
+    <string name="entry_link">Room link</string>
+    <string name="entry_name">Name</string>
+    <string name="entry_email">Email</string>
+    <string name="entry_microphone">Microphone</string>
+    <string name="entry_camera">Camera</string>
+    <string name="entry_ask">Ask to join</string>
+
+    <string name="lobby_asking">Asking to join…</string>
+    <string name="lobby_waiting">Waiting for the host to let you in.</string>
+    <plurals name="lobby_waiting_count">
+        <item quantity="one">Waiting for the host. %d person in the waiting room.</item>
+        <item quantity="other">Waiting for the host. %d people in the waiting room.</item>
+    </plurals>
+    <string name="lobby_waiting_for">Waiting for %1$s</string>
+    <string name="entry_owner_room">%1$s’s room</string>
+    <string name="entry_no_room">No room named “%1$s”. Check the code from your host.</string>
+    <string name="lobby_joining">Joining…</string>
+
+    <string name="ended_left">You left</string>
+    <string name="ended_declined">The host declined</string>
+    <string name="ended_removed">You were removed</string>
+    <string name="ended_expired">The request expired</string>
+    <string name="ended_meeting">The meeting has ended</string>
+    <string name="ended_disconnected">The call disconnected</string>
+    <string name="ended_other_device">You joined from another device</string>
+    <string name="ended_process_death">The call ended when Android closed the app</string>
+    <string name="error_not_admitted" translatable="false">The host has not admitted you</string>
+    <string name="error_host_unavailable" translatable="false">The host is not available</string>
+    <string name="error_no_room" translatable="false">No such room</string>
+    <string name="error_join" translatable="false">Could not join</string>
+    <string name="ended_summary">%1$d min %2$d s · %3$d reconnects · %4$d interruptions · battery %5$d%% to %6$d%% · peak %7$d MB · thermal %8$d</string>
+    <string name="done">Done</string>
+    <string name="share_log">Share call log</string>
+
+    <string name="banner_reconnecting">Reconnecting…</string>
+    <string name="banner_audio_taken">Another call is using the audio</string>
+    <string name="notice_muted">%1$s muted you. Unmute when you need to speak.</string>
+    <string name="notice_screen_stopped">%1$s stopped your screen share</string>
+    <string name="notice_hand_failed">Your hand did not change. Try again.</string>
+
+    <string name="mute">Mute</string>
+    <string name="unmute">Unmute</string>
+    <string name="camera_turn_off">Turn camera off</string>
+    <string name="camera_turn_on">Turn camera on</string>
+    <string name="camera_flip">Flip camera</string>
+    <string name="hand_raise">Raise hand</string>
+    <string name="hand_lower">Lower hand</string>
+    <string name="chat">Chat</string>
+    <string name="chat_unread">Chat (%d)</string>
+    <string name="captions">Captions</string>
+    <string name="captions_hide">Hide captions</string>
+    <string name="captions_empty">Captions appear once the host’s device starts transcribing.</string>
+    <string name="people">People</string>
+    <string name="people_count">People (%d)</string>
+    <string name="audio">Audio</string>
+    <string name="leave">Leave</string>
+    <string name="chat_not_kept">Messages are not kept. People who join later do not see them.</string>
+    <string name="chat_send">Send</string>
+    <string name="chat_too_long">Chat messages must be 8,000 bytes or shorter.</string>
+
+    <string name="role_host">Host</string>
+    <string name="role_notetaker">Notetaker</string>
+    <string name="role_registered">Registered</string>
+    <string name="you">You</string>
+    <string name="guest">Guest</string>
+    <string name="screen_of">%1$s (screen)</string>
+
+    <string name="permission_mic">Allow Microphone access in Settings before joining.</string>
+    <string name="permission_camera">Allow Camera access in Settings before joining with video.</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="camera_preview">Camera preview</string>
+    <string name="hand_raised">Hand raised</string>
+    <string name="reaction_thumbs_up">Thumbs up</string>
+    <string name="reaction_heart">Heart</string>
+    <string name="reaction_laugh">Laugh</string>
+    <string name="reaction_celebrate">Celebrate</string>
+
+    <string name="notification_channel">Calls</string>
+    <string name="notification_title">In a meeting</string>
+    <string name="stage_waiting">Waiting for someone to join</string>
+    <string name="more">More</string>
+    <string name="share_layout">Screen share layout</string>
+    <string name="layout_automatic">Automatic</string>
+    <string name="layout_overlay">Over the share</string>
+    <string name="layout_rail">Beside or below</string>
+    <string name="tile_hide">Hide my tile</string>
+    <string name="tile_show">Show my tile</string>
+    <string name="transcript">Live transcript</string>
+    <string name="transcript_empty">No captions yet</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_out">Sign out</string>
+    <string name="signed_in_as">Signed in as %1$s</string>
+    <string name="sign_in_failed" translatable="false">Couldn’t sign in. Try again.</string>
+    <string name="sign_in_not_invited" translatable="false">This account isn’t invited to that workspace.</string>
+    <string name="sign_in_invalid" translatable="false">The sign-in returned an invalid response.</string>
+    <string name="meeting_warning">Meeting warning</string>
+    <!-- The join and call screens as iOS draws them (iOS/JoinView.swift, iOS/MobileCallView.swift). -->
+    <string name="join_room_title">Join a room</string>
+    <string name="join_room_hint">Paste a Starlings link or enter the room name.</string>
+    <string name="join_room_field">Room name or link</string>
+    <string name="join_name_field">Your name</string>
+    <string name="join_email_field" translatable="false">you@example.com</string>
+    <string name="join_continue">Continue</string>
+    <string name="prejoin_title">Before you join</string>
+    <string name="camera_off">Camera off</string>
+    <string name="camera_on">Camera on</string>
+    <string name="back">Back</string>
+    <string name="waiting_room">Waiting room</string>
+    <string name="cancel_request">Cancel request</string>
+    <string name="ended_title">The meeting ended</string>
+    <string name="ended_failed">Disconnected</string>
+    <string name="in_meeting">In meeting</string>
+    <plurals name="participants">
+        <item quantity="one">%d participant</item>
+        <item quantity="other">%d participants</item>
+    </plurals>
+    <string name="dismiss">Dismiss</string>
+    <string name="update_banner_message">A newer version of Starlings is available</string>
+    <string name="update_banner_action">Update</string>
+    <string name="react">React</string>
+    <string name="chat_empty">No messages yet</string>
+    <string name="chat_placeholder">Message everyone</string>
+    <string name="chat_react">React to this message</string>
+    <string name="tile_host">%1$s · Host</string>
+    <string name="people_in_room">In the room</string>
+    <string name="hand_raised_number">Hand raised, number %1$d</string>
+    <string name="close">Close</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_calendar">Calendar</string>
+    <string name="tab_work">Work</string>
+    <string name="tab_team">Team</string>
+    <string name="tab_docs">Docs</string>
+    <string name="nothing_here_yet">Nothing here yet.</string>
+</resources>

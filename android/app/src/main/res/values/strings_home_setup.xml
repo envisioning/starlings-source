@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Home's setup checklist, INBOX invitation and forwarded rows, the room
+  card's open line and the plan notice (workspace/home/HomeSetup.kt,
+  HomeCalendarRows.kt, ui/PlanNotice.kt). English and pt-BR are the iOS
+  catalog's (Resources/Localizable.xcstrings). A sentence the catalog has
+  without pt-BR is here only, so pt-BR shows the English iOS shows.
+-->
+<resources>
+    <string name="setup_get_started">GET STARTED</string>
+    <string name="setup_turn_off">Turn off for everyone</string>
+    <string name="setup_hide">Hide</string>
+    <string name="setup_done_title">You’re set up.</string>
+    <string name="setup_skip">Skip</string>
+    <string name="setup_skip_step">Skip %1$s</string>
+    <string name="setup_opens_hint">Opens where this step is done</string>
+    <string name="setup_optional">Optional</string>
+    <string name="setup_done">Done</string>
+    <string name="setup_retry">Retry</string>
+    <string name="setup_step_profile">Add your photo</string>
+    <string name="setup_step_look">Check your workspace’s look</string>
+    <string name="setup_step_membership">Choose who can join</string>
+    <string name="setup_step_invite">Invite your team</string>
+    <string name="setup_step_project">Start your first project</string>
+    <string name="setup_step_calendar">Connect your calendar</string>
+    <string name="setup_step_assistant">Connect your agent</string>
+    <string name="setup_step_agent">Add your first agent</string>
+    <string name="setup_step_call">Hold a call</string>
+    <string name="setup_step_apps">Get the apps</string>
+
+    <string name="home_room_open">Your room is open.</string>
+
+    <string name="home_invite_reply">Reply</string>
+    <string name="home_invite_conflicts">Conflicts with %1$s · %2$s%3$s</string>
+    <string name="home_invite_conflicts_more">"\u0020· +%1$d more"</string>
+    <string name="home_untitled_event">Untitled event</string>
+    <string name="home_forwarded_label">Event from email: %1$s, %2$s</string>
+    <string name="home_invite_label" translatable="false">Calendar invitation: %1$s</string>
+
+    <string name="plan_project_limit">Free includes one project.</string>
+    <string name="plan_project_frozen">This project is read-only on Free.</string>
+    <string name="plan_ask_admin">Ask an admin to upgrade.</string>
+    <string name="plan_upgrade">Upgrade</string>
+</resources>

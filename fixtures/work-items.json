@@ -1,0 +1,2527 @@
+{
+  "contract": "work-items",
+  "version": 2,
+  "mineSections": [
+    {
+      "value": "all",
+      "title": "All open"
+    },
+    {
+      "value": "focus",
+      "title": "Focus"
+    },
+    {
+      "value": "inbox",
+      "title": "Unfiled"
+    },
+    {
+      "value": "late",
+      "title": "Late"
+    },
+    {
+      "value": "today",
+      "title": "Today"
+    },
+    {
+      "value": "soon",
+      "title": "Soon"
+    },
+    {
+      "value": "undated",
+      "title": "Undated"
+    }
+  ],
+  "mineOrigins": [
+    {
+      "value": "all",
+      "title": "All work"
+    },
+    {
+      "value": "task",
+      "title": "Tasks"
+    },
+    {
+      "value": "issue",
+      "title": "GitHub issues"
+    }
+  ],
+  "stageTitles": [
+    {
+      "value": "queued",
+      "title": "QUEUED"
+    },
+    {
+      "value": "doing",
+      "title": "DOING"
+    },
+    {
+      "value": "review",
+      "title": "REVIEW"
+    },
+    {
+      "value": "blocked",
+      "title": "BLOCKED"
+    },
+    {
+      "value": "done",
+      "title": "DONE"
+    },
+    {
+      "value": "dropped",
+      "title": "DROPPED"
+    }
+  ],
+  "holderChoices": [
+    {
+      "value": "anyone",
+      "title": "Anyone"
+    },
+    {
+      "value": "people",
+      "title": "People"
+    },
+    {
+      "value": "agents",
+      "title": "Any agent"
+    }
+  ],
+  "dueChoices": [
+    {
+      "value": "any",
+      "title": "Any date"
+    },
+    {
+      "value": "overdue",
+      "title": "Overdue"
+    }
+  ],
+  "sideChoices": [
+    {
+      "value": "any",
+      "title": "Any side"
+    },
+    {
+      "value": "team",
+      "title": "Team"
+    },
+    {
+      "value": "client",
+      "title": "Client"
+    },
+    {
+      "value": "unassigned",
+      "title": "Unassigned"
+    }
+  ],
+  "about": [
+    "The shared definition of what 'my work' is and the order it is owed, for",
+    "Mac, iOS, and web. A task from Core and an issue from GitHub are two rows",
+    "in two systems, but one question -- 'what do I owe' -- and the bug this",
+    "table exists to prevent is each surface answering it with its own filter,",
+    "its own ordering, and a vendor seam the reader never asked about.",
+    "Swift: Sources/WorkItems.swift. TypeScript: packages/contracts/src/work-items.ts.",
+    "Version 2 adds `stages`: where a row sits in the pipeline, and how a",
+    "stage is written back. See docs/BOARD.md.",
+    "`events` adds the phase of an event subject: its one date against the reader's today. See docs/EVENTS.md.",
+    "`unowned` adds open work nobody on our side holds. See docs/BOARD.md §Unowned."
+  ],
+  "rules": [
+    "OPEN: the plan holds open work only. A completed or cancelled task and a",
+    "closed issue are history, never planned.",
+    "DEDUPE: a live task that carries a githubRef claims that issue -- the task",
+    "is the one row, because it holds the date and the subject. The issue with",
+    "that id is dropped. A done task claims nothing: its still-open issue is",
+    "real work and keeps its row.",
+    "SECTIONS, in order: inbox, late, today, soon, undated. inbox = not filed",
+    "to any subject, whatever its date -- filing comes before scheduling.",
+    "late/today/soon compare the due date's civil day in `timeZone` against",
+    "now's, never raw timestamps: work due earlier today is due today, not",
+    "late. undated = no due date, or one nobody can parse; every issue lands",
+    "here, because GitHub issues carry no due date.",
+    "ORDER: late/today/soon by due ascending -- the oldest debt first. inbox",
+    "and undated by updatedAt descending -- recent movement first, silence",
+    "last. Every tie breaks on id ascending. `order` is the sections",
+    "concatenated in section order.",
+    "COUNTS: open = every planned row after dedupe; late = the late section."
+  ],
+  "itemFields": {
+    "id": "stable identity; for an issue, its owner/repo#number",
+    "origin": "'task' or 'issue'",
+    "done": "completed/cancelled task, or closed issue",
+    "filed": "belongs to a project or lead; every issue is filed by construction",
+    "dueDate": "ISO 8601 or null; issues carry none",
+    "updatedAt": "ISO 8601 or null",
+    "githubRef": "owner/repo#number a promoted task points at, else null"
+  },
+  "stages": {
+    "about": [
+      "One stage vocabulary for the board: where a piece of work sits in the",
+      "pipeline, whichever store holds it. A Core task says it with `status`; a",
+      "GitHub issue says it with `state`, `state_reason` and its `agent:*`",
+      "labels. The bug this table prevents is a task half of the board with",
+      "four columns and an issue half with six."
+    ],
+    "vocabulary": [
+      "queued",
+      "doing",
+      "review",
+      "blocked",
+      "done",
+      "dropped"
+    ],
+    "rules": [
+      "TASK: pending = queued, in_progress = doing, review = review, blocked =",
+      "blocked, completed = done, cancelled = dropped. A status nobody knows is",
+      "queued: it is open work until Core says otherwise, which is the same",
+      "reading `done` gives it.",
+      "ISSUE CLOSED: state_reason not_planned or duplicate = dropped; anything",
+      "else, including no reason, = done.",
+      "ISSUE OPEN: the stage label decides. agent:failed = blocked, agent:review",
+      "= review, agent:building = doing; agent:queued or no stage label = queued.",
+      "When more than one stage label is on the issue the strongest claim on a",
+      "person's attention wins: blocked over review over doing. Labels compare",
+      "case-insensitively. Any other label, agent:* or not, is not a stage.",
+      "WRITE TASK: the stage's status, verbatim, even the two Core does not",
+      "accept yet (review, blocked): the write is refused loudly there, never",
+      "translated silently here.",
+      "WRITE ISSUE: every stage label (agent:queued, agent:building,",
+      "agent:review, agent:failed) comes off, other labels keep their order,",
+      "and the stage's own label goes on the end: doing = agent:building, review",
+      "= agent:review, blocked = agent:failed. queued adds none, because a card",
+      "queued for a person is not queued for an agent; the hand-off labels it.",
+      "done = closed + completed, dropped = closed + not_planned; every open",
+      "stage sends state open, so a move out of done reopens.",
+      "BOARD: a card's stage is its own, except a live task that carries a",
+      "githubRef, which claims its issue: the task's stage is the card's, and the",
+      "issue is dropped from the board. Live means stage not done and not",
+      "dropped. Open columns keep the order the plan gives (late, today, soon,",
+      "then undated by movement). done and dropped order by updatedAt descending,",
+      "silence last, ties on id. `finishedSince` drops a finished card whose",
+      "updatedAt is older; one with no updatedAt stays, because nobody can say",
+      "it is old.",
+      "RECENTLY FINISHED: merge the done and dropped cards by updatedAt",
+      "descending, silence last, ties on id ascending. The board's",
+      "finishedSince window applies before the list is returned. The recovery",
+      "list only offers completed/cancelled tasks and closed issues; declined",
+      "task proposals remain a deliberate answer, not an undo action.",
+      "HOLDER: an open issue with any stage label (agent:queued, agent:building, agent:review, agent:failed) is an agent's, as UNOWNED reads it; a closed issue, an issue with no stage label, and every task are a person's. The filter is anyone, people, agents, or agent:<email>, matched case-insensitively against the agent the card's project names.",
+      "TASK FILTERS (meet#1222): `passesTaskFilter(item, {due, side}, now, timeZone)`. Overdue is open work due before today in the zone's civil days. An issue shows only while both filters are `any`. A task with no side reads as `unassigned`."
+    ],
+    "cardFields": {
+      "status": "task only: the Core status string",
+      "state": "issue only: open or closed",
+      "stateReason": "issue only: completed, not_planned, duplicate, reopened, or null",
+      "labels": "issue only: label names as GitHub returns them"
+    },
+    "stageCases": [
+      {
+        "name": "pending is queued",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "pending"
+        },
+        "expect": "queued"
+      },
+      {
+        "name": "in_progress is doing",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "in_progress"
+        },
+        "expect": "doing"
+      },
+      {
+        "name": "review is review",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "review"
+        },
+        "expect": "review"
+      },
+      {
+        "name": "blocked is blocked",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "blocked"
+        },
+        "expect": "blocked"
+      },
+      {
+        "name": "proposed is queued (until accepted)",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "proposed"
+        },
+        "expect": "queued"
+      },
+      {
+        "name": "declined is dropped",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "declined"
+        },
+        "expect": "dropped"
+      },
+      {
+        "name": "completed is done",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "completed"
+        },
+        "expect": "done"
+      },
+      {
+        "name": "cancelled is dropped",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "cancelled"
+        },
+        "expect": "dropped"
+      },
+      {
+        "name": "a status nobody knows is queued",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "someday"
+        },
+        "expect": "queued"
+      },
+      {
+        "name": "an open issue with no labels is queued",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": []
+        },
+        "expect": "queued"
+      },
+      {
+        "name": "agent:queued is queued",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "bug",
+            "agent:queued"
+          ]
+        },
+        "expect": "queued"
+      },
+      {
+        "name": "agent:building is doing",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:building"
+          ]
+        },
+        "expect": "doing"
+      },
+      {
+        "name": "agent:review is review",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:review"
+          ]
+        },
+        "expect": "review"
+      },
+      {
+        "name": "agent:failed is blocked",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:failed"
+          ]
+        },
+        "expect": "blocked"
+      },
+      {
+        "name": "two stage labels: review beats doing",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:building",
+            "agent:review"
+          ]
+        },
+        "expect": "review"
+      },
+      {
+        "name": "two stage labels: blocked beats review",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:review",
+            "agent:failed"
+          ]
+        },
+        "expect": "blocked"
+      },
+      {
+        "name": "labels compare case-insensitively",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "Agent:Building"
+          ]
+        },
+        "expect": "doing"
+      },
+      {
+        "name": "an agent label that is not a stage is not a stage",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:out-of-scope"
+          ]
+        },
+        "expect": "queued"
+      },
+      {
+        "name": "closed as completed is done",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "closed",
+          "stateReason": "completed",
+          "labels": []
+        },
+        "expect": "done"
+      },
+      {
+        "name": "closed with no reason is done",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "closed",
+          "stateReason": null,
+          "labels": []
+        },
+        "expect": "done"
+      },
+      {
+        "name": "closed as not planned is dropped",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "closed",
+          "stateReason": "not_planned",
+          "labels": []
+        },
+        "expect": "dropped"
+      },
+      {
+        "name": "closed as duplicate is dropped",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "closed",
+          "stateReason": "duplicate",
+          "labels": []
+        },
+        "expect": "dropped"
+      },
+      {
+        "name": "a closed issue keeps no stage label's claim",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "closed",
+          "stateReason": "completed",
+          "labels": [
+            "agent:review"
+          ]
+        },
+        "expect": "done"
+      }
+    ],
+    "writeCases": [
+      {
+        "name": "task to queued",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "in_progress"
+        },
+        "stage": "queued",
+        "expect": {
+          "status": "pending"
+        }
+      },
+      {
+        "name": "task to doing",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "pending"
+        },
+        "stage": "doing",
+        "expect": {
+          "status": "in_progress"
+        }
+      },
+      {
+        "name": "task to review sends the word Core does not accept yet",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "in_progress"
+        },
+        "stage": "review",
+        "expect": {
+          "status": "review"
+        }
+      },
+      {
+        "name": "task to blocked",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "in_progress"
+        },
+        "stage": "blocked",
+        "expect": {
+          "status": "blocked"
+        }
+      },
+      {
+        "name": "task to done",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "review"
+        },
+        "stage": "done",
+        "expect": {
+          "status": "completed"
+        }
+      },
+      {
+        "name": "task to dropped",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "pending"
+        },
+        "stage": "dropped",
+        "expect": {
+          "status": "cancelled"
+        }
+      },
+      {
+        "name": "issue to review swaps the stage label and keeps the rest in order",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "bug",
+            "agent:building",
+            "p1"
+          ]
+        },
+        "stage": "review",
+        "expect": {
+          "state": "open",
+          "labels": [
+            "bug",
+            "p1",
+            "agent:review"
+          ]
+        }
+      },
+      {
+        "name": "issue to queued takes every stage label off and adds none",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:queued",
+            "bug",
+            "agent:failed"
+          ]
+        },
+        "stage": "queued",
+        "expect": {
+          "state": "open",
+          "labels": [
+            "bug"
+          ]
+        }
+      },
+      {
+        "name": "issue to doing",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": []
+        },
+        "stage": "doing",
+        "expect": {
+          "state": "open",
+          "labels": [
+            "agent:building"
+          ]
+        }
+      },
+      {
+        "name": "issue to blocked",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:building"
+          ]
+        },
+        "stage": "blocked",
+        "expect": {
+          "state": "open",
+          "labels": [
+            "agent:failed"
+          ]
+        }
+      },
+      {
+        "name": "issue to done closes as completed",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "bug",
+            "agent:review"
+          ]
+        },
+        "stage": "done",
+        "expect": {
+          "state": "closed",
+          "state_reason": "completed",
+          "labels": [
+            "bug"
+          ]
+        }
+      },
+      {
+        "name": "issue to dropped closes as not planned",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:queued"
+          ]
+        },
+        "stage": "dropped",
+        "expect": {
+          "state": "closed",
+          "state_reason": "not_planned",
+          "labels": []
+        }
+      },
+      {
+        "name": "a closed issue moved to doing reopens",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "closed",
+          "stateReason": "completed",
+          "labels": []
+        },
+        "stage": "doing",
+        "expect": {
+          "state": "open",
+          "labels": [
+            "agent:building"
+          ]
+        }
+      },
+      {
+        "name": "a stage label in another case still comes off",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "Agent:Failed"
+          ]
+        },
+        "stage": "doing",
+        "expect": {
+          "state": "open",
+          "labels": [
+            "agent:building"
+          ]
+        }
+      }
+    ],
+    "boardCases": [
+      {
+        "name": "every column at once, open columns in plan order, finished by movement",
+        "now": "2026-08-28T12:00:00Z",
+        "timeZone": "UTC",
+        "finishedSince": null,
+        "items": [
+          {
+            "id": "t-q-undated",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-26T09:00:00Z",
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "t-q-late",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-20T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "t-q-soon",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-30T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "acme/app#1",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T09:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "stateReason": null,
+            "labels": []
+          },
+          {
+            "id": "t-doing",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "in_progress"
+          },
+          {
+            "id": "acme/app#2",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": null,
+            "state": "open",
+            "stateReason": null,
+            "labels": [
+              "agent:review"
+            ]
+          },
+          {
+            "id": "acme/app#3",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": null,
+            "state": "open",
+            "stateReason": null,
+            "labels": [
+              "agent:failed"
+            ]
+          },
+          {
+            "id": "t-done-old",
+            "origin": "task",
+            "done": true,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-01T09:00:00Z",
+            "githubRef": null,
+            "status": "completed"
+          },
+          {
+            "id": "t-done-new",
+            "origin": "task",
+            "done": true,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T09:00:00Z",
+            "githubRef": null,
+            "status": "completed"
+          },
+          {
+            "id": "t-done-silent",
+            "origin": "task",
+            "done": true,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "completed"
+          },
+          {
+            "id": "acme/app#4",
+            "origin": "issue",
+            "done": true,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-26T09:00:00Z",
+            "githubRef": null,
+            "state": "closed",
+            "stateReason": "not_planned",
+            "labels": []
+          }
+        ],
+        "expect": {
+          "columns": {
+            "queued": [
+              "t-q-late",
+              "t-q-soon",
+              "acme/app#1",
+              "t-q-undated"
+            ],
+            "doing": [
+              "t-doing"
+            ],
+            "review": [
+              "acme/app#2"
+            ],
+            "blocked": [
+              "acme/app#3"
+            ],
+            "done": [
+              "t-done-new",
+              "t-done-old",
+              "t-done-silent"
+            ],
+            "dropped": [
+              "acme/app#4"
+            ]
+          }
+        }
+      },
+      {
+        "name": "a promoted task's stage is the card's, and the issue leaves the board",
+        "now": "2026-08-28T12:00:00Z",
+        "timeZone": "UTC",
+        "finishedSince": null,
+        "items": [
+          {
+            "id": "t-promoted",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": "acme/app#12",
+            "status": "in_progress"
+          },
+          {
+            "id": "acme/app#12",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": null,
+            "state": "open",
+            "stateReason": null,
+            "labels": [
+              "agent:review"
+            ]
+          }
+        ],
+        "expect": {
+          "columns": {
+            "queued": [],
+            "doing": [
+              "t-promoted"
+            ],
+            "review": [],
+            "blocked": [],
+            "done": [],
+            "dropped": []
+          }
+        }
+      },
+      {
+        "name": "a finished task claims nothing: its open issue keeps its own column",
+        "now": "2026-08-28T12:00:00Z",
+        "timeZone": "UTC",
+        "finishedSince": null,
+        "items": [
+          {
+            "id": "t-done",
+            "origin": "task",
+            "done": true,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": "acme/app#5",
+            "status": "completed"
+          },
+          {
+            "id": "acme/app#5",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": null,
+            "state": "open",
+            "stateReason": null,
+            "labels": [
+              "agent:building"
+            ]
+          }
+        ],
+        "expect": {
+          "columns": {
+            "queued": [],
+            "doing": [
+              "acme/app#5"
+            ],
+            "review": [],
+            "blocked": [],
+            "done": [
+              "t-done"
+            ],
+            "dropped": []
+          }
+        }
+      },
+      {
+        "name": "finishedSince keeps the recent, the undated, and drops the old",
+        "now": "2026-08-28T12:00:00Z",
+        "timeZone": "UTC",
+        "finishedSince": "2026-08-25T00:00:00Z",
+        "items": [
+          {
+            "id": "t-old",
+            "origin": "task",
+            "done": true,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-01T09:00:00Z",
+            "githubRef": null,
+            "status": "completed"
+          },
+          {
+            "id": "t-new",
+            "origin": "task",
+            "done": true,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T09:00:00Z",
+            "githubRef": null,
+            "status": "cancelled"
+          },
+          {
+            "id": "t-silent",
+            "origin": "task",
+            "done": true,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "completed"
+          },
+          {
+            "id": "t-open",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-01T09:00:00Z",
+            "githubRef": null,
+            "status": "pending"
+          }
+        ],
+        "expect": {
+          "columns": {
+            "queued": [
+              "t-open"
+            ],
+            "doing": [],
+            "review": [],
+            "blocked": [],
+            "done": [
+              "t-silent"
+            ],
+            "dropped": [
+              "t-new"
+            ]
+          }
+        }
+      },
+      {
+        "name": "an empty plate is an empty board",
+        "now": "2026-08-28T12:00:00Z",
+        "timeZone": "UTC",
+        "finishedSince": null,
+        "items": [],
+        "expect": {
+          "columns": {
+            "queued": [],
+            "doing": [],
+            "review": [],
+            "blocked": [],
+            "done": [],
+            "dropped": []
+          }
+        }
+      }
+    ],
+    "holderCases": [
+      {
+        "name": "a task is a person's, under people",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "in_progress"
+        },
+        "filter": "people",
+        "agentEmail": "factory@agents.test",
+        "expect": true
+      },
+      {
+        "name": "a task is never an agent's",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "in_progress"
+        },
+        "filter": "agents",
+        "agentEmail": "factory@agents.test",
+        "expect": false
+      },
+      {
+        "name": "agent:building is an agent's",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:building"
+          ]
+        },
+        "filter": "agents",
+        "agentEmail": null,
+        "expect": true
+      },
+      {
+        "name": "agent:review is not a person's",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:review"
+          ]
+        },
+        "filter": "people",
+        "agentEmail": null,
+        "expect": false
+      },
+      {
+        "name": "agent:queued is the agent's, as UNOWNED reads it",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:queued"
+          ]
+        },
+        "filter": "people",
+        "agentEmail": null,
+        "expect": false
+      },
+      {
+        "name": "a closed issue is a person's",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "closed",
+          "stateReason": null,
+          "labels": [
+            "agent:building"
+          ]
+        },
+        "filter": "agents",
+        "agentEmail": null,
+        "expect": false
+      },
+      {
+        "name": "one agent: the project's agent, any case",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:failed"
+          ]
+        },
+        "filter": "agent:Factory@Agents.test",
+        "agentEmail": "factory@agents.test",
+        "expect": true
+      },
+      {
+        "name": "one agent: another project's agent",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:building"
+          ]
+        },
+        "filter": "agent:factory@agents.test",
+        "agentEmail": "other@agents.test",
+        "expect": false
+      },
+      {
+        "name": "anyone shows everything",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "agent:building"
+          ]
+        },
+        "filter": "anyone",
+        "agentEmail": null,
+        "expect": true
+      },
+      {
+        "name": "an unknown filter shows everything",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "in_progress"
+        },
+        "filter": "robots",
+        "agentEmail": null,
+        "expect": true
+      },
+      {
+        "name": "an open issue with no stage label is a person's",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "stateReason": null,
+          "labels": [
+            "bug"
+          ]
+        },
+        "filter": "people",
+        "agentEmail": null,
+        "expect": true
+      }
+    ],
+    "taskFilterCases": [
+      {
+        "name": "any and any shows an issue",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "labels": []
+        },
+        "filter": {
+          "due": "any",
+          "side": "any"
+        },
+        "expect": true
+      },
+      {
+        "name": "a task due yesterday is overdue",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "pending",
+          "dueDate": "2026-10-21T09:00:00Z",
+          "responsibleParty": "team"
+        },
+        "filter": {
+          "due": "overdue",
+          "side": "any"
+        },
+        "expect": true
+      },
+      {
+        "name": "a task due earlier today is not overdue",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "pending",
+          "dueDate": "2026-10-22T06:00:00Z",
+          "responsibleParty": "team"
+        },
+        "filter": {
+          "due": "overdue",
+          "side": "any"
+        },
+        "expect": false
+      },
+      {
+        "name": "a task with no date is not overdue",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "in_progress",
+          "responsibleParty": "team"
+        },
+        "filter": {
+          "due": "overdue",
+          "side": "any"
+        },
+        "expect": false
+      },
+      {
+        "name": "a done task is never overdue",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "completed",
+          "dueDate": "2026-10-01T09:00:00Z",
+          "responsibleParty": "team"
+        },
+        "filter": {
+          "due": "overdue",
+          "side": "any"
+        },
+        "expect": false
+      },
+      {
+        "name": "an issue has no date, so it is never overdue",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "labels": []
+        },
+        "filter": {
+          "due": "overdue",
+          "side": "any"
+        },
+        "expect": false
+      },
+      {
+        "name": "the side filter keeps the client's task",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "pending",
+          "responsibleParty": "client"
+        },
+        "filter": {
+          "due": "any",
+          "side": "client"
+        },
+        "expect": true
+      },
+      {
+        "name": "the side filter drops the team's task",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "pending",
+          "responsibleParty": "team"
+        },
+        "filter": {
+          "due": "any",
+          "side": "client"
+        },
+        "expect": false
+      },
+      {
+        "name": "a task with no side reads as unassigned",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "pending"
+        },
+        "filter": {
+          "due": "any",
+          "side": "unassigned"
+        },
+        "expect": true
+      },
+      {
+        "name": "an issue has no side",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "i",
+          "origin": "issue",
+          "state": "open",
+          "labels": []
+        },
+        "filter": {
+          "due": "any",
+          "side": "team"
+        },
+        "expect": false
+      },
+      {
+        "name": "both filters at once",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "blocked",
+          "dueDate": "2026-10-20T09:00:00Z",
+          "responsibleParty": "client"
+        },
+        "filter": {
+          "due": "overdue",
+          "side": "client"
+        },
+        "expect": true
+      },
+      {
+        "name": "the day is the zone's: late in Amsterdam",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "Europe/Amsterdam",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "pending",
+          "dueDate": "2026-10-21T23:30:00Z",
+          "responsibleParty": "team"
+        },
+        "filter": {
+          "due": "overdue",
+          "side": "any"
+        },
+        "expect": false
+      },
+      {
+        "name": "the day is the zone's: late in New York",
+        "now": "2026-10-22T15:00:00Z",
+        "timeZone": "America/New_York",
+        "item": {
+          "id": "t",
+          "origin": "task",
+          "status": "pending",
+          "dueDate": "2026-10-21T23:30:00Z",
+          "responsibleParty": "team"
+        },
+        "filter": {
+          "due": "overdue",
+          "side": "any"
+        },
+        "expect": true
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "every section at once, each in its own order",
+      "now": "2026-08-28T12:00:00Z",
+      "timeZone": "UTC",
+      "items": [
+        {
+          "id": "t-undated",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": null,
+          "updatedAt": "2026-08-26T09:00:00Z",
+          "githubRef": null
+        },
+        {
+          "id": "t-soon",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": "2026-08-30T09:00:00Z",
+          "updatedAt": "2026-08-25T09:00:00Z",
+          "githubRef": null
+        },
+        {
+          "id": "i-open",
+          "origin": "issue",
+          "done": false,
+          "filed": true,
+          "dueDate": null,
+          "updatedAt": "2026-08-27T09:00:00Z",
+          "githubRef": null
+        },
+        {
+          "id": "t-late-new",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": "2026-08-27T09:00:00Z",
+          "updatedAt": null,
+          "githubRef": null
+        },
+        {
+          "id": "t-today",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": "2026-08-28T08:00:00Z",
+          "updatedAt": null,
+          "githubRef": null
+        },
+        {
+          "id": "t-late-old",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": "2026-08-20T09:00:00Z",
+          "updatedAt": null,
+          "githubRef": null
+        },
+        {
+          "id": "t-inbox",
+          "origin": "task",
+          "done": false,
+          "filed": false,
+          "dueDate": null,
+          "updatedAt": "2026-08-27T10:00:00Z",
+          "githubRef": null
+        }
+      ],
+      "expect": {
+        "order": [
+          "t-inbox",
+          "t-late-old",
+          "t-late-new",
+          "t-today",
+          "t-soon",
+          "i-open",
+          "t-undated"
+        ],
+        "sections": {
+          "inbox": [
+            "t-inbox"
+          ],
+          "late": [
+            "t-late-old",
+            "t-late-new"
+          ],
+          "today": [
+            "t-today"
+          ],
+          "soon": [
+            "t-soon"
+          ],
+          "undated": [
+            "i-open",
+            "t-undated"
+          ]
+        },
+        "open": 7,
+        "late": 2
+      }
+    },
+    {
+      "name": "a promoted task and its issue are one row, and the task is it",
+      "now": "2026-08-28T12:00:00Z",
+      "timeZone": "UTC",
+      "items": [
+        {
+          "id": "t-promoted",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": "2026-08-30T09:00:00Z",
+          "updatedAt": null,
+          "githubRef": "acme/app#12"
+        },
+        {
+          "id": "acme/app#12",
+          "origin": "issue",
+          "done": false,
+          "filed": true,
+          "dueDate": null,
+          "updatedAt": "2026-08-27T09:00:00Z",
+          "githubRef": null
+        },
+        {
+          "id": "acme/app#13",
+          "origin": "issue",
+          "done": false,
+          "filed": true,
+          "dueDate": null,
+          "updatedAt": "2026-08-26T09:00:00Z",
+          "githubRef": null
+        }
+      ],
+      "expect": {
+        "order": [
+          "t-promoted",
+          "acme/app#13"
+        ],
+        "sections": {
+          "inbox": [],
+          "late": [],
+          "today": [],
+          "soon": [
+            "t-promoted"
+          ],
+          "undated": [
+            "acme/app#13"
+          ]
+        },
+        "open": 2,
+        "late": 0
+      }
+    },
+    {
+      "name": "done work is history, and a done task lets its issue speak",
+      "now": "2026-08-28T12:00:00Z",
+      "timeZone": "UTC",
+      "items": [
+        {
+          "id": "t-done",
+          "origin": "task",
+          "done": true,
+          "filed": true,
+          "dueDate": "2026-08-20T09:00:00Z",
+          "updatedAt": null,
+          "githubRef": "acme/app#5"
+        },
+        {
+          "id": "acme/app#5",
+          "origin": "issue",
+          "done": false,
+          "filed": true,
+          "dueDate": null,
+          "updatedAt": "2026-08-27T09:00:00Z",
+          "githubRef": null
+        },
+        {
+          "id": "acme/app#6",
+          "origin": "issue",
+          "done": true,
+          "filed": true,
+          "dueDate": null,
+          "updatedAt": "2026-08-27T09:00:00Z",
+          "githubRef": null
+        }
+      ],
+      "expect": {
+        "order": [
+          "acme/app#5"
+        ],
+        "sections": {
+          "inbox": [],
+          "late": [],
+          "today": [],
+          "soon": [],
+          "undated": [
+            "acme/app#5"
+          ]
+        },
+        "open": 1,
+        "late": 0
+      }
+    },
+    {
+      "name": "late is a civil day in UTC: due last night is late this morning",
+      "now": "2026-08-28T01:00:00Z",
+      "timeZone": "UTC",
+      "items": [
+        {
+          "id": "t-due",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": "2026-08-27T23:30:00Z",
+          "updatedAt": null,
+          "githubRef": null
+        }
+      ],
+      "expect": {
+        "order": [
+          "t-due"
+        ],
+        "sections": {
+          "inbox": [],
+          "late": [
+            "t-due"
+          ],
+          "today": [],
+          "soon": [],
+          "undated": []
+        },
+        "open": 1,
+        "late": 1
+      }
+    },
+    {
+      "name": "the same instant in Tokyo is still due today, not late",
+      "now": "2026-08-28T01:00:00Z",
+      "timeZone": "Asia/Tokyo",
+      "items": [
+        {
+          "id": "t-due",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": "2026-08-27T23:30:00Z",
+          "updatedAt": null,
+          "githubRef": null
+        }
+      ],
+      "expect": {
+        "order": [
+          "t-due"
+        ],
+        "sections": {
+          "inbox": [],
+          "late": [],
+          "today": [
+            "t-due"
+          ],
+          "soon": [],
+          "undated": []
+        },
+        "open": 1,
+        "late": 0
+      }
+    },
+    {
+      "name": "undated order is recent movement first, silence last",
+      "now": "2026-08-28T12:00:00Z",
+      "timeZone": "UTC",
+      "items": [
+        {
+          "id": "t-a",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": null,
+          "updatedAt": "2026-08-20T09:00:00Z",
+          "githubRef": null
+        },
+        {
+          "id": "t-c",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": null,
+          "updatedAt": null,
+          "githubRef": null
+        },
+        {
+          "id": "t-b",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": null,
+          "updatedAt": "2026-08-25T09:00:00Z",
+          "githubRef": null
+        },
+        {
+          "id": "acme/app#1",
+          "origin": "issue",
+          "done": false,
+          "filed": true,
+          "dueDate": null,
+          "updatedAt": "2026-08-22T09:00:00Z",
+          "githubRef": null
+        }
+      ],
+      "expect": {
+        "order": [
+          "t-b",
+          "acme/app#1",
+          "t-a",
+          "t-c"
+        ],
+        "sections": {
+          "inbox": [],
+          "late": [],
+          "today": [],
+          "soon": [],
+          "undated": [
+            "t-b",
+            "acme/app#1",
+            "t-a",
+            "t-c"
+          ]
+        },
+        "open": 4,
+        "late": 0
+      }
+    },
+    {
+      "name": "equal dates break on id",
+      "now": "2026-08-28T12:00:00Z",
+      "timeZone": "UTC",
+      "items": [
+        {
+          "id": "b",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": "2026-08-30T09:00:00Z",
+          "updatedAt": null,
+          "githubRef": null
+        },
+        {
+          "id": "a",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": "2026-08-30T09:00:00Z",
+          "updatedAt": null,
+          "githubRef": null
+        }
+      ],
+      "expect": {
+        "order": [
+          "a",
+          "b"
+        ],
+        "sections": {
+          "inbox": [],
+          "late": [],
+          "today": [],
+          "soon": [
+            "a",
+            "b"
+          ],
+          "undated": []
+        },
+        "open": 2,
+        "late": 0
+      }
+    },
+    {
+      "name": "a date nobody can read is no date",
+      "now": "2026-08-28T12:00:00Z",
+      "timeZone": "UTC",
+      "items": [
+        {
+          "id": "t-bad",
+          "origin": "task",
+          "done": false,
+          "filed": true,
+          "dueDate": "whenever",
+          "updatedAt": null,
+          "githubRef": null
+        }
+      ],
+      "expect": {
+        "order": [
+          "t-bad"
+        ],
+        "sections": {
+          "inbox": [],
+          "late": [],
+          "today": [],
+          "soon": [],
+          "undated": [
+            "t-bad"
+          ]
+        },
+        "open": 1,
+        "late": 0
+      }
+    },
+    {
+      "name": "filing comes before scheduling: an unfiled task is inbox, never late",
+      "now": "2026-08-28T12:00:00Z",
+      "timeZone": "UTC",
+      "items": [
+        {
+          "id": "t-unfiled",
+          "origin": "task",
+          "done": false,
+          "filed": false,
+          "dueDate": "2026-08-20T09:00:00Z",
+          "updatedAt": null,
+          "githubRef": null
+        }
+      ],
+      "expect": {
+        "order": [
+          "t-unfiled"
+        ],
+        "sections": {
+          "inbox": [
+            "t-unfiled"
+          ],
+          "late": [],
+          "today": [],
+          "soon": [],
+          "undated": []
+        },
+        "open": 1,
+        "late": 0
+      }
+    },
+    {
+      "name": "an empty plate is an empty plan",
+      "now": "2026-08-28T12:00:00Z",
+      "timeZone": "UTC",
+      "items": [],
+      "expect": {
+        "order": [],
+        "sections": {
+          "inbox": [],
+          "late": [],
+          "today": [],
+          "soon": [],
+          "undated": []
+        },
+        "open": 0,
+        "late": 0
+      }
+    }
+  ],
+  "events": {
+    "about": [
+      "An event (a CMS row) has one date and no status field: the date is the",
+      "status. The phase is computed against the reader's today, in the reader's",
+      "zone, and never stored."
+    ],
+    "vocabulary": [
+      "upcoming",
+      "live",
+      "past"
+    ],
+    "rules": [
+      "PHASE: eventDate is a plain YYYY-MM-DD. Its civil day against today's",
+      "civil day in `timeZone`: earlier = past, same = live, later = upcoming.",
+      "COUNTDOWN: daysUntil is the civil-day difference from today in `timeZone`.",
+      "A positive day count is shown as days left; zero is Today; null is Upcoming.",
+      "UNDATED: null or unparseable is upcoming. A draft with tasks is open work;",
+      "hiding it would hide the tasks. It has no sort key and lists last.",
+      "OPEN: upcoming and live are open subjects; past is closed."
+    ],
+    "phaseCases": [
+      {
+        "name": "tomorrow is upcoming",
+        "eventDate": "2026-09-20",
+        "now": "2026-09-19T23:30:00Z",
+        "timeZone": "UTC",
+        "expect": "upcoming",
+        "daysUntil": 1
+      },
+      {
+        "name": "three civil days remain",
+        "eventDate": "2026-09-22",
+        "now": "2026-09-19T23:30:00Z",
+        "timeZone": "UTC",
+        "expect": "upcoming",
+        "daysUntil": 3
+      },
+      {
+        "name": "today is live all day",
+        "eventDate": "2026-09-19",
+        "now": "2026-09-19T23:30:00Z",
+        "timeZone": "UTC",
+        "expect": "live",
+        "daysUntil": 0
+      },
+      {
+        "name": "yesterday is past",
+        "eventDate": "2026-09-18",
+        "now": "2026-09-19T00:10:00Z",
+        "timeZone": "UTC",
+        "expect": "past",
+        "daysUntil": -1
+      },
+      {
+        "name": "the reader's zone decides today: still the 19th in Los Angeles",
+        "eventDate": "2026-09-19",
+        "now": "2026-09-20T03:00:00Z",
+        "timeZone": "America/Los_Angeles",
+        "expect": "live",
+        "daysUntil": 0
+      },
+      {
+        "name": "the reader's zone decides today: already the 20th in Tokyo",
+        "eventDate": "2026-09-19",
+        "now": "2026-09-19T16:00:00Z",
+        "timeZone": "Asia/Tokyo",
+        "expect": "past",
+        "daysUntil": -1
+      },
+      {
+        "name": "undated is upcoming",
+        "eventDate": null,
+        "now": "2026-09-19T12:00:00Z",
+        "timeZone": "UTC",
+        "expect": "upcoming",
+        "daysUntil": null
+      },
+      {
+        "name": "unparseable is upcoming",
+        "eventDate": "soon",
+        "now": "2026-09-19T12:00:00Z",
+        "timeZone": "UTC",
+        "expect": "upcoming",
+        "daysUntil": null
+      },
+      {
+        "name": "invalid calendar date is undated",
+        "eventDate": "2026-02-31",
+        "now": "2026-03-01T12:00:00Z",
+        "timeZone": "UTC",
+        "expect": "upcoming",
+        "daysUntil": null
+      }
+    ]
+  },
+  "unowned": {
+    "about": [
+      "Open work nobody on our side holds, across every subject: the",
+      "accountability list on Work's Overview. The Worker applies it to the",
+      "board's read and answers GET /api/crm/unowned; clients plan the rows",
+      "they get the way they plan Mine. See docs/BOARD.md §Unowned."
+    ],
+    "rules": [
+      "OPEN: the board's open -- stage not done and not dropped. A proposed task",
+      "is a question for INBOX, never a card, so it is never unowned.",
+      "DEDUPE FIRST: the plan runs before the rule, so a live promoted task is",
+      "judged and the issue it claims is dropped whoever holds it.",
+      "TASK: unowned when it has no assignee and the client does not owe it.",
+      "responsibleParty team and unassigned are both ours; client is theirs. A",
+      "blank assignee is no assignee.",
+      "ISSUE: unowned when it has no assignee and no stage label. Any of",
+      "agent:queued, agent:building, agent:review, agent:failed means an agent",
+      "holds it; labels compare case-insensitively. Other labels say nothing.",
+      "ORDER: the plan's -- late, today, soon by due ascending, then undated by",
+      "updatedAt descending; ties on id."
+    ],
+    "cardFields": {
+      "assignee": "task only: the Core person it is assigned to, or null",
+      "responsibleParty": "task only: team, client or unassigned",
+      "assignees": "issue only: GitHub logins assigned"
+    },
+    "cases": [
+      {
+        "name": "who counts as nobody",
+        "now": "2026-08-28T12:00:00Z",
+        "timeZone": "UTC",
+        "items": [
+          {
+            "id": "t-team-nobody",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-20T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending",
+            "assignee": null,
+            "responsibleParty": "team"
+          },
+          {
+            "id": "t-no-side",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-26T09:00:00Z",
+            "githubRef": null,
+            "status": "pending",
+            "assignee": null,
+            "responsibleParty": "unassigned"
+          },
+          {
+            "id": "t-client-nobody",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-21T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending",
+            "assignee": null,
+            "responsibleParty": "client"
+          },
+          {
+            "id": "t-held",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-22T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending",
+            "assignee": "person-1",
+            "responsibleParty": "team"
+          },
+          {
+            "id": "t-blank",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-30T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending",
+            "assignee": "  ",
+            "responsibleParty": "team"
+          },
+          {
+            "id": "t-done",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "completed",
+            "assignee": null,
+            "responsibleParty": "team"
+          },
+          {
+            "id": "t-proposed",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "proposed",
+            "assignee": null,
+            "responsibleParty": "team"
+          },
+          {
+            "id": "t-doing-nobody",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-28T08:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "in_progress",
+            "assignee": null,
+            "responsibleParty": "team"
+          },
+          {
+            "id": "o/r#1",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T09:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "labels": [
+              "bug"
+            ],
+            "assignees": []
+          },
+          {
+            "id": "o/r#2",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T10:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "labels": [],
+            "assignees": [
+              "octo"
+            ]
+          },
+          {
+            "id": "o/r#3",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T11:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "labels": [
+              "Agent:Queued"
+            ],
+            "assignees": []
+          },
+          {
+            "id": "o/r#4",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-25T09:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "labels": [
+              "agent:out-of-scope"
+            ],
+            "assignees": []
+          },
+          {
+            "id": "o/r#5",
+            "origin": "issue",
+            "done": true,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T12:00:00Z",
+            "githubRef": null,
+            "state": "closed",
+            "labels": [],
+            "assignees": []
+          }
+        ],
+        "expect": [
+          "t-team-nobody",
+          "t-doing-nobody",
+          "t-blank",
+          "o/r#1",
+          "t-no-side",
+          "o/r#4"
+        ]
+      },
+      {
+        "name": "a promoted task is judged, never the issue it claims",
+        "now": "2026-08-28T12:00:00Z",
+        "timeZone": "UTC",
+        "items": [
+          {
+            "id": "t-promoted-nobody",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-26T09:00:00Z",
+            "githubRef": "o/r#10",
+            "status": "pending",
+            "assignee": null,
+            "responsibleParty": "team"
+          },
+          {
+            "id": "o/r#10",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T09:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "labels": [],
+            "assignees": [
+              "octo"
+            ]
+          },
+          {
+            "id": "t-promoted-held",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": "o/r#11",
+            "status": "pending",
+            "assignee": "person-1",
+            "responsibleParty": "team"
+          },
+          {
+            "id": "o/r#11",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T09:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "labels": [],
+            "assignees": []
+          },
+          {
+            "id": "t-done-promoted",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": "o/r#12",
+            "status": "completed",
+            "assignee": "person-1",
+            "responsibleParty": "team"
+          },
+          {
+            "id": "o/r#12",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-25T09:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "labels": [],
+            "assignees": []
+          }
+        ],
+        "expect": [
+          "t-promoted-nobody",
+          "o/r#12"
+        ]
+      }
+    ]
+  },
+  "focus": {
+    "about": [
+      "The slice of Mine for Mine's Focus filter, the menu bar, the widget and the watch (planFocus).",
+      "Items are cards: the plan's item fields plus the stage fields under stages.cardFields."
+    ],
+    "rules": [
+      "DATES: late and today come from dateSection with filing left out, so an unfiled late task is late on Home.",
+      "ORDER: late, then today, each by due date (ties on id); then started work, by recent movement.",
+      "STARTED: an open row not late or today whose stage is doing, review or blocked, whatever its date.",
+      "NEXT: when late, today and started are all empty, the first 3 soon rows by due date, and next is true.",
+      "FILTER: Mine's focus filter keeps the focus rows in the plan's own order, and never the Next fill.",
+      "COUNTS: lateCount and todayCount count the late and today rows; both are 0 under Next."
+    ],
+    "cases": [
+      {
+        "name": "late, today, then started work, nothing else",
+        "now": "2026-08-28T12:00:00Z",
+        "timeZone": "UTC",
+        "items": [
+          {
+            "id": "t-late-unfiled",
+            "origin": "task",
+            "done": false,
+            "filed": false,
+            "dueDate": "2026-08-20T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "t-late",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-25T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "t-today",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-28T15:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "t-today-early",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-28T08:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "in_progress"
+          },
+          {
+            "id": "t-doing-undated",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-26T09:00:00Z",
+            "githubRef": null,
+            "status": "in_progress"
+          },
+          {
+            "id": "acme/app#2",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T09:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "stateReason": null,
+            "labels": [
+              "agent:review"
+            ]
+          },
+          {
+            "id": "acme/app#3",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T10:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "stateReason": null,
+            "labels": []
+          },
+          {
+            "id": "t-soon",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-30T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "t-soon-blocked",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-31T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "blocked"
+          },
+          {
+            "id": "t-done",
+            "origin": "task",
+            "done": true,
+            "filed": true,
+            "dueDate": "2026-08-20T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "completed"
+          }
+        ],
+        "expect": {
+          "rows": [
+            "t-late-unfiled",
+            "t-late",
+            "t-today-early",
+            "t-today",
+            "acme/app#2",
+            "t-doing-undated",
+            "t-soon-blocked"
+          ],
+          "next": false,
+          "lateCount": 2,
+          "todayCount": 2,
+          "mineFilter": [
+            "t-late-unfiled",
+            "t-late",
+            "t-today-early",
+            "t-today",
+            "t-soon-blocked",
+            "acme/app#2",
+            "t-doing-undated"
+          ]
+        }
+      },
+      {
+        "name": "a clear day fills with the next three soon rows",
+        "now": "2026-08-28T12:00:00Z",
+        "timeZone": "UTC",
+        "items": [
+          {
+            "id": "t-s1",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-09-02T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "t-s2",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-29T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "t-s3",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-08-30T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "t-s4",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": "2026-09-05T09:00:00Z",
+            "updatedAt": null,
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "t-undated",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T09:00:00Z",
+            "githubRef": null,
+            "status": "pending"
+          },
+          {
+            "id": "acme/app#9",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": null,
+            "githubRef": null,
+            "state": "open",
+            "stateReason": null,
+            "labels": []
+          }
+        ],
+        "expect": {
+          "rows": [
+            "t-s2",
+            "t-s3",
+            "t-s1"
+          ],
+          "next": true,
+          "lateCount": 0,
+          "todayCount": 0,
+          "mineFilter": []
+        }
+      },
+      {
+        "name": "a promoted task claims its issue in focus too",
+        "now": "2026-08-28T12:00:00Z",
+        "timeZone": "UTC",
+        "items": [
+          {
+            "id": "t-promoted",
+            "origin": "task",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-26T09:00:00Z",
+            "githubRef": "acme/app#5",
+            "status": "in_progress"
+          },
+          {
+            "id": "acme/app#5",
+            "origin": "issue",
+            "done": false,
+            "filed": true,
+            "dueDate": null,
+            "updatedAt": "2026-08-27T09:00:00Z",
+            "githubRef": null,
+            "state": "open",
+            "stateReason": null,
+            "labels": [
+              "agent:building"
+            ]
+          }
+        ],
+        "expect": {
+          "rows": [
+            "t-promoted"
+          ],
+          "next": false,
+          "lateCount": 0,
+          "todayCount": 0,
+          "mineFilter": [
+            "t-promoted"
+          ]
+        }
+      }
+    ]
+  }
+}

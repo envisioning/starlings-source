@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "requiredMark": " *",
+  "forms": {
+    "lead": [
+      { "id": "title", "wire": "title", "label": "Name", "required": "form", "format": "text", "create": "omit", "update": "omit", "maxLength": 100 },
+      { "id": "status", "wire": "status", "label": "Status", "required": "none", "format": "status", "create": "omit", "update": "omit", "maxLength": null },
+      { "id": "organization", "wire": "organization_id", "label": "Organization", "required": "command", "format": "uuid", "create": "omit", "update": "null", "maxLength": null },
+      { "id": "contact", "wire": "contact_id", "label": "Contact", "required": "none", "format": "uuid", "create": "omit", "update": "null", "maxLength": null },
+      { "id": "startDate", "wire": "start_date", "label": "Start date", "required": "schema", "format": "day", "create": "omit", "update": "omit", "maxLength": 30 },
+      {
+        "id": "characteristics",
+        "wire": "characteristics",
+        "label": "Qualification",
+        "required": "none",
+        "format": "flags",
+        "create": "omit",
+        "update": "omit",
+        "maxLength": null
+      },
+      { "id": "notes", "wire": "notes", "label": "Notes", "required": "none", "format": "text", "create": "omit", "update": "null", "maxLength": 10000 }
+    ],
+    "project": [
+      { "id": "title", "wire": "title", "label": "Name", "required": "schema", "format": "text", "create": "omit", "update": "omit", "maxLength": 200 },
+      { "id": "status", "wire": "status", "label": "Status", "required": "none", "format": "status", "create": "omit", "update": "omit", "maxLength": null },
+      { "id": "organization", "wire": "organization_id", "label": "Organization", "required": "none", "format": "uuid", "create": "omit", "update": "null", "maxLength": null },
+      { "id": "contacts", "wire": "contact_ids", "label": "Contacts", "required": "none", "format": "uuid-list", "create": "omit", "update": "send", "maxLength": null },
+      { "id": "startDate", "wire": "start_date", "label": "Start date", "required": "none", "format": "day", "create": "omit", "update": "null", "maxLength": 30 },
+      { "id": "endDate", "wire": "end_date", "label": "End date", "required": "none", "format": "day", "create": "omit", "update": "null", "maxLength": 30 },
+      { "id": "url", "wire": "url", "label": "URL", "required": "none", "format": "url", "create": "omit", "update": "null", "maxLength": null },
+      { "id": "description", "wire": "description", "label": "Description", "required": "none", "format": "text", "create": "omit", "update": "null", "maxLength": 2000 }
+    ],
+    "contact": [
+      { "id": "name", "wire": "name", "label": "Name", "required": "schema", "format": "text", "create": "omit", "update": "omit", "maxLength": 200 },
+      { "id": "title", "wire": "title", "label": "Title", "required": "none", "format": "text", "create": "omit", "update": "null", "maxLength": 200 },
+      { "id": "organization", "wire": "organization_id", "label": "Organization", "required": "none", "format": "uuid", "create": "omit", "update": "null", "maxLength": null },
+      { "id": "emails", "wire": "emails", "label": "Addresses, one per line", "required": "none", "format": "email-list", "create": "send", "update": "send", "maxLength": null }
+    ],
+    "organization": [
+      { "id": "name", "wire": "name", "label": "Name", "required": "schema", "format": "text", "create": "omit", "update": "omit", "maxLength": 200 }
+    ]
+  }
+}

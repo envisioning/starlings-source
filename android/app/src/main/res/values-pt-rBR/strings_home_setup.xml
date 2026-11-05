@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_skip">Pular</string>
+    <string name="setup_done">Concluir</string>
+    <string name="setup_retry">Tentar de novo</string>
+
+    <string name="home_room_open">Sua sala está aberta.</string>
+
+    <string name="home_invite_reply">Responder</string>
+    <string name="home_invite_conflicts">Conflita com %1$s · %2$s%3$s</string>
+    <string name="home_invite_conflicts_more">"\u0020· +%1$d"</string>
+    <string name="home_untitled_event">Evento sem título</string>
+    <string name="home_forwarded_label">Evento do e-mail: %1$s, %2$s</string>
+
+    <string name="plan_project_limit">O plano Grátis inclui um projeto.</string>
+    <string name="plan_project_frozen">Este projeto é somente leitura no plano Grátis.</string>
+    <string name="plan_ask_admin">Peça a um admin para mudar de plano.</string>
+    <string name="plan_upgrade">Mudar de plano</string>
+</resources>

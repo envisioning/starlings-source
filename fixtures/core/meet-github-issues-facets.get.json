@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "labels": [
+    {
+      "name": "scope",
+      "color": "0e8a16",
+      "description": "Scoping work"
+    }
+  ],
+  "milestones": [
+    {
+      "title": "Pilot",
+      "number": 3,
+      "state": "open",
+      "due_on": "2026-11-15T00:00:00Z"
+    }
+  ],
+  "assignees": [
+    {
+      "login": "ada-example",
+      "avatar_url": "https://avatars.example.test/u/1"
+    }
+  ]
+}

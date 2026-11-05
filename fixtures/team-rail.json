@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "directKind": "dm",
+  "order": [
+    {
+      "name": "talked first, latest message first, the rest as they came",
+      "emails": [
+        "a@x",
+        "b@x",
+        "c@x",
+        "d@x"
+      ],
+      "directs": [
+        {
+          "kind": "dm",
+          "isGroup": false,
+          "peerEmail": "c@x",
+          "lastMessageAt": 2000
+        },
+        {
+          "kind": "dm",
+          "isGroup": false,
+          "peerEmail": "b@x",
+          "lastMessageAt": 1000
+        }
+      ],
+      "out": [
+        "c@x",
+        "b@x",
+        "a@x",
+        "d@x"
+      ]
+    },
+    {
+      "name": "the latest of two conversations with one person counts",
+      "emails": [
+        "a@x",
+        "b@x"
+      ],
+      "directs": [
+        {
+          "kind": "dm",
+          "isGroup": false,
+          "peerEmail": "a@x",
+          "lastMessageAt": 1000
+        },
+        {
+          "kind": "dm",
+          "isGroup": false,
+          "peerEmail": "a@x",
+          "lastMessageAt": 5000
+        },
+        {
+          "kind": "dm",
+          "isGroup": false,
+          "peerEmail": "b@x",
+          "lastMessageAt": 3000
+        }
+      ],
+      "out": [
+        "a@x",
+        "b@x"
+      ]
+    },
+    {
+      "name": "a group is not a person's conversation",
+      "emails": [
+        "a@x",
+        "b@x"
+      ],
+      "directs": [
+        {
+          "kind": "dm",
+          "isGroup": true,
+          "peerEmail": "a@x",
+          "lastMessageAt": 9000
+        },
+        {
+          "kind": "dm",
+          "isGroup": false,
+          "peerEmail": "b@x",
+          "lastMessageAt": 1000
+        }
+      ],
+      "out": [
+        "b@x",
+        "a@x"
+      ]
+    },
+    {
+      "name": "a conversation with nothing said does not count",
+      "emails": [
+        "a@x",
+        "b@x"
+      ],
+      "directs": [
+        {
+          "kind": "dm",
+          "isGroup": false,
+          "peerEmail": "a@x",
+          "lastMessageAt": null
+        },
+        {
+          "kind": "dm",
+          "isGroup": false,
+          "peerEmail": "b@x",
+          "lastMessageAt": 1000
+        }
+      ],
+      "out": [
+        "b@x",
+        "a@x"
+      ]
+    },
+    {
+      "name": "a channel is not a conversation",
+      "emails": [
+        "a@x",
+        "b@x"
+      ],
+      "directs": [
+        {
+          "kind": "team",
+          "isGroup": false,
+          "peerEmail": "a@x",
+          "lastMessageAt": 9000
+        },
+        {
+          "kind": "dm",
+          "isGroup": false,
+          "peerEmail": "b@x",
+          "lastMessageAt": 1000
+        }
+      ],
+      "out": [
+        "b@x",
+        "a@x"
+      ]
+    },
+    {
+      "name": "no conversations leaves the order alone",
+      "emails": [
+        "b@x",
+        "a@x"
+      ],
+      "directs": [],
+      "out": [
+        "b@x",
+        "a@x"
+      ]
+    },
+    {
+      "name": "a conversation with someone off the roster does not add a row",
+      "emails": [
+        "a@x"
+      ],
+      "directs": [
+        {
+          "kind": "dm",
+          "isGroup": false,
+          "peerEmail": "gone@x",
+          "lastMessageAt": 9000
+        }
+      ],
+      "out": [
+        "a@x"
+      ]
+    }
+  ],
+  "stray": [
+    {
+      "name": "a direct with someone off the roster trails",
+      "direct": {
+        "kind": "dm",
+        "isGroup": false,
+        "peerEmail": "gone@x",
+        "lastMessageAt": 1000
+      },
+      "roster": [
+        "a@x"
+      ],
+      "selfEmail": "me@x",
+      "out": true
+    },
+    {
+      "name": "a direct with someone on the roster does not",
+      "direct": {
+        "kind": "dm",
+        "isGroup": false,
+        "peerEmail": "a@x",
+        "lastMessageAt": 1000
+      },
+      "roster": [
+        "a@x"
+      ],
+      "selfEmail": "me@x",
+      "out": false
+    },
+    {
+      "name": "your own notes are not a stray",
+      "direct": {
+        "kind": "dm",
+        "isGroup": false,
+        "peerEmail": "me@x",
+        "lastMessageAt": 1000
+      },
+      "roster": [
+        "a@x"
+      ],
+      "selfEmail": "me@x",
+      "out": false
+    },
+    {
+      "name": "a group is not a stray",
+      "direct": {
+        "kind": "dm",
+        "isGroup": true,
+        "peerEmail": "gone@x",
+        "lastMessageAt": 1000
+      },
+      "roster": [
+        "a@x"
+      ],
+      "selfEmail": "me@x",
+      "out": false
+    },
+    {
+      "name": "a channel is not a stray",
+      "direct": {
+        "kind": "team",
+        "isGroup": false,
+        "peerEmail": "gone@x",
+        "lastMessageAt": 1000
+      },
+      "roster": [
+        "a@x"
+      ],
+      "selfEmail": "me@x",
+      "out": false
+    },
+    {
+      "name": "a direct with no address is not a stray",
+      "direct": {
+        "kind": "dm",
+        "isGroup": false,
+        "peerEmail": null,
+        "lastMessageAt": 1000
+      },
+      "roster": [
+        "a@x"
+      ],
+      "selfEmail": "me@x",
+      "out": false
+    }
+  ]
+}

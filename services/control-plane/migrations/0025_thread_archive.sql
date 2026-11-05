@@ -1,0 +1,24 @@
+-- Keep a conversation in the list until you put it away.
+--
+-- A one-to-one DM had no row of its own in CONVERSATIONS: the clients drew
+-- Everyone and the group threads, and reached a DM through the person's row in
+-- the roster instead. That made the roster the only door — hiding somebody in
+-- Admin took the conversation with them, and a DM you had actually used was
+-- one filtered roster away from being unreachable.
+--
+-- So DMs go in the list, and archiving is what keeps the list short.
+--
+-- `archived_at` sits on `thread_members`, beside `last_read_at`, `muted_until`
+-- and `has_mention`, because archiving is per-member: a conversation one
+-- person has put away is still in the other person's list. On `threads` it
+-- would archive for both, which is somebody else's decision to make.
+--
+-- It is a timestamp rather than a flag so "a new message brings it back" is a
+-- comparison and not a job:
+--
+--   WHERE archived_at IS NULL OR t.last_message_at > archived_at
+--
+-- A boolean would need something to clear it, and the day that something is
+-- missed is the day a message goes unread forever. Nothing unarchives; the
+-- next message simply outranks the timestamp.
+ALTER TABLE thread_members ADD COLUMN archived_at INTEGER;

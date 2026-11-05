@@ -1,0 +1,39 @@
+/* Radius is the only animated property: every dot keeps its centre and its ink.
+   The periods and the drift range come from the registry, as custom
+   properties GatheringDots.tsx sets on the svg.
+   --gathering-clock shifts every dot onto the wall clock. The public site sets
+   it before first paint (marketing/appearance.js), so the flock carries on
+   across page loads instead of starting over. Unset, it is 0s. */
+/* Drift: every dot on its own clock, so the flock never moves in step. */
+.gathering-dots[data-motion="drift"] circle {
+  --gathering-own-period: calc(var(--gathering-drift-period) * var(--gathering-drift-factor));
+  animation: gathering-drift var(--gathering-own-period) ease-in-out infinite;
+  animation-delay: calc(var(--gathering-drift-phase) * var(--gathering-own-period) * -1 - var(--gathering-clock, 0s));
+}
+.gathering-dots[data-motion="murmuration"] { --gathering-period: var(--gathering-murmuration-period); }
+.gathering-dots[data-motion="thinking"] { --gathering-period: var(--gathering-thinking-period); }
+.gathering-dots[data-motion="busy"] { --gathering-period: var(--gathering-busy-period); }
+.gathering-dots:is([data-motion="murmuration"], [data-motion="thinking"], [data-motion="busy"]) circle {
+  animation: gathering-radius var(--gathering-period) ease-in-out infinite;
+  animation-delay: calc(var(--gathering-phase) * var(--gathering-period) * -1 - var(--gathering-clock, 0s));
+}
+/* A full-page loader is the one moving element on the page:
+   while it shows, every drifting flock (the brand in the header) rests. */
+:root:has([data-loader="full-page"]) .gathering-dots[data-motion="drift"] circle {
+  animation: none;
+}
+/* Each dot breathes around its own resting radius, so the shape holds. */
+@keyframes gathering-drift {
+  0%, 100% { r: calc(var(--gathering-rest) * var(--gathering-drift-low)); }
+  50% { r: calc(var(--gathering-rest) * var(--gathering-drift-high)); }
+}
+@keyframes gathering-radius {
+  0%, 100% { r: var(--gathering-size-0); }
+  24% { r: var(--gathering-size-1); }
+  49% { r: var(--gathering-size-3); }
+  74% { r: var(--gathering-size-2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* The SVG's four authored radii remain when motion is disabled. */
+  .gathering-dots circle { animation: none !important; }
+}

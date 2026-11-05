@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "statuses": ["pending", "in_progress", "review", "blocked", "completed", "cancelled", "proposed", "declined"],
+  "statusLabels": {
+    "pending": "Pending",
+    "in_progress": "In progress",
+    "review": "In review",
+    "blocked": "Blocked",
+    "completed": "Done",
+    "cancelled": "Cancelled",
+    "proposed": "Proposed",
+    "declined": "Declined"
+  },
+  "parties": ["team", "client", "unassigned"],
+  "partyLabels": { "team": "Team", "client": "Client", "unassigned": "Unassigned" }
+}

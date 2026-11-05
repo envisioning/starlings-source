@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "$comment": "Calendar quick add (meet#235): one typed sentence becomes an event draft, prefilled and not saved. One grammar, written twice — Sources/CalendarQuickAdd.swift and packages/contracts/src/quick-add.ts — and this file is what keeps them the same. `now` is the moment of typing, in `timeZone`; every `start`/`end` is local wall time in that zone (no offset written), or a YYYY-MM-DD day when `allDay`. `end` follows the default duration when the sentence names none. Anything the grammar does not consume is the title, with joining words and trailing punctuation trimmed. What it does not read — no date at all, or two time expressions — is what the Worker sends to the notes engine; `confidence` says which: 1 when a date and a time or an all-day span were read, 0.5 when only a date, 0 when nothing.",
+  "now": "2026-09-19T10:00:00",
+  "timeZone": "Europe/Lisbon",
+  "defaultDurationMinutes": 60,
+  "rules": [
+    "TIME: 14:00, 14.00, 2pm, 2 pm, 9am, 14h, 14h30, 9:30am. A bare 1–12 with no marker is a time only inside a range or after 'at'.",
+    "RANGE: two times joined by '-', '–', 'to' or 'until' on the same day; a range end before its start is the next day only when the start is after noon (19:30-1:00).",
+    "DURATION: '45 min', '45 minutes', '1h', '1h30', '1.5h', '2 hours', 'for 30 minutes'. Sets end from start; ignored without a start.",
+    "TIME WITHOUT A DAY: today when the time is still ahead, otherwise tomorrow.",
+    "DAY: today, tomorrow, tonight (19:00 when no time), a weekday name (the next one, today included when the time is still ahead), 'next <weekday>' (the one after the coming one), 'on' before any of these is dropped.",
+    "DATE: '14 October', '14 Oct', 'October 14', 'Oct 14', '14/10' (day first), '2026-10-14'. Without a year: the next such date from today, today included.",
+    "SPAN: '3-5 Oct', '3 to 5 Oct', '3–5 October', 'Oct 3-5', '14 Oct - 16 Oct': an all-day event from the first day through the last; end is the day after the last, as Google stores it.",
+    "ALL DAY: 'all day' or 'all-day' anywhere makes the event all-day on its date, ends the next day; a date with no time and no span is a timed draft with no start time (the editor asks), not all-day.",
+    "LOCATION: 'at <words>' up to a comma, a time, a duration, a day, a date or 'with'; not when 'at' is followed by a time.",
+    "INVITEES: 'with <name>(, <name>)*( and <name>)?' where a name is one or two capitalised words; stops at a comma not followed by a capitalised word, a day, a date, a time, 'at' or 'for'. The names stay in the title too ('Lunch with Ana').",
+    "TITLE: the sentence minus every consumed span except the invitee phrase; commas, 'on', 'for', 'from' and 'the' left dangling at the edges are trimmed; internal whitespace collapsed. Empty title falls back to 'New event'.",
+    "RECURRENCE: 'every Monday' and the like are not read (meet#236 closed): the words stay in the title, the weekday inside them is not a date."
+  ],
+  "cases": [
+    {
+      "name": "lunch tomorrow at half past twelve, default duration, one invitee",
+      "input": "Lunch with Ana tomorrow 12:30",
+      "expect": { "title": "Lunch with Ana", "start": "2026-09-20T12:30", "end": "2026-09-20T13:30", "allDay": false, "location": null, "invitees": ["Ana"], "confidence": 1 }
+    },
+    {
+      "name": "weekday, time, place, duration",
+      "input": "Coffee with Ana Thu 14:00 at Ground, 45 min",
+      "expect": { "title": "Coffee with Ana", "start": "2026-09-24T14:00", "end": "2026-09-24T14:45", "allDay": false, "location": "Ground", "invitees": ["Ana"], "confidence": 1 }
+    },
+    {
+      "name": "a span of days is all-day, end exclusive",
+      "input": "Board offsite 3-5 Oct",
+      "expect": { "title": "Board offsite", "start": "2026-10-03", "end": "2026-10-06", "allDay": true, "location": null, "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "no date: title only, nothing else read",
+      "input": "Dentist",
+      "expect": { "title": "Dentist", "start": null, "end": null, "allDay": false, "location": null, "invitees": [], "confidence": 0 }
+    },
+    {
+      "name": "recurrence words stay in the title; the weekday inside them is not a date",
+      "input": "Standup every Monday 9am",
+      "expect": { "title": "Standup every Monday", "start": "2026-09-20T09:00", "end": "2026-09-20T10:00", "allDay": false, "location": null, "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "'at' before a time is a time, not a place; 'for' a duration",
+      "input": "Call Bruno at 3pm for 30 minutes",
+      "expect": { "title": "Call Bruno", "start": "2026-09-19T15:00", "end": "2026-09-19T15:30", "allDay": false, "location": null, "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "time range and a two-word place",
+      "input": "Team dinner Friday 19:30-22:00 at Bar Central",
+      "expect": { "title": "Team dinner", "start": "2026-09-25T19:30", "end": "2026-09-25T22:00", "allDay": false, "location": "Bar Central", "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "a date with 'all day'",
+      "input": "Workshop on 14 October, all day",
+      "expect": { "title": "Workshop", "start": "2026-10-14", "end": "2026-10-15", "allDay": true, "location": null, "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "two invitees with 'and'; 'next' skips the coming weekday",
+      "input": "Sync with Ana and Bruno Costa next Tue 11:00",
+      "expect": { "title": "Sync with Ana and Bruno Costa", "start": "2026-09-29T11:00", "end": "2026-09-29T12:00", "allDay": false, "location": null, "invitees": ["Ana", "Bruno Costa"], "confidence": 1 }
+    },
+    {
+      "name": "a date without a time is half read: the editor asks for the time",
+      "input": "Dentist 14 Oct",
+      "expect": { "title": "Dentist", "start": "2026-10-14", "end": null, "allDay": false, "location": null, "invitees": [], "confidence": 0.5 }
+    },
+    {
+      "name": "today, an evening time, a duration in hours",
+      "input": "Gym today 6pm 1h30",
+      "expect": { "title": "Gym", "start": "2026-09-19T18:00", "end": "2026-09-19T19:30", "allDay": false, "location": null, "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "tonight is seven when no time is said",
+      "input": "Drinks tonight at Porto Bar",
+      "expect": { "title": "Drinks", "start": "2026-09-19T19:00", "end": "2026-09-19T20:00", "allDay": false, "location": "Porto Bar", "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "month first, day-first numeric date, and a range that crosses midnight",
+      "input": "Party Oct 31 22:00-1:00",
+      "expect": { "title": "Party", "start": "2026-10-31T22:00", "end": "2026-11-01T01:00", "allDay": false, "location": null, "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "day-first numeric date and a French hour",
+      "input": "Kickoff 5/10 14h30 at Acme HQ",
+      "expect": { "title": "Kickoff", "start": "2026-10-05T14:30", "end": "2026-10-05T15:30", "allDay": false, "location": "Acme HQ", "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "a weekday that is today counts as today while the time is ahead",
+      "input": "Review Saturday 16:00",
+      "expect": { "title": "Review", "start": "2026-09-19T16:00", "end": "2026-09-19T17:00", "allDay": false, "location": null, "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "a weekday that is today with a time already gone is next week",
+      "input": "Review Saturday 9:00",
+      "expect": { "title": "Review", "start": "2026-09-26T09:00", "end": "2026-09-26T10:00", "allDay": false, "location": null, "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "a full date with a year",
+      "input": "Renewal 2027-01-15 10:00",
+      "expect": { "title": "Renewal", "start": "2027-01-15T10:00", "end": "2027-01-15T11:00", "allDay": false, "location": null, "invitees": [], "confidence": 1 }
+    },
+    {
+      "name": "two time expressions is not for the grammar",
+      "input": "Call at 9 or maybe 3pm",
+      "expect": { "title": "Call at 9 or maybe 3pm", "start": null, "end": null, "allDay": false, "location": null, "invitees": [], "confidence": 0 }
+    },
+    {
+      "name": "nothing but a date leaves a usable title",
+      "input": "tomorrow 10am",
+      "expect": { "title": "New event", "start": "2026-09-20T10:00", "end": "2026-09-20T11:00", "allDay": false, "location": null, "invitees": [], "confidence": 1 }
+    }
+  ]
+}

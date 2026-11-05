@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The Calendar tab. Each sentence is the iOS catalog's (Resources/Localizable.xcstrings),
+  with its pt-BR value in values-pt-rBR/strings_calendar.xml. The rows marked
+  translatable="false" are words iOS draws without the catalog (MobileCalendarLayout.label,
+  "TOMORROW", the Google banner, VoiceOver's "repeating" and guest marks), so both
+  languages read them in English, as on iOS.
+-->
+<resources>
+    <!-- Layouts (MobileCalendarLayout.label: not in the catalog on iOS). -->
+    <string name="cal_layout_day" translatable="false">Day</string>
+    <string name="cal_layout_two_days" translatable="false">2 Days</string>
+    <string name="cal_layout_three_days" translatable="false">3 Days</string>
+    <string name="cal_layout_month" translatable="false">Month</string>
+    <string name="cal_layout_list" translatable="false">List</string>
+    <string name="cal_view">View</string>
+    <string name="cal_today">Today</string>
+    <string name="cal_add">Add</string>
+    <string name="cal_new_event_menu">New event…</string>
+    <string name="cal_more">More</string>
+    <string name="cal_previous">Previous</string>
+    <string name="cal_next">Next</string>
+
+    <!-- Banners -->
+    <string name="cal_google_not_connected" translatable="false">Google Calendar isn’t connected</string>
+    <string name="cal_try_again">Try again</string>
+    <string name="cal_retry_label">%1$s. Try again</string>
+
+    <!-- Agenda and month -->
+    <string name="cal_nothing_this_week">Nothing scheduled this week.</string>
+    <string name="cal_nothing_this_day">Nothing on this day.</string>
+    <string name="cal_today_caps">TODAY</string>
+    <string name="cal_tomorrow_caps" translatable="false">TOMORROW</string>
+    <string name="cal_all_day">All day</string>
+    <string name="cal_travel_minutes">Travel %1$d min</string>
+    <string name="cal_new_event">New Event</string>
+
+    <!-- Event sheet -->
+    <string name="cal_event">Event</string>
+    <string name="cal_done">Done</string>
+    <string name="cal_close">Close</string>
+    <string name="cal_all_day_line">%1$s · All day</string>
+    <string name="cal_global_interest">Global interest</string>
+    <string name="cal_repeating_event">Repeating event</string>
+    <string name="cal_join_meeting">Join meeting</string>
+    <string name="cal_open_link">Open link</string>
+    <string name="cal_copy_link">Copy link</string>
+    <string name="cal_copied">Copied</string>
+    <string name="cal_going">Going?</string>
+    <string name="cal_your_reply">Your reply</string>
+    <string name="cal_rsvp_accepted">Accepted</string>
+    <string name="cal_rsvp_declined">Declined</string>
+    <string name="cal_rsvp_tentative">Tentative</string>
+    <string name="cal_rsvp_pending">Pending</string>
+    <string name="cal_details">Details</string>
+    <string name="cal_calendar">Calendar</string>
+    <string name="cal_where">Where</string>
+    <string name="cal_travel">Travel</string>
+    <string name="cal_guests">Guests</string>
+    <string name="cal_notes">Notes</string>
+    <string name="cal_hide_from_next">Hide from Next</string>
+    <string name="cal_show_in_next">Show in Next</string>
+    <string name="cal_hidden_footer">Visible, but excluded from alerts and Next.</string>
+    <string name="cal_hide_footer">Hide affects only your view.</string>
+    <string name="cal_edit">Edit</string>
+    <string name="cal_move_to">Move to calendar</string>
+    <string name="cal_duplicate_to">Duplicate to calendar</string>
+    <string name="cal_delete">Delete</string>
+    <string name="cal_delete_title">Delete “%1$s”?</string>
+    <string name="cal_delete_this">Delete this event</string>
+    <string name="cal_delete_series">Delete all events in the series</string>
+    <string name="cal_cannot_undo">This can’t be undone.</string>
+    <string name="cal_cancel">Cancel</string>
+    <string name="cal_ok">OK</string>
+    <string name="cal_copy">Copy</string>
+
+    <!-- Editor -->
+    <string name="cal_edit_event">Edit Event</string>
+    <string name="cal_title">Title</string>
+    <string name="cal_choose_calendar">Choose a calendar</string>
+    <string name="cal_starts">Starts</string>
+    <string name="cal_ends">Ends</string>
+    <string name="cal_location">Location</string>
+    <string name="cal_location_or_link">Location, or the call link</string>
+    <string name="cal_travel_time">Travel time</string>
+    <string name="cal_off">Off</string>
+    <string name="cal_minutes">%1$d min</string>
+    <string name="cal_invitees">Invitees</string>
+    <string name="cal_invites_sent">Invites sent</string>
+    <string name="cal_updates_sent">Updates sent</string>
+    <string name="cal_invites_updated">Invites updated</string>
+    <plurals name="cal_invite_notice">
+        <item quantity="one">%1$s · %2$d guest</item>
+        <item quantity="other">%1$s · %2$d guests</item>
+    </plurals>
+    <string name="cal_add_invitee">Add invitee</string>
+    <string name="cal_remove">Remove</string>
+    <string name="cal_you">you</string>
+    <string name="cal_apply_to">Apply to</string>
+    <string name="cal_this_event">This event</string>
+    <string name="cal_all_events">All events</string>
+    <string name="cal_save">Save</string>
+    <string name="cal_saving">Saving…</string>
+
+    <!-- TalkBack (CalendarAccessibility.describe) -->
+    <string name="cal_a11y_global">global interest</string>
+    <string name="cal_a11y_hidden">hidden from Next</string>
+    <string name="cal_a11y_all_day">all day</string>
+    <string name="cal_a11y_range" translatable="false">%1$s to %2$s</string>
+    <string name="cal_a11y_at">at %1$s</string>
+    <string name="cal_a11y_link">has a meeting link</string>
+    <string name="cal_a11y_read_only">read only</string>
+    <string name="cal_a11y_day_events" translatable="false">%1$s, %2$d events</string>
+    <string name="cal_a11y_repeating" translatable="false">repeating</string>
+    <string name="cal_a11y_guests_confirmed" translatable="false">guests confirmed</string>
+    <string name="cal_a11y_guests_pending" translatable="false">guests pending</string>
+    <string name="cal_a11y_guests_declined" translatable="false">guests declined</string>
+    <string name="cal_layer_events">Events</string>
+    <string name="cal_layer_milestones">Milestones</string>
+    <string name="cal_layer_tasks">Tasks</string>
+    <string name="cal_layer_availability">Availability</string>
+    <string name="cal_layer_events_caption">Published company events</string>
+    <string name="cal_layer_milestones_caption">Project milestones</string>
+    <string name="cal_layer_tasks_caption">Dated tasks</string>
+    <string name="cal_layer_availability_caption">When guests can book you</string>
+    <string name="cal_layer_available">Available</string>
+    <string name="cal_project">Project</string>
+    <string name="cal_lead">Lead</string>
+    <string name="cal_partner">Partner</string>
+    <string name="cal_assigned_to_you">Assigned to you</string>
+    <string name="cal_assigned_to">Assigned to</string>
+    <string name="cal_status">Status</string>
+    <string name="cal_open_in_mine">Open in Mine</string>
+    <string name="cal_open_subject">Open %1$s</string>
+    <string name="cal_due">Due %1$s</string>
+    <string name="cal_you_title">You</string>
+    <string name="cal_a11y_due">due %1$s</string>
+    <string name="cal_a11y_open_for_booking">open for booking</string>
+    <string name="cal_quick_add_menu">Quick add event…</string>
+    <string name="cal_quick_add_title">Quick add event</string>
+    <string name="cal_quick_add_prompt">Coffee with Ana Thu 14:00 at Ground, 45 min</string>
+    <string name="cal_reading">Reading…</string>
+    <string name="cal_next_step">Next</string>
+    <string name="cal_quick_note_model">Read by the notes engine. Check the times.</string>
+    <string name="cal_quick_note_no_date">No date read; the title is set.</string>
+    <string name="cal_quick_note_day">Day read; set the time.</string>
+    <string name="cal_quick_note_filled">Filled in from the sentence.</string>
+    <string name="cal_schedule_menu">Schedule a meeting…</string>
+    <string name="cal_schedule_title">Schedule meeting</string>
+    <string name="cal_adding">Adding…</string>
+    <string name="cal_agenda_caps">AGENDA</string>
+    <string name="cal_public">Public</string>
+    <string name="cal_weekends">Weekends</string>
+    <string name="cal_meeting_title">Meeting title</string>
+    <string name="cal_when_caps">WHEN</string>
+    <string name="cal_ends_at">Ends %1$s</string>
+    <string name="cal_timezone_caps">TIMEZONE</string>
+    <string name="cal_remove_named">Remove %1$s</string>
+    <string name="cal_type_name_or_email">Type a name or email</string>
+    <string name="cal_join_link_caps">JOIN LINK</string>
+    <string name="cal_adding_to_calendar">Adding to Calendar…</string>
+    <string name="cal_add_to_calendar">Add to Calendar</string>
+    <string name="cal_open_day">Open</string>
+    <string name="cal_duration_minutes">%1$dm</string>
+    <string name="cal_default_meeting_title">Starlings</string>
+    <string name="cal_filed_under">Filed under</string>
+    <string name="cal_not_filed">Not filed</string>
+    <string name="cal_unfile">Unfile</string>
+    <string name="cal_filing_footer">New meetings use this project, lead or partner.</string>
+    <string name="cal_file_under">File under</string>
+    <string name="cal_nothing_here">Nothing here yet.</string>
+    <string name="cal_nothing_in_core">Nothing matches that.</string>
+    <string name="cal_search">Search</string>
+    <string name="cal_add_room_link">Add my Starlings room link</string>
+    <string name="cal_availability_title">Availability</string>
+    <string name="cal_free_busy_footer">Free/busy only. Event details stay private.</string>
+    <string name="cal_busy_then">%1$s is busy then</string>
+    <string name="cal_everyone_free">Everyone is free then</string>
+    <string name="cal_no_availability_for">No availability for %1$s</string>
+    <string name="cal_guest_availability">Guest availability</string>
+    <string name="cal_no_busy_time">No busy time on this day</string>
+    <string name="cal_calendars">Calendars</string>
+    <string name="cal_show_in_starlings">Show in Starlings</string>
+    <string name="cal_account_not_in_starlings">This account is not in Starlings</string>
+    <string name="cal_not_in_starlings">Not in Starlings</string>
+    <string name="cal_editable_global">Editable · Global interest</string>
+    <string name="cal_read_only">Read only</string>
+    <string name="cal_workspace_layers">%1$s layers</string>
+    <string name="cal_new_events">New events</string>
+    <string name="cal_default_calendar">Default calendar</string>
+    <string name="cal_shown" translatable="false">shown</string>
+    <string name="cal_hidden" translatable="false">hidden</string>
+    <!-- Sources: accounts and subscribed feeds (MobileCalendarSourcesView) -->
+    <string name="cal_remove_account">Remove this account</string>
+    <!-- The Google Calendar section: connect, or one more account (GoogleCalendarConnect). -->
+    <string name="cal_google_calendar">Google Calendar</string>
+    <string name="cal_connect_google">Connect Google Calendar</string>
+    <string name="cal_connecting">Connecting…</string>
+    <string name="cal_add_google_account">Add another Google account</string>
+    <string name="cal_adding_account">Adding account…</string>
+    <string name="cal_unsubscribe">Unsubscribe</string>
+    <string name="cal_subscription_placeholder" translatable="false">webcal://…</string>
+    <string name="cal_paste_url">Paste a calendar URL.</string>
+    <string name="cal_subscribed_to">Subscribed to %1$s</string>
+    <string name="cal_unsubscribed_from">Unsubscribed from %1$s</string>
+    <string name="cal_removed_named">Removed %1$s</string>
+    <string name="cal_that_account">that account</string>
+    <!-- Display (MobileCalendarDisplaySettingsView) -->
+    <string name="cal_display_title">Calendar display</string>
+    <string name="cal_day_starts">Day view starts</string>
+    <string name="cal_day_ends">Day view ends</string>
+    <string name="cal_default_length">Default event length</string>
+    <string name="cal_snap_to">Snap events to</string>
+    <string name="cal_n_minutes">%1$d minutes</string>
+    <plurals name="cal_n_hours">
+        <item quantity="one">%1$d hour</item>
+        <item quantity="other">%1$d hours</item>
+    </plurals>
+    <string name="cal_default_view">Default view</string>
+    <string name="cal_grid_scale">Grid scale</string>
+    <string name="cal_grid_points" translatable="false">%1$d dp</string>
+    <string name="cal_show_declined">Show declined events</string>
+    <string name="cal_show_hidden">Show hidden events</string>
+    <string name="cal_second_timezone">Second timezone</string>
+    <string name="cal_device_footer">These settings stay on this device.</string>
+    <string name="cal_zoom_in">Zoom in</string>
+    <string name="cal_zoom_out">Zoom out</string>
+</resources>

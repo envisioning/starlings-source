@@ -1,0 +1,38 @@
+/*
+ * The operator dashboard's stylesheet (web/ops). Full Tailwind with
+ * preflight: this page has no styles.css underneath. The `--ui-*` values,
+ * shadcn's neutral palette light and dark, are not here: they live once in
+ * packages/contracts/src/ops-theme.ts, which the Worker's server-rendered
+ * pages read too, and reach this page as `virtual:ops-tokens.css` (main.tsx,
+ * vite.config.ts). The mapping onto Tailwind's names and the hover utilities
+ * come from the web app's one copy, ui-theme.css.
+ */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../../src/ui-theme.css";
+@source "../../src/ui";
+
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+/* The dashboard's own names: the chart series, the two states and the type. */
+@theme inline {
+  --color-chart-1: var(--ui-chart-1);
+  --color-chart-2: var(--ui-chart-2);
+  --color-chart-3: var(--ui-chart-3);
+  --color-chart-4: var(--ui-chart-4);
+  --color-chart-5: var(--ui-chart-5);
+  --color-ok: var(--ui-ok);
+  --color-warn: var(--ui-warn);
+  --font-sans: var(--ui-font-sans);
+  --font-mono: var(--ui-font-mono);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--ui-font-sans);
+  }
+}

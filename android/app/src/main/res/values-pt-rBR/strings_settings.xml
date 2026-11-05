@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- pt-BR for values/strings_settings.xml, from the iOS catalog. -->
+<resources>
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_done">Concluir</string>
+    <string name="settings_back">Voltar</string>
+    <string name="settings_opens">Abre os ajustes de %1$s</string>
+
+    <string name="settings_group_account">Conta</string>
+    <string name="settings_group_system">Sistema</string>
+
+    <string name="settings_page_home">Início</string>
+    <string name="settings_page_room">Sala</string>
+    <string name="settings_page_notifications">Notificações</string>
+    <string name="settings_page_calls">Chamadas</string>
+    <string name="settings_page_appearance">Aparência</string>
+    <string name="settings_page_about">Sobre</string>
+
+    <string name="settings_account">Conta</string>
+    <string name="settings_name">Nome</string>
+    <string name="settings_email">E-mail</string>
+    <string name="settings_devices">Dispositivos</string>
+    <string name="settings_devices_none">Nenhum</string>
+    <string name="settings_sign_out">Sair</string>
+    <string name="settings_devices_footer">Perdeu um telefone? Desconecte aqui. A sessão do Starlings termina no próximo pedido.</string>
+    <string name="settings_sign_out_footer">Remove a sessão deste dispositivo. Você pode entrar em %1$s de novo.</string>
+    <string name="settings_kind_android">Telefone Android</string>
+    <string name="settings_kind_ios">iPhone ou iPad</string>
+    <string name="settings_kind_mac">Mac</string>
+    <string name="settings_this_device">Este dispositivo · %1$s</string>
+
+    <string name="settings_meeting_warning">Aviso de reunião</string>
+    <string name="settings_warn">Avisar</string>
+    <string name="settings_minutes_before">%1$d min antes</string>
+    <string name="settings_hours_before">%1$dh antes</string>
+    <string name="settings_countdown">Contagem na tela bloqueada</string>
+
+    <string name="settings_recording_notetakers">Anotadores que gravam</string>
+    <string name="settings_refuse_recorders">Recusar anotadores que gravam</string>
+    <string name="settings_loading_room">Carregando as configurações da sala…</string>
+    <string name="settings_your_room">Sua sala: /room/%1$s</string>
+    <string name="settings_try_again">Tentar de novo</string>
+    <string name="settings_recorders_footer">Os anotadores informam que gravam. Mesmo com esta opção desativada, ainda aguardam admissão.</string>
+
+    <string name="settings_participation">Participação</string>
+    <string name="settings_background_audio">Áudio em segundo plano</string>
+    <string name="settings_on">Ligado</string>
+    <string name="settings_never_records">O Starlings nunca grava áudio ou vídeo.</string>
+
+    <string name="settings_language">Idioma</string>
+    <string name="settings_language_system">Sistema</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_pt">Português</string>
+
+    <string name="settings_version">Versão</string>
+    <string name="settings_build">Build</string>
+    <string name="settings_server">Servidor</string>
+    <string name="settings_help">Ajuda</string>
+    <string name="settings_privacy">Privacidade</string>
+    <string name="settings_page_work">Trabalho</string>
+    <string name="settings_page_calendar">Agenda</string>
+    <string name="settings_show_in_work">Mostrar em Trabalho</string>
+    <string name="settings_show_in_work_footer">Acompanha sua conta. Favorite ou silencie um assunto pela linha dele em Trabalho.</string>
+    <string name="settings_kind_projects">Projetos</string>
+    <string name="settings_kind_projects_detail">Projetos em Navegar e na sua barra.</string>
+    <string name="settings_kind_leads">Leads</string>
+    <string name="settings_kind_leads_detail">O funil de leads em Navegar, leads na sua barra por padrão, e contatos de vendas na ENTRADA.</string>
+    <string name="settings_kind_events">Eventos</string>
+    <string name="settings_kind_events_detail">Eventos em Navegar e na sua barra.</string>
+    <string name="settings_inbox">Entrada</string>
+    <string name="settings_inbox_footer">O que a Entrada traz. Segue sua conta.</string>
+    <string name="settings_inbox_decision">Uma pergunta que um agente fez a você, com opções e uma recomendação. Sai quando você responde ou quando ela é retirada.</string>
+    <string name="settings_inbox_question">Uma pergunta de agente atribuída a você. Sai quando respondida, dispensada ou retirada. Responda na Caixa de entrada ou na conversa.</string>
+    <string name="settings_inbox_card">Um cartão que um agente moveu para Revisão ou Bloqueado, para quem o passou adiante. Sai quando o cartão avança.</string>
+    <string name="settings_inbox_followup">Depois de uma chamada com pessoas de fora da equipe, um follow-up rascunhado e as tarefas que ela propôs. Sai quando você aprova ou descarta, ou depois de uma semana.</string>
+    <string name="settings_inbox_talk">Uma conversa de assunto com algo não lido. Sai quando lida.</string>
+    <string name="settings_inbox_guest">Um convidado ou uma organização escreveu num assunto que você vê, e ninguém daqui respondeu. Sai quando alguém responde ou você dispensa.</string>
+    <string name="settings_inbox_support">O suporte do Starlings respondeu uma pergunta que você fez na Ajuda. Sai quando você lê.</string>
+    <string name="settings_inbox_note">Uma nota ainda não arquivada. Sai quando arquivada ou apagada.</string>
+    <string name="settings_inbox_sales">Um contato do CRM ainda sem lead, com Vendas ligado. Sai quando um lead começa ou é dispensado.</string>
+    <string name="settings_inbox_comment">Um comentário aberto em um documento sobre seus assuntos. Sai quando resolvido.</string>
+    <string name="settings_inbox_booking">Um convidado reservou, moveu ou cancelou um horário na sua página. Sai quando arquivado, dispensado, ou quando a reunião começa.</string>
+    <string name="settings_inbox_invitation">Alguém convidou você para um evento. Sai quando você aceita, recusa ou responde talvez, ou quando o evento termina.</string>
+    <string name="settings_inbox_forwarded">Um evento lido de um e-mail que você encaminhou para calendar@. Sai quando você o adiciona ou descarta, ou depois de uma semana.</string>
+    <string name="settings_inbox_interest">Uma empresa preencheu /interest, para admins. Sai quando dispensado.</string>
+    <string name="settings_cal_sources">Agendas no Starlings</string>
+    <string name="settings_cal_sources_detail">Escolha contas, agendas locais e assinaturas</string>
+    <string name="settings_cal_new_events_detail">Escolha onde novos eventos são criados</string>
+    <string name="lock_title">Bloqueio do app</string>
+    <string name="lock_unlocking">Desbloqueando…</string>
+    <string name="settings_cal_layers_detail">Mostrar ou ocultar camadas de %1$s</string>
+</resources>

@@ -1,0 +1,7 @@
+# Copy to .dev.vars (gitignored) for local `wrangler dev`.
+#
+# Nothing here should ever be a production value.
+
+SESSION_SIGNING_SECRET="local-dev-secret-at-least-32-characters-long"
+GOOGLE_WEB_CLIENT_SECRET="replace-with-oauth-client-secret"
+KEEP_INTERNAL_SECRET="local-dev-keep-internal-secret-shared-with-meet"

@@ -1,0 +1,11 @@
+-- Names the third tier. docs/ENROLLMENT.md step 1 (envisioning/meet#25).
+--
+-- `people.role` (migration 0025) is 'member' or 'admin' today. `community`
+-- — an enrolled outsider, below member — becomes a legal value here so the
+-- capability table (services/control-plane/src/capabilities.ts) can refuse it
+-- everywhere it must, and the suite can prove that, before any row ever
+-- carries it. Nothing creates such a row yet: steps 4 and 5 of the plan are
+-- the only things that could, and they are not built. This migration changes
+-- no data; SQLite has no enum to widen, so the legal set lives in code
+-- (PEOPLE_ROLES) and this file is the record that it was widened on purpose.
+SELECT 1;

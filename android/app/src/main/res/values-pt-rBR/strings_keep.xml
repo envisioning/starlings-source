@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Keep, pt-BR values from Resources/Localizable.xcstrings. A sentence the catalog leaves untranslated stays English, as on iOS. -->
+<resources>
+    <string name="keep_title">Keep</string>
+    <string name="keep_menu">Keep…</string>
+    <string name="keep_connect">Conectar Keep</string>
+    <string name="keep_connecting">Conectando…</string>
+    <string name="keep_try_again">Tentar de novo</string>
+    <string name="keep_hide_field">Ocultar %1$s</string>
+    <string name="keep_settings">Ajustes</string>
+    <string name="keep_name">Nome</string>
+    <string name="keep_cancel">Cancelar</string>
+    <string name="keep_create">Criar</string>
+    <string name="keep_nothing_here">Nada aqui ainda.</string>
+    <string name="keep_vault">Cofre</string>
+    <string name="keep_activity">Atividade</string>
+    <string name="keep_url">URL</string>
+    <string name="keep_notes">Notas</string>
+    <string name="keep_edit">Editar</string>
+    <string name="keep_delete">Apagar</string>
+    <string name="keep_delete_item_title">Excluir “%1$s”?</string>
+    <string name="keep_kind">Tipo</string>
+    <string name="keep_save">Salvar</string>
+    <string name="keep_remove">Remover</string>
+    <string name="keep_add">Adicionar</string>
+    <string name="keep_person">Pessoa</string>
+    <string name="keep_remove_title">Remover %1$s?</string>
+    <string name="keep_copy">Copiar</string>
+    <string name="keep_release_title">%1$s pede %2$s</string>
+    <string name="keep_release_card">Pedido do Keep</string>
+    <string name="keep_release_vault">Cofre</string>
+    <string name="keep_release_task">Tarefa</string>
+    <string name="keep_release_why">Por quê</string>
+    <string name="keep_release_asked_for">Tempo pedido</string>
+    <string name="keep_release_agent">Agente</string>
+    <string name="keep_release_item">Item</string>
+    <string name="keep_release_ends_in">Termina em</string>
+    <string name="keep_release_15_minutes">15 minutos</string>
+    <string name="keep_release_1_hour">1 hora</string>
+    <string name="keep_release_4_hours">4 horas</string>
+    <string name="keep_release_24_hours">24 horas</string>
+    <string name="keep_release_approve">Aprovar</string>
+    <string name="keep_release_approving">Aprovando…</string>
+    <string name="keep_release_end_now">Encerrar agora</string>
+    <string name="keep_release_ending">Encerrando…</string>
+    <string name="keep_release_ended_by">Encerrado por %1$s.</string>
+    <string name="keep_release_used_until">Usado. Aprovado por %1$s até %2$s.</string>
+    <string name="keep_release_used">Usado. Aprovado por %1$s.</string>
+    <string name="keep_release_expired">Expirou. Aprovado por %1$s.</string>
+    <string name="keep_release_approved_until">Aprovado por %1$s até %2$s.</string>
+    <string name="keep_release_card_failed">Não foi possível atualizar o cartão. Aprove de novo.</string>
+    <!-- Filled from the iOS catalog on 2026-10-29. -->
+    <string name="keep_copy_share">Copiar %1$s</string>
+    <string name="keep_member">Membro</string>
+    <string name="keep_join">Participar</string>
+</resources>

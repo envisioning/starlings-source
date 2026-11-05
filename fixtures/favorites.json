@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "owner_identity": {
+    "canonical": "Core auth.users.id",
+    "meet_bridge": "The Meet Worker derives the address from its verified owner session and uses the existing signed Core owner exchange. Core resolves that identity; no request accepts a caller-supplied email or user id as authority.",
+    "unmapped_owner": "Do not create a Core identity or assign favorites by guess. Report the owner as unmapped for recovery."
+  },
+  "storage": {
+    "fields": ["member_id", "kind", "target_ref", "created_at"],
+    "order": "created_at descending",
+    "target_metadata": "Resolve current names, titles, icons, and destinations through the owning service. Never copy them or Docs content into the favorites relation.",
+    "missing_target": "Omit it from rendered lists, keep the favorite reference, and allow it to resolve again if the target returns.",
+    "writes": "Add and remove are idempotent. Re-adding a removed target starts a new created_at; adding an existing target does not reorder it."
+  },
+  "eligible": [
+    {
+      "kind": "crm.lead",
+      "owner": "Core CRM",
+      "reference": "Core lead UUID, canonical lowercase UUID.",
+      "resolver": "Resolve by id through the owner's authorized CRM subject read, including a subject no longer in the open Work list.",
+      "destination": "Work subject lead:<id>",
+      "access": "The existing member CRM read capability; a favorite grants no access.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web", "Core web", "Core helper"],
+      "legacy": "subject_state kind=lead"
+    },
+    {
+      "kind": "crm.project",
+      "owner": "Core CRM",
+      "reference": "Core project UUID, canonical lowercase UUID.",
+      "resolver": "Resolve by id through the owner's authorized CRM subject read, including a subject no longer in the open Work list.",
+      "destination": "Work subject project:<id>",
+      "access": "The existing member CRM read capability; a favorite grants no access.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web", "Core web", "Core helper"],
+      "legacy": "subject_state kind=project"
+    },
+    {
+      "kind": "crm.partner",
+      "owner": "Core CRM",
+      "reference": "Core organization UUID, canonical lowercase UUID.",
+      "resolver": "Resolve by id through the owner's authorized CRM subject read.",
+      "destination": "Work subject partner:<id>",
+      "access": "The existing member CRM read capability; a favorite grants no access.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web", "Core web", "Core helper"],
+      "legacy": "subject_state kind=partner"
+    },
+    {
+      "kind": "cms.event",
+      "owner": "Core CMS",
+      "reference": "CMS events.id UUID, canonical lowercase UUID.",
+      "resolver": "Resolve by id, not only from the upcoming/open event projection.",
+      "destination": "Work subject event:<id>",
+      "access": "The existing member event read capability; a favorite grants no access.",
+      "lifecycle": "Closing, passing, or demoting an event never deletes its favorite. An unavailable event is omitted until its owning read can resolve it again.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web", "Core web", "Core helper"],
+      "legacy": "subject_state kind=event"
+    },
+    {
+      "kind": "core.record",
+      "owner": "Core CRM registry",
+      "reference": "<allowlisted-registry-entity>:<native-record-id>; lowercase a UUID native id.",
+      "registry_source": "https://github.com/envisioning/core-kit/blob/main/Tests/CoreKitTests/Fixtures/registry-v1.json",
+      "eligible_registry_entities": ["organizations", "contacts", "services", "milestones", "licenses", "policies", "support_cases", "readiness_assessments", "signals_accounts", "signals_worksessions", "offers", "interactions", "newsletter_subscribers"],
+      "eligibility": "An allowlisted entity is eligible only while the member's current registry grants read access and CoreKit has an authorized record-by-id resolver and detail destination. Adding a registry entity does not automatically add a favorite kind target.",
+      "canonical_overrides": {
+        "leads": "crm.lead",
+        "projects": "crm.project",
+        "tasks": "crm.task",
+        "organizations where is_partner is true": "crm.partner"
+      },
+      "resolver": "CoreKit CRMRepository.record(entity:id:) under the member's current entity view capability.",
+      "destination": "The owning Core registry detail view. Meet Mac/iOS and Core helper can host it through CoreKit. Meet web omits Core records until it has a working Core detail destination.",
+      "access": "Recheck the current registry read/view permission on every resolve and open.",
+      "clients": ["Core web", "Core helper", "Meet Mac", "Meet iOS"]
+    },
+    {
+      "kind": "crm.task",
+      "owner": "Core CRM",
+      "reference": "Core task UUID, canonical lowercase UUID.",
+      "resolver": "Resolve by id through the authorized task read.",
+      "destination": "The existing Work task reader.",
+      "access": "The current task read capability; starring does not assign, reopen, or change stage.",
+      "rationale": "A personal shortcut remains useful regardless of assignment or stage; starring does not change workflow state.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web", "Core web", "Core helper"]
+    },
+    {
+      "kind": "github.issue",
+      "owner": "GitHub, resolved by Meet Work",
+      "reference": "Lowercase <owner>/<repo>#<positive-number>.",
+      "resolver": "Resolve through the current linked-repository issue read.",
+      "destination": "The existing Work issue reader.",
+      "access": "Recheck repository and issue access. Starring does not change labels, assignee, or state.",
+      "rationale": "A personal shortcut remains useful regardless of assignee or issue state; starring does not change workflow state.",
+      "lifecycle": "A moved or inaccessible issue is omitted while its reference remains stored.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web"]
+    },
+    {
+      "kind": "docs.document",
+      "owner": "Docs",
+      "reference": "Docs document UUID in lowercase (not title, slug, or path).",
+      "resolver": "Resolve through the authenticated Docs document read.",
+      "destination": "The existing document reader.",
+      "access": "Apply Docs' normal member visibility and grant checks.",
+      "lifecycle": "Rename and move keep the document id; the resolver supplies its current title and path.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web"]
+    },
+    {
+      "kind": "docs.folder",
+      "owner": "Docs",
+      "reference": "Docs folder UUID in lowercase (never the mutable path).",
+      "resolver": "Resolve folder id to its current path from the authenticated Docs tree/read API.",
+      "destination": "The existing Docs folder selection.",
+      "access": "Apply Docs' normal member visibility and grant checks to its contents.",
+      "lifecycle": "Rename/move preserves the folder id and changes the resolved path. Deletion leaves an unresolved reference; recreating the same path creates a different favorite target.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web"]
+    },
+    {
+      "kind": "meet.person",
+      "owner": "Meet directory",
+      "reference": "The durable people.sub principal, not the mutable email address.",
+      "resolver": "Resolve the principal through the member-gated roster, then build the current person row and email-based door.",
+      "destination": "The existing Team person destination.",
+      "access": "Use the current Team directory visibility and person actions.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web"]
+    },
+    {
+      "kind": "meet.agent",
+      "owner": "Meet agent roster",
+      "reference": "The agent's stable AGENT_ROSTER sub, not its email suffix.",
+      "resolver": "Resolve through the current member-gated agent roster, then build the current agent row and message door.",
+      "destination": "The existing Team agent destination.",
+      "access": "A favorite grants no session, authority, or thread membership. Keep agent distinct from person.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web"]
+    },
+    {
+      "kind": "meet.thread",
+      "owner": "Meet conversations",
+      "reference": "Stable thread UUID in lowercase.",
+      "resolver": "Resolve only through the caller's current member thread list.",
+      "destination": "The existing Team conversation destination.",
+      "access": "Recheck thread membership; a favorite never grants membership.",
+      "message_hit": "A message search hit targets its containing thread, never the individual message.",
+      "clients": ["Meet Mac", "Meet iOS", "Meet web"]
+    }
+  ],
+  "aliases": [
+    {
+      "search_kinds": ["goal", "decision"],
+      "favorite_target": "Their parent CRM subject until a direct detail destination exists."
+    },
+    {
+      "search_kinds": ["thread message hits"],
+      "favorite_target": "meet.thread"
+    },
+    {
+      "search_kinds": ["filed Quick Notes", "finalized meeting artifacts"],
+      "favorite_target": "docs.document when the owning Docs document is the opened object."
+    }
+  ],
+  "deferred_or_excluded": [
+    {
+      "kind": "calendar.google_event",
+      "decision": "Calendar events are not favorite targets. CMS events use cms.event and are starred from Work."
+    },
+    {
+      "kind": "calendar.eventkit_event",
+      "decision": "Calendar events are not favorite targets. EventKit identifiers are also only best-effort on the same device and are not promised stable across devices."
+    },
+    {
+      "kind": "calendar.subscription_event",
+      "decision": "Defer until the subscription id plus UID/recurrence identity is exposed and verified through a cross-client resolver."
+    },
+    {
+      "kind": "core.record_without_detail_read",
+      "decision": "Exclude until the Core registry supplies a stable record id, authorized by-id resolver, and destination. A list-only registry category is not a favorite target."
+    },
+    {
+      "kind": "goal_or_decision",
+      "decision": "Not independent targets while their existing door opens only the parent subject."
+    },
+    {
+      "kind": "individual_message",
+      "decision": "Not an independent target; favorite the containing conversation."
+    },
+    {
+      "kind": "unfiled_quick_note",
+      "decision": "Defer until it has a stable independent destination. A note that is a Docs document uses docs.document."
+    },
+    {
+      "kind": "meeting_session_or_media",
+      "decision": "Never a favorite target. Meet does not record audio or video."
+    },
+    {
+      "kind": "destination_setting_or_verb",
+      "decision": "Not an entity; these are places and actions rather than durable records."
+    }
+  ],
+  "migration": {
+    "legacy_table": "Meet D1 subject_state",
+    "mapping": {
+      "lead": "crm.lead",
+      "project": "crm.project",
+      "partner": "crm.partner",
+      "event": "cms.event"
+    },
+    "timestamp": "Use updated_at as the best available legacy order. It can reflect a later mute edit as well as a star because the old row has no separate starred_at. Preserve the row and report that ordering limitation; never silently discard it.",
+    "compatibility": "Keep GET/PUT /api/crm/subject-state and GET /api/crm/starred as adapters until old clients are outside the rollback window."
+  },
+  "reference_contract": {
+    "maximum_target_ref_length": 512,
+    "stable_ui_key": "Join the canonical kind, one colon, and target_ref. Split only at the first colon because references may contain colons.",
+    "uuid": "Canonical lowercase UUID text. Core normalizes UUID references to lowercase before storage.",
+    "opaque_principal": "meet.person and meet.agent use their durable principal key exactly; reject whitespace and control characters.",
+    "github_issue": "Store owner and repo in lowercase so case-insensitive GitHub paths have one favorite identity.",
+    "core_record": "The entity id must be on the explicit current registry allowlist; if native_record_id is a UUID, store it lowercase."
+  }
+}

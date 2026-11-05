@@ -1,0 +1,1510 @@
+{
+  "version": 2,
+  "actions": {
+    "accept": {
+      "destructive": false
+    },
+    "decline": {
+      "destructive": true
+    },
+    "complete": {
+      "destructive": false
+    },
+    "cancel": {
+      "destructive": false
+    },
+    "mark-seen": {
+      "destructive": false
+    },
+    "file-github": {
+      "destructive": false
+    },
+    "open-subject": {
+      "destructive": false
+    },
+    "open-mine": {
+      "destructive": false
+    },
+    "open-core": {
+      "destructive": false
+    },
+    "close-issue": {
+      "destructive": false
+    },
+    "close-not-planned": {
+      "destructive": true
+    },
+    "reopen-issue": {
+      "destructive": false
+    },
+    "open": {
+      "destructive": false
+    },
+    "open-github": {
+      "destructive": false
+    },
+    "copy-link": {
+      "destructive": false
+    },
+    "star": {
+      "destructive": false
+    },
+    "mark-read": {
+      "destructive": false
+    },
+    "mute": {
+      "destructive": false
+    },
+    "archive": {
+      "destructive": true
+    },
+    "start-lead": {
+      "destructive": false
+    },
+    "dismiss": {
+      "destructive": false
+    },
+    "undo-dismiss": {
+      "destructive": false
+    },
+    "copy-email": {
+      "destructive": false
+    },
+    "open-document": {
+      "destructive": false
+    },
+    "resolve": {
+      "destructive": false
+    },
+    "open-calendar": {
+      "destructive": false
+    },
+    "edit": {
+      "destructive": false
+    },
+    "file-note": {
+      "destructive": false
+    },
+    "move-workspace": {
+      "destructive": false
+    },
+    "delete": {
+      "destructive": true
+    },
+    "edit-details": {
+      "destructive": false
+    },
+    "win-lead": {
+      "destructive": false
+    },
+    "rename": {
+      "destructive": false
+    },
+    "open-talk": {
+      "destructive": false
+    },
+    "open-history": {
+      "destructive": false
+    },
+    "open-tasks": {
+      "destructive": false
+    },
+    "open-issues": {
+      "destructive": false
+    },
+    "new-task": {
+      "destructive": false
+    },
+    "new-issue": {
+      "destructive": false
+    },
+    "new-document": {
+      "destructive": false
+    },
+    "start-room": {
+      "destructive": false
+    },
+    "link-repository": {
+      "destructive": false
+    },
+    "keep-vault": {
+      "destructive": false
+    },
+    "met": {
+      "destructive": false
+    },
+    "drop": {
+      "destructive": false
+    },
+    "reopen": {
+      "destructive": false
+    },
+    "open-floating": {
+      "destructive": false
+    },
+    "open-page": {
+      "destructive": false
+    },
+    "copy-page-link": {
+      "destructive": false
+    },
+    "file-document": {
+      "destructive": false
+    },
+    "open-conversation": {
+      "destructive": false
+    },
+    "move-stage": {
+      "destructive": false
+    },
+    "hand-off": {
+      "destructive": false
+    },
+    "react": {
+      "destructive": false
+    },
+    "save-note": {
+      "destructive": false
+    },
+    "copy": {
+      "destructive": false
+    },
+    "reply": {
+      "destructive": false
+    },
+    "decide": {
+      "destructive": false
+    },
+    "make-card": {
+      "destructive": false
+    },
+    "withdraw": {
+      "destructive": true
+    },
+    "copy-forwarding-address": {
+      "destructive": false
+    },
+    "message": {
+      "destructive": false
+    },
+    "wave": {
+      "destructive": false
+    },
+    "call": {
+      "destructive": false
+    },
+    "join-room": {
+      "destructive": false
+    },
+    "star-person": {
+      "destructive": false
+    },
+    "star-thread": {
+      "destructive": false
+    },
+    "notes-self": {
+      "destructive": false
+    },
+    "set-status": {
+      "destructive": false
+    },
+    "assign": {
+      "destructive": false
+    },
+    "make-responsible": {
+      "destructive": false
+    },
+    "rsvp": {
+      "destructive": false
+    }
+  },
+  "clients": {
+    "task": {
+      "accept": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "decline": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "complete": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "cancel": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "mark-seen": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "file-github": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-subject": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-mine": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-core": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "star": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "assign": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "hand-off": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "delete": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "issue": {
+      "close-issue": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "close-not-planned": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "reopen-issue": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open": {
+        "mac": true,
+        "ios": false,
+        "web": true
+      },
+      "open-github": {
+        "mac": true,
+        "ios": false,
+        "web": true
+      },
+      "copy-link": {
+        "mac": true,
+        "ios": false,
+        "web": true
+      },
+      "open-core": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "star": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "mark-seen": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "hand-off": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "assign": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_talk": {
+      "open-subject": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "mark-read": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "mute": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-core": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_sales": {
+      "start-lead": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "dismiss": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "undo-dismiss": {
+        "mac": true,
+        "ios": true,
+        "web": false
+      },
+      "copy-email": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_comment": {
+      "open-document": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-subject": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "resolve": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-core": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_card": {
+      "open": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-subject": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-github": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_followup": {
+      "open": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "dismiss": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_booking": {
+      "open-calendar": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "copy-email": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "dismiss": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_invitation": {
+      "rsvp": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-calendar": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_forwarded": {
+      "accept": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "decline": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_interest": {
+      "copy-email": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "dismiss": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_commercial": {
+      "open-subject": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "dismiss": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "undo-dismiss": {
+        "mac": true,
+        "ios": true,
+        "web": false
+      }
+    },
+    "inbox_decision": {
+      "decide": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "inbox_question": {
+      "open": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "quick_note": {
+      "edit": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "file-note": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "move-workspace": {
+        "mac": true,
+        "ios": true,
+        "web": false
+      },
+      "delete": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "subject": {
+      "star": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "mute": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "edit-details": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "win-lead": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "rename": {
+        "mac": true,
+        "ios": true,
+        "web": false
+      },
+      "open-talk": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-history": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-tasks": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-issues": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "new-task": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "new-issue": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "start-room": {
+        "mac": true,
+        "ios": true,
+        "web": false
+      },
+      "link-repository": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "keep-vault": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-core": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "goal": {
+      "met": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "drop": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "reopen": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "doc": {
+      "open": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "star": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-floating": {
+        "mac": true,
+        "ios": false,
+        "web": false
+      },
+      "open-page": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "copy-page-link": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "copy-link": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "file-document": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "rename": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "archive": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "doc_rail": {
+      "open": {
+        "mac": false,
+        "ios": false,
+        "web": true
+      },
+      "copy-link": {
+        "mac": false,
+        "ios": false,
+        "web": true
+      },
+      "star": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "board_card": {
+      "open": {
+        "mac": true,
+        "ios": false,
+        "web": true
+      },
+      "open-github": {
+        "mac": true,
+        "ios": false,
+        "web": false
+      },
+      "open-subject": {
+        "mac": true,
+        "ios": false,
+        "web": false
+      },
+      "open-conversation": {
+        "mac": true,
+        "ios": false,
+        "web": false
+      },
+      "move-stage": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "hand-off": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "message": {
+      "react": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "save-note": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "copy": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "reply": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "decide": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "make-card": {
+        "mac": false,
+        "ios": false,
+        "web": true
+      },
+      "edit": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "withdraw": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "conversation": {
+      "open": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "mark-read": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "mute": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "copy-forwarding-address": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "archive": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "copy-link": {
+        "mac": false,
+        "ios": false,
+        "web": true
+      },
+      "open-core": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "star": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    },
+    "person": {
+      "message": {
+        "mac": false,
+        "ios": false,
+        "web": true
+      },
+      "wave": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "call": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "join-room": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "copy-email": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "star-person": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "star-thread": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "open-core": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "notes-self": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "set-status": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      },
+      "make-responsible": {
+        "mac": true,
+        "ios": true,
+        "web": true
+      }
+    }
+  },
+  "contexts": {
+    "task": {
+      "inbox_proposed": [
+        [
+          "accept",
+          "decline"
+        ],
+        [
+          "open-subject"
+        ],
+        [
+          "open-core"
+        ],
+        [
+          "star"
+        ]
+      ],
+      "subject_proposed": [
+        [
+          "accept",
+          "decline"
+        ],
+        [
+          "open-core"
+        ],
+        [
+          "star"
+        ]
+      ],
+      "subject_open": [
+        [
+          "complete",
+          "cancel"
+        ],
+        [
+          "hand-off"
+        ],
+        [
+          "file-github"
+        ],
+        [
+          "open-core"
+        ],
+        [
+          "star"
+        ],
+        [
+          "delete"
+        ]
+      ],
+      "mine": [
+        [
+          "complete",
+          "cancel"
+        ],
+        [
+          "hand-off"
+        ],
+        [
+          "open-subject",
+          "open-mine"
+        ],
+        [
+          "file-github"
+        ],
+        [
+          "open-core"
+        ],
+        [
+          "star"
+        ],
+        [
+          "delete"
+        ]
+      ],
+      "assigned": [
+        [
+          "complete",
+          "cancel"
+        ],
+        [
+          "mark-seen"
+        ],
+        [
+          "hand-off"
+        ],
+        [
+          "open-subject",
+          "open-mine"
+        ],
+        [
+          "file-github"
+        ],
+        [
+          "open-core"
+        ],
+        [
+          "star"
+        ]
+      ],
+      "unowned": [
+        [
+          "assign"
+        ],
+        [
+          "complete",
+          "cancel"
+        ],
+        [
+          "hand-off"
+        ],
+        [
+          "open-subject",
+          "open-mine"
+        ],
+        [
+          "file-github"
+        ],
+        [
+          "open-core"
+        ],
+        [
+          "star"
+        ]
+      ]
+    },
+    "issue": {
+      "row": [
+        [
+          "open"
+        ],
+        [
+          "close-issue",
+          "close-not-planned",
+          "reopen-issue"
+        ],
+        [
+          "hand-off"
+        ],
+        [
+          "open-github"
+        ],
+        [
+          "copy-link"
+        ],
+        [
+          "open-core"
+        ],
+        [
+          "star"
+        ]
+      ],
+      "assigned": [
+        [
+          "close-issue",
+          "close-not-planned",
+          "reopen-issue"
+        ],
+        [
+          "mark-seen"
+        ],
+        [
+          "hand-off"
+        ],
+        [
+          "open"
+        ],
+        [
+          "open-core"
+        ],
+        [
+          "star"
+        ]
+      ],
+      "unowned": [
+        [
+          "assign"
+        ],
+        [
+          "open"
+        ],
+        [
+          "close-issue",
+          "close-not-planned",
+          "reopen-issue"
+        ],
+        [
+          "hand-off"
+        ],
+        [
+          "open-github",
+          "copy-link"
+        ],
+        [
+          "open-core"
+        ],
+        [
+          "star"
+        ]
+      ]
+    },
+    "inbox_talk": {
+      "row": [
+        [
+          "open-subject"
+        ],
+        [
+          "mark-read",
+          "mute"
+        ],
+        [
+          "open-core"
+        ]
+      ]
+    },
+    "inbox_sales": {
+      "row": [
+        [
+          "start-lead"
+        ],
+        [
+          "dismiss",
+          "undo-dismiss",
+          "copy-email"
+        ]
+      ]
+    },
+    "inbox_comment": {
+      "row": [
+        [
+          "open-document",
+          "open-subject"
+        ],
+        [
+          "resolve"
+        ],
+        [
+          "open-core"
+        ]
+      ]
+    },
+    "inbox_card": {
+      "row": [
+        [
+          "open"
+        ],
+        [
+          "open-subject",
+          "open-github"
+        ]
+      ]
+    },
+    "inbox_followup": {
+      "row": [
+        [
+          "open"
+        ],
+        [
+          "dismiss"
+        ]
+      ]
+    },
+    "inbox_booking": {
+      "row": [
+        [
+          "open-calendar",
+          "copy-email"
+        ],
+        [
+          "dismiss"
+        ]
+      ]
+    },
+    "inbox_invitation": {
+      "row": [
+        [
+          "rsvp"
+        ],
+        [
+          "open-calendar"
+        ]
+      ]
+    },
+    "inbox_forwarded": {
+      "row": [
+        [
+          "accept",
+          "decline"
+        ]
+      ]
+    },
+    "inbox_interest": {
+      "row": [
+        [
+          "copy-email"
+        ],
+        [
+          "dismiss"
+        ]
+      ]
+    },
+    "inbox_commercial": {
+      "row": [
+        [
+          "open-subject"
+        ],
+        [
+          "dismiss",
+          "undo-dismiss"
+        ]
+      ]
+    },
+    "inbox_decision": {
+      "row": [
+        [
+          "decide"
+        ],
+        [
+          "open"
+        ]
+      ]
+    },
+    "inbox_question": {
+      "row": [
+        [
+          "open"
+        ]
+      ]
+    },
+    "quick_note": {
+      "home": [
+        [
+          "edit",
+          "file-note",
+          "move-workspace"
+        ],
+        [
+          "delete"
+        ]
+      ],
+      "inbox": [
+        [
+          "file-note"
+        ],
+        [
+          "delete"
+        ]
+      ]
+    },
+    "subject": {
+      "row": [
+        [
+          "star",
+          "mute"
+        ],
+        [
+          "open",
+          "edit-details",
+          "rename",
+          "win-lead"
+        ],
+        [
+          "open-tasks",
+          "open-issues",
+          "new-task",
+          "new-issue"
+        ],
+        [
+          "start-room",
+          "link-repository",
+          "keep-vault",
+          "open-core"
+        ]
+      ],
+      "organization": [
+        [
+          "star",
+          "mute"
+        ],
+        [
+          "open",
+          "open-talk",
+          "open-history",
+          "start-room"
+        ],
+        [
+          "open-tasks",
+          "new-task"
+        ],
+        [
+          "open-core"
+        ]
+      ]
+    },
+    "goal": {
+      "row": [
+        [
+          "met",
+          "drop",
+          "reopen"
+        ]
+      ]
+    },
+    "doc": {
+      "row": [
+        [
+          "open",
+          "star"
+        ],
+        [
+          "open-floating"
+        ],
+        [
+          "open-page",
+          "copy-page-link",
+          "copy-link"
+        ],
+        [
+          "file-document"
+        ],
+        [
+          "rename"
+        ],
+        [
+          "archive"
+        ]
+      ]
+    },
+    "doc_rail": {
+      "folder": [
+        [
+          "open",
+          "copy-link"
+        ],
+        [
+          "star"
+        ]
+      ],
+      "address": [
+        [
+          "open",
+          "copy-link"
+        ]
+      ]
+    },
+    "board_card": {
+      "row": [
+        [
+          "open"
+        ],
+        [
+          "open-github",
+          "open-subject",
+          "open-conversation"
+        ],
+        [
+          "move-stage"
+        ],
+        [
+          "hand-off"
+        ]
+      ]
+    },
+    "message": {
+      "row": [
+        [
+          "react"
+        ],
+        [
+          "copy",
+          "reply",
+          "decide",
+          "make-card"
+        ],
+        [
+          "save-note",
+          "edit",
+          "withdraw"
+        ]
+      ]
+    },
+    "conversation": {
+      "row": [
+        [
+          "mark-read",
+          "mute"
+        ],
+        [
+          "copy-forwarding-address"
+        ],
+        [
+          "archive"
+        ],
+        [
+          "star"
+        ]
+      ],
+      "home": [
+        [
+          "open"
+        ],
+        [
+          "mark-read",
+          "mute"
+        ],
+        [
+          "archive"
+        ],
+        [
+          "copy-link",
+          "open-core"
+        ],
+        [
+          "star"
+        ]
+      ]
+    },
+    "person": {
+      "peer": [
+        [
+          "message",
+          "wave",
+          "call",
+          "join-room"
+        ],
+        [
+          "make-responsible"
+        ],
+        [
+          "copy-email"
+        ],
+        [
+          "star-person",
+          "star-thread"
+        ]
+      ],
+      "agent": [
+        [
+          "message"
+        ],
+        [
+          "copy-email"
+        ],
+        [
+          "star-person"
+        ]
+      ],
+      "self": [
+        [
+          "notes-self",
+          "set-status"
+        ],
+        [
+          "make-responsible"
+        ],
+        [
+          "star-person"
+        ]
+      ],
+      "attendee": [
+        [
+          "open-core",
+          "copy-email"
+        ]
+      ]
+    }
+  },
+  "core": {
+    "subjects": [
+      {
+        "kind": "lead",
+        "id": "lead-123",
+        "collection": "leads",
+        "url": "https://core.org.example/dashboard/leads/lead-123"
+      },
+      {
+        "kind": "project",
+        "id": "project-456",
+        "collection": "projects",
+        "url": "https://core.org.example/dashboard/projects/project-456"
+      },
+      {
+        "kind": "organization",
+        "id": "partner-789",
+        "collection": "organizations",
+        "url": "https://core.org.example/dashboard/organizations/partner-789"
+      },
+      {
+        "kind": "event",
+        "id": "event-012",
+        "collection": "events",
+        "url": "https://core.org.example/dashboard/events/event-012"
+      }
+    ],
+    "contacts": [
+      {
+        "raw": "https://core.org.example/contacts/contact-123",
+        "url": "https://core.org.example/contacts/contact-123"
+      },
+      {
+        "raw": "http://core.org.example/contacts/contact-123",
+        "url": null
+      },
+      {
+        "raw": "https://other.example/contacts/contact-123",
+        "url": null
+      },
+      {
+        "raw": "https://core.org.example/dashboard/projects/project-456",
+        "url": null
+      },
+      {
+        "raw": "https://core.org.example.evil.example/contacts/contact-123",
+        "url": null
+      },
+      {
+        "raw": "not a URL",
+        "url": null
+      }
+    ]
+  }
+}

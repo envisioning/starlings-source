@@ -1,0 +1,51 @@
+{
+  "thread": {
+    "id": "dm_3iNqxI5ybPp_e_gTcqFUVh8aePhC-1sV",
+    "kind": "dm",
+    "parent_id": null,
+    "audience": "members",
+    "title": null,
+    "peer_email": "rf-ada@example.com",
+    "peer_name": "Ada Example",
+    "peers": [
+      {
+        "email": "rf-ada@example.com",
+        "name": "Ada Example",
+        "kind": "human"
+      }
+    ],
+    "last_message_at": 1790845260000,
+    "last_message_preview": "Yes, this morning.",
+    "last_sender_email": "rf-ada@example.com",
+    "unread": true,
+    "last_read_at": 1790845200000,
+    "has_mention": false,
+    "muted_until": null,
+    "archived_at": null
+  },
+  "messages": [
+    {
+      "id": "msg_0000000000000001",
+      "thread_id": "dm_3iNqxI5ybPp_e_gTcqFUVh8aePhC-1sV",
+      "sent_at": 1790845200000,
+      "sender_email": "rf-rosa@example.com",
+      "sender_name": "Rosa Example",
+      "text": "Did the pilot scope go out?",
+      "is_mine": true,
+      "type": "text",
+      "reply_to_message_id": null
+    },
+    {
+      "id": "msg_0000000000000002",
+      "thread_id": "dm_3iNqxI5ybPp_e_gTcqFUVh8aePhC-1sV",
+      "sent_at": 1790845260000,
+      "sender_email": "rf-ada@example.com",
+      "sender_name": "Ada Example",
+      "text": "Yes, this morning.",
+      "is_mine": false,
+      "type": "text",
+      "reply_to_message_id": null
+    }
+  ],
+  "older_cursor": null
+}

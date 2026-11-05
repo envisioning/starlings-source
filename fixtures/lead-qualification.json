@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "keys": [
+    "budget_availability",
+    "event_timeline",
+    "previous_engagement",
+    "project_fit",
+    "stakeholder_buy_in"
+  ]
+}

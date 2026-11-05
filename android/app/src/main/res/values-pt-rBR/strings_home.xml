@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- pt-BR for values/strings_home.xml, from the iOS catalog. -->
+<resources>
+    <string name="home_settings">Ajustes do Início</string>
+    <string name="home_done">Concluir</string>
+    <string name="home_dismiss">Dispensar</string>
+
+    <string name="home_upcoming">PRÓXIMOS</string>
+    <string name="home_now">AGORA</string>
+    <string name="home_closed_empty">Nada agendado hoje ou amanhã.</string>
+    <string name="home_closed_today">Nada mais hoje.</string>
+    <string name="home_closed_one_at">Nada mais hoje. 1 amanhã, às %1$s.</string>
+    <string name="home_closed_many_at">Nada mais hoje. %1$d amanhã, o primeiro às %2$s.</string>
+    <string name="home_closed_one">Nada mais hoje. 1 amanhã.</string>
+    <string name="home_closed_many">Nada mais hoje. %1$d amanhã.</string>
+    <string name="home_see_rest">Ver o resto do dia</string>
+    <string name="home_hide_rest">Ocultar o resto do dia</string>
+    <string name="home_show_in_next">Mostrar em Próximos</string>
+    <string name="home_hide_from_next">Ocultar de Próximos</string>
+    <string name="home_in">em %1$s</string>
+    <string name="home_ends_in">termina em %1$s</string>
+    <string name="home_hours_minutes">%1$dh %2$dm</string>
+
+    <string name="home_room">SUA SALA</string>
+    <string name="home_no_room">Sem sala ainda</string>
+    <string name="home_copied">Copiado</string>
+    <string name="home_copy_room_link">Copiar link da sala</string>
+
+    <string name="home_events">EVENTOS</string>
+    <string name="home_and_more">e mais %1$d</string>
+    <string name="home_opens_event_page">Abre a página do evento</string>
+
+    <string name="home_quick_notes">NOTAS RÁPIDAS</string>
+    <string name="home_note_prompt">No que você está pensando?</string>
+    <string name="home_add_note">Adicionar nota rápida</string>
+    <string name="home_note">Nota rápida</string>
+    <string name="home_saving">Salvando…</string>
+    <string name="home_see_more">Ver mais %1$d</string>
+    <string name="home_show_fewer">Mostrar menos</string>
+    <string name="home_delete">Apagar</string>
+
+    <string name="home_modules">Módulos</string>
+    <string name="home_modules_footer">Desligado mantém um módulo fora do Início mesmo quando tem algo a mostrar.</string>
+    <string name="home_room_footer">Sua sala fica no Início: iniciar uma reunião é para isso que o app existe.</string>
+    <string name="home_move_up">Mover %1$s para cima</string>
+    <string name="home_move_down">Mover %1$s para baixo</string>
+    <string name="home_following">Reuniões seguintes</string>
+    <string name="home_following_none">Nenhum</string>
+    <plurals name="home_following_count">
+        <item quantity="one">%d reunião</item>
+        <item quantity="other">%d reuniões</item>
+    </plurals>
+    <string name="home_following_footer">Quantas reuniões aparecem antes de dobrar.</string>
+
+    <string name="home_module_messages">Entrada</string>
+    <string name="home_module_work">Trabalho</string>
+    <string name="home_module_commercial">Comercial</string>
+    <string name="home_module_notes">Notas rápidas</string>
+    <string name="home_module_agenda">Próximos</string>
+    <string name="home_module_events">Eventos</string>
+    <string name="home_module_room">Sua sala</string>
+    <string name="home_module_recent">Acesso rápido</string>
+    <string name="home_detail_messages">O que é novo: conversas não lidas, decisões, pedidos e convites</string>
+    <string name="home_detail_commercial">Ofertas, vendas, pipeline e novas licenças</string>
+    <string name="home_detail_notes">Capture agora, arquive depois</string>
+    <string name="home_detail_agenda">O que vem a seguir, e o resto de hoje</string>
+    <string name="home_detail_events">Próximos eventos</string>
+    <string name="home_detail_room">Iniciar, entrar e compartilhar a sala</string>
+    <string name="home_detail_recent">Itens favoritos e abertos recentemente</string>
+
+    <string name="home_inbox">ENTRADA</string>
+    <string name="home_new_one">1 novo</string>
+    <string name="home_new_many">%1$d novos</string>
+    <string name="home_more_in_work">e mais %1$d no Trabalho</string>
+    <string name="home_conversation">Conversa</string>
+    <string name="home_unread_in">Mensagem não lida em %1$s</string>
+    <string name="home_unread">Não lida</string>
+    <string name="home_proposed">Proposta · %1$s</string>
+    <string name="home_proposed_partner">Proposta · Parceiro · %1$s</string>
+    <string name="home_card_review">Revisão · %1$s · %2$s</string>
+    <string name="home_card_blocked">Bloqueado · %1$s · %2$s</string>
+    <string name="home_followup">Follow-up · %1$s · %2$s</string>
+    <string name="home_sales_touch">Vendas · %1$s</string>
+    <string name="home_comment">Comentário · %1$s</string>
+    <string name="home_docs">Docs</string>
+    <string name="home_calendar_invitation">Convite da agenda</string>
+    <string name="home_invitation">Convite</string>
+    <string name="home_from_email">Do e-mail</string>
+    <string name="home_interest">Interesse</string>
+    <string name="home_question">Pergunta</string>
+    <string name="home_asked_by">Perguntado por %1$s</string>
+    <string name="home_recommended">Recomendada: %1$s</string>
+    <string name="home_default_by">Padrão em %1$s</string>
+    <string name="home_decision">Decisão</string>
+    <string name="home_source_contact">Formulário de contato</string>
+    <string name="home_source_support">Caso de suporte</string>
+    <string name="home_source_pricing">Pedido de preço</string>
+    <string name="home_source_readiness">Avaliação de prontidão</string>
+
+    <string name="home_mine">MEU</string>
+    <string name="home_overdue_count">%1$d atrasadas</string>
+    <string name="home_due_today_count">%1$d vencem hoje</string>
+    <string name="home_overdue">Atrasado</string>
+    <string name="home_today">Hoje</string>
+    <string name="home_in_progress">Em andamento</string>
+    <string name="home_in_review">Em revisão</string>
+    <string name="home_blocked">Bloqueado</string>
+
+    <string name="home_commercial">COMERCIAL</string>
+    <string name="home_months">%1$d meses</string>
+    <string name="home_offers_sales">Ofertas e vendas</string>
+    <string name="home_offers">Ofertas</string>
+    <string name="home_sales">Vendas</string>
+    <string name="home_pipeline">Pipeline</string>
+    <string name="home_new_licenses">Novas licenças</string>
+    <string name="home_view_sales">Ver vendas em Trabalho</string>
+
+    <string name="home_quick_access">ACESSO RÁPIDO</string>
+    <string name="home_starred">Favoritos</string>
+    <string name="home_kind_subject">Assunto</string>
+    <string name="home_kind_person">Pessoa</string>
+    <string name="home_kind_agent">Agente</string>
+    <string name="home_kind_contact">Contato</string>
+    <string name="home_kind_thread">Conversa</string>
+    <string name="home_kind_document">Documento</string>
+    <string name="home_kind_folder">Pasta</string>
+    <string name="home_kind_event">Evento</string>
+    <string name="home_kind_task">Tarefa</string>
+    <string name="home_kind_issue">Issue</string>
+    <string name="home_kind_goal">Meta</string>
+    <string name="home_kind_decision">Decisão</string>
+    <string name="home_kind_milestone">Marco</string>
+    <string name="home_kind_call">Chamar</string>
+    <string name="home_kind_project">Projeto</string>
+    <string name="home_kind_lead">Lead</string>
+    <string name="home_kind_partner">Parceiro</string>
+
+    <string name="home_opens_in_calendar">Abre na Agenda</string>
+    <string name="home_travel">Deslocamento %1$d min</string>
+    <string name="home_copy_email">Copiar e-mail</string>
+
+    <string name="home_edit_note">Editar esta nota</string>
+    <string name="home_edit">Editar</string>
+    <string name="home_save">Salvar</string>
+    <string name="home_close">Fechar</string>
+    <string name="home_file_note">Arquivar…</string>
+    <string name="home_copy">Copiar</string>
+    <string name="home_file_quick_note">Arquivar nota rápida</string>
+    <string name="home_destination">Destino</string>
+    <string name="home_file_under">Arquivar em</string>
+    <string name="home_file_under_project">Arquivar em (projeto)</string>
+    <string name="home_subject">Assunto</string>
+    <string name="home_loading">Carregando…</string>
+    <string name="home_choose_project">Escolha um projeto</string>
+    <string name="home_choose_subject">Escolha um projeto, lead ou parceiro</string>
+    <string name="home_no_destinations">Nenhum destino corresponde à busca.</string>
+    <string name="home_send_to">Enviar para</string>
+    <string name="home_choose_conversation">Escolha uma conversa</string>
+    <string name="home_no_conversations">Nenhuma conversa corresponde à busca.</string>
+    <string name="home_title">Título</string>
+    <string name="home_filing">Arquivando…</string>
+    <string name="home_kind_message">Mensagem</string>
+    <string name="home_recent_group">Grupo</string>
+    <string name="home_recent_direct">Mensagem direta</string>
+    <string name="home_recent_team_room">Sala da equipe</string>
+    <string name="home_recent_channel">Canal</string>
+    <string name="home_task_title">Título da tarefa</string>
+    <string name="home_issue_title">Título da issue</string>
+    <string name="home_create_task">Criar tarefa</string>
+    <string name="home_create_issue">Criar issue</string>
+    <string name="home_send_message">Enviar mensagem</string>
+</resources>

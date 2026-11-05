@@ -1,0 +1,2399 @@
+[
+  {
+    "version": "7.3.1",
+    "date": "2026-11-05"
+  },
+  {
+    "version": "7.3.0",
+    "date": "2026-11-05"
+  },
+  {
+    "version": "7.2.9",
+    "date": "2026-11-05"
+  },
+  {
+    "version": "7.2.8",
+    "date": "2026-11-04"
+  },
+  {
+    "version": "7.2.7",
+    "date": "2026-11-03"
+  },
+  {
+    "version": "7.2.6",
+    "date": "2026-11-03"
+  },
+  {
+    "version": "7.2.5",
+    "date": "2026-11-02"
+  },
+  {
+    "version": "7.2.4",
+    "date": "2026-11-02"
+  },
+  {
+    "version": "7.2.3",
+    "date": "2026-11-02"
+  },
+  {
+    "version": "7.2.2",
+    "date": "2026-11-02"
+  },
+  {
+    "version": "7.2.1",
+    "date": "2026-11-01"
+  },
+  {
+    "version": "7.2.0",
+    "date": "2026-11-01"
+  },
+  {
+    "version": "7.1.9",
+    "date": "2026-11-01"
+  },
+  {
+    "version": "7.1.8",
+    "date": "2026-11-01"
+  },
+  {
+    "version": "7.1.7",
+    "date": "2026-10-31"
+  },
+  {
+    "version": "7.1.6",
+    "date": "2026-10-31"
+  },
+  {
+    "version": "7.1.5",
+    "date": "2026-10-31"
+  },
+  {
+    "version": "7.1.4",
+    "date": "2026-10-31"
+  },
+  {
+    "version": "7.1.3",
+    "date": "2026-10-31"
+  },
+  {
+    "version": "7.1.2",
+    "date": "2026-10-27"
+  },
+  {
+    "version": "7.1.1",
+    "date": "2026-10-22"
+  },
+  {
+    "version": "7.1.0",
+    "date": "2026-10-22"
+  },
+  {
+    "version": "7.0.9",
+    "date": "2026-10-22"
+  },
+  {
+    "version": "7.0.8",
+    "date": "2026-10-22"
+  },
+  {
+    "version": "7.0.7",
+    "date": "2026-10-21"
+  },
+  {
+    "version": "7.0.6",
+    "date": "2026-10-20"
+  },
+  {
+    "version": "7.0.5",
+    "date": "2026-10-20"
+  },
+  {
+    "version": "7.0.4",
+    "date": "2026-10-19"
+  },
+  {
+    "version": "7.0.3",
+    "date": "2026-10-19"
+  },
+  {
+    "version": "7.0.2",
+    "date": "2026-10-19"
+  },
+  {
+    "version": "7.0.1",
+    "date": "2026-10-19"
+  },
+  {
+    "version": "7.0.0",
+    "date": "2026-10-19"
+  },
+  {
+    "version": "6.9.9",
+    "date": "2026-10-18"
+  },
+  {
+    "version": "6.9.8",
+    "date": "2026-10-18"
+  },
+  {
+    "version": "6.9.7",
+    "date": "2026-10-17"
+  },
+  {
+    "version": "6.9.6",
+    "date": "2026-10-17"
+  },
+  {
+    "version": "6.9.5",
+    "date": "2026-10-17"
+  },
+  {
+    "version": "6.9.4",
+    "date": "2026-10-16"
+  },
+  {
+    "version": "6.9.3",
+    "date": "2026-10-15"
+  },
+  {
+    "version": "6.9.2",
+    "date": "2026-10-15"
+  },
+  {
+    "version": "6.9.1",
+    "date": "2026-10-14"
+  },
+  {
+    "version": "6.9.0",
+    "date": "2026-10-12"
+  },
+  {
+    "version": "6.8.9",
+    "date": "2026-10-11"
+  },
+  {
+    "version": "6.8.8",
+    "date": "2026-10-11"
+  },
+  {
+    "version": "6.8.7",
+    "date": "2026-10-11"
+  },
+  {
+    "version": "6.8.6",
+    "date": "2026-10-11"
+  },
+  {
+    "version": "6.8.5",
+    "date": "2026-10-10"
+  },
+  {
+    "version": "6.8.4",
+    "date": "2026-10-06"
+  },
+  {
+    "version": "6.8.3",
+    "date": "2026-10-05"
+  },
+  {
+    "version": "6.8.2",
+    "date": "2026-10-05"
+  },
+  {
+    "version": "6.8.1",
+    "date": "2026-10-05"
+  },
+  {
+    "version": "6.8.0",
+    "date": "2026-10-04"
+  },
+  {
+    "version": "6.7.9",
+    "date": "2026-10-04"
+  },
+  {
+    "version": "6.7.8",
+    "date": "2026-10-04"
+  },
+  {
+    "version": "6.7.7",
+    "date": "2026-10-04"
+  },
+  {
+    "version": "6.7.6",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.7.5",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.7.4",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.7.3",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.7.2",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.7.1",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.7.0",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.6.9",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.6.8",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.6.7",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.6.6",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.6.5",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.6.4",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.6.3",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.6.2",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.6.1",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.6.0",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.5.9",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.5.8",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.5.7",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.5.6",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.5.5",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.5.4",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.5.3",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.5.2",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.5.1",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.5.0",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.4.9",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.4.8",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.4.7",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.4.6",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.4.5",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.4.4",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.4.3",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.4.2",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.4.1",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.4.0",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.3.9",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.3.8",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.3.7",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.3.6",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.3.5",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.3.4",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.3.3",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.3.2",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.3.1",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.3.0",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.2.9",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.2.8",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.2.7",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.2.6",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.2.5",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.2.4",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.2.3",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.2.2",
+    "date": "2026-10-01"
+  },
+  {
+    "version": "6.2.1",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.2.0",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.1.9",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.1.8",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.1.7",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.1.6",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.1.5",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.1.4",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.1.3",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.1.2",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.1.1",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.1.0",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.0.9",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.0.8",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.0.7",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.0.6",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.0.5",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.0.4",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.0.3",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.0.2",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.0.1",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "6.0.0",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.9.9",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.9.8",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.9.7",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.9.6",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.9.5",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.9.4",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.9.3",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.9.2",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.9.1",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.9.0",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.8.9",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.8.8",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.8.7",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.8.6",
+    "date": "2026-09-30"
+  },
+  {
+    "version": "5.8.5",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.8.4",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.8.3",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.8.2",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.8.1",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.8.0",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.7.9",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.7.8",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.7.7",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.7.6",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.7.5",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.7.4",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.7.3",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.7.2",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.7.1",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.7.0",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.6.9",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.6.8",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.6.7",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.6.6",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.6.5",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.6.4",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.6.3",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.6.2",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.6.1",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.6.0",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.10",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.9",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.8",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.7",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.6",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.5",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.4",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.3",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.2",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.1",
+    "date": "2026-09-29"
+  },
+  {
+    "version": "5.5.0",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.4.9",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.4.8",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.4.7",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.4.6",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.4.5",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.4.4",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.4.3",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.4.2",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.4.1",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.4.0",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.3.9",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.3.8",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.3.7",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.3.6",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.3.5",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.3.4",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.3.3",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.3.2",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.3.1",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.3.0",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.2.9",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.2.8",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.2.7",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.2.6",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.2.5",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.2.4",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.2.3",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.2.2",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.2.1",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.2.0",
+    "date": "2026-09-28"
+  },
+  {
+    "version": "5.1.9",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.1.8",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.1.7",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.1.6",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.1.5",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.1.4",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.1.3",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.1.2",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.1.1",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.1.0",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.10",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.9",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.8",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.7",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.6",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.5",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.4",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.3",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.2",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.1",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "5.0.0",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.10",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.9",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.8",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.7",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.6",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.5",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.4",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.3",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.2",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.1",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.9.0",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.8.9",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.8.8",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.8.7",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.8.6",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.8.5",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.8.4",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.8.3",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.8.2",
+    "date": "2026-09-27"
+  },
+  {
+    "version": "4.8.1",
+    "date": "2026-09-26"
+  },
+  {
+    "version": "4.8.0",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.7.9",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.7.8",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.7.7",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.7.6",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.7.5",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.7.4",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.7.3",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.7.2",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.7.1",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.7.0",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.6.9",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.6.8",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.6.7",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.6.6",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.6.5",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.6.4",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.6.3",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.6.2",
+    "date": "2026-09-24"
+  },
+  {
+    "version": "4.6.1",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.6.0",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.5.9",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.5.8",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.5.7",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.5.6",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.5.5",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.5.4",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.5.3",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.5.2",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.5.1",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.5.0",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.4.9",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.4.8",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.4.7",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.4.6",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.4.5",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.4.4",
+    "date": "2026-09-23"
+  },
+  {
+    "version": "4.4.3",
+    "date": "2026-09-22"
+  },
+  {
+    "version": "4.4.2",
+    "date": "2026-09-22"
+  },
+  {
+    "version": "4.4.1",
+    "date": "2026-09-22"
+  },
+  {
+    "version": "4.4.0",
+    "date": "2026-09-22"
+  },
+  {
+    "version": "4.3.9",
+    "date": "2026-09-22"
+  },
+  {
+    "version": "4.3.8",
+    "date": "2026-09-22"
+  },
+  {
+    "version": "4.3.7",
+    "date": "2026-09-21"
+  },
+  {
+    "version": "4.3.6",
+    "date": "2026-09-21"
+  },
+  {
+    "version": "4.3.5",
+    "date": "2026-09-21"
+  },
+  {
+    "version": "4.3.4",
+    "date": "2026-09-21"
+  },
+  {
+    "version": "4.3.3",
+    "date": "2026-09-21"
+  },
+  {
+    "version": "4.3.2",
+    "date": "2026-09-21"
+  },
+  {
+    "version": "4.3.1",
+    "date": "2026-09-21"
+  },
+  {
+    "version": "4.3.0",
+    "date": "2026-09-21"
+  },
+  {
+    "version": "4.2.9",
+    "date": "2026-09-20"
+  },
+  {
+    "version": "4.2.8",
+    "date": "2026-09-20"
+  },
+  {
+    "version": "4.2.7",
+    "date": "2026-09-20"
+  },
+  {
+    "version": "4.2.6",
+    "date": "2026-09-20"
+  },
+  {
+    "version": "4.2.5",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.2.4",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.2.3",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.2.2",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.2.1",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.2.0",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.1.9",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.1.8",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.1.7",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.1.6",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.1.5",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.1.4",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.1.3",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.1.2",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.1.1",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.1.0",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.0.9",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.0.8",
+    "date": "2026-09-19"
+  },
+  {
+    "version": "4.0.7",
+    "date": "2026-09-18"
+  },
+  {
+    "version": "4.0.6",
+    "date": "2026-09-18"
+  },
+  {
+    "version": "4.0.5",
+    "date": "2026-09-18"
+  },
+  {
+    "version": "4.0.4",
+    "date": "2026-09-18"
+  },
+  {
+    "version": "4.0.3",
+    "date": "2026-09-18"
+  },
+  {
+    "version": "4.0.2",
+    "date": "2026-09-18"
+  },
+  {
+    "version": "4.0.1",
+    "date": "2026-09-18"
+  },
+  {
+    "version": "4.0.0",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.9.9",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.9.8",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.9.7",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.9.6",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.9.5",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.9.4",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.9.3",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.9.2",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.9.1",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.9.0",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.8.9",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.8.8",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.8.7",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.8.6",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.8.5",
+    "date": "2026-09-17"
+  },
+  {
+    "version": "3.8.4",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.8.3",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.8.2",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.8.1",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.8.0",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.7.9",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.7.8",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.7.7",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.7.6",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.7.5",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.7.4",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.7.3",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.7.2",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.7.1",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.7.0",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.6.7",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.6.6",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.6.5",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.6.4",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.6.3",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.6.2",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.6.1",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.6.0",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.5.0",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.4.0",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.3.0",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.2.1",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.2.0",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.1.0",
+    "date": "2026-09-16"
+  },
+  {
+    "version": "3.0.7",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "3.0.6",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "3.0.5",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "3.0.4",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "3.0.3",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "3.0.2",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "3.0.1",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "3.0.0",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "2.9.4",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "2.9.3",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "2.9.2",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "2.9.1",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "2.9.0",
+    "date": "2026-09-15"
+  },
+  {
+    "version": "2.8.1",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.8.0",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.7.2",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.7.1",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.7.0",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.6.9",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.6.8",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.6.7",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.6.5",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.6.4",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.6.3",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.6.2",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.6.1",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.10",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.9",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.8",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.7",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.6",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.5",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.4",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.3",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.2",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.1",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.5.0",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.4.9",
+    "date": "2026-09-14"
+  },
+  {
+    "version": "2.4.8",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.4.7",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.4.6",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.4.5",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.4.4",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.4.3",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.4.2",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.4.1",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.4.0",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.3.9",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.3.8",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.3.7",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.3.6",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.3.5",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.3.4",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.3.3",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.3.2",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.3.1",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.3.0",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.2.9",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.2.8",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.2.7",
+    "date": "2026-09-13"
+  },
+  {
+    "version": "2.2.6",
+    "date": "2026-09-12"
+  },
+  {
+    "version": "2.2.5",
+    "date": "2026-09-12"
+  },
+  {
+    "version": "2.2.4",
+    "date": "2026-09-12"
+  },
+  {
+    "version": "2.2.3",
+    "date": "2026-09-12"
+  },
+  {
+    "version": "2.2.2",
+    "date": "2026-09-12"
+  },
+  {
+    "version": "2.2.1",
+    "date": "2026-09-12"
+  },
+  {
+    "version": "2.2.0",
+    "date": "2026-09-12"
+  },
+  {
+    "version": "2.1.9",
+    "date": "2026-09-12"
+  },
+  {
+    "version": "2.1.8",
+    "date": "2026-09-12"
+  },
+  {
+    "version": "2.1.7",
+    "date": "2026-09-11"
+  },
+  {
+    "version": "2.1.6",
+    "date": "2026-09-11"
+  },
+  {
+    "version": "2.1.5",
+    "date": "2026-09-11"
+  },
+  {
+    "version": "2.1.4",
+    "date": "2026-09-11"
+  },
+  {
+    "version": "2.1.3",
+    "date": "2026-09-11"
+  },
+  {
+    "version": "2.1.2",
+    "date": "2026-09-11"
+  },
+  {
+    "version": "2.1.1",
+    "date": "2026-09-11"
+  },
+  {
+    "version": "2.1.0",
+    "date": "2026-09-11"
+  },
+  {
+    "version": "2.0.9",
+    "date": "2026-09-11"
+  },
+  {
+    "version": "2.0.8",
+    "date": "2026-09-11"
+  },
+  {
+    "version": "2.0.7",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "2.0.6",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "2.0.5",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "2.0.4",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "2.0.3",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "2.0.2",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "2.0.1",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "2.0.0",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "1.9.9",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "1.9.8",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "1.9.7",
+    "date": "2026-09-10"
+  },
+  {
+    "version": "1.9.6",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.9.5",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.9.4",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.9.3",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.9.2",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.9.1",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.9.0",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.8.9",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.8.8",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.8.7",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.8.6",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.8.5",
+    "date": "2026-09-09"
+  },
+  {
+    "version": "1.8.4",
+    "date": "2026-09-08"
+  },
+  {
+    "version": "1.8.3",
+    "date": "2026-09-08"
+  },
+  {
+    "version": "1.8.2",
+    "date": "2026-09-08"
+  },
+  {
+    "version": "1.8.1",
+    "date": "2026-09-08"
+  },
+  {
+    "version": "1.8.0",
+    "date": "2026-09-08"
+  },
+  {
+    "version": "1.7.9",
+    "date": "2026-09-08"
+  },
+  {
+    "version": "1.7.8",
+    "date": "2026-09-07"
+  },
+  {
+    "version": "1.7.7",
+    "date": "2026-09-06"
+  },
+  {
+    "version": "1.7.6",
+    "date": "2026-09-06"
+  },
+  {
+    "version": "1.7.5",
+    "date": "2026-09-06"
+  },
+  {
+    "version": "1.7.4",
+    "date": "2026-09-05"
+  },
+  {
+    "version": "1.7.3",
+    "date": "2026-09-05"
+  },
+  {
+    "version": "1.7.2",
+    "date": "2026-09-05"
+  },
+  {
+    "version": "1.7.1",
+    "date": "2026-09-05"
+  },
+  {
+    "version": "1.7.0",
+    "date": "2026-09-05"
+  },
+  {
+    "version": "1.6.5",
+    "date": "2026-09-05"
+  },
+  {
+    "version": "1.6.4",
+    "date": "2026-09-05"
+  },
+  {
+    "version": "1.6.3",
+    "date": "2026-09-05"
+  },
+  {
+    "version": "1.6.2",
+    "date": "2026-09-05"
+  },
+  {
+    "version": "1.6.1",
+    "date": "2026-09-05",
+    "summary": "Meet stops asking questions nobody is waiting to hear the answer to."
+  },
+  {
+    "version": "1.6.0",
+    "date": "2026-09-05",
+    "summary": "Meet learns to say who is around, and lets you catch somebody's eye without\nbooking anything."
+  },
+  {
+    "version": "1.5.0",
+    "date": "2026-09-04"
+  },
+  {
+    "version": "1.4.9",
+    "date": "2026-09-04"
+  },
+  {
+    "version": "1.4.8",
+    "date": "2026-09-04",
+    "summary": "Every camera tile is a square that centres on your face, and a project\nfinally remembers what happened on it."
+  },
+  {
+    "version": "1.4.7",
+    "date": "2026-09-04",
+    "summary": "Team folds into Work, and Work grows a menu, filters, and a right-click."
+  },
+  {
+    "version": "1.4.6",
+    "date": "2026-09-04",
+    "summary": "Issues you can finish without opening GitHub."
+  },
+  {
+    "version": "1.4.5",
+    "date": "2026-09-04",
+    "summary": "The Work window grew a calendar, a third column, and issues that read like\nGitHub's own."
+  },
+  {
+    "version": "1.4.4",
+    "date": "2026-09-03"
+  },
+  {
+    "version": "1.4.3",
+    "date": "2026-09-03",
+    "summary": "The work that had been sitting uncommitted on the shared Mac is in, and the\nWork window learned how a Mac window is shaped."
+  },
+  {
+    "version": "1.4.2",
+    "date": "2026-09-02",
+    "summary": "The calendar and the work now know each other."
+  },
+  {
+    "version": "1.4.1",
+    "date": "2026-09-02",
+    "summary": "A project's channel now carries the meeting's trail."
+  },
+  {
+    "version": "1.4.0",
+    "date": "2026-09-02",
+    "summary": "A meeting and the project it is about now know each other."
+  },
+  {
+    "version": "1.3.9",
+    "date": "2026-09-02",
+    "summary": "What is yours can be finished where it is read."
+  },
+  {
+    "version": "1.3.8",
+    "date": "2026-09-02",
+    "summary": "Home knows what you owe today."
+  },
+  {
+    "version": "1.3.7",
+    "date": "2026-09-02",
+    "summary": "Work gets its door on the Mac, and a message on a project finds its way there."
+  },
+  {
+    "version": "1.3.6",
+    "date": "2026-09-02"
+  },
+  {
+    "version": "1.3.5",
+    "date": "2026-09-01"
+  },
+  {
+    "version": "1.3.4",
+    "date": "2026-09-01",
+    "summary": "Suggested tasks got a better ear, ticking one off got simpler, and the lime\nbutton stopped shouting on a white page."
+  },
+  {
+    "version": "1.3.3",
+    "date": "2026-09-01"
+  },
+  {
+    "version": "1.3.2",
+    "date": "2026-09-01"
+  },
+  {
+    "version": "1.3.1",
+    "date": "2026-08-28",
+    "summary": "Five fixes from a top-to-bottom review, all in the paths that looked healthy\nwhile they weren't."
+  },
+  {
+    "version": "1.3.0",
+    "date": "2026-08-24",
+    "summary": "Work is where the projects and leads live, and it now knows about GitHub and\nabout you."
+  },
+  {
+    "version": "1.2.2",
+    "date": "2026-08-23",
+    "summary": "Three things that did not work in the last release, and one that was only ugly."
+  },
+  {
+    "version": "1.2.1",
+    "date": "2026-08-23",
+    "summary": "Two things you notice on a phone: being asked who you are, and being told\nsomething the app has not checked yet."
+  },
+  {
+    "version": "1.2.0",
+    "date": "2026-08-22",
+    "summary": "The iPhone can host. Not a remote control for the Mac — the same job: it starts\nthe room, answers the door, transcribes on the device, and files the meeting."
+  },
+  {
+    "version": "1.1.0",
+    "date": "2026-08-20",
+    "summary": "Meet has only ever had a dark appearance. It has a light one now, and a setting\nto choose between them — which is why this is 1.1.0 and not another patch."
+  },
+  {
+    "version": "1.0.8",
+    "date": "2026-08-20",
+    "summary": "The Calendar sidebar had grown into a list of two different things: switches for\nwhat you can see today, and chores like connecting an account. The chores have\nmoved to Settings, and the company rows are one short list."
+  },
+  {
+    "version": "1.0.7",
+    "date": "2026-08-19",
+    "summary": "At seven in the evening the app would put tomorrow's first meeting in the\ncountdown card and tick down fourteen hours to it, as though it were about to\nstart. A day that is over should say so."
+  },
+  {
+    "version": "1.0.6",
+    "date": "2026-08-19",
+    "summary": "The iPhone calendar could not be scrolled reliably, and half the screen was\nchrome rather than day."
+  },
+  {
+    "version": "1.0.5",
+    "date": "2026-08-19",
+    "summary": "Two meetings at the same hour used to make each other unreadable, and a week\nmeant something different depending on which screen you read it on."
+  },
+  {
+    "version": "1.0.4",
+    "date": "2026-08-19",
+    "summary": "Meet never records — but the Mac kept the camera open anyway, for a preview\nthat was behind another screen."
+  },
+  {
+    "version": "1.0.3",
+    "date": "2026-08-19",
+    "summary": "Meet has no push. A direct message is only ever found by opening the app — and\nthe screen you open first said nothing about it."
+  },
+  {
+    "version": "1.0.2",
+    "date": "2026-08-19",
+    "summary": "Reaching a colleague stops being a procedure. Call is one click, your own door\nis watched while you are out, and a knock is something you actually hear."
+  },
+  {
+    "version": "1.0.1",
+    "date": "2026-08-19",
+    "summary": "Team stops being a bulletin board. It already said who was signed in; now it\nsays whether you can interrupt them, where to find them, and gives you a way\nto reach them that is not a meeting invitation."
+  },
+  {
+    "version": "1.0.0",
+    "date": "2026-08-19",
+    "summary": "The version goes 0.8.0 → 1.0.0. Everything numbered 0.9.x was bumped but never\nshipped — no tag was ever cut and the update feed kept offering 0.8.0 — while\nthe release grew underneath those numbers into something that is not a patch:\na people surface, private messaging with its own storage and jurisdiction, and\na real calendar on both native apps.\n\nThe rolling rule reserves 1.0.0 for after 0.9.9, so this is a deliberate\nexception rather than a slip. It also matters mechanically: the release\nworkflow only builds iOS to TestFlight from a tag whose version ends in `.0`,\nso a `0.9.x` tag would have shipped the Mac and left every iPhone on 0.8.0."
+  },
+  {
+    "version": "0.8.0",
+    "date": "2026-08-19"
+  },
+  {
+    "version": "0.7.3",
+    "date": "2026-08-18"
+  },
+  {
+    "version": "0.7.2",
+    "date": "2026-08-17"
+  },
+  {
+    "version": "0.7.1",
+    "date": "2026-08-17"
+  },
+  {
+    "version": "0.7.0",
+    "date": "2026-08-17"
+  },
+  {
+    "version": "0.6.9",
+    "date": "2026-08-17"
+  },
+  {
+    "version": "0.6.8",
+    "date": "2026-08-17"
+  },
+  {
+    "version": "0.6.7",
+    "date": "2026-08-17"
+  },
+  {
+    "version": "0.6.6",
+    "date": "2026-08-14"
+  },
+  {
+    "version": "0.6.5",
+    "date": "2026-08-14"
+  },
+  {
+    "version": "0.6.4",
+    "date": "2026-08-14"
+  },
+  {
+    "version": "0.6.3",
+    "date": "2026-08-12"
+  },
+  {
+    "version": "0.6.2",
+    "date": "2026-08-12"
+  },
+  {
+    "version": "0.6.1",
+    "date": "2026-08-12"
+  },
+  {
+    "version": "0.6.0",
+    "date": "2026-08-11"
+  },
+  {
+    "version": "0.5.0",
+    "date": "2026-08-11"
+  },
+  {
+    "version": "0.4.9",
+    "date": "2026-08-11"
+  },
+  {
+    "version": "0.4.8",
+    "date": "2026-08-11"
+  },
+  {
+    "version": "0.4.7",
+    "date": "2026-08-11"
+  },
+  {
+    "version": "0.4.6",
+    "date": "2026-08-11"
+  },
+  {
+    "version": "0.4.5",
+    "date": "2026-08-11"
+  },
+  {
+    "version": "0.4.4",
+    "date": "2026-08-11"
+  },
+  {
+    "version": "0.4.3",
+    "date": "2026-08-11"
+  },
+  {
+    "version": "0.4.2",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.4.1",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.4.0",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.3.9",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.3.8",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.3.7",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.3.6",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.3.5",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.3.4",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.3.3",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.3.2",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.3.1",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.3.0",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.2.9",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.2.8",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.2.7",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.2.6",
+    "date": "2026-08-10"
+  },
+  {
+    "version": "0.2.5",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.2.4",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.2.3",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.2.2",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.2.1",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.2.0",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.1.9",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.1.8",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.1.7",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.1.6",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.1.5",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.1.4",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.1.3",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.1.2",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.1.1",
+    "date": "2026-08-09"
+  },
+  {
+    "version": "0.1.0",
+    "date": "2026-08-09"
+  }
+]

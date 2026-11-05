@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Calendar weather, the Settings › Calendar panes and the phone's own calendars. English and pt-BR from Resources/Localizable.xcstrings. -->
+<resources>
+    <!-- Weather (MobileCalendarWeatherSettingsView) -->
+    <string name="cal_weather_title">Weather</string>
+    <string name="cal_show_weather">Show weather</string>
+    <string name="cal_weather_clear_place">Clear</string>
+    <string name="cal_weather_city">City or town</string>
+    <!-- iOS sets these as plain String, so they stay English there too. -->
+    <string name="cal_weather_no_places" translatable="false">No places found.</string>
+    <string name="cal_weather_unavailable" translatable="false">Weather search is unavailable right now.</string>
+    <string name="cal_weather_footer">Weather uses the city you choose.</string>
+    <string name="cal_weather_spoken" translatable="false">%1$s, %2$s, %3$s</string>
+    <string name="cal_weather_clear">Clear</string>
+    <string name="cal_weather_mainly_clear">Mainly clear</string>
+    <string name="cal_weather_partly_cloudy">Partly cloudy</string>
+    <string name="cal_weather_overcast">Overcast</string>
+    <string name="cal_weather_fog">Fog</string>
+    <string name="cal_weather_drizzle">Drizzle</string>
+    <string name="cal_weather_freezing_drizzle">Freezing drizzle</string>
+    <string name="cal_weather_rain">Rain</string>
+    <string name="cal_weather_heavy_rain">Heavy rain</string>
+    <string name="cal_weather_freezing_rain">Freezing rain</string>
+    <string name="cal_weather_snow">Snow</string>
+    <string name="cal_weather_heavy_snow">Heavy snow</string>
+    <string name="cal_weather_snow_grains">Snow grains</string>
+    <string name="cal_weather_showers">Showers</string>
+    <string name="cal_weather_heavy_showers">Heavy showers</string>
+    <string name="cal_weather_snow_showers">Snow showers</string>
+    <string name="cal_weather_thunderstorm">Thunderstorm</string>
+    <string name="cal_weather_thunderstorm_hail">Thunderstorm with hail</string>
+
+    <!-- Settings › Calendar index (MobileCalendarSettingsRootView). Group titles are CalendarSettingGroup raw values, English on iOS. -->
+    <string name="settings_cal_upcoming" translatable="false">Upcoming</string>
+    <string name="settings_cal_display" translatable="false">Display</string>
+    <string name="settings_cal_booking" translatable="false">Booking</string>
+    <string name="settings_cal_show_in_upcoming">Show in Upcoming</string>
+    <string name="settings_cal_upcoming_detail">Choose Google calendars and subscribed feeds for Upcoming</string>
+    <string name="settings_cal_display_detail">Choose the layout, hours, and grid</string>
+    <string name="settings_cal_weather_detail">Show weather beside your calendar</string>
+    <string name="settings_cal_booking_detail">Choose when guests can book a time with you</string>
+
+    <!-- Show in Upcoming (MobileUpcomingCalendarSelection) -->
+    <string name="cal_google_calendars">Google calendars</string>
+    <string name="cal_upcoming_feeds_footer">Subscribed feeds added in Accounts &amp; sources can also appear in Upcoming.</string>
+
+    <!-- Booking hours (MobileBookingHoursView, Sources/BookingHours.swift) -->
+    <string name="booking_title">Booking hours</string>
+    <string name="booking_take">Take bookings</string>
+    <string name="booking_time_zone">Time zone</string>
+    <string name="booking_days">Days</string>
+    <string name="booking_save">Save booking hours</string>
+    <string name="booking_from">%1$s from</string>
+    <string name="booking_until">%1$s until</string>
+    <string name="booking_to">to</string>
+    <string name="booking_meeting_length">Meeting length (minutes)</string>
+    <string name="booking_slot_step">Start a slot every (minutes)</string>
+    <string name="booking_buffer">Gap around meetings (minutes)</string>
+    <string name="booking_notice">Notice (hours)</string>
+    <string name="booking_max_days">Book up to (days ahead)</string>
+    <string name="booking_note_none">These are your working hours. You have no booking page yet.</string>
+    <string name="booking_note_path">Guests book a time on %1$s inside these hours, around your busy times.</string>
+    <string name="booking_not_taking">Connect Google Calendar above to take bookings. Until then your booking page says you are not taking bookings.</string>
+    <string name="booking_saved">Saved. Your hours on Team follow the same setting.</string>
+
+    <!-- The phone's own calendars (MobileCalendarSourcesView.deviceSection) -->
+    <string name="cal_local_calendars">Local calendars</string>
+    <string name="cal_include_local">Include local calendars</string>
+    <string name="cal_local_off">Off until you turn it on.</string>
+    <string name="cal_show_all">Show all</string>
+    <string name="cal_hide_all">Hide all</string>
+    <string name="cal_local_new_hidden">New calendars stay hidden until enabled here.</string>
+    <string name="cal_on_this_device">On this device</string>
+    <string name="cal_no_device_calendars">No calendars found on this device.</string>
+    <string name="cal_allow_calendar_access">Allow calendar access in Settings</string>
+    <string name="cal_checking_calendar_access">Checking calendar access…</string>
+</resources>

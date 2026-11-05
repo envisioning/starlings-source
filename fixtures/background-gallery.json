@@ -1,0 +1,925 @@
+{
+  "version": 1,
+  "tones": [
+    "dark",
+    "accent",
+    "bright"
+  ],
+  "generators": [
+    "pixel-field",
+    "flock",
+    "grid"
+  ],
+  "envisioningTones": {
+    "dark": {
+      "label": "Night",
+      "base": "#25262e",
+      "modules": "#656877"
+    },
+    "accent": {
+      "label": "Lime",
+      "base": "#d6f249",
+      "modules": "#abc900"
+    },
+    "bright": {
+      "label": "Ice",
+      "base": "#f2f5f9",
+      "modules": "#c8d1de"
+    }
+  },
+  "legacyPlateTones": {
+    "night": "dark",
+    "lime": "accent",
+    "ice": "bright"
+  },
+  "pixelField": {
+    "marginRatio": 0.08,
+    "originRatio": 0.22,
+    "grid": 33,
+    "keepBase": 0.06,
+    "keepFade": 0.52,
+    "alphaBase": 0.14,
+    "alphaFade": 0.52
+  },
+  "flockField": {
+    "pitch": 112,
+    "size": 72,
+    "alphaBase": 0.25,
+    "alphaFade": 0.35
+  },
+  "gridField": {
+    "pitch": 32,
+    "multiplierMin": 0.7,
+    "multiplierMax": 1,
+    "bakedLines": 80,
+    "alpha": 0.5,
+    "horizontalFade": 0.12,
+    "verticalFade": 0.18
+  },
+  "generatorLabels": {
+    "pixel-field": "Pixels",
+    "flock": "Flock",
+    "grid": "Grid"
+  },
+  "random": [
+    {
+      "seed": 1,
+      "values": [
+        0.6270739405881613,
+        0.002735721180215478,
+        0.5274470399599522,
+        0.9810509674716741
+      ]
+    },
+    {
+      "seed": 42,
+      "values": [
+        0.6011037519201636,
+        0.44829055899754167,
+        0.8524657934904099,
+        0.6697340414393693
+      ]
+    },
+    {
+      "seed": 3735928559,
+      "values": [
+        0.9413696140982211,
+        0.26719574979506433,
+        0.772033357527107,
+        0.35816076025366783
+      ]
+    }
+  ],
+  "generatedCells": [
+    {
+      "generator": "flock",
+      "seed": 1,
+      "width": 160,
+      "height": 90,
+      "count": 16,
+      "digest": 1604098148,
+      "first": [
+        {
+          "x": 51,
+          "y": 16,
+          "width": 10,
+          "height": 10,
+          "alpha": 0.5889322643750348
+        },
+        {
+          "x": 66,
+          "y": 15,
+          "width": 11,
+          "height": 11,
+          "alpha": 0.5889322643750348
+        },
+        {
+          "x": 82,
+          "y": 14,
+          "width": 13,
+          "height": 13,
+          "alpha": 0.5889322643750348
+        }
+      ]
+    },
+    {
+      "generator": "flock",
+      "seed": 1,
+      "width": 90,
+      "height": 160,
+      "count": 16,
+      "digest": 4084606126,
+      "first": [
+        {
+          "x": 16,
+          "y": 51,
+          "width": 10,
+          "height": 10,
+          "alpha": 0.5889322643750348
+        },
+        {
+          "x": 31,
+          "y": 50,
+          "width": 11,
+          "height": 11,
+          "alpha": 0.5889322643750348
+        },
+        {
+          "x": 47,
+          "y": 49,
+          "width": 13,
+          "height": 13,
+          "alpha": 0.5889322643750348
+        }
+      ]
+    },
+    {
+      "generator": "flock",
+      "seed": 1,
+      "width": 960,
+      "height": 540,
+      "count": 720,
+      "digest": 1200402959,
+      "first": [
+        {
+          "x": 3,
+          "y": 17,
+          "width": 10,
+          "height": 10,
+          "alpha": 0.2986267541884445
+        },
+        {
+          "x": 18,
+          "y": 16,
+          "width": 11,
+          "height": 11,
+          "alpha": 0.2986267541884445
+        },
+        {
+          "x": 34,
+          "y": 15,
+          "width": 13,
+          "height": 13,
+          "alpha": 0.2986267541884445
+        }
+      ]
+    },
+    {
+      "generator": "flock",
+      "seed": 42,
+      "width": 160,
+      "height": 90,
+      "count": 16,
+      "digest": 3854325952,
+      "first": [
+        {
+          "x": 51,
+          "y": 16,
+          "width": 10,
+          "height": 10,
+          "alpha": 0.31118486456107347
+        },
+        {
+          "x": 66,
+          "y": 15,
+          "width": 11,
+          "height": 11,
+          "alpha": 0.31118486456107347
+        },
+        {
+          "x": 82,
+          "y": 14,
+          "width": 13,
+          "height": 13,
+          "alpha": 0.31118486456107347
+        }
+      ]
+    },
+    {
+      "generator": "flock",
+      "seed": 42,
+      "width": 90,
+      "height": 160,
+      "count": 16,
+      "digest": 3982524922,
+      "first": [
+        {
+          "x": 16,
+          "y": 51,
+          "width": 10,
+          "height": 10,
+          "alpha": 0.31118486456107347
+        },
+        {
+          "x": 31,
+          "y": 50,
+          "width": 11,
+          "height": 11,
+          "alpha": 0.31118486456107347
+        },
+        {
+          "x": 47,
+          "y": 49,
+          "width": 13,
+          "height": 13,
+          "alpha": 0.31118486456107347
+        }
+      ]
+    },
+    {
+      "generator": "flock",
+      "seed": 42,
+      "width": 960,
+      "height": 540,
+      "count": 720,
+      "digest": 2422868543,
+      "first": [
+        {
+          "x": 3,
+          "y": 17,
+          "width": 10,
+          "height": 10,
+          "alpha": 0.5110081477439963
+        },
+        {
+          "x": 18,
+          "y": 16,
+          "width": 11,
+          "height": 11,
+          "alpha": 0.5110081477439963
+        },
+        {
+          "x": 34,
+          "y": 15,
+          "width": 13,
+          "height": 13,
+          "alpha": 0.5110081477439963
+        }
+      ]
+    },
+    {
+      "generator": "flock",
+      "seed": 3735928559,
+      "width": 160,
+      "height": 90,
+      "count": 16,
+      "digest": 3309962832,
+      "first": [
+        {
+          "x": 51,
+          "y": 16,
+          "width": 10,
+          "height": 10,
+          "alpha": 0.41643958722706886
+        },
+        {
+          "x": 66,
+          "y": 15,
+          "width": 11,
+          "height": 11,
+          "alpha": 0.41643958722706886
+        },
+        {
+          "x": 82,
+          "y": 14,
+          "width": 13,
+          "height": 13,
+          "alpha": 0.41643958722706886
+        }
+      ]
+    },
+    {
+      "generator": "flock",
+      "seed": 3735928559,
+      "width": 90,
+      "height": 160,
+      "count": 16,
+      "digest": 1355907722,
+      "first": [
+        {
+          "x": 16,
+          "y": 51,
+          "width": 10,
+          "height": 10,
+          "alpha": 0.41643958722706886
+        },
+        {
+          "x": 31,
+          "y": 50,
+          "width": 11,
+          "height": 11,
+          "alpha": 0.41643958722706886
+        },
+        {
+          "x": 47,
+          "y": 49,
+          "width": 13,
+          "height": 13,
+          "alpha": 0.41643958722706886
+        }
+      ]
+    },
+    {
+      "generator": "flock",
+      "seed": 3735928559,
+      "width": 960,
+      "height": 540,
+      "count": 720,
+      "digest": 3704777079,
+      "first": [
+        {
+          "x": 3,
+          "y": 17,
+          "width": 10,
+          "height": 10,
+          "alpha": 0.5044126892113127
+        },
+        {
+          "x": 18,
+          "y": 16,
+          "width": 11,
+          "height": 11,
+          "alpha": 0.5044126892113127
+        },
+        {
+          "x": 34,
+          "y": 15,
+          "width": 13,
+          "height": 13,
+          "alpha": 0.5044126892113127
+        }
+      ]
+    },
+    {
+      "generator": "grid",
+      "seed": 1,
+      "width": 160,
+      "height": 90,
+      "count": 930,
+      "digest": 1417499960,
+      "first": [
+        {
+          "x": 16,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.011670973933773277
+        },
+        {
+          "x": 16,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.03501292180131983
+        },
+        {
+          "x": 16,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.05835486966886639
+        }
+      ]
+    },
+    {
+      "generator": "grid",
+      "seed": 1,
+      "width": 90,
+      "height": 160,
+      "count": 930,
+      "digest": 3906762964,
+      "first": [
+        {
+          "x": 13,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.007153087192111545
+        },
+        {
+          "x": 13,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.021459261576334637
+        },
+        {
+          "x": 13,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.03576543596055773
+        }
+      ]
+    },
+    {
+      "generator": "grid",
+      "seed": 1,
+      "width": 960,
+      "height": 540,
+      "count": 32520,
+      "digest": 1083247961,
+      "first": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.00000935008687192466
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.000028050260615773974
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.00004675043435962329
+        }
+      ]
+    },
+    {
+      "generator": "grid",
+      "seed": 42,
+      "width": 160,
+      "height": 90,
+      "count": 930,
+      "digest": 3848723840,
+      "first": [
+        {
+          "x": 16,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.013107699744495346
+        },
+        {
+          "x": 16,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.039323099233486036
+        },
+        {
+          "x": 16,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.06553849872247673
+        }
+      ]
+    },
+    {
+      "generator": "grid",
+      "seed": 42,
+      "width": 90,
+      "height": 160,
+      "count": 930,
+      "digest": 758684928,
+      "first": [
+        {
+          "x": 13,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.006397578451368544
+        },
+        {
+          "x": 13,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.019192735354105633
+        },
+        {
+          "x": 13,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.031987892256842725
+        }
+      ]
+    },
+    {
+      "generator": "grid",
+      "seed": 42,
+      "width": 960,
+      "height": 540,
+      "count": 32520,
+      "digest": 1208781409,
+      "first": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.000007869015696062909
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.000023607047088188725
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.00003934507848031454
+        }
+      ]
+    },
+    {
+      "generator": "grid",
+      "seed": 3735928559,
+      "width": 160,
+      "height": 90,
+      "count": 930,
+      "digest": 1656800176,
+      "first": [
+        {
+          "x": 16,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.010524130897757448
+        },
+        {
+          "x": 16,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.03157239269327235
+        },
+        {
+          "x": 16,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.05262065448878724
+        }
+      ]
+    },
+    {
+      "generator": "grid",
+      "seed": 3735928559,
+      "width": 90,
+      "height": 160,
+      "count": 930,
+      "digest": 3459018108,
+      "first": [
+        {
+          "x": 13,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.0065992408328586155
+        },
+        {
+          "x": 13,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.019797722498575848
+        },
+        {
+          "x": 13,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.03299620416429308
+        }
+      ]
+    },
+    {
+      "generator": "grid",
+      "seed": 3735928559,
+      "width": 960,
+      "height": 540,
+      "count": 32520,
+      "digest": 3780445329,
+      "first": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.000009679435239189228
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.00002903830571756768
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.000048397176195946137
+        }
+      ]
+    }
+  ],
+  "cells": [
+    {
+      "seed": 1,
+      "width": 160,
+      "height": 90,
+      "count": 5211,
+      "digest": 1230356446,
+      "first": [
+        {
+          "x": 1,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14337662337662335
+        },
+        {
+          "x": 22,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14337662337662335
+        },
+        {
+          "x": 47,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14337662337662335
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "width": 90,
+      "height": 160,
+      "count": 4846,
+      "digest": 2916385735,
+      "first": [
+        {
+          "x": 1,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14169934640522877
+        },
+        {
+          "x": 22,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14169934640522877
+        },
+        {
+          "x": 47,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14169934640522877
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "width": 960,
+      "height": 540,
+      "count": 14364,
+      "digest": 313069359,
+      "first": [
+        {
+          "x": 3,
+          "y": 0,
+          "width": 3,
+          "height": 1,
+          "alpha": 0.14056155507559395
+        },
+        {
+          "x": 78,
+          "y": 0,
+          "width": 4,
+          "height": 1,
+          "alpha": 0.14056155507559395
+        },
+        {
+          "x": 169,
+          "y": 0,
+          "width": 3,
+          "height": 1,
+          "alpha": 0.14056155507559395
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "width": 160,
+      "height": 90,
+      "count": 5116,
+      "digest": 1685471024,
+      "first": [
+        {
+          "x": 18,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14337662337662335
+        },
+        {
+          "x": 21,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14337662337662335
+        },
+        {
+          "x": 23,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14337662337662335
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "width": 90,
+      "height": 160,
+      "count": 4740,
+      "digest": 794441155,
+      "first": [
+        {
+          "x": 18,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14169934640522877
+        },
+        {
+          "x": 21,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14169934640522877
+        },
+        {
+          "x": 23,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14169934640522877
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "width": 960,
+      "height": 540,
+      "count": 14369,
+      "digest": 2672769501,
+      "first": [
+        {
+          "x": 64,
+          "y": 0,
+          "width": 4,
+          "height": 1,
+          "alpha": 0.14056155507559395
+        },
+        {
+          "x": 75,
+          "y": 0,
+          "width": 3,
+          "height": 1,
+          "alpha": 0.14056155507559395
+        },
+        {
+          "x": 82,
+          "y": 0,
+          "width": 4,
+          "height": 1,
+          "alpha": 0.14056155507559395
+        }
+      ]
+    },
+    {
+      "seed": 3735928559,
+      "width": 160,
+      "height": 90,
+      "count": 5182,
+      "digest": 450212295,
+      "first": [
+        {
+          "x": 26,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14337662337662335
+        },
+        {
+          "x": 46,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14337662337662335
+        },
+        {
+          "x": 47,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14337662337662335
+        }
+      ]
+    },
+    {
+      "seed": 3735928559,
+      "width": 90,
+      "height": 160,
+      "count": 4789,
+      "digest": 3215989877,
+      "first": [
+        {
+          "x": 26,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14169934640522877
+        },
+        {
+          "x": 46,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14169934640522877
+        },
+        {
+          "x": 47,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "alpha": 0.14169934640522877
+        }
+      ]
+    },
+    {
+      "seed": 3735928559,
+      "width": 960,
+      "height": 540,
+      "count": 14296,
+      "digest": 3093492354,
+      "first": [
+        {
+          "x": 93,
+          "y": 0,
+          "width": 3,
+          "height": 1,
+          "alpha": 0.14056155507559395
+        },
+        {
+          "x": 165,
+          "y": 0,
+          "width": 4,
+          "height": 1,
+          "alpha": 0.14056155507559395
+        },
+        {
+          "x": 169,
+          "y": 0,
+          "width": 3,
+          "height": 1,
+          "alpha": 0.14056155507559395
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "viewBox": 28,
+  "dots": [
+    {
+      "x": 4.4,
+      "y": 4.4,
+      "radius": 1.87,
+      "phase": 0,
+      "driftPhase": 0.183,
+      "driftFactor": 0.716
+    },
+    {
+      "x": 10.8,
+      "y": 4.4,
+      "radius": 2.18,
+      "phase": 0.13,
+      "driftPhase": 0.74,
+      "driftFactor": 0.744
+    },
+    {
+      "x": 17.2,
+      "y": 4.4,
+      "radius": 2.5,
+      "phase": 0.26,
+      "driftPhase": 0.564,
+      "driftFactor": 0.919
+    },
+    {
+      "x": 23.6,
+      "y": 4.4,
+      "radius": 2.5,
+      "phase": 0.39,
+      "driftPhase": 0.455,
+      "driftFactor": 0.901
+    },
+    {
+      "x": 4.4,
+      "y": 10.8,
+      "radius": 1.55,
+      "phase": 0.245,
+      "driftPhase": 0.272,
+      "driftFactor": 1.264
+    },
+    {
+      "x": 10.8,
+      "y": 10.8,
+      "radius": 2.18,
+      "phase": 0.375,
+      "driftPhase": 0.823,
+      "driftFactor": 1.023
+    },
+    {
+      "x": 17.2,
+      "y": 10.8,
+      "radius": 2.5,
+      "phase": 0.505,
+      "driftPhase": 0.753,
+      "driftFactor": 1.041
+    },
+    {
+      "x": 23.6,
+      "y": 10.8,
+      "radius": 2.18,
+      "phase": 0.635,
+      "driftPhase": 0.504,
+      "driftFactor": 1.04
+    },
+    {
+      "x": 4.4,
+      "y": 17.2,
+      "radius": 1.55,
+      "phase": 0.394,
+      "driftPhase": 0.523,
+      "driftFactor": 1.045
+    },
+    {
+      "x": 10.8,
+      "y": 17.2,
+      "radius": 1.87,
+      "phase": 0.524,
+      "driftPhase": 0.522,
+      "driftFactor": 1.041
+    },
+    {
+      "x": 17.2,
+      "y": 17.2,
+      "radius": 2.18,
+      "phase": 0.654,
+      "driftPhase": 0.02,
+      "driftFactor": 0.927
+    },
+    {
+      "x": 23.6,
+      "y": 17.2,
+      "radius": 1.87,
+      "phase": 0.784,
+      "driftPhase": 0.592,
+      "driftFactor": 1.25
+    },
+    {
+      "x": 4.4,
+      "y": 23.6,
+      "radius": 1.55,
+      "phase": 0.475,
+      "driftPhase": 0.611,
+      "driftFactor": 1.187
+    },
+    {
+      "x": 10.8,
+      "y": 23.6,
+      "radius": 1.55,
+      "phase": 0.605,
+      "driftPhase": 0.401,
+      "driftFactor": 0.819
+    },
+    {
+      "x": 17.2,
+      "y": 23.6,
+      "radius": 1.87,
+      "phase": 0.735,
+      "driftPhase": 0.849,
+      "driftFactor": 1.149
+    },
+    {
+      "x": 23.6,
+      "y": 23.6,
+      "radius": 1.55,
+      "phase": 0.865,
+      "driftPhase": 0.341,
+      "driftFactor": 1.099
+    }
+  ],
+  "motion": {
+    "driftSeconds": 4.2,
+    "driftLow": 0,
+    "driftHigh": 1.14,
+    "murmurationSeconds": 12,
+    "thinkingSeconds": 4.8,
+    "busySeconds": 1.4
+  },
+  "wordmark": {
+    "word": "Starlings",
+    "weight": 650,
+    "trackingEm": -0.046,
+    "gapEm": 0.25,
+    "flockEm": 0.88
+  }
+}

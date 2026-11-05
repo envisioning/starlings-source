@@ -1,0 +1,17 @@
+# The export's secret scan (scripts/publish-product.mjs --gate). These paths hold
+# invented keys: test values, published crypto vectors and client route names.
+# Anything else stops a publish.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Invented values in tests and fixtures"
+paths = [
+  '''(^|/)(test|tests|Tests|iOSTests|fixtures)/''',
+  '''\.test\.[a-z]+$''',
+  '''(^|/)vectors\.json$''',
+  '''services/control-plane/vitest\.config\.ts$''',
+  '''services/control-plane/\.dev\.vars\.example$''',
+  '''packages/contracts/src/request-policy\.ts$''',
+  '''(^|/)wrangler\.test\.jsonc$''',
+]

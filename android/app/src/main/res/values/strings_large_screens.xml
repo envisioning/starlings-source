@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Large screens: the strings only a regular width draws (iOS catalog, Resources/Localizable.xcstrings). -->
+<resources>
+    <!-- Work rail on a regular width (MobileWorkView.splitView). -->
+    <string name="work_overview">Overview</string>
+    <string name="work_overview_hint">Inbox, Quick Notes and Mine</string>
+</resources>

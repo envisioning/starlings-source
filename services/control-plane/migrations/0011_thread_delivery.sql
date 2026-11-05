@@ -1,0 +1,21 @@
+-- What a conversation owes your attention.
+--
+-- `unread` has been one boolean derived from two timestamps, and that was the
+-- right shape while a thread only ever held people talking. It stops being
+-- enough the moment the work graph writes into the same transcript: a channel
+-- carrying every task change on a project is a channel somebody mutes, and
+-- muting it must not also silence the line that says their name.
+--
+-- So two columns, on the row that already holds `last_read_at`:
+--
+-- `muted_until` — absolute expiry, or a far-future value for "indefinitely".
+-- An expiry rather than a flag for the same reason `dnd_until` is one: a mute
+-- with no end is a mute nobody remembers setting, and the conversation stays
+-- quiet long after the week it was noisy.
+--
+-- `has_mention` — set when a message names this member, cleared on read. A
+-- boolean, not a count, matching `unread` exactly: an exact count would mean
+-- a Durable Object round-trip per row just to draw a list, and the list only
+-- ever needs to know whether the badge is loud or quiet.
+ALTER TABLE thread_members ADD COLUMN muted_until INTEGER;
+ALTER TABLE thread_members ADD COLUMN has_mention INTEGER NOT NULL DEFAULT 0;

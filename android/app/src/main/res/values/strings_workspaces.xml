@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Workspaces (Workspaces.kt, WorkspaceViews.kt, workspace/settings/WorkspacesSection.kt):
+  the door, Add a workspace, the switcher and the link offer. English and
+  pt-BR are the iOS catalog's (Resources/Localizable.xcstrings). A sentence
+  the catalog has without pt-BR is here only, so pt-BR shows the English iOS
+  shows. Errors are translatable="false".
+-->
+<resources>
+    <string name="workspaces_title">Workspaces</string>
+    <string name="workspaces_add">Add workspace</string>
+    <string name="workspaces_leave_call">Leave the call to switch.</string>
+    <string name="workspaces_sign_out">Sign out</string>
+    <string name="workspaces_remove">Remove</string>
+    <string name="workspaces_sign_out_all">Sign out of all workspaces</string>
+    <string name="workspaces_active">Active</string>
+    <string name="workspaces_signed_out">Signed out</string>
+    <string name="workspaces_open">Open</string>
+    <string name="workspaces_cancel">Cancel</string>
+    <string name="workspaces_retry">Retry</string>
+    <string name="workspaces_signing_in">Signing in…</string>
+    <string name="workspaces_arrived">You’re in %1$s</string>
+
+    <string name="workspace_enter_address">Enter an address</string>
+    <string name="workspace_add_title">Add a workspace</string>
+    <string name="workspace_address">Workspace address</string>
+    <string name="workspace_address_placeholder" translatable="false">your-team</string>
+    <string name="workspace_looking_up">Looking up…</string>
+    <string name="workspace_found">Found</string>
+    <string name="workspace_opening">Opening workspace…</string>
+    <string name="workspace_switch_to">Switch to %1$s</string>
+    <string name="workspace_continue_sign_in">Continue to sign in</string>
+    <string name="workspace_youre_in_this">You’re in this workspace.</string>
+    <string name="workspace_needs_invite">Your account needs an invite to this workspace.</string>
+    <string name="workspace_for_accounts">For accounts on %1$s.</string>
+    <string name="workspace_next_step">A browser window opens to sign in, then brings you back here.</string>
+
+    <string name="workspace_link_for">This link is for %1$s.</string>
+    <string name="workspace_link_open_in">Open in %1$s</string>
+    <string name="workspace_link_unknown">This link isn’t for a workspace this app can open.</string>
+
+    <string name="workspace_sign_in_cancelled" translatable="false">Sign-in cancelled.</string>
+    <string name="workspace_lookup_invalid" translatable="false">Enter a workspace address.</string>
+    <string name="workspace_lookup_not_found" translatable="false">No workspace at that address.</string>
+    <string name="workspace_lookup_unreachable" translatable="false">Couldn’t reach that workspace. Check your connection.</string>
+    <string name="workspace_lookup_update" translatable="false">This workspace needs a newer version of Starlings. Update the app, then try again.</string>
+</resources>

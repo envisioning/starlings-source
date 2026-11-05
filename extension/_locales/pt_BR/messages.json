@@ -1,0 +1,13 @@
+{
+  "extensionName": { "message": "Starlings para Google Meet" },
+  "extensionDescription": { "message": "Envia início, fim e participantes do Google Meet ao Starlings neste Mac. Só nomes e horários; sem áudio, legendas ou chat." },
+  "pairingTitle": { "message": "Pareamento do Starlings" },
+  "pairingToken": { "message": "Token de pareamento" },
+  "pairingPlaceholder": { "message": "Em Ajustes › Reuniões no app Starlings" },
+  "pairingHelp": { "message": "Copie do Starlings neste Mac. A extensão envia apenas nomes e horários ao app neste computador." },
+  "lastBatchReached": {
+    "message": "A última atualização da chamada chegou ao Starlings ($meeting$).",
+    "placeholders": { "meeting": { "content": "$1", "example": "abc-defg-hij" } }
+  },
+  "lastBatchUnavailable": { "message": "A última atualização da chamada não chegou ao Starlings. Confira se o app está aberto e se o token está correto." }
+}

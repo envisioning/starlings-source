@@ -1,0 +1,20 @@
+-- Whether an agent is working on something right now.
+--
+-- Presence for an agent is health, not evidence about a person: it has no
+-- device to check in from, no room to be in, and no calendar to be busy in.
+-- `available` therefore means *addressable* — the message will wait in the
+-- thread either way — and this column is the one thing that can say more than
+-- that, because the runtime told us it accepted the job.
+--
+-- Set when a hand-off is *accepted* (2xx), never when it is merely sent: an
+-- agent whose runtime is down must not read as busy. Cleared by the agent's
+-- next message through the inbound door.
+--
+-- It expires, like `dnd_until` and `intent_until` and for the same reason. A
+-- run that dies silently would otherwise leave "Working…" on the row forever,
+-- and a roster that cannot say "I do not know" is a roster that lies. The
+-- cost is the opposite error on a very long run — the row goes quiet while
+-- the agent is still going — which is the smaller of the two and recovers on
+-- its own the moment anything is said. Read at roster time rather than swept.
+-- See docs/AGENTS_SURFACE.md.
+ALTER TABLE people ADD COLUMN agent_busy_until INTEGER;

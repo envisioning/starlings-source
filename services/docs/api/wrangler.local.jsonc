@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Local-only overlay: `wrangler dev -c wrangler.local.jsonc`.
+  // ENVIRONMENT is what unlocks /api/dev/session, so this file must never be
+  // used to deploy.
+  "name": "docs-local",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": true
+  },
+  "vars": {
+    "ENVIRONMENT": "development",
+    "WEB_ORIGIN": "http://127.0.0.1:8788",
+    "PUBLIC_API_ORIGIN": "http://127.0.0.1:8788",
+    "GOOGLE_WEB_CLIENT_ID": "replace-with-google-client-id",
+    "CORE_API_ORIGIN": "https://core.org.example",
+    "EMAIL_FROM": "docs@org.example",
+    "EMAIL_MODE": "log"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "docs", "database_id": "local", "migrations_dir": "migrations" }
+  ],
+  "r2_buckets": [{ "binding": "DOCS_FILES", "bucket_name": "docs-files" }]
+}

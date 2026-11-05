@@ -1,0 +1,90 @@
+{
+  "ok": true,
+  "subject": {
+    "id": "aaaaaaaa-0000-4000-8000-000000000002",
+    "created_at": null,
+    "title": "Example Partners pilot",
+    "status": "Qualified",
+    "notes": null,
+    "start_date": null,
+    "organization_id": "aaaaaaaa-0000-4000-8000-000000000003",
+    "contact_id": "aaaaaaaa-0000-4000-8000-000000000008",
+    "characteristics": null,
+    "responsible_email": null,
+    "responsible_set_by": null,
+    "responsible_set_at": null,
+    "organization": {
+      "id": "aaaaaaaa-0000-4000-8000-000000000003",
+      "name": "Example Partners",
+      "profile_image_url": "https://img.example.test/org.png"
+    },
+    "contact": {
+      "id": "aaaaaaaa-0000-4000-8000-000000000008",
+      "name": "Cleo Example"
+    },
+    "kind": "lead",
+    "subtitle": "Example Partners · Cleo Example · Qualified",
+    "open_tasks": 0,
+    "overdue_tasks": 0,
+    "has_repo": false,
+    "updated_at": null,
+    "organization_logo_url": "https://img.example.test/org.png",
+    "organization_name": "Example Partners",
+    "related": {
+      "projects": [
+        {
+          "id": "aaaaaaaa-0000-4000-8000-000000000001",
+          "title": "Pilot programme",
+          "status": "Active"
+        }
+      ],
+      "leads": [],
+      "contacts": []
+    }
+  },
+  "subjects": [
+    {
+      "id": "aaaaaaaa-0000-4000-8000-000000000002",
+      "created_at": null,
+      "title": "Example Partners pilot",
+      "status": "Qualified",
+      "notes": null,
+      "start_date": null,
+      "organization_id": "aaaaaaaa-0000-4000-8000-000000000003",
+      "contact_id": "aaaaaaaa-0000-4000-8000-000000000008",
+      "characteristics": null,
+      "responsible_email": null,
+      "responsible_set_by": null,
+      "responsible_set_at": null,
+      "organization": {
+        "id": "aaaaaaaa-0000-4000-8000-000000000003",
+        "name": "Example Partners",
+        "profile_image_url": "https://img.example.test/org.png"
+      },
+      "contact": {
+        "id": "aaaaaaaa-0000-4000-8000-000000000008",
+        "name": "Cleo Example"
+      },
+      "kind": "lead",
+      "subtitle": "Example Partners · Cleo Example · Qualified",
+      "open_tasks": 0,
+      "overdue_tasks": 0,
+      "has_repo": false,
+      "updated_at": null,
+      "organization_logo_url": "https://img.example.test/org.png",
+      "organization_name": "Example Partners",
+      "related": {
+        "projects": [
+          {
+            "id": "aaaaaaaa-0000-4000-8000-000000000001",
+            "title": "Pilot programme",
+            "status": "Active"
+          }
+        ],
+        "leads": [],
+        "contacts": []
+      }
+    }
+  ],
+  "has_more": false
+}

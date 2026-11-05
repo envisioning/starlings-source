@@ -1,0 +1,63 @@
+{
+  "ok": true,
+  "subject": {
+    "id": "aaaaaaaa-0000-4000-8000-000000000003",
+    "kind": "partner",
+    "title": "Example Partners",
+    "subtitle": "Lisbon, Portugal · 1 project, 1 lead",
+    "organization_logo_url": "https://img.example.test/org.png",
+    "organization_id": "aaaaaaaa-0000-4000-8000-000000000003",
+    "organization_name": "Example Partners",
+    "open_tasks": 0,
+    "overdue_tasks": 0,
+    "has_repo": false,
+    "related_projects": 1,
+    "related_leads": 1,
+    "status": "Partner",
+    "updated_at": null,
+    "description": "A partner since 2025.",
+    "url": "https://partners.example.test",
+    "industry": "consulting",
+    "related": {
+      "projects": [
+        {
+          "id": "aaaaaaaa-0000-4000-8000-000000000001",
+          "title": "Pilot programme",
+          "status": "Active"
+        }
+      ],
+      "leads": [
+        {
+          "id": "aaaaaaaa-0000-4000-8000-000000000002",
+          "title": "Example Partners pilot",
+          "status": "Qualified"
+        }
+      ],
+      "contacts": [
+        {
+          "id": "aaaaaaaa-0000-4000-8000-000000000008",
+          "name": "Cleo Example",
+          "email": "cleo@client.test",
+          "title": "Head of Innovation"
+        }
+      ]
+    }
+  },
+  "subjects": [
+    {
+      "id": "aaaaaaaa-0000-4000-8000-000000000003",
+      "kind": "partner",
+      "title": "Example Partners",
+      "subtitle": "Lisbon, Portugal · 1 project, 1 lead",
+      "organization_logo_url": "https://img.example.test/org.png",
+      "organization_id": "aaaaaaaa-0000-4000-8000-000000000003",
+      "organization_name": "Example Partners",
+      "open_tasks": 0,
+      "overdue_tasks": 0,
+      "has_repo": false,
+      "related_projects": 1,
+      "related_leads": 1
+    }
+  ],
+  "has_more": false
+}

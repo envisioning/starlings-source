@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hosting the owner's room (host/): sentences from the iOS catalog, Resources/Localizable.xcstrings. -->
+<resources>
+    <string name="host_start_room">Start room</string>
+    <string name="host_opening">Opening your room…</string>
+    <string name="host_ending">Ending the meeting…</string>
+    <string name="host_start_failed" translatable="false">Couldn’t start your room</string>
+    <string name="host_close">Close</string>
+    <string name="host_end">End</string>
+    <string name="host_leave">Leave</string>
+    <string name="host_companion">Your other device has the microphone in this meeting.</string>
+    <string name="host_lease_lapsed">Room closed to new guests</string>
+    <string name="host_waiting_room">Waiting room</string>
+    <string name="host_waiting_room_count">Waiting room, %1$d waiting</string>
+    <string name="host_done">Done</string>
+    <string name="host_nobody_waiting">Nobody is waiting.</string>
+    <string name="host_on_the_page">On the page</string>
+    <string name="host_on_join_page">On the join page</string>
+    <string name="host_waiting_to_join">Waiting to join</string>
+    <string name="host_guest">Guest</string>
+    <string name="host_admit">Admit</string>
+    <string name="host_decline">Decline</string>
+    <string name="host_recording">Recording</string>
+    <string name="host_for">For %1$s</string>
+    <string name="host_choose_sender">Choose who sent this notetaker</string>
+    <string name="host_session_door">Make registered guests knock</string>
+    <string name="host_knock_title">%1$s is waiting to join</string>
+    <plurals name="host_knock_at_door">
+        <item quantity="one">%1$d people are at the door</item>
+        <item quantity="other">%1$d people are at the door</item>
+    </plurals>
+    <string name="host_move">Move host…</string>
+    <string name="host_take">Take host</string>
+    <string name="host_not_now">Not now</string>
+    <string name="host_offer_from">%1$s asked you to host.</string>
+    <string name="host_someone">Someone</string>
+    <string name="host_asked">Asked %1$s to host…</string>
+    <string name="host_not_taken">%1$s didn’t take host.</string>
+    <string name="host_awaiting_hand_over">Waiting for the host to hand over…</string>
+    <string name="host_move_failed" translatable="false">Couldn’t move host</string>
+    <string name="host_take_failed" translatable="false">Couldn’t take host</string>
+    <string name="host_hand_over_failed" translatable="false">Couldn’t hand over host</string>
+    <string name="host_filing_failed" translatable="false">Couldn’t file this meeting</string>
+</resources>

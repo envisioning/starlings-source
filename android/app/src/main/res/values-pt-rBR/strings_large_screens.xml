@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="work_overview">Visão geral</string>
+    <string name="work_overview_hint">Entrada, Notas rápidas e Meu</string>
+</resources>

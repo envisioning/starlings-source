@@ -1,0 +1,487 @@
+/* Docs — the shared visual contract, inherited wholesale from Meet.
+ *
+ * The rules live in meet-envisioning/docs/DESIGN.md. Restated here only where
+ * Docs adds something Meet has no equivalent of (long-form prose, a tree).
+ *
+ *   Surface ladder — canvas → panel → elevated → well. Depth is the only thing
+ *   a background encodes: never state, never emphasis.
+ *
+ *   Hover house rule — whatever is under the pointer steps one rung up, as a
+ *   6% white veil composited over the resting fill. Never name the colour you
+ *   are lifting; layer the veil over it.
+ *
+ *   Accent means one thing — the primary action, or the current selection.
+ *   It is never decoration. (Which is why there are no coloured pills here.)
+ *
+ * Every hover value goes through a token, because the touch block below blanks
+ * those tokens. A rule that hardcodes rgba(255,255,255,0.06) opts itself out of
+ * that protection — don't write one.
+ */
+
+@font-face {
+  font-family: "Envisioning Octa";
+  src: url("/fonts/EnvisioningOcta-VF.woff2") format("woff2-variations");
+  font-display: block;
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 100% 125%;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/InterVariable.woff2") format("woff2-variations");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100 900;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-synthesis: none;
+  color: #fafafa;
+  background: #202333;
+
+  --accent: #d6f249;
+  --accent-hover: #e0f76f;
+  --accent-down: #aacc00;
+
+  /* The four rungs. */
+  --navy-bg: #202333;
+  --navy: #272a3d;
+  --navy-raised: #313650;
+  --navy-sunken: #191c2b;
+  --navy-muted: #b8bdd9;
+
+  --line: rgba(255, 255, 255, 0.1);
+  --hover-lift: rgba(255, 255, 255, 0.06);
+  --hover-border: rgba(255, 255, 255, 0.2);
+  --focus: var(--accent);
+
+  --danger: #ef4444;
+  --danger-ink: var(--danger);
+  --error-bg: color-mix(in srgb, var(--danger) 28%, transparent);
+  --error-border: color-mix(in srgb, var(--danger) 35%, transparent);
+  --success: #34d399;
+  --ink: #fafafa;
+  --muted: var(--navy-muted);
+
+  --radius: 6px;
+  --mono: ui-monospace, "SF Mono", "Menlo", monospace;
+
+  --shadow-raised: 0 10px 15px -3px rgb(0 0 0 / 0.25), 0 4px 6px -4px rgb(0 0 0 / 0.25);
+
+  /* Meet's token names, on Docs' ladder. The kit copied from Meet
+     (tailwind.css, scripts/sync-meet-ui.mjs) reads these names. Values
+     follow Meet's dark theme where Docs has no rung of its own. */
+  --surface-bg: var(--navy-bg);
+  --surface: var(--navy);
+  --surface-raised: var(--navy-raised);
+  --surface-sunken: var(--navy-sunken);
+  --accent-cta: var(--accent);
+  --accent-cta-hover: var(--accent-hover);
+  --on-accent: #1a1a1a;
+  --veil-rgb: 255 255 255;
+  --ink-rgb: 250 250 250;
+  --control-fill: rgb(var(--veil-rgb) / 0.08);
+  --control-line: rgb(var(--veil-rgb) / 0.22);
+  --radius-field: 12px;
+  --radius-control: 14px;
+  --radius-card: 18px;
+}
+
+/* Touch keeps :hover on the last thing tapped. Blanking the tokens makes every
+   lift-based rule inert at once. */
+@media (hover: none) {
+  :root {
+    --hover-lift: transparent;
+    --hover-border: var(--line);
+    --accent-hover: var(--accent);
+    --accent-cta-hover: var(--accent-cta);
+  }
+}
+
+/* Every rule below sits in the `base` layer that tailwind.css declares, so a
+   Tailwind utility on a kit component beats it, whatever the specificity.
+   The tokens, @font-face and the touch block above stay unlayered. */
+@layer base {
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--navy-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select, textarea { font: inherit; }
+
+/* `background-image` is in the list because the lift is a veil layered over the
+   resting background — without it the veil would pop. */
+button, input, select, textarea, summary, label, a, [role="button"], tr, td {
+  transition: color 200ms ease, background-color 200ms ease, background-image 200ms ease,
+    border-color 200ms ease, box-shadow 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button, input, select, textarea, summary, label, a, [role="button"], tr, td {
+    transition: none;
+  }
+}
+
+::selection {
+  color: var(--navy);
+  background: var(--accent);
+}
+
+/* Focus is independent of hover and never replaced by it. */
+:where(button, a, input, select, textarea):focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* Prose links answer in ink and underline — a link is not a surface. */
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+a:hover { color: var(--accent-hover); }
+
+code { font-family: var(--mono); font-size: 0.9em; }
+
+.muted { color: var(--muted); }
+.fine { color: var(--muted); font-size: 13px; line-height: 1.5; }
+/* Bordered alert box, matching Meet's `.error`. */
+.error {
+  padding: 10px 12px;
+  color: var(--danger-ink);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Octa is a display face and stays on the page title only, exactly as Meet uses
+   it. Everything below h1 is Inter — a card title at 15px set in Octa is
+   decoration, and prose headings in it are simply harder to read. */
+h1 {
+  font-family: "Envisioning Octa", "Inter", sans-serif;
+  font-variation-settings: "wght" 620, "wdth" 104;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+}
+
+h2, h3 { font-weight: 600; letter-spacing: -0.01em; }
+
+/* --- controls ------------------------------------------------------------ */
+
+/* Accent CTA. The one exception to the veil: the value is pinned across
+   surfaces, and 6% white does not reach it. */
+.button {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--navy-bg);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.button:hover { background: var(--accent-hover); color: var(--navy-bg); }
+.button:active { background: var(--accent-down); }
+.button:disabled { opacity: 0.45; cursor: not-allowed; }
+/* Disabled controls do not respond at all — one that lights up reads clickable. */
+.button:disabled:hover { background: var(--accent); }
+
+/* Secondary: an elevated control that lifts. */
+.button.ghost {
+  background-color: var(--navy-raised);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.button.ghost:hover {
+  background-image: linear-gradient(var(--hover-lift), var(--hover-lift));
+  border-color: var(--hover-border);
+  color: var(--ink);
+}
+.button.ghost:disabled:hover { background-image: none; border-color: var(--line); }
+
+/* Flex layout so an icon-plus-label link centers instead of sitting on the baseline. */
+.button--with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.button--with-icon svg { flex-shrink: 0; }
+
+/* A chromeless button is not a link: it gets the veil, so it needs padding and
+   a radius for the well to sit in. */
+.link {
+  padding: 2px 6px;
+  margin: -2px -6px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.link:hover {
+  background-image: linear-gradient(var(--hover-lift), var(--hover-lift));
+  color: var(--ink);
+}
+
+/* Inputs are wells. Lifting a well contradicts what its depth says, so the
+   hairline answers instead. `:not(:focus)` keeps focus outranking hover. */
+input, select, textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--navy-sunken);
+  color: var(--ink);
+  font-size: 14px;
+}
+input::placeholder, textarea::placeholder { color: rgba(184, 189, 217, 0.48); }
+input:hover:not(:focus), select:hover:not(:focus), textarea:hover:not(:focus) {
+  border-color: var(--hover-border);
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--focus);
+  box-shadow: 0 0 0 1px var(--focus);
+}
+textarea { min-height: 84px; resize: vertical; line-height: 1.55; }
+
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.row > input, .row > select { flex: 1 1 160px; width: auto; }
+.checkbox { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; }
+.checkbox input { width: auto; margin-top: 3px; accent-color: var(--accent); }
+
+/* --- splash / gate -------------------------------------------------------- */
+
+.splash { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.splash-card {
+  width: min(440px, 100%);
+  background: var(--navy);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 32px;
+  display: grid;
+  gap: 14px;
+  box-shadow: var(--shadow-raised);
+}
+.splash-card h1 { margin: 0; font-size: 26px; }
+
+/* --- app shell ------------------------------------------------------------ */
+
+.staff { min-height: 100vh; }
+.staff-bar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+.staff-bar .brand { margin-right: auto; font-size: 15px; }
+
+.brand a, .brand {
+  color: var(--ink);
+  font-size: 15px;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.brand strong { font-weight: 620; }
+
+.main { min-width: 0; padding: 32px 24px; }
+
+/* --- document ------------------------------------------------------------- */
+
+.document { padding: 40px 48px; max-width: 1400px; }
+
+/* Provenance, stated quietly. Not a pill and not accent — accent is reserved
+   for the primary action and the current selection. */
+
+.reader { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 40px; align-items: start; }
+@media (max-width: 1100px) { .reader { grid-template-columns: 1fr; } }
+
+/* Long-form reading. Inter at a generous measure rather than a display face —
+   these run to thousands of words. */
+.prose { font-size: 16px; line-height: 1.72; max-width: 68ch; color: #eceaf4; }
+.prose h1, .prose h2, .prose h3 { line-height: 1.3; margin: 1.8em 0 0.5em; }
+.prose h1 { font-size: 24px; }
+.prose h2 { font-size: 19px; }
+.prose h3 { font-size: 16px; }
+.prose blockquote {
+  margin: 1.2em 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--line);
+  color: var(--muted);
+}
+.prose pre {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--navy-sunken);
+  overflow-x: auto;
+  font-size: 13px;
+}
+.prose :not(pre) > code {
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--navy-sunken);
+}
+.prose img { max-width: 100%; height: auto; border-radius: var(--radius); }
+.prose table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.prose th, .prose td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+.prose a { color: var(--ink); }
+.prose a:hover { color: var(--accent-hover); }
+
+.wikilink { text-decoration-color: rgba(214, 242, 73, 0.5); }
+.wikilink-missing {
+  color: var(--muted);
+  text-decoration: underline dashed;
+  text-decoration-color: var(--line);
+  cursor: help;
+}
+
+.pdf {
+  width: 100%;
+  height: 82vh;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--navy-sunken);
+}
+
+.backlinks { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); }
+.backlinks h4 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+.backlinks ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.backlinks li a {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--navy);
+  color: var(--ink);
+  font-size: 13px;
+  text-decoration: none;
+}
+.backlinks li a:hover {
+  background-image: linear-gradient(var(--hover-lift), var(--hover-lift));
+  border-color: var(--hover-border);
+}
+
+/* --- comments ------------------------------------------------------------- */
+
+.comments { position: sticky; top: 24px; }
+.comments h4 {
+  margin: 0 0 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+.comments h4 .count { margin-left: 0; padding-left: 0; }
+
+.comment-compose { display: grid; gap: 8px; margin-bottom: 20px; }
+.comment-compose.anchored {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--navy);
+}
+.comment-compose blockquote {
+  margin: 0;
+  padding-left: 10px;
+  border-left: 2px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.threads { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.threads li {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--navy);
+  font-size: 13.5px;
+}
+.threads li:hover {
+  background-image: linear-gradient(var(--hover-lift), var(--hover-lift));
+}
+.threads li.resolved { opacity: 0.5; }
+.threads blockquote {
+  margin: 0 0 8px;
+  padding-left: 10px;
+  border-left: 2px solid var(--line);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.threads blockquote.orphaned { border-left-color: var(--danger); }
+.threads .comment-body { margin: 0; white-space: pre-wrap; }
+.threads .meta { margin: 6px 0 0; font-size: 11.5px; color: var(--muted); }
+.threads .reply {
+  margin: 8px 0 0;
+  padding-left: 10px;
+  border-left: 2px solid var(--line);
+  font-size: 13px;
+}
+
+}
+
+/* --- certificate ---------------------------------------------------------- */
+
+/* Printed evidence is black on white, whatever the screen is doing.
+   CertificateView sets the rest with `print:` utilities. */
+@media print {
+  :root { color-scheme: light; }
+  body { background: #fff; color: #000; }
+  .prose, .prose a { color: #000; }
+  .prose code { background: transparent; }
+}
+
+/* --- settings ------------------------------------------------------------ */
+
+.settings { max-width: 68ch; display: grid; gap: 28px; }
+.settings h1 { margin: 0 0 6px; }
+.settings h2 { margin: 0 0 10px; font-size: 15px; }
+.settings p { margin: 0; }
+
+.form { display: grid; gap: 14px; max-width: 480px; }
+.form label { display: grid; gap: 5px; font-size: 13px; }
+.form label > span { color: var(--muted); }
+.form input[type='text'],
+.form select {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+}

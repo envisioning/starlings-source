@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "pageSize": 200,
+  "maxDocuments": 5000,
+  "linkBatchSize": 8,
+  "zoom": {
+    "min": 0.25,
+    "max": 4
+  },
+  "folderColors": [
+    "#a6c944",
+    "#68a9d5",
+    "#bf91db",
+    "#e98f70",
+    "#50b99b",
+    "#d6ad42",
+    "#d8799b",
+    "#8799e6"
+  ],
+  "layout": {
+    "groupRingMin": 150,
+    "groupRingPerFolder": 56,
+    "memberRingMin": 42,
+    "memberRingPerSqrtDocument": 55,
+    "linkLength": 40,
+    "chargeStrength": -120,
+    "theta": 0.9,
+    "folderStrength": 0.04,
+    "velocityDecay": 0.4,
+    "alphaMin": 0.001,
+    "alphaDecay": 0.0228,
+    "reheatAlpha": 0.3,
+    "dragAlphaTarget": 0.3
+  },
+  "fit": {
+    "minWidth": 720,
+    "minHeight": 480,
+    "padding": 90
+  }
+}

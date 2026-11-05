@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "repos": [
+    {
+      "id": "example-org/pilot",
+      "owner": "example-org",
+      "repo": "pilot",
+      "label": null,
+      "milestone": null,
+      "is_primary": false
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "subject": {
+    "kind": "lead",
+    "id": "aaaaaaaa-0000-4000-8000-000000000002"
+  },
+  "type": "event",
+  "text": "Pricing Request: Example Partners - Cleo Example (EUR 12,000)",
+  "idempotency_key": "crm:pricing-request:aaaaaaaa-0000-4000-8000-000000000002:created"
+}

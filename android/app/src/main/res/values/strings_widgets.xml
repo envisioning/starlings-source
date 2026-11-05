@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The home-screen widgets (widgets/), iOSActivities/NextMeetingWidget.swift
+  and TodayWidgets.swift. English and pt-BR are the iOS catalog's
+  (Resources/Localizable.xcstrings). "left" is an English literal on iOS
+  too, outside the catalog. The words Home already has (UPCOMING, NOW, the
+  closed day, the countdown, Overdue, Today) come from strings_home.xml.
+-->
+<resources>
+    <string name="widget_next_name">Upcoming</string>
+    <string name="widget_next_description">What is next in Starlings.</string>
+    <string name="widget_agenda_name">Today’s agenda</string>
+    <string name="widget_agenda_description">What is left of today in Starlings.</string>
+    <string name="widget_work_name">Today’s work</string>
+    <string name="widget_work_description">What is overdue and due today.</string>
+    <string name="widget_today">TODAY</string>
+    <string name="widget_work">WORK</string>
+    <string name="widget_nothing_due">Nothing due today.</string>
+    <string name="widget_more_in_work">and %1$d more in Work</string>
+    <string name="widget_more" translatable="false">+%1$d</string>
+    <string name="widget_overdue">overdue</string>
+    <string name="widget_due_today">due today</string>
+    <string name="widget_all_day">All day</string>
+    <string name="widget_join">Join</string>
+    <string name="widget_to_go">to go</string>
+    <string name="widget_left" translatable="false">left</string>
+    <string name="widget_starts">Starts %1$s</string>
+    <string name="widget_ends">Ends %1$s</string>
+    <!-- The Quick Settings tiles (widgets/Controls.kt), iOSActivities/StarlingsControls.swift. -->
+    <string name="control_join_name">Join meeting</string>
+    <string name="control_note_name">Quick note</string>
+    <!-- The launcher shortcuts (res/xml/shortcuts.xml), iOS's App Intents JoinNextMeetingIntent and NewQuickNoteIntent. -->
+    <string name="shortcut_join_next">Join next meeting</string>
+    <string name="shortcut_new_note">New quick note</string>
+</resources>

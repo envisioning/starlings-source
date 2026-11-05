@@ -1,0 +1,64 @@
+{
+  "ok": true,
+  "issues": [
+    {
+      "id": "example-org/pilot#12",
+      "number": 12,
+      "owner": "example-org",
+      "repo": "pilot",
+      "title": "Draft the pilot scope",
+      "state": "open",
+      "url": "https://github.com/example-org/pilot/issues/12",
+      "labels": [
+        "scope",
+        "bug"
+      ],
+      "label_details": [
+        {
+          "name": "scope",
+          "color": "0e8a16",
+          "description": "Scoping work"
+        },
+        {
+          "name": "bug",
+          "color": null,
+          "description": null
+        }
+      ],
+      "assignee_login": "ada-example",
+      "assignees": [
+        {
+          "login": "ada-example",
+          "avatar_url": "https://avatars.example.test/u/1"
+        }
+      ],
+      "author": {
+        "login": "ben-example",
+        "avatar_url": "https://avatars.example.test/u/2"
+      },
+      "created_at": "2026-09-20T09:00:00Z",
+      "updated_at": "2026-09-29T09:00:00Z",
+      "closed_at": null,
+      "state_reason": null,
+      "issue_type": "Task",
+      "milestone": "Pilot",
+      "milestone_detail": {
+        "title": "Pilot",
+        "number": 3,
+        "state": "open",
+        "due_on": "2026-11-15T00:00:00Z"
+      },
+      "comments": 1,
+      "reactions": {
+        "+1": 2
+      },
+      "sub_issues": {
+        "total": 2,
+        "completed": 1,
+        "percent_completed": 50
+      }
+    }
+  ],
+  "linked": true,
+  "has_more": false
+}

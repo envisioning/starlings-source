@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "subscribedAccountKey": "account:subscribed",
+  "formats": {
+    "googlePrefix": "g:",
+    "subscriptionPrefix": "sub:",
+    "eventKitPrefix": "ek:",
+    "eventKitSeparator": "/",
+    "accountPrefix": "account:",
+    "eventPrefix": "event:",
+    "googleEventPrefix": "event:g:"
+  },
+  "google": [
+    {
+      "id": "primary",
+      "out": "g:primary"
+    },
+    {
+      "id": "team@example.com",
+      "out": "g:team@example.com"
+    }
+  ],
+  "subscription": [
+    {
+      "id": "abc-123",
+      "out": "sub:abc-123"
+    }
+  ],
+  "eventKit": [
+    {
+      "account": "iCloud",
+      "title": "Home",
+      "out": "ek:icloud/home"
+    },
+    {
+      "account": "On My Mac",
+      "title": "Birthdays",
+      "out": "ek:on my mac/birthdays"
+    }
+  ],
+  "account": [
+    {
+      "title": "Google",
+      "out": "account:google"
+    },
+    {
+      "title": "Rosa@example.com",
+      "out": "account:rosa@example.com"
+    }
+  ],
+  "accountTitle": [
+    {
+      "email": "rosa@example.com",
+      "namesAccounts": false,
+      "out": "Google"
+    },
+    {
+      "email": "rosa@example.com",
+      "namesAccounts": true,
+      "out": "rosa@example.com"
+    },
+    {
+      "email": null,
+      "namesAccounts": true,
+      "out": "Google"
+    },
+    {
+      "email": "",
+      "namesAccounts": true,
+      "out": "Google"
+    }
+  ],
+  "demotion": [
+    {
+      "isSubscription": true,
+      "eventId": "uid-1",
+      "out": "event:uid-1"
+    },
+    {
+      "isSubscription": false,
+      "eventId": "cal1:evt1",
+      "out": "event:g:cal1:evt1"
+    }
+  ],
+  "hide": [
+    {
+      "name": "hiding one adds its key",
+      "keys": [],
+      "calendar": {
+        "key": "g:a",
+        "accountKey": "account:google",
+        "siblingKeys": [
+          "g:a",
+          "g:b"
+        ]
+      },
+      "hidden": true,
+      "out": [
+        "g:a"
+      ]
+    },
+    {
+      "name": "keeps other keys, sorted",
+      "keys": [
+        "g:z",
+        "sub:x"
+      ],
+      "calendar": {
+        "key": "g:a",
+        "accountKey": "account:google",
+        "siblingKeys": [
+          "g:a",
+          "g:b"
+        ]
+      },
+      "hidden": true,
+      "out": [
+        "g:a",
+        "g:z",
+        "sub:x"
+      ]
+    },
+    {
+      "name": "showing one inside a hidden account expands the account key",
+      "keys": [
+        "account:google"
+      ],
+      "calendar": {
+        "key": "g:a",
+        "accountKey": "account:google",
+        "siblingKeys": [
+          "g:a",
+          "g:b",
+          "g:c"
+        ]
+      },
+      "hidden": false,
+      "out": [
+        "g:b",
+        "g:c"
+      ]
+    },
+    {
+      "name": "showing one removes its own key",
+      "keys": [
+        "g:a",
+        "g:b"
+      ],
+      "calendar": {
+        "key": "g:a",
+        "accountKey": "account:google",
+        "siblingKeys": [
+          "g:a",
+          "g:b"
+        ]
+      },
+      "hidden": false,
+      "out": [
+        "g:b"
+      ]
+    },
+    {
+      "name": "showing one that was never hidden changes nothing",
+      "keys": [
+        "sub:x"
+      ],
+      "calendar": {
+        "key": "g:a",
+        "accountKey": "account:google",
+        "siblingKeys": [
+          "g:a",
+          "g:b"
+        ]
+      },
+      "hidden": false,
+      "out": [
+        "sub:x"
+      ]
+    }
+  ],
+  "hideAccount": [
+    {
+      "name": "hiding an account drops its calendars' own keys and adds the account key",
+      "keys": [
+        "g:a",
+        "sub:x"
+      ],
+      "account": {
+        "key": "account:google",
+        "memberKeys": [
+          "g:a",
+          "g:b"
+        ]
+      },
+      "hidden": true,
+      "out": [
+        "account:google",
+        "sub:x"
+      ]
+    },
+    {
+      "name": "showing an account drops its key and its calendars' keys",
+      "keys": [
+        "account:google",
+        "g:a",
+        "sub:x"
+      ],
+      "account": {
+        "key": "account:google",
+        "memberKeys": [
+          "g:a",
+          "g:b"
+        ]
+      },
+      "hidden": false,
+      "out": [
+        "sub:x"
+      ]
+    }
+  ]
+}

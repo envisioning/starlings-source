@@ -1,0 +1,9 @@
+{
+  "subject": {
+    "kind": "project",
+    "id": "aaaaaaaa-0000-4000-8000-000000000001"
+  },
+  "type": "event",
+  "text": "Project Viewed: Example Partners pilot by cleo@example.net",
+  "idempotency_key": "crm:project:aaaaaaaa-0000-4000-8000-000000000001:viewed:cleo@example.net:2026-10-01"
+}

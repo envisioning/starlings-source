@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "order": [
+    "envisioning",
+    "clients",
+    "partners",
+    "events",
+    "sales"
+  ],
+  "groups": {
+    "envisioning": {
+      "subjectKind": "project",
+      "list": "envisioning",
+      "startsCollapsed": false,
+      "needsSales": false,
+      "preferenceKey": "work.envisioning"
+    },
+    "clients": {
+      "subjectKind": "project",
+      "list": "project",
+      "startsCollapsed": false,
+      "needsSales": false,
+      "preferenceKey": "work.projects"
+    },
+    "partners": {
+      "subjectKind": "organization",
+      "list": null,
+      "startsCollapsed": true,
+      "needsSales": false,
+      "preferenceKey": "work.partners"
+    },
+    "events": {
+      "subjectKind": "event",
+      "list": null,
+      "startsCollapsed": true,
+      "needsSales": false,
+      "preferenceKey": "work.events"
+    },
+    "sales": {
+      "subjectKind": "lead",
+      "list": "lead",
+      "startsCollapsed": true,
+      "needsSales": true,
+      "preferenceKey": "work.leads"
+    }
+  },
+  "records": {
+    "offers": {
+      "module": "offers",
+      "startsCollapsed": true,
+      "preferenceKey": "work.offers",
+      "filters": [
+        "status"
+      ]
+    },
+    "licenses": {
+      "module": "licenses",
+      "startsCollapsed": true,
+      "preferenceKey": "work.licenses",
+      "filters": [
+        "product",
+        "status"
+      ]
+    }
+  },
+  "shown": [
+    {
+      "group": "envisioning",
+      "salesEnabled": false,
+      "out": true
+    },
+    {
+      "group": "envisioning",
+      "salesEnabled": true,
+      "out": true
+    },
+    {
+      "group": "clients",
+      "salesEnabled": false,
+      "out": true
+    },
+    {
+      "group": "clients",
+      "salesEnabled": true,
+      "out": true
+    },
+    {
+      "group": "partners",
+      "salesEnabled": false,
+      "out": true
+    },
+    {
+      "group": "partners",
+      "salesEnabled": true,
+      "out": true
+    },
+    {
+      "group": "events",
+      "salesEnabled": false,
+      "out": true
+    },
+    {
+      "group": "events",
+      "salesEnabled": true,
+      "out": true
+    },
+    {
+      "group": "sales",
+      "salesEnabled": false,
+      "out": false
+    },
+    {
+      "group": "sales",
+      "salesEnabled": true,
+      "out": true
+    }
+  ]
+}

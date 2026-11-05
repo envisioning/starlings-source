@@ -1,0 +1,144 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "meet-local",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "OPS_ALERT_EMAIL": "",
+    "ENVIRONMENT": "development",
+    // Every runtime on this machine, over http — allowed only because
+    // ENVIRONMENT is development. Vocab is an eve agent, whose dev server
+    // defaults to port 2000. The four factories share one process on 8788:
+    // the address is the routing key, and ../../../Bots/factory/src/targets.ts
+    // maps it to a repo. `factory-app` has no runtime anywhere.
+    "AGENT_ROSTER": "{\"vocab@example.com\":{\"name\":\"Vocab\",\"endpoint\":\"http://127.0.0.1:2000/meet/handoff\"},\"factory-web@example.com\":{\"name\":\"Factory: Web\",\"endpoint\":\"http://127.0.0.1:8788/agent\"},\"factory-core@example.com\":{\"name\":\"Factory: Core\",\"endpoint\":\"http://127.0.0.1:8788/agent\"},\"factory-signals@example.com\":{\"name\":\"Factory: Signals\",\"endpoint\":\"http://127.0.0.1:8788/agent\"},\"factory-meet@example.com\":{\"name\":\"Factory: Meet\",\"endpoint\":\"http://127.0.0.1:8788/agent\"},\"factory-app@example.com\":\"Factory: App\"}",
+    // `on`: this Worker takes mail at `<slug>.<local>@starlings.example` (meet#1056). `off`: no inbound addresses.
+    "INBOUND_EMAIL": "off",
+    "SUPPORT_EMAIL_DOMAIN": "",
+    // The app channel door (#1176). Empty: closed.
+    "APP_INTAKE_REPLY_URL": "",
+    "APP_INTAKE_ALLOWED_ATTACHMENT_HOSTS": "",
+    "WEB_ORIGIN": "http://127.0.0.1:5173",
+    "PUBLIC_API_ORIGIN": "http://127.0.0.1:8787",
+    "LIVEKIT_URL": "ws://127.0.0.1:7880",
+    "GOOGLE_WEB_CLIENT_ID": "replace-with-google-client-id",
+    // The Google connector grant (docs/CONNECTORS.md): its own Google Cloud
+    // project with an Internal consent screen, so a Gmail or Drive revoke never
+    // touches sign-in or Calendar. Empty = not set up; the secret is
+    // GOOGLE_CONNECTOR_CLIENT_SECRET.
+    "GOOGLE_CONNECTOR_CLIENT_ID": "",
+    "GOOGLE_NATIVE_CLIENT_ID": "replace-with-google-client-id",
+    "GOOGLE_NATIVE_CLIENT_ID_STARLINGS": "replace-with-google-client-id",
+    "IDENTITY_DOMAINS": "example.com,example.org",
+    "SIGN_IN_DOMAIN": "example.com",
+    "OWNER_ROOM_MAP": "{\"rosa@example.com\":\"rosa\"}",
+    "ROOT_ADMIN_EMAILS": "rosa@example.com",
+    "GLOBAL_INTEREST_CALENDAR_TITLE": "Envisioning Internal",
+    // The internal room, on locally so the door can actually be walked
+    // through in dev. See docs/adr/0001-internal-room.md.
+    "INTERNAL_ROOM_MAP": "{\"*\":\"team\"}",
+    "IOS_TESTFLIGHT_URL": "",
+    "MIN_RECOMMENDED_VERSION_MACOS": "",
+    "MIN_RECOMMENDED_VERSION_IOS": "",
+    // The Android floor and update page (#1237). Blank: no banner, no link.
+    "MIN_RECOMMENDED_VERSION_ANDROID": "",
+    "ANDROID_UPDATE_URL": "",
+    "CORE_API_ORIGIN": "https://core.org.example",
+    // Envisioning's store; unset is d1 (meet#937).
+    "WORK_STORE": "core",
+    "SUMMARY_MODE": "fallback",
+    "SUMMARY_MODEL": "@cf/meta/llama-3.1-8b-instruct-fp8",
+    "CALENDAR_EXTRACT_MODEL": "claude-sonnet-5",
+    // No `ai` binding locally, so this stays off and the host says so.
+    "TASK_SUGGEST_MODE": "off",
+    "TASK_SUGGEST_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "GRANOLA_SUGGEST_MODE": "off",
+    "GRANOLA_SUGGEST_MODEL": "typesafe/jev",
+    // The GitHub connector (docs/GITHUB_CONNECTOR.md): the Starlings App,
+    // reached over the GITHUB binding to the token broker in starlings-auth;
+    // an admin connects an installation from Admin. `GITHUB_SYNC_ENABLED` is
+    // the kill switch; off means the hourly pass enqueues nothing.
+    "GITHUB_SYNC_ENABLED": "off",
+    // The Slack import (docs/SLACK_IMPORT.md). `SLACK_IMPORT_ENABLED` is the
+    // kill switch; off means the hourly pass enqueues nothing and the
+    // mapping list is read-only. The token is the SLACK_USER_TOKEN secret.
+    "SLACK_IMPORT_ENABLED": "off",
+    // Blank locally so bug reports fail closed with `not_configured` instead of
+    // filing real issues from someone's dev loop. Set it in `.dev.vars` (with a
+    // token) to exercise the route against a scratch repo.
+    "GITHUB_ISSUES_REPO": ""
+  },
+  "ratelimits": [
+    { "name": "FEEDBACK_LIMIT", "namespace_id": "1001", "simple": { "limit": 3, "period": 60 } },
+    { "name": "ERROR_EVENT_LIMIT", "namespace_id": "1007", "simple": { "limit": 10, "period": 60 } },
+    // Keyed on room + address (meet#165): a venue's Wi-Fi is one address,
+    // and a room of a hundred has to be able to knock in a minute and to
+    // heartbeat every 15 s (400/min). The 99-guard and Turnstile bound abuse.
+    { "name": "JOIN_LIMIT", "namespace_id": "1002", "simple": { "limit": 120, "period": 60 } },
+    { "name": "PRESENCE_LIMIT", "namespace_id": "1003", "simple": { "limit": 600, "period": 60 } }
+  ],
+  "durable_objects": {
+    "bindings": [
+      { "name": "ROOMS", "class_name": "RoomCoordinator" },
+      // Threads never had a local binding, so every conversation route 500'd
+      // in dev with `Cannot read properties of undefined` — messaging simply
+      // could not be tried on this machine. `threadStub` already knows local
+      // workerd has no jurisdictions and falls back; what it cannot do without
+      // is the binding.
+      { "name": "THREADS", "class_name": "ThreadCoordinator" },
+      { "name": "QUICK_NOTES", "class_name": "QuickNotesCoordinator" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["RoomCoordinator"] },
+    { "tag": "v2", "new_sqlite_classes": ["ThreadCoordinator"] },
+    { "tag": "v3", "new_sqlite_classes": ["QuickNotesCoordinator"] }
+  ],
+  "queues": {
+    "producers": [
+      { "binding": "ARTIFACT_JOBS", "queue": "meet-artifact-jobs-local" },
+      { "binding": "IMPORT_JOBS", "queue": "meet-import-jobs-local" }
+    ],
+    "consumers": [
+      { "queue": "meet-artifact-jobs-local", "max_batch_size": 5, "max_batch_timeout": 1 },
+      { "queue": "meet-import-jobs-local", "max_batch_size": 5, "max_batch_timeout": 1 }
+    ]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "CALENDAR_TOKENS",
+      "id": "00000000000000000000000000000001"
+    },
+    {
+      "binding": "CORE_CACHE",
+      "id": "00000000000000000000000000000002"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "USAGE",
+      "database_name": "meet-usage",
+      "database_id": "00000000-0000-4000-8000-000000000001",
+      "migrations_dir": "./migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "DOWNLOADS",
+      "bucket_name": "meet-downloads-local"
+    },
+    {
+      "binding": "AVATARS",
+      "bucket_name": "meet-avatars-local"
+    },
+    {
+      "binding": "ATTACHMENTS",
+      "bucket_name": "meet-attachments-local"
+    },
+    {
+      "binding": "BACKUPS",
+      "bucket_name": "meet-backups-local"
+    }
+  ]
+}

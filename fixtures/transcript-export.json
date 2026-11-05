@@ -1,0 +1,714 @@
+{
+  "version": 1,
+  "rule": "formatTranscript, transcriptFileName, transcriptPermalink (on the workspace's public origin, never a compiled one, meet#935) and transcriptClock (packages/contracts/src/transcript-export.ts) and TranscriptExport (Sources/TranscriptExport.swift): a meeting transcript as a .md or .txt file, and the link a share carries (meet#692). Change the cases first, then both sides.",
+  "permalinks": [
+    {
+      "name": "a room and a meeting",
+      "origin": "https://envisioning.starlings.example",
+      "room": "rosa",
+      "meeting_id": "7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+      "out": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b"
+    },
+    {
+      "name": "the internal room, on another workspace's origin with a trailing slash",
+      "origin": "https://hq.starlings.example/",
+      "room": "team",
+      "meeting_id": "7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+      "out": "https://hq.starlings.example/meetings/team/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b"
+    }
+  ],
+  "clocks": [
+    {
+      "ms": 0,
+      "out": "00:00:00"
+    },
+    {
+      "ms": 999,
+      "out": "00:00:00"
+    },
+    {
+      "ms": 1000,
+      "out": "00:00:01"
+    },
+    {
+      "ms": 59999,
+      "out": "00:00:59"
+    },
+    {
+      "ms": 60000,
+      "out": "00:01:00"
+    },
+    {
+      "ms": 3599000,
+      "out": "00:59:59"
+    },
+    {
+      "ms": 3600000,
+      "out": "01:00:00"
+    },
+    {
+      "ms": 36000000,
+      "out": "10:00:00"
+    },
+    {
+      "ms": 359999000,
+      "out": "99:59:59"
+    },
+    {
+      "ms": -5,
+      "out": "00:00:00"
+    }
+  ],
+  "file_names": [
+    {
+      "name": "a plain title",
+      "title": "Pilot kickoff",
+      "started_at": 1790758800000,
+      "time_zone": "UTC",
+      "format": "md",
+      "out": "pilot-kickoff-2026-09-30.md"
+    },
+    {
+      "name": "accents dropped, punctuation a separator",
+      "title": "Reunião: Café & Ação!",
+      "started_at": 1790758800000,
+      "time_zone": "UTC",
+      "format": "txt",
+      "out": "reuniao-cafe-acao-2026-09-30.txt"
+    },
+    {
+      "name": "the day is the day in the zone",
+      "title": "Late call",
+      "started_at": 1790818200000,
+      "time_zone": "America/Sao_Paulo",
+      "format": "md",
+      "out": "late-call-2026-09-30.md"
+    },
+    {
+      "name": "nothing sluggable",
+      "title": "¿¡ — !?",
+      "started_at": 1790758800000,
+      "time_zone": null,
+      "format": "md",
+      "out": "transcript-2026-09-30.md"
+    },
+    {
+      "name": "a long title is cut at sixty and never ends on a dash",
+      "title": "This is a very long meeting title that keeps going well past - the sixty character cap",
+      "started_at": 1790758800000,
+      "time_zone": "UTC",
+      "format": "md",
+      "out": "this-is-a-very-long-meeting-title-that-keeps-going-well-past-2026-09-30.md"
+    }
+  ],
+  "cases": [
+    {
+      "name": "every fact in the header",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ]
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Cleo Example** (00:01:12): Agreed, the smaller pilot.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[00:01:12] Cleo Example: Agreed, the smaller pilot.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "struck lines are left out",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ],
+        "struck": [
+          "00000000-0000-4000-8000-000000000002"
+        ]
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "a renamed speaker takes the new name on every line",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ],
+        "renames": {
+          "owner": "Ada King"
+        }
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada King** (00:00:05): Let us start with the scope.\n\n**Cleo Example** (00:01:12): Agreed, the smaller pilot.\n\n**Ada King** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada King: Let us start with the scope.\n[00:01:12] Cleo Example: Agreed, the smaller pilot.\n[01:02:05] Ada King: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "no attendees: the people who spoke, each once, in order",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ],
+        "renames": {
+          "guest-1": "Cleo"
+        }
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Cleo** (00:01:12): Agreed, the smaller pilot.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[00:01:12] Cleo: Agreed, the smaller pilot.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "struck speakers are not attendees when attendees come from the lines",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ],
+        "struck": [
+          "00000000-0000-4000-8000-000000000002"
+        ]
+      },
+      "attendees": [
+        "Ada Lovelace"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "attendees are trimmed and named once",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [
+          "  Ada Lovelace ",
+          "Ada Lovelace",
+          "",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ]
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Cleo Example** (00:01:12): Agreed, the smaller pilot.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[00:01:12] Cleo Example: Agreed, the smaller pilot.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "no subject, no link",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": null,
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": null,
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ]
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Cleo Example** (00:01:12): Agreed, the smaller pilot.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo Example\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[00:01:12] Cleo Example: Agreed, the smaller pilot.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "the date is written in the given zone",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790818200000,
+        "time_zone": "America/Sao_Paulo",
+        "subject": "Signals pilot",
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ]
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 22:30 (America/Sao_Paulo)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Cleo Example** (00:01:12): Agreed, the smaller pilot.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 22:30 (America/Sao_Paulo)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[00:01:12] Cleo Example: Agreed, the smaller pilot.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "an unknown zone is UTC",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "Mars/Olympus_Mons",
+        "subject": "Signals pilot",
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ]
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Cleo Example** (00:01:12): Agreed, the smaller pilot.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[00:01:12] Cleo Example: Agreed, the smaller pilot.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "midnight is 00:00",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790726700000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ]
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 00:05 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Cleo Example** (00:01:12): Agreed, the smaller pilot.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 00:05 (UTC)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[00:01:12] Cleo Example: Agreed, the smaller pilot.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "whitespace inside a line is one space",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "  Ada \n Lovelace ",
+            "starts_at_ms": 0,
+            "text": " First\nsecond\t\tthird  "
+          }
+        ]
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:00): First second third\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:00] Ada Lovelace: First second third\n"
+    },
+    {
+      "name": "a blank speaker is Speaker and an empty line is dropped",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "x",
+            "speaker_name": " ",
+            "starts_at_ms": 1000,
+            "text": "Hello."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "y",
+            "speaker_name": "Bo",
+            "starts_at_ms": 2000,
+            "text": "   "
+          }
+        ]
+      },
+      "attendees": [
+        "Speaker"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Speaker\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Speaker** (00:00:01): Hello.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Speaker\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:01] Speaker: Hello.\n"
+    },
+    {
+      "name": "a blank rename keeps the old name",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ],
+        "renames": {
+          "owner": "   "
+        }
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Cleo Example** (00:01:12): Agreed, the smaller pilot.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[00:01:12] Cleo Example: Agreed, the smaller pilot.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    },
+    {
+      "name": "nothing left to say",
+      "input": {
+        "title": "Pilot kickoff",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": []
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Pilot kickoff\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\nNo transcript.\n",
+      "txt": "Pilot kickoff\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\nNo transcript.\n"
+    },
+    {
+      "name": "a blank title is Meeting",
+      "input": {
+        "title": "  ",
+        "started_at": 1790758800000,
+        "time_zone": "UTC",
+        "subject": "Signals pilot",
+        "attendees": [
+          "Ada Lovelace",
+          "Cleo Example"
+        ],
+        "link": "https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+        "lines": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 5000,
+            "text": "Let us start with the scope."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "speaker_id": "guest-1",
+            "speaker_name": "Cleo Example",
+            "starts_at_ms": 72500,
+            "text": "Agreed, the smaller pilot."
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "speaker_id": "owner",
+            "speaker_name": "Ada Lovelace",
+            "starts_at_ms": 3725000,
+            "text": "Then we meet again in two weeks."
+          }
+        ]
+      },
+      "attendees": [
+        "Ada Lovelace",
+        "Cleo Example"
+      ],
+      "md": "# Meeting\n\n- Date: 2026-09-30 09:00 (UTC)\n- Attendees: Ada Lovelace, Cleo Example\n- Subject: Signals pilot\n- Link: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n## Transcript\n\n**Ada Lovelace** (00:00:05): Let us start with the scope.\n\n**Cleo Example** (00:01:12): Agreed, the smaller pilot.\n\n**Ada Lovelace** (01:02:05): Then we meet again in two weeks.\n",
+      "txt": "Meeting\nDate: 2026-09-30 09:00 (UTC)\nAttendees: Ada Lovelace, Cleo Example\nSubject: Signals pilot\nLink: https://envisioning.starlings.example/meetings/rosa/7f1c2a8e-3b4d-4e5f-8a9b-0c1d2e3f4a5b\n\n[00:00:05] Ada Lovelace: Let us start with the scope.\n[00:01:12] Cleo Example: Agreed, the smaller pilot.\n[01:02:05] Ada Lovelace: Then we meet again in two weeks.\n"
+    }
+  ]
+}

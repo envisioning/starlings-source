@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "statusLabels": { "dnd": "Unavailable", "in_meeting": "In a meeting", "busy": "Busy", "available": "Available", "active": "Active", "offline": "Offline" },
+  "clientLabels": { "mac": "Desktop", "ios": "Mobile", "web": "Web" },
+  "intentLabels": { "available": "Available", "focused": "Focused" }
+}

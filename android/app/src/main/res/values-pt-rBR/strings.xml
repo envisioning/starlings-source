@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="entry_link">Link da sala</string>
+    <string name="entry_name">Nome</string>
+    <string name="entry_email">E-mail</string>
+    <string name="entry_microphone">Microfone</string>
+    <string name="entry_camera">Câmera</string>
+    <string name="entry_ask">Pedir para entrar</string>
+
+    <string name="lobby_asking">Pedindo para entrar…</string>
+    <string name="lobby_waiting">Aguardando o anfitrião deixar você entrar.</string>
+    <plurals name="lobby_waiting_count">
+        <item quantity="one">Aguardando o anfitrião. %d pessoa na sala de espera.</item>
+        <item quantity="other">Aguardando o anfitrião. %d pessoas na sala de espera.</item>
+    </plurals>
+    <string name="lobby_waiting_for">Aguardando %1$s</string>
+    <string name="entry_owner_room">Sala de %1$s</string>
+    <string name="entry_no_room">Nenhuma sala chamada “%1$s”. Confira o código com quem convidou você.</string>
+    <string name="lobby_joining">Entrando…</string>
+
+    <string name="ended_left">Você saiu</string>
+    <string name="ended_declined">O anfitrião recusou</string>
+    <string name="ended_removed">Você foi removido</string>
+    <string name="ended_expired">O pedido expirou</string>
+    <string name="ended_meeting">A reunião terminou</string>
+    <string name="ended_disconnected">A chamada caiu</string>
+    <string name="ended_other_device">Você entrou por outro dispositivo</string>
+    <string name="ended_process_death">A chamada terminou quando o Android fechou o app</string>
+    <string name="ended_summary">%1$d min %2$d s · %3$d reconexões · %4$d interrupções · bateria de %5$d%% a %6$d%% · pico de %7$d MB · térmico %8$d</string>
+    <string name="done">Concluir</string>
+    <string name="share_log">Compartilhar registro da chamada</string>
+
+    <string name="banner_reconnecting">Reconectando…</string>
+    <string name="banner_audio_taken">Outra chamada está usando o áudio</string>
+    <string name="notice_muted">%1$s silenciou você. Ative o som quando precisar falar.</string>
+    <string name="notice_screen_stopped">%1$s parou seu compartilhamento de tela</string>
+    <string name="notice_hand_failed">Sua mão não mudou. Tente de novo.</string>
+
+    <string name="mute">Silenciar</string>
+    <string name="unmute">Ativar som</string>
+    <string name="camera_turn_off">Desligar câmera</string>
+    <string name="camera_turn_on">Ligar câmera</string>
+    <string name="camera_flip">Virar câmera</string>
+    <string name="hand_raise">Levantar a mão</string>
+    <string name="hand_lower">Abaixar a mão</string>
+    <string name="chat">Chat</string>
+    <string name="chat_unread">Chat (%d)</string>
+    <string name="captions">Legendas</string>
+    <string name="captions_hide">Ocultar legendas</string>
+    <string name="captions_empty">As legendas aparecem quando o dispositivo do anfitrião começa a transcrever.</string>
+    <string name="people">Pessoas</string>
+    <string name="people_count">Pessoas (%d)</string>
+    <string name="audio">Áudio</string>
+    <string name="leave">Sair</string>
+    <string name="chat_not_kept">As mensagens não ficam guardadas. Quem entrar depois não as vê.</string>
+    <string name="chat_send">Enviar</string>
+    <string name="chat_too_long">Mensagens de chat devem ter até 8.000 bytes.</string>
+
+    <string name="role_host">Anfitrião</string>
+    <string name="role_notetaker">Anotador</string>
+    <string name="role_registered">Inscrito</string>
+    <string name="you">Você</string>
+    <string name="guest">Convidado</string>
+    <string name="screen_of">%1$s (tela)</string>
+
+    <string name="permission_mic">Permita o acesso ao microfone nas Configurações antes de entrar.</string>
+    <string name="permission_camera">Permita o acesso à câmera nas Configurações antes de entrar com vídeo.</string>
+    <string name="open_settings">Abrir Configurações</string>
+    <string name="camera_preview">Prévia da câmera</string>
+    <string name="hand_raised">Mão levantada</string>
+    <string name="reaction_thumbs_up">Joinha</string>
+    <string name="reaction_heart">Coração</string>
+    <string name="reaction_laugh">Risada</string>
+    <string name="reaction_celebrate">Comemorar</string>
+
+    <string name="notification_channel">Chamadas</string>
+    <string name="notification_title">Em reunião</string>
+    <string name="stage_waiting">Aguardando alguém entrar</string>
+    <string name="more">Mais</string>
+    <string name="share_layout">Layout do compartilhamento de tela</string>
+    <string name="layout_automatic">Automático</string>
+    <string name="layout_overlay">Sobre a tela compartilhada</string>
+    <string name="layout_rail">Ao lado ou abaixo</string>
+    <string name="tile_hide">Ocultar meu quadro</string>
+    <string name="tile_show">Mostrar meu quadro</string>
+    <string name="transcript">Transcrição ao vivo</string>
+    <string name="transcript_empty">Sem legendas ainda</string>
+    <string name="sign_in">Entrar</string>
+    <string name="sign_out">Sair</string>
+    <string name="signed_in_as">Conectado como %1$s</string>
+    <string name="meeting_warning">Aviso de reunião</string>
+    <string name="join_room_title">Entrar em uma sala</string>
+    <string name="join_room_hint">Cole um link do Starlings ou informe o nome da sala.</string>
+    <string name="join_room_field">Nome ou link da sala</string>
+    <string name="join_name_field">Seu nome</string>
+    <string name="join_continue">Continuar</string>
+    <string name="prejoin_title">Antes de entrar</string>
+    <string name="camera_off">Câmera desligada</string>
+    <string name="camera_on">Câmera ligada</string>
+    <string name="back">Voltar</string>
+    <string name="waiting_room">Sala de espera</string>
+    <string name="cancel_request">Cancelar pedido</string>
+    <string name="ended_title">A reunião terminou</string>
+    <string name="ended_failed">Desconectado</string>
+    <string name="in_meeting">Em reunião</string>
+    <plurals name="participants">
+        <item quantity="one">%d participante</item>
+        <item quantity="other">%d participantes</item>
+    </plurals>
+    <string name="dismiss">Dispensar</string>
+    <string name="update_banner_message">Uma versão mais recente do Starlings está disponível</string>
+    <string name="update_banner_action">Atualizar</string>
+    <string name="react">Reagir</string>
+    <string name="chat_empty">Nenhuma mensagem ainda</string>
+    <string name="chat_placeholder">Mensagem para todos</string>
+    <string name="chat_react">Reagir a esta mensagem</string>
+    <string name="tile_host">%1$s · Anfitrião</string>
+    <string name="people_in_room">Na sala</string>
+    <string name="hand_raised_number">Mão levantada, número %1$d</string>
+    <string name="close">Fechar</string>
+    <string name="tab_home">Início</string>
+    <string name="tab_calendar">Agenda</string>
+    <string name="tab_work">Trabalho</string>
+    <string name="tab_team">Equipe</string>
+    <string name="tab_docs">Docs</string>
+    <string name="nothing_here_yet">Nada aqui ainda.</string>
+</resources>

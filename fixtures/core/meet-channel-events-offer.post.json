@@ -1,0 +1,9 @@
+{
+  "subject": {
+    "kind": "lead",
+    "id": "aaaaaaaa-0000-4000-8000-000000000002"
+  },
+  "type": "event",
+  "text": "Offer Accepted: Pilot offer by Cleo Example",
+  "idempotency_key": "crm:offer:aaaaaaaa-0000-4000-8000-0000000000f0:accepted"
+}

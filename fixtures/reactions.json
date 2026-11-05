@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "palette": [
+    "👍",
+    "❤️",
+    "😂",
+    "🎉"
+  ],
+  "labels": {
+    "👍": "Thumbs up",
+    "❤️": "Heart",
+    "😂": "Laugh",
+    "🎉": "Celebrate"
+  },
+  "retired": {
+    "👏": "Applause",
+    "🤯": "Mind blown",
+    "👀": "Eyes",
+    "🙏": "Thanks"
+  },
+  "custom": "Custom reaction",
+  "timing": {
+    "minimumIntervalMs": 350,
+    "flightMs": 2600,
+    "flightJitterMs": 600,
+    "maximumOnscreen": 40
+  },
+  "chat": {
+    "minimumIntervalMs": 120,
+    "maxPerMessage": 4
+  }
+}

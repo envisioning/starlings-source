@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "name": "Envisioning",
+  "web_origin": "http://127.0.0.1:5173",
+  "api_origin": "http://127.0.0.1:8787",
+  "public_web_origin": "https://envisioning.starlings.example",
+  "aliases": [],
+  "identity": {
+    "provider": "google",
+    "domains": [
+      "example.com",
+      "example.org"
+    ],
+    "sign_in_hint": "example.com"
+  },
+  "suite": "google",
+  "defaults": {
+    "time_zones": [
+      "losAngeles",
+      "newYork",
+      "saoPaulo",
+      "lisbon",
+      "london",
+      "amsterdam",
+      "riyadh",
+      "dubai",
+      "mumbai",
+      "tokyo"
+    ],
+    "default_language": null,
+    "languages_offered": [
+      "en",
+      "pt-BR"
+    ],
+    "project_group_name": "Envisioning"
+  },
+  "services": {
+    "core": "https://core.invalid",
+    "core_groups": [
+      "subjects",
+      "tasks",
+      "goals",
+      "interactions",
+      "commercial"
+    ],
+    "docs": null,
+    "keep": null
+  },
+  "brand": {
+    "backgrounds": {
+      "tones": {
+        "dark": {
+          "base": "#25262e",
+          "modules": "#656877"
+        },
+        "accent": {
+          "base": "#d6f249",
+          "modules": "#abc900"
+        },
+        "bright": {
+          "base": "#f2f5f9",
+          "modules": "#c8d1de"
+        }
+      },
+      "image_url": null,
+      "default": null
+    },
+    "mark_url": null,
+    "accent": null
+  },
+  "min_client": {
+    "macos": null,
+    "ios": null,
+    "android": null
+  },
+  "accent_palette": null
+}

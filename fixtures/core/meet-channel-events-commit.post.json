@@ -1,0 +1,15 @@
+{
+  "subject": {
+    "kind": "project",
+    "id": "aaaaaaaa-0000-4000-8000-000000000001"
+  },
+  "type": "event",
+  "text": "Ada Example pushed 1 commit · Add the scope page",
+  "refs": [
+    {
+      "kind": "commit",
+      "id": "example-org/pilot@0123456789abcdef0123456789abcdef01234567"
+    }
+  ],
+  "idempotency_key": "github:example-org/pilot:push:0123456789abcdef0123456789abcdef01234567"
+}

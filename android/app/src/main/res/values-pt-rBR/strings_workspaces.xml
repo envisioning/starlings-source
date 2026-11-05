@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The iOS catalog's pt-BR. A string without one here shows the English iOS shows. -->
+<resources>
+    <string name="workspaces_title">Espaços de trabalho</string>
+    <string name="workspaces_add">Adicionar espaço de trabalho</string>
+    <string name="workspaces_leave_call">Saia da chamada para trocar.</string>
+    <string name="workspaces_sign_out">Sair</string>
+    <string name="workspaces_remove">Remover</string>
+    <string name="workspaces_sign_out_all">Sair de todos os espaços de trabalho</string>
+    <string name="workspaces_active">Ativo</string>
+    <string name="workspaces_open">Abrir</string>
+    <string name="workspaces_cancel">Cancelar</string>
+    <string name="workspaces_retry">Tentar de novo</string>
+    <string name="workspaces_signing_in">Entrando…</string>
+    <string name="workspace_address">Endereço do espaço de trabalho</string>
+    <string name="workspace_link_for">Este link é de %1$s.</string>
+    <string name="workspace_link_open_in">Abrir em %1$s</string>
+    <string name="workspace_link_unknown">Este link não é de um espaço de trabalho que este app consegue abrir.</string>
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_subtitle">Entre em uma reunião ou faça login no seu workspace.</string>
+    <string name="welcome_email">Endereço de e-mail</string>
+    <string name="welcome_room">Nome da sala</string>
+    <string name="welcome_paste">Colar</string>
+    <string name="welcome_paste_hint">Cola uma sala da área de transferência</string>
+    <string name="welcome_privacy">O Starlings não grava áudio nem vídeo. O dispositivo do anfitrião escreve uma transcrição, e só esse texto é guardado.</string>
+    <string name="welcome_version">Versão %1$s · Build %2$s</string>
+    <string name="guest_name_missing">Informe seu nome para continuar.</string>
+    <string name="guest_email_invalid">Informe um e-mail válido.</string>
+    <string name="guest_room_invalid">Nomes de sala precisam de 2 a 40 letras, números ou hífens.</string>
+    <string name="join_title">Participar</string>
+    <string name="prejoin_flip">Virar</string>
+    <string name="ended_lasted">Durou %1$s</string>
+    <string name="ended_room">Sala · %1$s</string>
+    <string name="ended_transcript">Transcrição · seu anfitrião a guarda</string>
+    <string name="ended_back_to_room">Voltar a esta sala</string>
+    <string name="ended_join_another">Entrar em outra sala</string>
+    <string name="quality_excellent">Excelente</string>
+    <string name="quality_good">Boa</string>
+    <string name="quality_poor">Ruim</string>
+    <string name="quality_lost">Perdida</string>
+    <string name="quality_measuring">Medindo…</string>
+    <string name="end_confirm_title">Encerrar a reunião para todos?</string>
+    <string name="end_for_everyone">Encerrar para todos</string>
+    <plurals name="end_confirm_others">
+        <item quantity="one">%d outra pessoa ainda está na sala.</item>
+        <item quantity="other">%d outras pessoas ainda estão na sala.</item>
+    </plurals>
+    <string name="call_cancel">Cancelar</string>
+    <string name="device_options">Opções de %1$s</string>
+    <string name="device_mics_later">Os microfones aparecem quando a chamada tiver áudio</string>
+    <string name="device_front_camera">Câmera frontal</string>
+    <string name="device_back_camera">Câmera traseira</string>
+    <plurals name="hands_lower_all">
+        <item quantity="one">Abaixar todas as mãos (%1$d)</item>
+        <item quantity="other">Abaixar todas as mãos (%1$d)</item>
+    </plurals>
+</resources>

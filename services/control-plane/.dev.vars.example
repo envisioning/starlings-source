@@ -1,0 +1,42 @@
+SESSION_SIGNING_SECRET=replace-with-at-least-32-random-characters
+GOOGLE_WEB_CLIENT_SECRET=replace-with-google-web-client-secret
+GOOGLE_TOKEN_ENCRYPTION_KEY=replace-with-at-least-32-random-characters
+LIVEKIT_API_KEY=devkey
+LIVEKIT_API_SECRET=secret
+# Shared with Core, the CRM. Leave unset locally to keep CRM meeting-log
+# sync off; the Worker skips it entirely rather than failing.
+# INTERNAL_REQUEST_SECRET=replace-with-the-core-internal-request-secret
+
+# Turnstile secret for the public write routes (join, book, feedback).
+# Leave unset locally: bot checking then no-ops, and the web bundle has no
+# sitekey either. Setting one without the other breaks *browser* joining —
+# native knocks skip the check. See src/turnstile.ts.
+# TURNSTILE_SECRET_KEY=replace-with-the-turnstile-secret-key
+# The sites' key for POST /api/public/leads; unset answers 404 (docs/SECURITY.md).
+# PUBLIC_LEAD_SECRET=replace-with-at-least-32-characters
+
+# Fine-grained GitHub token, Issues: read+write on GITHUB_ISSUES_REPO only.
+# Leave unset locally so bug reports fail with `not_configured` instead of
+# filing real issues from a dev loop. Point GITHUB_ISSUES_REPO at a scratch
+# repo in wrangler.local.jsonc to try it end to end.
+# GITHUB_ISSUES_TOKEN=replace-with-a-fine-grained-github-token
+
+# The two halves of the agent loop. Leave both unset locally and the loop is
+# simply absent: /api/internal/channel-events answers 404, and the hand-off to
+# a runtime goes unsigned (fine against a sandbox on your own machine, never
+# in production). See docs/AGENTS_SURFACE.md.
+#
+# Set an inbound key to try an agent locally — one per caller, named by the
+# `x-internal-key-id` header: INBOUND_KEY_CORE for Core, and
+# INBOUND_KEY_<ADDRESS> for an agent (`vocab@example.com` is
+# INBOUND_KEY_VOCAB_ENVISIONING_COM). Deliberately not INTERNAL_REQUEST_SECRET,
+# which is the Meet -> Core pair. Point an agent at a local runtime with
+# AGENT_ROSTER in wrangler.local.jsonc. A request with no key id answers 404.
+# INBOUND_KEY_CORE=replace-with-at-least-32-random-characters
+#
+# The hand-off to a config agent is signed with that agent's own
+# WEBHOOK_KEY_<ADDRESS> (meet#1020); the bot holds the same value as
+# AGENT_WEBHOOK_KEY. The old fleet AGENT_WEBHOOK_SECRET signs only an agent
+# with no key of its own, until it is deleted.
+# WEBHOOK_KEY_VOCAB_ENVISIONING_COM=replace-with-at-least-32-random-characters
+# AGENT_WEBHOOK_SECRET=replace-with-at-least-32-random-characters

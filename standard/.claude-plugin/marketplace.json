@@ -1,0 +1,12 @@
+{
+  "name": "starlings",
+  "owner": { "name": "Envisioning", "url": "https://starlingshq.com" },
+  "description": "Skills for agents that work on subjects, from the Starlings Subject Spec.",
+  "plugins": [
+    {
+      "name": "starlings-skills",
+      "source": ".",
+      "description": "Five skills for working on a subject: find it, read its history, file work to it, propose before changing, record decisions."
+    }
+  ]
+}

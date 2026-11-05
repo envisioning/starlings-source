@@ -1,0 +1,151 @@
+{
+  "id": "synthetic-01",
+  "meeting_kind": "lead",
+  "notes": "Synthetic English lead call. Covers: a commitment with a detail added a turn later, a client-side commitment, a topic that is not a commitment, a commitment walked back two turns later, and a delegated commitment restated by the delegate.",
+  "speakers": [
+    "Owner",
+    "Team 1",
+    "Client 1"
+  ],
+  "segments": [
+    {
+      "speaker": "Owner",
+      "starts_at_ms": 0,
+      "ends_at_ms": 9000,
+      "text": "Thanks for joining. Let's go through the pricing questions first and then the rollout."
+    },
+    {
+      "speaker": "Client 1",
+      "starts_at_ms": 9000,
+      "ends_at_ms": 16000,
+      "text": "Sure. Our board wants a number before the end of the month."
+    },
+    {
+      "speaker": "Owner",
+      "starts_at_ms": 16000,
+      "ends_at_ms": 25000,
+      "text": "Understood. I'll send you the pricing deck on Friday, with the two options we discussed."
+    },
+    {
+      "speaker": "Client 1",
+      "starts_at_ms": 25000,
+      "ends_at_ms": 32000,
+      "text": "Friday works. Can you also include the onboarding session in the line items?"
+    },
+    {
+      "speaker": "Owner",
+      "starts_at_ms": 32000,
+      "ends_at_ms": 38000,
+      "text": "Yes, I'll add the onboarding session to the deck."
+    },
+    {
+      "speaker": "Team 1",
+      "starts_at_ms": 38000,
+      "ends_at_ms": 46000,
+      "text": "On the rollout, the SSO piece depends on your IT team. Who should we talk to?"
+    },
+    {
+      "speaker": "Client 1",
+      "starts_at_ms": 46000,
+      "ends_at_ms": 53000,
+      "text": "That's Marta. I'll introduce you to her by email this week."
+    },
+    {
+      "speaker": "Owner",
+      "starts_at_ms": 53000,
+      "ends_at_ms": 60000,
+      "text": "Great. We should probably think about a training video at some point too."
+    },
+    {
+      "speaker": "Client 1",
+      "starts_at_ms": 60000,
+      "ends_at_ms": 66000,
+      "text": "Maybe. Not a priority for us right now."
+    },
+    {
+      "speaker": "Team 1",
+      "starts_at_ms": 66000,
+      "ends_at_ms": 75000,
+      "text": "Okay. I'll set up the staging workspace so your team can try it before the deck arrives."
+    },
+    {
+      "speaker": "Client 1",
+      "starts_at_ms": 75000,
+      "ends_at_ms": 84000,
+      "text": "Actually, hold off on staging until we've seen the pricing. No point setting it up if we don't proceed."
+    },
+    {
+      "speaker": "Team 1",
+      "starts_at_ms": 84000,
+      "ends_at_ms": 90000,
+      "text": "Fair enough, I'll wait on that then."
+    },
+    {
+      "speaker": "Owner",
+      "starts_at_ms": 90000,
+      "ends_at_ms": 97000,
+      "text": "One more thing: the data export. You asked about it last time."
+    },
+    {
+      "speaker": "Client 1",
+      "starts_at_ms": 97000,
+      "ends_at_ms": 105000,
+      "text": "Right. Could you send us a sample export so our analysts can check the format?"
+    },
+    {
+      "speaker": "Owner",
+      "starts_at_ms": 105000,
+      "ends_at_ms": 112000,
+      "text": "Will do. I'll ask Team 1 to send a sample export tomorrow."
+    },
+    {
+      "speaker": "Team 1",
+      "starts_at_ms": 112000,
+      "ends_at_ms": 118000,
+      "text": "I'll send the sample export tomorrow morning."
+    },
+    {
+      "speaker": "Client 1",
+      "starts_at_ms": 118000,
+      "ends_at_ms": 126000,
+      "text": "Perfect. And we'll review internally and come back to you by the 30th."
+    },
+    {
+      "speaker": "Owner",
+      "starts_at_ms": 126000,
+      "ends_at_ms": 130000,
+      "text": "Sounds good. Talk soon."
+    }
+  ],
+  "expected": [
+    {
+      "title": "Send the pricing deck with both options and the onboarding session",
+      "quote": "I'll send you the pricing deck on Friday",
+      "speaker": "Owner",
+      "starts_at_ms": 16000,
+      "responsible": "team"
+    },
+    {
+      "title": "Client to introduce Marta (IT) by email for SSO",
+      "quote": "I'll introduce you to her by email this week",
+      "speaker": "Client 1",
+      "starts_at_ms": 46000,
+      "responsible": "client"
+    },
+    {
+      "title": "Send a sample data export",
+      "quote": "I'll send the sample export tomorrow morning",
+      "speaker": "Team 1",
+      "starts_at_ms": 112000,
+      "responsible": "team"
+    },
+    {
+      "title": "Client to review internally and reply by the 30th",
+      "quote": "we'll review internally and come back to you by the 30th",
+      "speaker": "Client 1",
+      "starts_at_ms": 118000,
+      "responsible": "client",
+      "optional": true
+    }
+  ]
+}

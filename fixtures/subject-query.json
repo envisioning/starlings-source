@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "rule": "CrmSubjectsQuery.browse (Sources/MeetingCategory.swift) and subjectsSearchParams (web/src/crm-work.ts): the query string of GET /api/crm/subjects, as [name, value] pairs in the contract's order. The Worker trims q and status itself; the clients agree on what they send. An organization filter sends only what differs from the default (partner on, agency and existing client off).",
+  "cases": [
+    {"name": "a project search", "kind": "project", "query": "acme", "out": [["kind", "project"], ["q", "acme"]]},
+    {"name": "no query", "kind": "project", "query": "", "out": [["kind", "project"]]},
+    {"name": "a padded query is trimmed", "kind": "project", "query": "  acme corp \t", "out": [["kind", "project"], ["q", "acme corp"]]},
+    {"name": "a blank query is no query", "kind": "lead", "query": "   ", "out": [["kind", "lead"]]},
+    {"name": "a project status", "kind": "project", "query": "", "status": "active", "out": [["kind", "project"], ["status", "active"]]},
+    {"name": "a lead status with a query", "kind": "lead", "query": "acme", "status": "open", "out": [["kind", "lead"], ["q", "acme"], ["status", "open"]]},
+    {"name": "a padded status is trimmed", "kind": "project", "query": "", "status": "  active ", "out": [["kind", "project"], ["status", "active"]]},
+    {"name": "a blank status is no status", "kind": "project", "query": "", "status": "  ", "out": [["kind", "project"]]},
+    {"name": "an organization carries no status", "kind": "organization", "query": "acme", "status": "active", "out": [["kind", "organization"], ["q", "acme"]]},
+    {"name": "an event carries a status and the reader's day", "kind": "event", "query": "", "status": "upcoming", "today": "2026-10-01", "out": [["kind", "event"], ["status", "upcoming"], ["today", "2026-10-01"]]},
+    {"name": "an event without a day sends none", "kind": "event", "query": "summit", "out": [["kind", "event"], ["q", "summit"]]},
+    {"name": "only an event takes the day", "kind": "project", "query": "", "status": "active", "today": "2026-10-01", "out": [["kind", "project"], ["status", "active"]]},
+    {"name": "an organization does not take the day", "kind": "organization", "query": "", "status": "", "today": "2026-10-01", "out": [["kind", "organization"]]},
+    {"name": "the query is sent as typed apart from the padding", "kind": "project", "query": "Ødegård & Co", "status": "all", "out": [["kind", "project"], ["q", "Ødegård & Co"], ["status", "all"]]},
+    {"name": "the default organization filter sends nothing", "kind": "organization", "query": "", "organizations": {"partner": true, "agency": false, "existing_client": false}, "out": [["kind", "organization"]]},
+    {"name": "every organization turns the partner filter off", "kind": "organization", "query": "", "organizations": {"partner": false, "agency": false, "existing_client": false}, "out": [["kind", "organization"], ["partner", "false"]]},
+    {"name": "agencies in one country", "kind": "organization", "query": "", "organizations": {"partner": false, "agency": true, "existing_client": false, "country": "Portugal"}, "out": [["kind", "organization"], ["partner", "false"], ["agency", "true"], ["country", "Portugal"]]},
+    {"name": "existing clients in one industry, searched", "kind": "organization", "query": " lab ", "organizations": {"partner": true, "agency": false, "existing_client": true, "industry": "Research"}, "out": [["kind", "organization"], ["q", "lab"], ["existing_client", "true"], ["industry", "Research"]]},
+    {"name": "a padded value is trimmed and a blank one is none", "kind": "organization", "query": "", "organizations": {"partner": true, "agency": false, "existing_client": false, "industry": "   ", "country": " Brazil "}, "out": [["kind", "organization"], ["country", "Brazil"]]},
+    {"name": "only an organization takes the filters", "kind": "project", "query": "", "organizations": {"partner": false, "agency": true, "existing_client": true, "industry": "Research"}, "out": [["kind", "project"]]}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "note": "The colour roles the Mac, iOS and web all draw, one value per role per appearance (meet#599). `web` names the CSS custom property in web/src/styles.css; `mac` is a StarlingsColors member; `ios` is a StarlingsMobileColors member; null means that surface draws no such role. A value is `#rrggbb`, or { rgb, alpha } for a role that is a veil over whatever it sits on. The web value wins when the surfaces differ unless docs/DESIGN.md says otherwise; `differences` lists what is still apart, and why. Tests: web/src/color-tokens.test.ts, Tests/SurfaceMirrorTests.swift (Mac), iOSTests/MobileColorTokensTests.swift. Spacing, type and motion are not here.",
+  "roles": {
+    "canvas": { "web": "--surface-bg", "mac": "canvas", "ios": "canvas", "dark": "#202128", "light": "#efefef" },
+    "panel": { "web": "--surface", "mac": "panel", "ios": "panel", "dark": "#292a32", "light": "#f6f6f6" },
+    "elevated": { "web": "--surface-raised", "mac": "elevated", "ios": "elevated", "dark": "#343640", "light": "#ffffff" },
+    "field": { "web": "--surface-sunken", "mac": "field", "ios": "field", "dark": "#1a1b21", "light": "#e4e4e4" },
+    "ink": { "web": "--ink", "mac": "primaryText", "ios": "primary", "dark": "#fafafa", "light": "#1a1a1a" },
+    "inkMuted": { "web": "--text-muted", "mac": "secondaryText", "ios": "secondary", "dark": "#a3a3a3", "light": "#5c5c5c" },
+    "border": { "web": "--line", "mac": "border", "ios": "border", "dark": { "rgb": "#dee2ff", "alpha": 0.1 }, "light": { "rgb": "#000000", "alpha": 0.14 } },
+    "borderHover": { "web": "--hover-border", "mac": "borderHover", "ios": "borderHover", "dark": { "rgb": "#dee2ff", "alpha": 0.2 }, "light": { "rgb": "#000000", "alpha": 0.26 } },
+    "controlBorder": { "web": "--control-line", "mac": "controlBorder", "ios": null, "dark": { "rgb": "#dee2ff", "alpha": 0.22 }, "light": { "rgb": "#000000", "alpha": 0.24 } },
+    "hoverLift": { "web": "--hover-lift", "mac": "hoverLift", "ios": "hoverLift", "dark": { "rgb": "#dee2ff", "alpha": 0.06 }, "light": { "rgb": "#000000", "alpha": 0.06 } },
+    "selected": { "web": "--selected", "mac": null, "ios": "selected", "dark": "#3f414d", "light": "#dcdcdc" },
+    "accent": { "web": "--accent-cta", "mac": "accentCTA", "ios": "accent", "dark": "#d6f249", "light": "#aacc00" },
+    "accentHover": { "web": "--accent-cta-hover", "mac": "accentCTAHover", "ios": "accentHover", "dark": "#e0f76f", "light": "#bfe000" },
+    "accentDown": { "web": "--accent-cta-down", "mac": "accentCTADown", "ios": "accentPressed", "dark": "#aacc00", "light": "#91ad00" },
+    "accentMark": { "web": "--accent-mark", "mac": "accentMark", "ios": "accentMark", "dark": "#d6f249", "light": "#aacc00" },
+    "onAccent": { "web": "--on-accent", "mac": "accentInk", "ios": "accentInk", "dark": "#1a1a1a", "light": "#1a1a1a" },
+    "danger": { "web": "--danger", "mac": "danger", "ios": "danger", "dark": "#ff6361", "light": "#ff6361" },
+    "presenceBusy": { "web": "--busy", "mac": "presenceBusy", "ios": "presenceBusy", "dark": "#9cbf2e", "light": "#9cbf2e" },
+    "presenceInMeeting": { "web": "--presence-in-meeting", "mac": "presenceInMeeting", "ios": "presenceInMeeting", "dark": "#667c4a", "light": "#667c4a" }
+  },
+  "differences": [
+    { "role": "border", "appearance": "dark", "surfaces": ["mac", "ios"], "value": { "rgb": "#ffffff", "alpha": 0.1 }, "reason": "The web tints its dark veil toward the rungs (--veil-rgb); the native hairlines are white at the same alpha, as docs/DESIGN.md states. The package's border is Core's too. On any dark rung the two land within 3/255 per channel." },
+    { "role": "borderHover", "appearance": "dark", "surfaces": ["mac", "ios"], "value": { "rgb": "#ffffff", "alpha": 0.2 }, "reason": "Same veil hue as border: docs/DESIGN.md says white at 20%." },
+    { "role": "controlBorder", "appearance": "dark", "surfaces": ["mac"], "value": { "rgb": "#ffffff", "alpha": 0.22 }, "reason": "Same veil hue as border; the alpha matches the web." },
+    { "role": "hoverLift", "appearance": "dark", "surfaces": ["mac", "ios"], "value": { "rgb": "#ffffff", "alpha": 0.06 }, "reason": "Same veil hue as border: docs/DESIGN.md says 6% white." }
+  ]
+}

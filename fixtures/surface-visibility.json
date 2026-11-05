@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "cases": [
+    { "name": "every source known and present", "calendarSources": true, "docs": true, "visible": ["home", "calendar", "work", "team", "docs"] },
+    { "name": "no calendar source hides Calendar", "calendarSources": false, "docs": true, "visible": ["home", "work", "team", "docs"] },
+    { "name": "unknown calendar sources show Calendar", "calendarSources": null, "docs": true, "visible": ["home", "calendar", "work", "team", "docs"] },
+    { "name": "a workspace without Docs hides Docs", "calendarSources": true, "docs": false, "visible": ["home", "calendar", "work", "team"] },
+    { "name": "no calendar source and no Docs", "calendarSources": false, "docs": false, "visible": ["home", "work", "team"] },
+    { "name": "unknown calendar sources and no Docs", "calendarSources": null, "docs": false, "visible": ["home", "calendar", "work", "team"] }
+  ]
+}

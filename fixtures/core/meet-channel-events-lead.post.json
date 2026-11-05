@@ -1,0 +1,9 @@
+{
+  "subject": {
+    "kind": "lead",
+    "id": "aaaaaaaa-0000-4000-8000-000000000002"
+  },
+  "type": "event",
+  "text": "New Lead Created: Example Partners pilot",
+  "idempotency_key": "crm:lead:aaaaaaaa-0000-4000-8000-000000000002:created"
+}

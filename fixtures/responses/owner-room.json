@@ -1,0 +1,10 @@
+{
+  "room": {
+    "slug": "example-room",
+    "ownerSub": "dev:rf-rosa@example.com",
+    "ownerEmail": "rf-rosa@example.com",
+    "ownerName": "Rosa Example",
+    "kind": "permanent",
+    "expiresAt": null
+  }
+}

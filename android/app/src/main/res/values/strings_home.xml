@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The Home tab (workspace/HomeScreen.kt, workspace/home/). English and pt-BR
+  are the iOS catalog's (Resources/Localizable.xcstrings). A sentence the
+  catalog has without pt-BR is here only, so pt-BR shows the English iOS
+  shows. Literals iOS draws in English outside the catalog ("Today 15:00",
+  "ended") are translatable="false", as are errors.
+-->
+<resources>
+    <string name="home_settings">Home settings</string>
+    <string name="home_done">Done</string>
+    <string name="home_dismiss">Dismiss</string>
+
+    <string name="home_upcoming">UPCOMING</string>
+    <string name="home_now">NOW</string>
+    <string name="home_closed_empty">Nothing scheduled today or tomorrow.</string>
+    <string name="home_closed_today">Nothing left today.</string>
+    <string name="home_closed_one_at">Nothing left today. 1 tomorrow, at %1$s.</string>
+    <string name="home_closed_many_at">Nothing left today. %1$d tomorrow, first at %2$s.</string>
+    <string name="home_closed_one">Nothing left today. 1 tomorrow.</string>
+    <string name="home_closed_many">Nothing left today. %1$d tomorrow.</string>
+    <string name="home_calendar_unreachable">Couldn’t reach your calendar.</string>
+    <string name="home_see_rest">See rest of day</string>
+    <string name="home_hide_rest">Hide rest of day</string>
+    <string name="home_show_in_next">Show in Next</string>
+    <string name="home_hide_from_next">Hide from Next</string>
+    <string name="home_in">in %1$s</string>
+    <string name="home_ends_in">ends in %1$s</string>
+    <string name="home_hours_minutes">%1$dh %2$dm</string>
+    <string name="home_hours">%1$dh</string>
+    <string name="home_minutes" translatable="false">%1$dm</string>
+    <string name="home_span_now" translatable="false">now</string>
+    <string name="home_ended" translatable="false">ended</string>
+    <string name="home_today_at" translatable="false">Today %1$s</string>
+    <string name="home_tomorrow_at" translatable="false">Tomorrow %1$s</string>
+    <string name="home_calendar_event" translatable="false">Calendar event</string>
+    <string name="home_demote_failed" translatable="false">Couldn’t change this meeting’s Next status.</string>
+
+    <string name="home_room">YOUR ROOM</string>
+    <string name="home_no_room">No room yet</string>
+    <string name="home_no_room_mapped">No room is mapped to %1$s. Ask the Starlings admin.</string>
+    <string name="home_room_error">Couldn’t load your room right now. Pull to try again.</string>
+    <string name="home_copied">Copied</string>
+    <string name="home_copy_room_link">Copy room link</string>
+
+    <string name="home_events">EVENTS</string>
+    <string name="home_and_more">and %1$d more</string>
+    <string name="home_opens_event_page">Opens the event page</string>
+
+    <string name="home_quick_notes">QUICK NOTES</string>
+    <string name="home_note_prompt">What’s on your mind?</string>
+    <string name="home_add_note">Add Quick Note</string>
+    <string name="home_note">Quick Note</string>
+    <string name="home_saving">Saving…</string>
+    <string name="home_see_more">See %1$d more</string>
+    <string name="home_show_fewer">Show fewer</string>
+    <string name="home_delete">Delete</string>
+
+    <string name="home_modules">Modules</string>
+    <string name="home_modules_footer">Off keeps a module off Home even when it has something to show.</string>
+    <string name="home_room_footer">Your room stays on Home: starting a meeting is what the app is for.</string>
+    <string name="home_move_up">Move %1$s up</string>
+    <string name="home_move_down">Move %1$s down</string>
+    <string name="home_following">Following meetings</string>
+    <string name="home_following_none">None</string>
+    <plurals name="home_following_count">
+        <item quantity="one">%d meeting</item>
+        <item quantity="other">%d meetings</item>
+    </plurals>
+    <string name="home_following_footer">How many meetings show before the foldout.</string>
+
+    <string name="home_module_messages">Inbox</string>
+    <string name="home_module_work">Work</string>
+    <string name="home_module_commercial">Commercial</string>
+    <string name="home_module_notes">Quick Notes</string>
+    <string name="home_module_agenda">Upcoming</string>
+    <string name="home_module_events">Events</string>
+    <string name="home_module_room">Your room</string>
+    <string name="home_module_recent">Quick access</string>
+    <string name="home_detail_messages">What is new: unread conversations, decisions, requests and invitations</string>
+    <string name="home_detail_work">Everything assigned to you</string>
+    <string name="home_detail_commercial">Offers, sales, pipeline, and new licenses</string>
+    <string name="home_detail_notes">Capture now, file later</string>
+    <string name="home_detail_agenda">What is next, and the rest of today</string>
+    <string name="home_detail_events">Upcoming events</string>
+    <string name="home_detail_room">Start, join, and share the room</string>
+    <string name="home_detail_recent">Starred and recently opened items</string>
+
+    <!-- INBOX (MobileHomeInboxCard) -->
+    <string name="home_inbox">INBOX</string>
+    <string name="home_new_one">1 new</string>
+    <string name="home_new_many">%1$d new</string>
+    <string name="home_more_in_work">and %1$d more in Work</string>
+    <string name="home_conversation">Conversation</string>
+    <string name="home_unread_in">Unread message in %1$s</string>
+    <string name="home_unread_from" translatable="false">Unread message from %1$s</string>
+    <string name="home_unread">Unread</string>
+    <string name="home_proposed">Proposed · %1$s</string>
+    <string name="home_proposed_partner">Proposed · Partner · %1$s</string>
+    <string name="home_card_review">Review · %1$s · %2$s</string>
+    <string name="home_card_blocked">Blocked · %1$s · %2$s</string>
+    <string name="home_followup">Follow-up · %1$s · %2$s</string>
+    <string name="home_sales_touch">Sales · %1$s</string>
+    <string name="home_comment">Comment · %1$s</string>
+    <string name="home_docs">Docs</string>
+    <string name="home_calendar_invitation">Calendar invitation</string>
+    <string name="home_invitation">Invitation</string>
+    <string name="home_from_email">From email</string>
+    <string name="home_interest">Interest</string>
+    <string name="home_question">Question</string>
+    <string name="home_asked_by">Asked by %1$s</string>
+    <string name="home_recommended">Recommended: %1$s</string>
+    <string name="home_default_by">Default by %1$s</string>
+    <string name="home_decision">Decision</string>
+    <string name="home_source_contact">Contact form</string>
+    <string name="home_source_support">Support case</string>
+    <string name="home_source_pricing">Pricing request</string>
+    <string name="home_source_readiness">Readiness assessment</string>
+    <string name="home_booked" translatable="false">Booked</string>
+    <string name="home_rescheduled" translatable="false">Rescheduled</string>
+    <string name="home_cancelled" translatable="false">Cancelled</string>
+    <string name="home_was" translatable="false">was %1$s</string>
+
+    <!-- MINE (MobileTodayWorkCard) -->
+    <string name="home_mine">MINE</string>
+    <string name="home_overdue_count">%1$d overdue</string>
+    <string name="home_due_today_count">%1$d due today</string>
+    <string name="home_overdue">Overdue</string>
+    <string name="home_today">Today</string>
+    <string name="home_overdue_on" translatable="false">Overdue · %1$s</string>
+    <string name="home_in_progress">In progress</string>
+    <string name="home_in_review">In review</string>
+    <string name="home_blocked">Blocked</string>
+
+    <!-- COMMERCIAL (MobileCommercialCard) -->
+    <string name="home_commercial">COMMERCIAL</string>
+    <string name="home_months">%1$d months</string>
+    <string name="home_offers_sales">Offers &amp; sales</string>
+    <string name="home_offers">Offers</string>
+    <string name="home_sales">Sales</string>
+    <string name="home_pipeline">Pipeline</string>
+    <string name="home_new_licenses">New licenses</string>
+    <string name="home_view_sales">View Sales in Work</string>
+    <string name="home_commercial_summary" translatable="false">%1$d offers, %2$s sales, %3$s pipeline, %4$s new licenses in the last %5$d months</string>
+    <string name="home_no" translatable="false">no</string>
+
+    <!-- QUICK ACCESS (MobileRecentCard) -->
+    <string name="home_quick_access">QUICK ACCESS</string>
+    <string name="home_starred">Starred</string>
+    <string name="home_kind_subject">Subject</string>
+    <string name="home_kind_person">Person</string>
+    <string name="home_kind_agent">Agent</string>
+    <string name="home_kind_contact">Contact</string>
+    <string name="home_kind_thread">Conversation</string>
+    <string name="home_kind_document">Document</string>
+    <string name="home_kind_folder">Folder</string>
+    <string name="home_kind_event">Event</string>
+    <string name="home_kind_task">Task</string>
+    <string name="home_kind_issue">Issue</string>
+    <string name="home_kind_goal">Goal</string>
+    <string name="home_kind_decision">Decision</string>
+    <string name="home_kind_milestone">Milestone</string>
+    <string name="home_kind_call">Call</string>
+    <string name="home_kind_core">Records</string>
+    <string name="home_kind_project">Project</string>
+    <string name="home_kind_lead">Lead</string>
+    <string name="home_kind_partner">Partner</string>
+
+    <!-- UPCOMING rows -->
+    <string name="home_opens_in_calendar">Opens in Calendar</string>
+    <string name="home_travel">Travel %1$d min</string>
+    <string name="home_guests" translatable="false">Guests: %1$s</string>
+    <string name="home_copy_email">Copy Email Address</string>
+    <string name="home_rsvp_accepted" translatable="false">Accepted</string>
+    <string name="home_rsvp_declined" translatable="false">Declined</string>
+    <string name="home_rsvp_tentative" translatable="false">Tentative</string>
+    <string name="home_rsvp_pending" translatable="false">Pending</string>
+    <string name="home_rsvp_unknown" translatable="false">Unknown</string>
+
+    <!-- The Quick Note drawer and File Quick Note (MobileQuickNoteSheet, MobileQuickNoteTriageSheet) -->
+    <string name="home_edit_note">Edit this note</string>
+    <string name="home_edit">Edit</string>
+    <string name="home_save">Save</string>
+    <string name="home_close">Close</string>
+    <string name="home_file_note">File…</string>
+    <string name="home_copy">Copy</string>
+    <string name="home_file_quick_note">File Quick Note</string>
+    <string name="home_destination">Destination</string>
+    <string name="home_file_under">File under</string>
+    <string name="home_file_under_project">File under (project)</string>
+    <string name="home_subject">Subject</string>
+    <string name="home_loading">Loading…</string>
+    <string name="home_choose_project">Choose a project</string>
+    <string name="home_choose_subject">Choose a project, lead or partner</string>
+    <string name="home_no_destinations">No destinations match that search.</string>
+    <string name="home_send_to">Send to</string>
+    <string name="home_choose_conversation">Choose a conversation</string>
+    <string name="home_no_conversations">No conversations match that search.</string>
+    <string name="home_title">Title</string>
+    <string name="home_filing">Filing…</string>
+    <string name="home_kind_message">Message</string>
+    <string name="home_recent_group">Group</string>
+    <string name="home_recent_direct">Direct message</string>
+    <string name="home_recent_team_room">Team Room</string>
+    <string name="home_recent_channel">Channel</string>
+    <string name="home_task_title">Task title</string>
+    <string name="home_issue_title">Issue title</string>
+    <string name="home_create_task">Create task</string>
+    <string name="home_create_issue">Create issue</string>
+    <string name="home_send_message">Send message</string>
+
+    <!-- The footer: StarlingsAppVersion.line, English on iOS too. -->
+    <string name="home_version" translatable="false">Version %1$s · Build %2$s</string>
+</resources>

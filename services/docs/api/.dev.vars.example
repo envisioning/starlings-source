@@ -1,0 +1,19 @@
+# Copy to .dev.vars (gitignored) for local `wrangler dev`.
+#
+# Nothing here should ever be a production value. EMAIL_MODE stays `log` in
+# wrangler.jsonc for dev, so verification codes appear in the Worker output
+# instead of a real inbox.
+
+SESSION_SIGNING_SECRET="local-dev-secret-at-least-32-characters-long"
+SIGNATURE_SEAL_SECRET="local-dev-seal-secret-at-least-32-characters"
+GOOGLE_WEB_CLIENT_SECRET="replace-with-oauth-client-secret"
+INTERNAL_REQUEST_SECRET="local-dev-internal-secret-shared-with-core"
+DOCS_INTERNAL_SECRET="local-dev-docs-internal-secret-shared-with-meet"
+POSTMARK_TOKEN=""
+
+# The hourly mirror reads Core's two Supabase projects. Leave unset locally
+# and the sweep records "not configured" instead of calling out.
+SUPABASE_URL_CMS=""
+SUPABASE_SERVICE_ROLE_KEY_CMS=""
+SUPABASE_URL_CRM=""
+SUPABASE_SERVICE_ROLE_KEY_CRM=""

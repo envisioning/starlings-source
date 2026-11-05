@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Keep, the vault client (keep/). Every sentence is core-kit KeepUI's or the Starlings catalog's (Resources/Localizable.xcstrings); pt-BR in values-pt-rBR/strings_keep.xml only where the catalog has one. -->
+<resources>
+    <string name="keep_title">Keep</string>
+    <string name="keep_menu">Keep…</string>
+    <string name="keep_vault_menu">Keep vault</string>
+
+    <!-- The gates -->
+    <string name="keep_connect_message">Connect Keep to open your vaults on this device.</string>
+    <string name="keep_connect">Connect Keep</string>
+    <string name="keep_connecting">Connecting…</string>
+    <string name="keep_try_again">Try again</string>
+    <string name="keep_opening_vault">Opening vault…</string>
+    <string name="keep_set_up">Set up Keep</string>
+    <string name="keep_set_up_message">Keep makes a key on this device. The server stores a locked copy it cannot open.</string>
+    <string name="keep_passphrase">Passphrase</string>
+    <string name="keep_again">Again</string>
+    <string name="keep_forgetting">Forgetting it means losing your access. There is no reset, only the recovery key holders.</string>
+    <string name="keep_set_passphrase">Set passphrase</string>
+    <string name="keep_use_at_least">Use at least %1$d characters.</string>
+    <string name="keep_passphrases_differ">The two passphrases differ.</string>
+    <string name="keep_unlock_title">Unlock Keep</string>
+    <string name="keep_unlock_passphrase_message">Enter your passphrase to open your vaults on this device.</string>
+    <string name="keep_unlock_passkey_only">Your key is unlocked by a passkey, which this app cannot use yet. On your phone or on the web, open Keep → Settings and add a passphrase; it works here.</string>
+    <string name="keep_unlock_both_message">Use your passkey or your passphrase to open your vaults on this device.</string>
+    <string name="keep_unlock_passkey_message">Use your passkey to open your vaults on this device.</string>
+    <string name="keep_unlock_with_passkey">Unlock with passkey</string>
+    <string name="keep_passkey_enrol_hint">Your screen lock or a security key unlocks Keep. Nothing to remember.</string>
+    <string name="keep_create_passkey">Create passkey</string>
+    <string name="keep_unlock">Unlock</string>
+    <string name="keep_check_again">Check again</string>
+    <string name="keep_wrong_passphrase">Wrong passphrase.</string>
+    <string name="keep_idle_lock">Keep locks after 15 minutes without activity.</string>
+    <string name="keep_show_field">Show %1$s</string>
+    <string name="keep_hide_field">Hide %1$s</string>
+
+    <!-- Vaults -->
+    <string name="keep_no_vaults">No vaults yet. Make one, or ask a colleague to add you.</string>
+    <plurals name="keep_items_count">
+        <item quantity="one">%1$d item</item>
+        <item quantity="other">%1$d items</item>
+    </plurals>
+    <plurals name="keep_members_count">
+        <item quantity="one">%1$d member</item>
+        <item quantity="other">%1$d members</item>
+    </plurals>
+    <string name="keep_vaults_search">Vaults</string>
+    <string name="keep_new_vault">New vault</string>
+    <string name="keep_settings">Settings</string>
+    <string name="keep_lock">Lock</string>
+    <string name="keep_name">Name</string>
+    <string name="keep_project_id">Project id (optional)</string>
+    <string name="keep_icon">Icon</string>
+    <string name="keep_members">Members</string>
+    <string name="keep_nobody_enrolled">Nobody else is enrolled yet.</string>
+    <string name="keep_no_recovery">No recovery key is set. If every member loses their key, this vault is gone. Set one on the web.</string>
+    <string name="keep_cancel">Cancel</string>
+    <string name="keep_create">Create</string>
+
+    <!-- A vault -->
+    <string name="keep_nothing_here">Nothing here yet.</string>
+    <string name="keep_vault">Vault</string>
+    <string name="keep_items_search">Items</string>
+    <string name="keep_new_item">New item</string>
+    <string name="keep_vault_settings">Vault settings</string>
+    <string name="keep_activity">Activity</string>
+    <string name="keep_open_in_core">Open full record</string>
+
+    <!-- An item -->
+    <string name="keep_username">Username</string>
+    <string name="keep_key">Key</string>
+    <string name="keep_password">Password</string>
+    <string name="keep_url">URL</string>
+    <string name="keep_one_time_code">One-time code</string>
+    <string name="keep_notes">Notes</string>
+    <string name="keep_item_footer">%1$s · added by %2$s · %3$s</string>
+    <string name="keep_edit">Edit</string>
+    <string name="keep_delete">Delete</string>
+    <string name="keep_delete_item_title">Delete “%1$s”?</string>
+    <string name="keep_delete_item_message">The activity log keeps its name.</string>
+    <string name="keep_show">Show</string>
+    <string name="keep_hide">Hide</string>
+    <string name="keep_copied">%1$s copied</string>
+    <string name="keep_code_copied">Code copied</string>
+    <string name="keep_seconds_left">%1$d seconds left</string>
+    <string name="keep_copy">Copy</string>
+
+    <!-- The editor -->
+    <string name="keep_kind">Kind</string>
+    <string name="keep_generate">Generate</string>
+    <string name="keep_totp_field">One-time code secret or otpauth:// link</string>
+    <string name="keep_totp_invalid_hint">Not a one-time code secret. Paste the otpauth link or the base32 key.</string>
+    <string name="keep_scan_qr">Scan QR</string>
+    <string name="keep_from_photo">From photo</string>
+    <string name="keep_scan_title">Scan the QR code</string>
+    <string name="keep_save">Save</string>
+    <string name="keep_edit_item">Edit item</string>
+    <!-- iOS draws these four as verbatim strings: English in every language. -->
+    <string name="keep_qr_added" translatable="false">One-time code added.</string>
+    <string name="keep_qr_added_for" translatable="false">One-time code added for %1$s.</string>
+    <string name="keep_qr_not_totp" translatable="false">That QR code is not a one-time code setup.</string>
+    <string name="keep_qr_none_in_photo" translatable="false">No QR code in that photo.</string>
+    <string name="keep_totp_not_valid" translatable="false">The one-time code secret is not valid.</string>
+
+    <!-- Vault settings and members -->
+    <string name="keep_member_line">%1$s · added by %2$s</string>
+    <string name="keep_remove">Remove</string>
+    <string name="keep_add">Add</string>
+    <string name="keep_everyone_member">Everyone enrolled is already a member.</string>
+    <string name="keep_person">Person</string>
+    <string name="keep_choose">Choose…</string>
+    <string name="keep_members_footnote">Adding wraps the vault key to them. Removing re-seals everything under a new key.</string>
+    <string name="keep_key_version_recoverable">Key version %1$d · recoverable</string>
+    <string name="keep_key_version_unrecoverable">Key version %1$d · no recovery copy</string>
+    <string name="keep_delete_vault_menu">Delete vault…</string>
+    <string name="keep_remove_title">Remove %1$s?</string>
+    <string name="keep_remove_and_rotate">Remove and rotate</string>
+    <string name="keep_remove_message">Every item is re-sealed under a new key they will not hold.</string>
+    <string name="keep_delete_vault_title">Delete “%1$s” and its %2$d items?</string>
+    <string name="keep_delete_vault">Delete vault</string>
+    <string name="keep_delete_vault_message">The activity log stays.</string>
+
+    <!-- Activity -->
+    <string name="keep_nothing_yet">Nothing yet.</string>
+    <string name="keep_event_line">%1$s · %2$s</string>
+
+    <!-- Unlock methods, in Keep's settings and the app's -->
+    <string name="keep_settings_title">Keep settings</string>
+    <string name="keep_methods_connect">Connect Keep to change how it unlocks.</string>
+    <string name="keep_methods_unlock">Unlock Keep to change how it unlocks.</string>
+    <string name="keep_unlocks_with">Unlocks with</string>
+    <string name="keep_passkey">Passkey</string>
+    <string name="keep_yes">Yes</string>
+    <string name="keep_no">No</string>
+    <string name="keep_mac_needs_passphrase">The Meet app on the Mac needs a passphrase.</string>
+    <string name="keep_copied_store">Copied. Store it in your own password manager.</string>
+    <string name="keep_twelve_minimum">12 characters minimum.</string>
+    <string name="keep_type_again">Type it again below.</string>
+    <string name="keep_do_not_match">The two do not match.</string>
+    <string name="keep_generate_one">Generate one</string>
+    <string name="keep_change_passphrase">Change passphrase</string>
+    <string name="keep_save_passphrase">Save passphrase</string>
+    <string name="keep_add_passphrase">Add a passphrase</string>
+    <string name="keep_passphrase_footer">Twelve characters or more. There is no reset; keep it in your own password manager.</string>
+    <string name="keep_passphrase_saved">Passphrase saved. It unlocks Keep on every device.</string>
+    <string name="keep_add_passkey">Add passkey</string>
+    <string name="keep_replace_passkey">Replace passkey</string>
+    <string name="keep_passkey_footer">The screen lock on this device. Replacing it does not add a passphrase.</string>
+    <string name="keep_passkey_saved">Passkey saved.</string>
+
+    <!-- Recovery (KeepRecoveryViews.swift). The catalog has no pt-BR for these. -->
+    <string name="keep_recovery">Recovery</string>
+    <string name="keep_recovery_footer">Two people each hold one share of a key every vault is also sealed to. Both shares, or nothing.</string>
+    <string name="keep_recovery_held">Held by %1$s. Set by %2$s on %3$s.</string>
+    <string name="keep_recovery_and">%1$s and %2$s</string>
+    <string name="keep_recovery_all_covered">Every vault you can open has a recovery copy.</string>
+    <string name="keep_recovery_uncovered">%1$d of your vaults have no recovery copy yet; they get one the next time they load.</string>
+    <string name="keep_recover_menu">Recover a vault…</string>
+    <string name="keep_recovery_none">No recovery key. A vault whose members all lose their keys is lost. Set one before the first vault that matters.</string>
+    <string name="keep_recovery_create_menu">Create recovery key…</string>
+    <string name="keep_recovery_key">Recovery key</string>
+    <string name="keep_recovery_shown_once">Shown once. Put each share in its holder\'s own password manager now. Closing this loses them.</string>
+    <string name="keep_share_a">Share A</string>
+    <string name="keep_share_b">Share B</string>
+    <string name="keep_share_holder">%1$s · %2$s</string>
+    <string name="keep_copy_share">Copy %1$s</string>
+    <string name="keep_shares_stored">Both shares are stored outside Keep, by their holders.</string>
+    <string name="keep_holders">Holders</string>
+    <string name="keep_holder_a">Holder A</string>
+    <string name="keep_holder_b">Holder B</string>
+    <string name="keep_holders_footnote">Two enrolled people. Vaults already made are covered the next time a member opens Keep.</string>
+    <string name="keep_generate_publish">Generate and publish</string>
+    <string name="keep_recover_title">Recover a vault</string>
+    <string name="keep_shares">Shares</string>
+    <string name="keep_paste_shares">Paste both shares. The key they make is checked against the published one before anything is listed.</string>
+    <string name="keep_open_recovery_key">Open the recovery key</string>
+    <string name="keep_recover_footer">Listing and joining are recorded under your name. Rotate the vault afterwards if a member should no longer hold it.</string>
+    <string name="keep_recovery_vaults">Vaults with a recovery copy</string>
+    <string name="keep_none">None.</string>
+    <string name="keep_no_members">No members</string>
+    <string name="keep_joined">Joined</string>
+    <string name="keep_member">Member</string>
+    <string name="keep_join">Join</string>
+    <string name="keep_shares_wrong">These shares do not make the published recovery key.</string>
+    <!-- An agent's release (keep#5): Sources/KeepReleaseSheet.swift and ReleaseRequestCard. -->
+    <string name="keep_release_title">%1$s asks for %2$s</string>
+    <string name="keep_release_card">Keep request</string>
+    <string name="keep_release_vault">Vault</string>
+    <string name="keep_release_task">Task</string>
+    <string name="keep_release_why">Why</string>
+    <string name="keep_release_asked_for">Asked for</string>
+    <string name="keep_release_agent">Agent</string>
+    <string name="keep_release_item">Item</string>
+    <string name="keep_release_ends_in">Ends in</string>
+    <string name="keep_release_15_minutes">15 minutes</string>
+    <string name="keep_release_1_hour">1 hour</string>
+    <string name="keep_release_4_hours">4 hours</string>
+    <string name="keep_release_24_hours">24 hours</string>
+    <string name="keep_release_approve">Approve</string>
+    <string name="keep_release_approving">Approving…</string>
+    <string name="keep_release_end_now">End now</string>
+    <string name="keep_release_ending">Ending…</string>
+    <string name="keep_release_ended_by">Ended by %1$s.</string>
+    <string name="keep_release_used_until">Used. Approved by %1$s until %2$s.</string>
+    <string name="keep_release_used">Used. Approved by %1$s.</string>
+    <string name="keep_release_expired">Expired. Approved by %1$s.</string>
+    <string name="keep_release_approved_until">Approved by %1$s until %2$s.</string>
+    <string name="keep_release_card_failed">Couldn’t update the card. Approve again.</string>
+</resources>

@@ -1,0 +1,31 @@
+{
+  "name": "@keep/api",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev -c wrangler.local.jsonc --port 8789",
+    "deploy": "wrangler deploy",
+    "deploy:env": "wrangler deploy --env",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "db:create": "wrangler d1 create keep",
+    "db:migrate:local": "wrangler d1 migrations apply keep --local -c wrangler.local.jsonc",
+    "db:migrate": "wrangler d1 migrations apply keep --remote",
+    "db:migrate:env": "wrangler d1 migrations apply DB --remote --env",
+    "db:console": "wrangler d1 execute keep --local -c wrangler.local.jsonc --command"
+  },
+  "dependencies": {
+    "@keep/contracts": "workspace:*",
+    "jose": "6.2.12",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "0.21.1",
+    "@keep/crypto": "workspace:*",
+    "@cloudflare/workers-types": "5.20260918.1",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10",
+    "wrangler": "4.135.0"
+  }
+}

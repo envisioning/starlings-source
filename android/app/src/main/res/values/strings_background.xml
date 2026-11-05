@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Background effects in calls (background/): sentences from the iOS catalog,
+  Resources/Localizable.xcstrings, with its pt-BR values. The errors stay
+  English, as every error (AGENTS.md).
+-->
+<resources>
+    <string name="background">Background</string>
+    <string name="background_none">None</string>
+    <string name="background_blur">Blur</string>
+    <string name="background_pixels">Pixels</string>
+    <string name="background_flock">Flock</string>
+    <string name="background_grid">Grid</string>
+    <string name="background_tone_night">Night</string>
+    <string name="background_tone_lime">Lime</string>
+    <string name="background_tone_ice">Ice</string>
+    <string name="background_tone_dark">Dark</string>
+    <string name="background_tone_accent">Accent</string>
+    <string name="background_tone_bright">Bright</string>
+    <!-- `BackgroundChoice.displayName`: generator · tone. -->
+    <string name="background_choice" translatable="false">%1$s · %2$s</string>
+    <string name="background_workspace_picture">Workspace picture</string>
+    <string name="background_my_image">My image</string>
+    <string name="background_choose_image">Choose image…</string>
+    <string name="background_replace_image">Replace image…</string>
+    <string name="background_remove_image">Remove image</string>
+    <string name="background_error_title" translatable="false">Couldn’t use that image</string>
+    <!-- The catalog's sentence with a full stop for its dash: no em dashes in rendered copy. -->
+    <string name="background_error_too_large" translatable="false">That image is too large. 12 MB is the limit.</string>
+    <string name="background_error_unreadable" translatable="false">That file is not an image this device can read.</string>
+    <string name="background_error_store" translatable="false">Couldn’t save that background.</string>
+</resources>

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "kinds": {
+    "project": {
+      "statuses": [
+        "Active",
+        "Paused",
+        "Archived"
+      ],
+      "open": [
+        "Active",
+        "Paused"
+      ],
+      "closed": [
+        "Archived"
+      ],
+      "filter": [
+        "open",
+        "Active",
+        "Paused",
+        "Archived",
+        "all"
+      ],
+      "defaultFilter": "open",
+      "defaultStatus": "Active"
+    },
+    "lead": {
+      "statuses": [
+        "Conversations",
+        "Opportunity Identified",
+        "Proposal Out",
+        "Active Negotiation",
+        "Waiting on External Factor",
+        "Closed Won",
+        "Closed Lost"
+      ],
+      "open": [
+        "Conversations",
+        "Opportunity Identified",
+        "Proposal Out",
+        "Active Negotiation",
+        "Waiting on External Factor"
+      ],
+      "closed": [
+        "Closed Won",
+        "Closed Lost"
+      ],
+      "filter": [
+        "open",
+        "Conversations",
+        "Opportunity Identified",
+        "Proposal Out",
+        "Active Negotiation",
+        "Waiting on External Factor",
+        "Closed Won",
+        "Closed Lost",
+        "all"
+      ],
+      "defaultFilter": "open",
+      "defaultStatus": "Conversations"
+    }
+  }
+}

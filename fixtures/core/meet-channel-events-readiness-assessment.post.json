@@ -1,0 +1,9 @@
+{
+  "subject": {
+    "kind": "lead",
+    "id": "aaaaaaaa-0000-4000-8000-000000000002"
+  },
+  "type": "event",
+  "text": "New Future Readiness Assessment: Example Partners - 72%",
+  "idempotency_key": "crm:readiness-assessment:aaaaaaaa-0000-4000-8000-000000000005:submitted"
+}

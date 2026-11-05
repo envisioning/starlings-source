@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "layers": [
+    { "kind": "events", "title": "Events", "caption": "Published company events" },
+    { "kind": "milestones", "title": "Milestones", "caption": "Project milestones" },
+    { "kind": "tasks", "title": "Tasks", "caption": "Dated tasks" },
+    { "kind": "availability", "title": "Availability", "caption": "When guests can book you" }
+  ],
+  "travelMinutes": [0, 15, 30, 45, 60],
+  "rsvpAnswers": [
+    { "response": "accepted", "title": "Accept" },
+    { "response": "tentative", "title": "Maybe" },
+    { "response": "declined", "title": "Decline" }
+  ],
+  "scheduleTimeZones": [
+    { "id": "losAngeles", "zone": "America/Los_Angeles", "city": "Los Angeles", "code": "LAX" },
+    { "id": "newYork", "zone": "America/New_York", "city": "New York", "code": "NYC" },
+    { "id": "saoPaulo", "zone": "America/Sao_Paulo", "city": "São Paulo", "code": "SAO" },
+    { "id": "lisbon", "zone": "Europe/Lisbon", "city": "Lisbon", "code": "LIS" },
+    { "id": "london", "zone": "Europe/London", "city": "London", "code": "LON" },
+    { "id": "amsterdam", "zone": "Europe/Amsterdam", "city": "Amsterdam", "code": "AMS" },
+    { "id": "riyadh", "zone": "Asia/Riyadh", "city": "Riyadh", "code": "RUH" },
+    { "id": "dubai", "zone": "Asia/Dubai", "city": "Dubai", "code": "DXB" },
+    { "id": "mumbai", "zone": "Asia/Kolkata", "city": "Mumbai", "code": "BOM" },
+    { "id": "tokyo", "zone": "Asia/Tokyo", "city": "Tokyo", "code": "TYO" }
+  ]
+}

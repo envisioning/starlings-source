@@ -1,0 +1,680 @@
+{
+  "version": 1,
+  "base": {
+    "now": 1000,
+    "workspace_id": "workspace-a",
+    "authenticated_agent_sub": "agent:steward@agents.a.starlings.example",
+    "installation": {
+      "id": "installation-a",
+      "workspace_id": "workspace-a",
+      "role": "meeting_follow_through",
+      "source": "starlings_managed",
+      "agent_sub": "agent:steward@agents.a.starlings.example",
+      "agent_email": "steward@agents.a.starlings.example",
+      "display_name": "Steward",
+      "state": "ready",
+      "kind": "agent"
+    },
+    "grant": {
+      "id": "grant-a",
+      "workspace_id": "workspace-a",
+      "installation_id": "installation-a",
+      "agent_sub": "agent:steward@agents.a.starlings.example",
+      "authorized_by_sub": "human-a",
+      "kind": "built_in_product",
+      "meeting_id": "meeting-a",
+      "room_slug": "room-a",
+      "source_revision": "transcript-r1",
+      "operations": [
+        "read_finalized",
+        "propose_notes",
+        "draft_follow_up"
+      ],
+      "issued_at": 500,
+      "expires_at": 2000,
+      "revoked_at": null
+    },
+    "invocation": {
+      "id": "run-a",
+      "kind": "built_in_product",
+      "workspace_id": "workspace-a",
+      "installation_id": "installation-a",
+      "agent_sub": "agent:steward@agents.a.starlings.example",
+      "actor_sub": "human-a",
+      "meeting_id": "meeting-a",
+      "room_slug": "room-a",
+      "source_revision": "transcript-r1",
+      "grant_id": "grant-a",
+      "operation": "propose_notes",
+      "causation_id": "finalize-a"
+    },
+    "meeting": {
+      "id": "meeting-a",
+      "room_slug": "room-a",
+      "source_revision": "transcript-r1",
+      "ended_at": 900,
+      "owner_sub": "human-a",
+      "personal": false,
+      "filed": true
+    },
+    "human": {
+      "sub": "human-a",
+      "kind": "human",
+      "role": "member",
+      "revoked": false
+    },
+    "subject_access": {
+      "human": "write",
+      "agent": "write"
+    },
+    "manual_request": null,
+    "finalization_event": {
+      "id": "finalize-a",
+      "meeting_id": "meeting-a",
+      "room_slug": "room-a",
+      "source_revision": "transcript-r1"
+    }
+  },
+  "cases": [
+    {
+      "name": "included product processing on a filed meeting",
+      "patch": {},
+      "reason": "allowed"
+    },
+    {
+      "name": "an exact product grant covers the owner's unfiled meeting",
+      "patch": {
+        "meeting": {
+          "filed": false
+        },
+        "subject_access": null
+      },
+      "reason": "allowed"
+    },
+    {
+      "name": "unfiled product grant is not another member's access",
+      "patch": {
+        "meeting": {
+          "filed": false,
+          "owner_sub": "human-b"
+        },
+        "subject_access": null
+      },
+      "reason": "not_meeting_owner"
+    },
+    {
+      "name": "even product processing refuses a personal meeting",
+      "patch": {
+        "meeting": {
+          "personal": true
+        }
+      },
+      "reason": "personal_meeting"
+    },
+    {
+      "name": "live text is not an ended artifact",
+      "patch": {
+        "meeting": {
+          "ended_at": null
+        }
+      },
+      "reason": "meeting_not_finalized"
+    },
+    {
+      "name": "a future end timestamp is not finalization",
+      "patch": {
+        "meeting": {
+          "ended_at": 1100
+        }
+      },
+      "reason": "meeting_not_finalized"
+    },
+    {
+      "name": "freeze stops automatic work",
+      "patch": {
+        "installation": {
+          "state": "frozen"
+        }
+      },
+      "reason": "agent_unavailable"
+    },
+    {
+      "name": "removed agents never run",
+      "patch": {
+        "installation": {
+          "state": "removed"
+        }
+      },
+      "reason": "agent_unavailable"
+    },
+    {
+      "name": "a provisioning row is not readiness",
+      "patch": {
+        "installation": {
+          "state": "provisioning"
+        }
+      },
+      "reason": "agent_unavailable"
+    },
+    {
+      "name": "pause stops automatic work",
+      "patch": {
+        "installation": {
+          "state": "paused"
+        }
+      },
+      "reason": "automatic_processing_paused"
+    },
+    {
+      "name": "revoked human cannot authorize a run",
+      "patch": {
+        "human": {
+          "revoked": true
+        }
+      },
+      "reason": "human_unavailable"
+    },
+    {
+      "name": "software is never the accountable human",
+      "patch": {
+        "human": {
+          "kind": "agent"
+        }
+      },
+      "reason": "human_unavailable"
+    },
+    {
+      "name": "community role cannot authorize meeting processing",
+      "patch": {
+        "human": {
+          "role": "community"
+        }
+      },
+      "reason": "human_unavailable"
+    },
+    {
+      "name": "unknown human role denies",
+      "patch": {
+        "human": {
+          "role": "future-role"
+        }
+      },
+      "reason": "human_unavailable"
+    },
+    {
+      "name": "an event cannot substitute a different human",
+      "patch": {
+        "invocation": {
+          "actor_sub": "human-b"
+        }
+      },
+      "reason": "actor_mismatch"
+    },
+    {
+      "name": "expired grant denies at its exact boundary",
+      "patch": {
+        "grant": {
+          "expires_at": 1000
+        }
+      },
+      "reason": "grant_inactive"
+    },
+    {
+      "name": "revoked grant denies",
+      "patch": {
+        "grant": {
+          "revoked_at": 800
+        }
+      },
+      "reason": "grant_inactive"
+    },
+    {
+      "name": "future grant denies",
+      "patch": {
+        "grant": {
+          "issued_at": 1100,
+          "expires_at": 2000
+        }
+      },
+      "reason": "grant_inactive"
+    },
+    {
+      "name": "grant from a different workspace denies",
+      "patch": {
+        "grant": {
+          "workspace_id": "workspace-b"
+        }
+      },
+      "reason": "scope_mismatch"
+    },
+    {
+      "name": "invocation from a different workspace denies",
+      "patch": {
+        "invocation": {
+          "workspace_id": "workspace-b"
+        }
+      },
+      "reason": "scope_mismatch"
+    },
+    {
+      "name": "an installation from another workspace denies",
+      "patch": {
+        "installation": {
+          "workspace_id": "workspace-b"
+        }
+      },
+      "reason": "scope_mismatch"
+    },
+    {
+      "name": "another caller's key cannot claim this installation",
+      "patch": {
+        "authenticated_agent_sub": "agent:other@agents.a.starlings.example"
+      },
+      "reason": "scope_mismatch"
+    },
+    {
+      "name": "old installation grant cannot authorize a reinstall",
+      "patch": {
+        "grant": {
+          "installation_id": "installation-old"
+        }
+      },
+      "reason": "scope_mismatch"
+    },
+    {
+      "name": "a grant never authorizes another room",
+      "patch": {
+        "grant": {
+          "room_slug": "room-b"
+        }
+      },
+      "reason": "scope_mismatch"
+    },
+    {
+      "name": "a grant never authorizes another meeting",
+      "patch": {
+        "grant": {
+          "meeting_id": "meeting-b"
+        }
+      },
+      "reason": "scope_mismatch"
+    },
+    {
+      "name": "new source text needs new authority",
+      "patch": {
+        "meeting": {
+          "source_revision": "transcript-r2"
+        }
+      },
+      "reason": "scope_mismatch"
+    },
+    {
+      "name": "a callback cannot replace the grant id",
+      "patch": {
+        "invocation": {
+          "grant_id": "grant-other"
+        }
+      },
+      "reason": "scope_mismatch"
+    },
+    {
+      "name": "read-only agent cannot propose a result",
+      "patch": {
+        "subject_access": {
+          "agent": "read"
+        }
+      },
+      "reason": "subject_access_denied"
+    },
+    {
+      "name": "unreachable subject denies even for a valid grant",
+      "patch": {
+        "subject_access": {
+          "human": "none"
+        }
+      },
+      "reason": "subject_access_denied"
+    },
+    {
+      "name": "missing filed-subject access denies",
+      "patch": {
+        "subject_access": null
+      },
+      "reason": "subject_access_denied"
+    },
+    {
+      "name": "read-only subject permits a source read",
+      "patch": {
+        "invocation": {
+          "operation": "read_finalized"
+        },
+        "subject_access": {
+          "human": "read",
+          "agent": "read"
+        }
+      },
+      "reason": "allowed"
+    },
+    {
+      "name": "operation outside the grant denies",
+      "patch": {
+        "invocation": {
+          "operation": "explain_notes"
+        }
+      },
+      "reason": "operation_not_granted"
+    },
+    {
+      "name": "unknown operations never become permissions",
+      "patch": {
+        "invocation": {
+          "operation": "accept_task"
+        }
+      },
+      "reason": "invalid_contract"
+    },
+    {
+      "name": "broad writes cannot be placed in a grant",
+      "patch": {
+        "grant": {
+          "operations": [
+            "accept_task"
+          ]
+        }
+      },
+      "reason": "invalid_contract"
+    },
+    {
+      "name": "duplicate operation grants are malformed",
+      "patch": {
+        "grant": {
+          "operations": [
+            "read_finalized",
+            "read_finalized"
+          ]
+        }
+      },
+      "reason": "invalid_contract"
+    },
+    {
+      "name": "customer subscriptions do not use the product grant",
+      "patch": {
+        "invocation": {
+          "kind": "subscription"
+        }
+      },
+      "reason": "unsupported_invocation"
+    },
+    {
+      "name": "manual assistance needs a matching grant class",
+      "patch": {
+        "invocation": {
+          "kind": "manual"
+        }
+      },
+      "reason": "scope_mismatch"
+    },
+    {
+      "name": "manual assistance cannot fabricate a new request",
+      "patch": {
+        "grant": {
+          "kind": "manual",
+          "operations": [
+            "read_finalized",
+            "explain_notes"
+          ]
+        },
+        "invocation": {
+          "kind": "manual",
+          "operation": "explain_notes",
+          "causation_id": "request-a"
+        }
+      },
+      "reason": "manual_request_required"
+    },
+    {
+      "name": "a fresh scoped manual question is allowed",
+      "patch": {
+        "grant": {
+          "kind": "manual",
+          "operations": [
+            "read_finalized",
+            "explain_notes"
+          ]
+        },
+        "invocation": {
+          "kind": "manual",
+          "operation": "explain_notes",
+          "causation_id": "request-a"
+        },
+        "manual_request": {
+          "id": "request-a",
+          "actor_sub": "human-a",
+          "meeting_id": "meeting-a",
+          "room_slug": "room-a",
+          "source_revision": "transcript-r1",
+          "operation": "explain_notes"
+        }
+      },
+      "reason": "allowed"
+    },
+    {
+      "name": "pause leaves manual assistance available",
+      "patch": {
+        "installation": {
+          "state": "paused"
+        },
+        "grant": {
+          "kind": "manual",
+          "operations": [
+            "read_finalized",
+            "explain_notes"
+          ]
+        },
+        "invocation": {
+          "kind": "manual",
+          "operation": "explain_notes",
+          "causation_id": "request-a"
+        },
+        "manual_request": {
+          "id": "request-a",
+          "actor_sub": "human-a",
+          "meeting_id": "meeting-a",
+          "room_slug": "room-a",
+          "source_revision": "transcript-r1",
+          "operation": "explain_notes"
+        }
+      },
+      "reason": "allowed"
+    },
+    {
+      "name": "manual question cannot reuse a request from another actor",
+      "patch": {
+        "grant": {
+          "kind": "manual",
+          "operations": [
+            "explain_notes"
+          ]
+        },
+        "invocation": {
+          "kind": "manual",
+          "operation": "explain_notes",
+          "causation_id": "request-a"
+        },
+        "manual_request": {
+          "id": "request-a",
+          "actor_sub": "human-b",
+          "meeting_id": "meeting-a",
+          "room_slug": "room-a",
+          "source_revision": "transcript-r1",
+          "operation": "explain_notes"
+        }
+      },
+      "reason": "manual_request_required"
+    },
+    {
+      "name": "manual agent chat never opens an unfiled meeting",
+      "patch": {
+        "grant": {
+          "kind": "manual",
+          "operations": [
+            "explain_notes"
+          ]
+        },
+        "invocation": {
+          "kind": "manual",
+          "operation": "explain_notes",
+          "causation_id": "request-a"
+        },
+        "meeting": {
+          "filed": false
+        },
+        "subject_access": null
+      },
+      "reason": "unfiled_manual_access_denied"
+    },
+    {
+      "name": "a forged managed origin is malformed",
+      "patch": {
+        "installation": {
+          "source": "enrolled"
+        }
+      },
+      "reason": "invalid_contract"
+    },
+    {
+      "name": "empty causal identity is malformed",
+      "patch": {
+        "invocation": {
+          "causation_id": ""
+        }
+      },
+      "reason": "invalid_contract"
+    },
+    {
+      "name": "renaming does not change authority",
+      "patch": {
+        "installation": {
+          "display_name": "Workspace helper"
+        }
+      },
+      "reason": "allowed"
+    },
+    {
+      "name": "a fabricated finalize cause cannot invoke work",
+      "patch": {
+        "finalization_event": null
+      },
+      "reason": "finalization_event_required"
+    },
+    {
+      "name": "an event from another meeting cannot invoke work",
+      "patch": {
+        "finalization_event": {
+          "meeting_id": "meeting-b"
+        }
+      },
+      "reason": "finalization_event_required"
+    },
+    {
+      "name": "an invalid finalized timestamp denies",
+      "patch": {
+        "meeting": {
+          "ended_at": -1
+        }
+      },
+      "reason": "meeting_not_finalized"
+    },
+    {
+      "name": "an address cannot turn a human roster row into an agent",
+      "patch": {
+        "installation": {
+          "kind": "human"
+        }
+      },
+      "reason": "invalid_contract"
+    },
+    {
+      "name": "missing filing state cannot bypass subject checks",
+      "patch": {
+        "meeting": {
+          "filed": null
+        },
+        "subject_access": null
+      },
+      "reason": "invalid_contract"
+    },
+    {
+      "name": "an admin is an eligible accountable human",
+      "patch": {
+        "human": {
+          "role": "admin"
+        }
+      },
+      "reason": "allowed"
+    },
+    {
+      "name": "source reads do not inherit write permission",
+      "patch": {
+        "subject_access": {
+          "human": "read",
+          "agent": "read"
+        }
+      },
+      "reason": "subject_access_denied"
+    },
+    {
+      "name": "a fresh manual correction may propose revised notes",
+      "patch": {
+        "grant": {
+          "kind": "manual",
+          "operations": [
+            "revise_notes"
+          ]
+        },
+        "invocation": {
+          "kind": "manual",
+          "operation": "revise_notes",
+          "causation_id": "request-a"
+        },
+        "manual_request": {
+          "id": "request-a",
+          "actor_sub": "human-a",
+          "meeting_id": "meeting-a",
+          "room_slug": "room-a",
+          "source_revision": "transcript-r1",
+          "operation": "revise_notes"
+        }
+      },
+      "reason": "allowed"
+    },
+    {
+      "name": "freeze also refuses a fresh manual request",
+      "patch": {
+        "grant": {
+          "kind": "manual",
+          "operations": [
+            "revise_notes"
+          ]
+        },
+        "invocation": {
+          "kind": "manual",
+          "operation": "revise_notes",
+          "causation_id": "request-a"
+        },
+        "manual_request": {
+          "id": "request-a",
+          "actor_sub": "human-a",
+          "meeting_id": "meeting-a",
+          "room_slug": "room-a",
+          "source_revision": "transcript-r1",
+          "operation": "revise_notes"
+        },
+        "installation": {
+          "state": "frozen"
+        }
+      },
+      "reason": "agent_unavailable"
+    }
+  ]
+}

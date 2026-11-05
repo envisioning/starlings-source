@@ -1,0 +1,32 @@
+{
+  "name": "@docs/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 8788",
+    "deploy": "wrangler deploy",
+    "deploy:env": "wrangler deploy --env",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.scripts.json --noEmit",
+    "test": "vitest run",
+    "db:create": "wrangler d1 create docs",
+    "db:migrate:local": "wrangler d1 migrations apply docs --local",
+    "db:migrate": "wrangler d1 migrations apply docs --remote",
+    "db:migrate:env": "wrangler d1 migrations apply DB --remote --env",
+    "db:console": "wrangler d1 execute docs --local --command"
+  },
+  "dependencies": {
+    "@docs/contracts": "workspace:*",
+    "jose": "6.2.8",
+    "unpdf": "1.8.0",
+    "yaml": "2.9.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "0.21.1",
+    "@cloudflare/workers-types": "5.20260812.1",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10",
+    "wrangler": "4.121.0"
+  }
+}

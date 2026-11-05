@@ -1,0 +1,106 @@
+/*
+ * Keep's own CSS: the element rules, and nothing a utility can say.
+ *
+ * The tokens are Meet's (meet-tokens.css, copied by scripts/sync-meet-ui.mjs),
+ * the layer order and the shadcn names are Meet's (tailwind.css, ui-theme.css),
+ * and every screen draws with the kit and utilities. The rules below follow
+ * the base layer of Meet's web/src/styles.css, cut to what Keep has. They sit
+ * in `base`, so every utility beats them.
+ */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    min-width: 320px;
+    min-height: 100%;
+    margin: 0;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--surface-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Controls take the page's font. A size or weight utility still wins. */
+  :where(button, input, select, textarea) {
+    font: inherit;
+  }
+
+  /* `background-image` is in the list because the hover lift is a veil
+     layered over the resting background; without it the veil would pop. */
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  label,
+  a,
+  [role="button"],
+  tr,
+  td {
+    transition: color 200ms ease, background-color 200ms ease, background-image 200ms ease,
+      border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    label,
+    a,
+    [role="button"],
+    tr,
+    td {
+      transition: none;
+    }
+  }
+
+  /* Links take the colour of the text around them; the underline says "link". */
+  a {
+    color: inherit;
+    text-underline-offset: 3px;
+  }
+
+  ::selection {
+    color: var(--on-accent);
+    background: var(--accent);
+  }
+
+  /* The house focus outline. A kit component turns it off with its own
+     `outline-none` and draws its ring in `--ui-ring`, the same colour. */
+  :where(button, a, input, summary, [role="button"], tr[tabindex]):focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  /* Octa is the display face, on the page title only. */
+  h1 {
+    font-family: var(--font-display);
+    font-variation-settings: "wght" 620, "wdth" 104;
+    font-weight: 620;
+    letter-spacing: -0.01em;
+  }
+
+  code {
+    font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+    font-size: 0.9em;
+  }
+}
+
+/* iOS Safari zooms the page when a field under 16px takes focus. Unlayered,
+   so it beats the size utilities on the kit's Input. */
+@media (pointer: coarse) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}

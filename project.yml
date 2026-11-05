@@ -1,0 +1,1426 @@
+name: Starlings
+options:
+  bundleIdPrefix: com.starlingshq
+  deploymentTarget:
+    macOS: "14.0"
+    iOS: "17.0"
+  createIntermediateGroups: true
+  postGenCommand: |
+    scripts/version-env.sh --write-xcconfig
+    scripts/configure-xcode-scheme.sh
+  # Icon Composer packages must be a single file ref, not exploded folders.
+  fileTypes:
+    icon:
+      file: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    # Meet is Apple Silicon-only. Keep every locally built target on arm64;
+    # the packaging step also thins prebuilt framework slices before signing.
+    ARCHS: arm64
+    # Off so version-env.sh can run git and write Config/Version.xcconfig from
+    # Xcode build phases (sandbox blocks git + writes outside DerivedData).
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+    CODE_SIGN_STYLE: Automatic
+    # Keep every target aligned with Xcode's linker recommendation. AppKit
+    # selectors are referenced statically, so no Meet entry points rely on
+    # runtime-only discovery that dead stripping could remove.
+    DEAD_CODE_STRIPPING: YES
+    # Generate type-safe Image/Color accessors for the shared asset catalog.
+    ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: YES
+    # The app's accent is the lime, not the system blue (meet#140 follow-up):
+    # this is what NSPopUpButton, NSSwitch, table selection and SwiftUI's
+    # `Color.accentColor` inside hosted views draw with. macOS honours it
+    # while the person's System Settings accent is Multicolor; a picked
+    # system accent wins there by design, which is why every Meet-drawn
+    # selection still names EnvisioningAccent explicitly.
+    ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    # Generate type-safe symbols for manually managed String Catalog entries.
+    STRING_CATALOG_GENERATE_SYMBOLS: YES
+    # One String Catalog for every target (Resources/Localizable.xcstrings,
+    # meet#245 step 2). The compiler extracts every SwiftUI `Text("…")`,
+    # every `String(localized:)` and every literal handed to a
+    # `String.LocalizationValue` parameter into it on build; pt-BR entries
+    # are added there, never in code.
+    SWIFT_EMIT_LOC_STRINGS: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    # DEVELOPMENT_TEAM, the signing switch, the production host and the Google
+    # client IDs live in Config/Starlings.xcconfig and its overlay. Setting them
+    # here would override both, because project settings win over a project
+    # xcconfig.
+    # MARKETING_VERSION / CURRENT_PROJECT_VERSION live only in
+    # Config/Version.xcconfig (scripts/version-env.sh). Setting them here would
+    # override the xcconfig and freeze CFBundleVersion at a literal.
+    CODE_SIGN_IDENTITY: Apple Development
+    # The app's bundle ID (meet#735). Every target's is this plus a suffix,
+    # and the App Group is `group.` plus this. The same value is
+    # NATIVE_APP_BUNDLE_ID in packages/contracts/src/native-app.ts (what the
+    # Swift code and the Worker read) and STARLINGS_BUNDLE_ID in
+    # scripts/app-names.sh (the release scripts): change all three together.
+    STARLINGS_BUNDLE_ID: com.starlingshq.app
+configFiles:
+  Debug: Config/Starlings.xcconfig
+  Release: Config/Starlings.xcconfig
+packages:
+  # The shared Envisioning layer: the mark, Octa, the accent and its rule.
+  # Resolved from GitHub, not a sibling directory: a relative path only builds on
+  # a machine with both repos checked out side by side, so CI and anyone else
+  # cannot. Tracks main rather than a tag, because two apps are still shaping
+  # this package and a pin would strand whichever one is not cutting it.
+  #
+  # The cost is real and worth knowing: a package edit now has to be committed
+  # and pushed before either app sees it — and pushing is not always enough,
+  # because a stale SPM checkout outlives a correct Package.resolved. See
+  # landmine 16 in AGENTS.md before concluding the package is behind.
+  EnvisioningUI:
+    url: https://github.com/envisioning/envisioning-ui.git
+    branch: main
+  # Core's registry-driven CRM — the data layer and the entity screens — so
+  # Work can show everything in Core, not only the projects and leads the
+  # Worker projects. Same branch-tracking trade-off as EnvisioningUI, same
+  # landmine.
+  CoreKit:
+    url: https://github.com/envisioning/core-kit.git
+    branch: main
+  FluidAudio:
+    url: https://github.com/FluidInference/FluidAudio
+    exactVersion: 0.15.5
+  LiveKit:
+    url: https://github.com/livekit/client-sdk-swift
+    exactVersion: 2.16.0
+  # The Swift side of packages/contracts: wire types generated from the zod
+  # schemas by `pnpm contracts:gen`. Local path, because it is this repo's own
+  # output and must move in the same commit as the schema it came from.
+  StarlingsContracts:
+    path: packages/contracts/swift
+targets:
+  Starlings-CLI:
+    type: tool
+    platform: macOS
+    sources:
+      - path: CLI
+      - path: Sources/StarlingsCLIProtocol.swift
+      # The socket's folder and the app's bundle ID (meet#797).
+      - path: Sources/AppFolders.swift
+      - path: Sources/Generated/SharedConstantsRegistry.swift
+    dependencies:
+      - package: StarlingsContracts
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(STARLINGS_BUNDLE_ID).cli
+        PRODUCT_NAME: starlings
+        # Not `starlings`: on a case-insensitive disk that module would take
+        # the path of the app's `Starlings.swiftmodule` in Build/Products.
+        PRODUCT_MODULE_NAME: StarlingsCommandLine
+    preBuildScripts:
+      # A build folder made before 2026-10-20 holds the CLI's old
+      # `starlings.swiftmodule`. The app's `Starlings.swiftmodule` lands in it,
+      # and `@testable import Starlings` then fails to resolve. Remove only the
+      # lowercase folder; the app's own folder has a capital S.
+      - name: Drop stale starlings.swiftmodule
+        basedOnDependencyAnalysis: false
+        script: |
+          if ls "${BUILT_PRODUCTS_DIR}" 2>/dev/null | grep -qx 'starlings.swiftmodule'; then
+            rm -rf "${BUILT_PRODUCTS_DIR}/starlings.swiftmodule"
+          fi
+  Starlings:
+    type: application
+    platform: macOS
+    configFiles:
+      Debug: Config/Starlings.xcconfig
+      Release: Config/Starlings.xcconfig
+    sources:
+      - path: Sources
+      - path: Resources/Assets.xcassets
+        type: folder
+        buildPhase: resources
+      # The one String Catalog, shared by every target (meet#245).
+      - path: Resources/Localizable.xcstrings
+        buildPhase: resources
+      # Permission reasons differ on Mac and iOS; each bundle owns its table.
+      - path: Resources/InfoPlist.xcstrings
+        buildPhase: resources
+      - path: Resources/Flags
+        type: folder
+        buildPhase: resources
+      - path: Resources/starlings.icon
+        buildPhase: resources
+      # Two knuckle raps, played when somebody knocks on this room. Synthesised
+      # rather than sampled — see scripts/make-knock-sound.py. It has to land
+      # flat in Contents/Resources: both NSSound and UNNotificationSound look it
+      # up by bare name, and a folder reference would hide it.
+      - path: Resources/Sounds/knock.wav
+        buildPhase: resources
+      # A wave from a colleague, and the room noticing you arrive. Same flat
+      # placement and the same reason as the knock — see the note above and
+      # scripts/make-wave-sound.py / scripts/make-welcome-sound.py.
+      - path: Resources/Sounds/wave.wav
+        buildPhase: resources
+      - path: Resources/Sounds/welcome.wav
+        buildPhase: resources
+      # The shared Upcoming knobs are also imported by the Worker and web.
+      - path: packages/contracts/src/upcoming-config.json
+        buildPhase: resources
+      # The Docs graph's limits, folder palette and layout are shared with web.
+      - path: packages/contracts/src/docs-graph-config.json
+        buildPhase: resources
+      # App cannot replace its own bundle while running — the script quits,
+      # verifies notarization + Team ID (STARLINGS_TEAM_ID in the Info.plist),
+      # ditto's into /Applications, reopens.
+      # See docs/UPDATER.md.
+      - path: scripts/update-app.sh
+        buildPhase: resources
+    dependencies:
+      - target: Starlings-CLI
+      - package: EnvisioningUI
+      - package: CoreKit
+        product: CoreKit
+      - package: CoreKit
+        product: CoreCRMUI
+      - package: CoreKit
+        product: DocsKit
+      - package: CoreKit
+        product: DocsUI
+      - package: CoreKit
+        product: KeepKit
+      - package: CoreKit
+        product: KeepUI
+      - package: FluidAudio
+      - package: LiveKit
+      - package: StarlingsContracts
+      - sdk: IOKit.framework
+      - sdk: EventKit.framework
+    info:
+      path: Config/Info.plist
+      properties:
+        CFBundleDisplayName: Starlings
+        # The languages the interface ships in (meet#245). The catalog decides
+        # what is drawn; this tells the system which to offer in Settings.
+        CFBundleLocalizations: [en, pt-BR]
+        # Build-setting refs (not literals) so Version.xcconfig / stamp scripts win.
+        # Must stay strings — Metal's telemetry path crashes on NSNumber versions.
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.business
+        LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
+        NSCameraUsageDescription: Starlings uses your camera so people in your meeting can see you.
+        # Opt into Continuity Camera's dedicated device type so DiscoverySession
+        # can list iPhone cameras separately from the built-in FaceTime camera.
+        NSCameraUseContinuityCameraDeviceType: true
+        # Opt into Continuity Camera / Control Center video effects for this process.
+        # Portrait, Studio Light, and Background Replacement stay user-controlled;
+        # Center Stage can also be toggled from the app in cooperative mode.
+        NSCameraPortraitEffectEnabled: true
+        NSCameraStudioLightEnabled: true
+        NSCameraReactionEffectsEnabled: true
+        NSCameraReactionEffectGesturesEnabledDefault: false
+        # Required by ContactEmailDirectory's CNContactStore.requestAccess (attendee
+        # suggestions in the schedule sheet). macOS terminates the app on that call
+        # when the key is absent, so it travels with the feature — not optional copy.
+        NSContactsUsageDescription: Starlings uses Contacts to suggest attendees when you schedule a meeting.
+        NSCalendarsUsageDescription: Starlings shows your iCloud and On My Mac calendars in the Calendar window. Event details stay on this Mac.
+        NSCalendarsFullAccessUsageDescription: Starlings shows your iCloud and On My Mac calendars in the Calendar window. Event details stay on this Mac.
+        NSMicrophoneUsageDescription: Starlings uses your microphone so people in your meeting can hear you and to provide live captions.
+        NSScreenCaptureUsageDescription: Starlings uses Screen Recording access to share the screen or window you choose with people in your meeting.
+        # The system-audio grant for ambient capture (docs/AMBIENT_CAPTURE.md).
+        # Without this string macOS never asks and the tap delivers silence.
+        NSAudioCaptureUsageDescription: Starlings captures the audio of a meeting you are in so it can write the notes. Nothing is recorded; the audio is transcribed on this Mac and discarded.
+        NSHighResolutionCapable: true
+        NSSupportsAutomaticGraphicsSwitching: true
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        MEET_API_ENDPOINT: "$(MEET_API_ENDPOINT)"
+        MEET_WEB_ORIGIN: "$(MEET_WEB_ORIGIN)"
+        MEET_ALLOW_DEV_AUTH: "$(MEET_ALLOW_DEV_AUTH)"
+        MEET_GOOGLE_NATIVE_CLIENT_ID: "$(MEET_GOOGLE_NATIVE_CLIENT_ID)"
+        MEET_GOOGLE_REDIRECT_SCHEME: "$(MEET_GOOGLE_REDIRECT_SCHEME)"
+        # UpdateCheck.swift and update-app.sh read these from the bundle.
+        STARLINGS_UPDATE_FEED_URL: "$(STARLINGS_UPDATE_FEED_URL)"
+        STARLINGS_TEAM_ID: "$(DEVELOPMENT_TEAM)"
+        CFBundleURLTypes:
+          - CFBundleTypeRole: Editor
+            CFBundleURLName: $(STARLINGS_BUNDLE_ID).oauth
+            CFBundleURLSchemes:
+              - "$(MEET_GOOGLE_REDIRECT_SCHEME)"
+    settings:
+      base:
+        # Not an `entitlements:` block: XcodeGen would write that path over this
+        # setting, and the overlay must choose the file. Both copies are kept by
+        # hand. Not App Sandboxed since 3.8.3 (docs/AMBIENT_CAPTURE.md): reading
+        # who is speaking in a Zoom window needs the Accessibility grant, which
+        # the sandbox does not allow. Hardened runtime stays, and the file holds
+        # its resource-access declarations; each still prompts through TCC: audio
+        # input, camera, Contacts for the schedule sheet's guest autocomplete
+        # (emails only, never logged), and EventKit for the Calendar window.
+        #
+        # The overlay's copy adds associated domains, for Keep's passkeys. A
+        # restricted entitlement: it only launches with a provisioning profile
+        # that grants it. Xcode's automatic signing embeds a Mac development
+        # profile (this Mac, your account); build-app.sh strips the key on both
+        # of its paths until a Developer ID profile with Associated Domains
+        # exists (docs/KEEP.md). So build-app.sh signs with the public file.
+        CODE_SIGN_ENTITLEMENTS: $(STARLINGS_ENTITLEMENTS_DIR)/Starlings.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: $(STARLINGS_BUNDLE_ID)
+        # Starlings.app: the file, CFBundleName, the Dock and the app switcher
+        # (meet#797). The Swift module is Starlings too.
+        PRODUCT_NAME: Starlings
+        PRODUCT_MODULE_NAME: Starlings
+        # Meet ships for Apple Silicon only; do not produce an Intel slice.
+        ARCHS: arm64
+        # Not sandboxed since 3.8.3: Accessibility (reading Zoom's window for
+        # who is speaking) is not available to a sandboxed app. Hardened
+        # runtime stays; the entitlements file carries the resource grants.
+        ENABLE_APP_SANDBOX: NO
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: starlings
+        ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS: NO
+      configs:
+        Debug:
+          ENABLE_HARDENED_RUNTIME: YES
+          MEET_ALLOW_DEV_AUTH: YES
+        Release:
+          ENABLE_HARDENED_RUNTIME: YES
+          MEET_ALLOW_DEV_AUTH: NO
+    preBuildScripts:
+      - name: Refresh Version.xcconfig
+        basedOnDependencyAnalysis: false
+        script: '"${SRCROOT}/scripts/version-env.sh" --write-xcconfig'
+    postCompileScripts:
+      - name: Stamp Apple version
+        basedOnDependencyAnalysis: false
+        script: '"${SRCROOT}/scripts/version-env.sh" --stamp-product'
+  StarlingsTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: Tests
+      # The shared upcoming-tier table, read by UpcomingTierFixtureTests. The
+      # TypeScript suite reads the same file from the repo.
+      - path: fixtures/upcoming-tiers.json
+        buildPhase: resources
+      # What a timed calendar tile says under its title (meet#610), read by
+      # CalendarTileFixtureTests. The web suite reads the same file.
+      - path: fixtures/calendar-tile.json
+        buildPhase: resources
+      # The background gallery's drawing rule (meet#862), read by
+      # BackgroundGalleryFixtureTests. The web suite reads the same file.
+      - path: fixtures/background-gallery.json
+        buildPhase: resources
+      # The meeting warning (meet#239), read by MeetingAlertFixtureTests on
+      # both targets.
+      - path: fixtures/meeting-alerts.json
+        buildPhase: resources
+      # Quick add (meet#235), read by QuickAddFixtureTests on both targets;
+      # the Worker's suite reads the same file.
+      - path: fixtures/quick-add.json
+        buildPhase: resources
+      # The shared work-order table, read by WorkItemFixtureTests. Same
+      # arrangement as the upcoming tiers: the TypeScript suite reads the very
+      # same file from the repo.
+      - path: fixtures/work-items.json
+        buildPhase: resources
+      # The shared Home order, read by HomeLayoutFixtureTests. Same arrangement.
+      - path: fixtures/home-layout.json
+        buildPhase: resources
+      # The shared search rule, read by SearchFixtureTests. Same arrangement.
+      - path: fixtures/search-rows.json
+        buildPhase: resources
+      # The shared Docs graph behavior and runtime settings, read by both ports.
+      - path: fixtures/docs-graph.json
+        buildPhase: resources
+      - path: packages/contracts/src/docs-graph-config.json
+        buildPhase: resources
+      # Goals and decisions (meet#261, #262), read by GoalsDecisionsFixtureTests.
+      - path: fixtures/goals-decisions.json
+        buildPhase: resources
+      # Who answers for a subject, read by ResponsibleFixtureTests.
+      - path: fixtures/responsible.json
+        buildPhase: resources
+      # The transcript name pass (meet#155), read by TranscriptNameLexiconTests.
+      - path: fixtures/transcript-names.json
+        buildPhase: resources
+      # The per-user subject-state rule, read by SubjectStateFixtureTests.
+      # The Worker's suite reads the same file.
+      - path: fixtures/subject-state.json
+        buildPhase: resources
+      # How a subject row reads, read by WorkRowFixtureTests on both targets.
+      - path: fixtures/work-rows.json
+        buildPhase: resources
+      # The task-row action registry, shared by native clients and the web port.
+      - path: fixtures/work-actions.json
+        buildPhase: resources
+      - path: fixtures/subject-kinds.json
+        buildPhase: resources
+      - path: fixtures/subject-context.json
+        buildPhase: resources
+      - path: fixtures/subject-status.json
+        buildPhase: resources
+      - path: fixtures/lead-qualification.json
+        buildPhase: resources
+      - path: fixtures/form-fields.json
+        buildPhase: resources
+      # The request policy both clients read, read by RequestPolicyFixtureTests (meet#597).
+      - path: fixtures/request-policy.json
+        buildPhase: resources
+      - path: fixtures/calendar-keys.json
+        buildPhase: resources
+      - path: fixtures/team-rail.json
+        buildPhase: resources
+      - path: fixtures/work-ranker.json
+        buildPhase: resources
+      - path: fixtures/browse-groups.json
+        buildPhase: resources
+      - path: fixtures/work-modules.json
+        buildPhase: resources
+      - path: fixtures/rail-blocks.json
+        buildPhase: resources
+      - path: fixtures/settings-pages.json
+        buildPhase: resources
+      # The setup checklist's steps (docs/ONBOARDING.md), read by SetupStepsFixtureTests.
+      - path: fixtures/setup-steps.json
+        buildPhase: resources
+      # Shared cross-client rule cases, read by RuleFixtureTests on both targets
+      # and by the web suite.
+      - path: fixtures/docs-slug.json
+        buildPhase: resources
+      - path: fixtures/participant-initials.json
+        buildPhase: resources
+      - path: fixtures/thread-markdown.json
+        buildPhase: resources
+      - path: fixtures/subject-query.json
+        buildPhase: resources
+      - path: fixtures/contact-query.json
+        buildPhase: resources
+      # Mention-recipient boundaries across native and web (#1065).
+      - path: fixtures/mention-matching.json
+        buildPhase: resources
+      # A transcript as a file and a link (meet#692), read by RuleFixtureTests.
+      - path: fixtures/transcript-export.json
+        buildPhase: resources
+      # Which destinations a client lists (meet#982), read by RuleFixtureTests.
+      - path: fixtures/surface-visibility.json
+        buildPhase: resources
+      - path: fixtures/workspace-defaults.json
+        buildPhase: resources
+      # starlings's same-user socket contract, compared against generated types.
+      - path: fixtures/cli-wire.json
+        buildPhase: resources
+      # Guest entry route responses, decoded by generated native wire models.
+      - path: fixtures/room-entry.json
+        buildPhase: resources
+      # The colour roles all three surfaces share (meet#599), read by
+      # SurfaceMirrorTests. The web suite and MobileColorTokensTests read the same file.
+      - path: fixtures/color-tokens.json
+        buildPhase: resources
+      # What the Worker really answers (meet#593): the bodies its route tests
+      # recorded, decoded by ResponseFixtureTests. The web and the Worker read
+      # the same folder.
+      - path: fixtures/responses
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - target: Starlings
+      - package: StarlingsContracts
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(STARLINGS_BUNDLE_ID).tests
+        GENERATE_INFOPLIST_FILE: YES
+        # Pins the workspace the tests read (Tests/HostedTestWorkspace.swift).
+        INFOPLIST_KEY_NSPrincipalClass: StarlingsTests.HostedTestWorkspace
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Starlings.app/Contents/MacOS/Starlings"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+  Starlings-iOS:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    configFiles:
+      Debug: Config/Starlings.xcconfig
+      Release: Config/Starlings.xcconfig
+    sources:
+      - path: iOS
+      # App Store privacy manifest (meet#328): UserDefaults (own + App
+      # Group), system uptime (face centering), file attributes (FluidAudio
+      # model files), and the data the app sends to the Worker.
+      - path: Config/Privacy/iOS/PrivacyInfo.xcprivacy
+        buildPhase: resources
+      # The one String Catalog, shared by every target (meet#245).
+      - path: Resources/Localizable.xcstrings
+        buildPhase: resources
+      - path: Resources/iOS/InfoPlist.xcstrings
+        buildPhase: resources
+      # The calendar core is shared verbatim with the Mac app: value types, week
+      # math, the EventKit reader, the control-plane wire, and the workspace that
+      # owns state and writes. Only the views are per-platform. Anything AppKit
+      # the calendar needs lives in Sources/CalendarAppKitChrome.swift, which is
+      # deliberately absent from this list.
+      - path: Sources/CalendarBackend.swift
+      # Last launch's months on disk, so a cold start paints the week it knew
+      # instead of an empty grid. Shared for the same reason the workspace is.
+      - path: Sources/CalendarEventCache.swift
+      - path: Sources/SnapshotStore.swift
+      - path: Sources/CalendarLayer.swift
+      - path: Sources/Generated/CalendarValuesRegistry.swift
+      - path: Sources/CalendarModels.swift
+      - path: Sources/StarlingsSemanticColors.swift
+      - path: Sources/CalendarSettings.swift
+      # Booking hours' defaults, limits and words (meet#1009); the views are per platform.
+      - path: Sources/BookingHours.swift
+      - path: Sources/SettingsRegistry.swift
+      - path: Sources/Generated/SettingsPagesRegistry.swift
+      # The setup checklist's steps (docs/ONBOARDING.md); Home draws them on both clients.
+      - path: Sources/Generated/SetupStepsRegistry.swift
+      - path: Sources/SetupChecklist.swift
+      - path: Sources/StarlingsAppearance.swift
+      # The language the interface is drawn in, owner-synced (meet#245).
+      - path: Sources/StarlingsLanguage.swift
+      - path: Sources/Generated/SharedConstantsRegistry.swift
+      # The folders the app writes and their names before the rename (meet#797).
+      - path: Sources/AppFolders.swift
+      # The Starlings wordmark and its flock, drawn from the registry the web
+      # draws too. Shared so first run and About read the same table.
+      - path: Sources/StarlingsWordmark.swift
+      - path: Sources/StarlingsGlyph.swift
+      - path: Sources/Generated/GatheringDotsRegistry.swift
+      - path: Sources/StarlingsDateFormatting.swift
+      # Whether Home draws its grid. Shared so the Mac launch surface and the
+      # iOS Home tab cannot disagree about what the setting is called or what
+      # it defaults to; the saved value stays per device.
+      - path: Sources/HomeTexturePreferences.swift
+      # And the lattice itself: one definition of the pitch, the baked
+      # variation, the seed and the motion timings, so Home reads the same on
+      # both clients.
+      - path: Sources/HomeGridLattice.swift
+      - path: Sources/CalendarWire.swift
+      - path: Sources/ContractsExtensions.swift
+      - path: Sources/OwnerAccessToken.swift
+      - path: Sources/GoalsDecisions.swift
+      # Who answers for a subject (docs/OWNERSHIP.md), shared with the Mac.
+      - path: Sources/Responsible.swift
+      # The follow-up's mail draft (meet#756), shared with the Mac.
+      - path: Sources/FollowUpMail.swift
+      - path: Sources/MeetingPlatformMarkGeometry.swift
+      - path: Sources/CalendarWindowPreferences.swift
+      - path: Sources/CalendarWorkspace.swift
+      - path: Sources/ChatModels.swift
+      # Direct-message wire types. Shared so a thread means the same thing in
+      # the Mac window and on the phone.
+      - path: Sources/DirectMessages.swift
+      # One `@mention` grammar for both clients — see MentionMatching.swift.
+      - path: Sources/MentionMatching.swift
+      # Whether a channel notifies on every message or only on a mention.
+      # Shared so the setting means the same thing on both; saved per device.
+      - path: Sources/MessageNotificationPreferences.swift
+      # How a transcript is arranged for reading — where a day starts, where the
+      # reader left off, which lines are one person speaking once. Shared for
+      # the same reason the wire types are: a conversation that groups
+      # differently on two screens is a conversation nobody trusts. The web
+      # answers to the same rules in web/src/conversation-model.ts.
+      - path: Sources/ThreadTranscript.swift
+      # And what a message is written in. One Markdown subset for the Mac, the
+      # phone and the browser (web/src/markdown.tsx), so a reply cannot render
+      # three ways. The AppKit renderer beside it stays out of this target.
+      - path: Sources/ThreadMarkdown.swift
+      # Which email domains count as Envisioning. Identity has to mean the
+      # same thing on the phone, on the Mac, and in the Worker.
+      - path: Sources/EnvisioningIdentity.swift
+      # Which workspace this install signs in to, and its mark (meet#903).
+      # Shared so the phone and the Mac read a workspace the same way.
+      - path: Sources/StarlingsWorkspace.swift
+      - path: Sources/StarlingsWorkspaceViews.swift
+      - path: Sources/WorkspaceMarkVector.swift
+      # Sign-in through the workspace's own web sign-in (meet#726), the
+      # same attempt and callback rules on both clients.
+      - path: Sources/WorkspaceSignIn.swift
+      # Add a workspace (meet#1038): the flow and its lookup line, shared
+      # by the iPhone sheet and the Mac sheet.
+      - path: Sources/AddWorkspaceFlow.swift
+      - path: Sources/AddWorkspaceViews.swift
+      # The door's workspace rows and Enter an address (meet#1169).
+      - path: Sources/WorkspaceDoorViews.swift
+      # Which workspace a room link belongs to, and the link carried across
+      # a change of workspace (meet#728).
+      - path: Sources/WorkspaceLinks.swift
+      # What a sign-out of one workspace, or of all, clears on the device
+      # (meet#903).
+      - path: Sources/WorkspaceSignOut.swift
+      # The workspace's accent shades, read from its descriptor (meet#717).
+      - path: Sources/WorkspaceAccent.swift
+      # What one workspace's Keychain items, caches and queue are filed
+      # under (meet#725), the same on both clients.
+      - path: Sources/WorkspaceScope.swift
+      - path: Sources/EventKitCalendarStore.swift
+      - path: Sources/ISODate.swift
+      - path: Sources/LocalMeetingTranscriber.swift
+      - path: Sources/MicrophoneProcessing.swift
+      - path: Sources/MeetingArtifactOutbox.swift
+      # The outbox's retry edge: network back (and wake on the Mac), meet#329.
+      - path: Sources/ConnectivityRecovery.swift
+      # MetricKit crash and hang reports to /api/diagnostics, meet#320.
+      - path: Sources/MetricKitReporter.swift
+      # The native tile icon and quality vocabulary are shared with the Mac.
+      - path: Sources/MeetingQuality.swift
+      # Client-side RTP byte meter shared by the native meeting clients.
+      - path: Sources/MeetingDownstreamUsage.swift
+      - path: Sources/StarlingsError.swift
+      # The request layer under both API clients: building, the bearer token,
+      # the error mapping, decoding and snapshot invalidation (meet#331).
+      - path: Sources/StarlingsHTTPTransport.swift
+      # Each area's routes, named once for both clients (meet#350 to #356).
+      - path: Sources/StarlingsCalendarRoutes.swift
+      - path: Sources/StarlingsWorkRoutes.swift
+      - path: Sources/ContactListFilter.swift
+      - path: Sources/ContactProfileDraft.swift
+      - path: Sources/StarlingsThreadRoutes.swift
+      - path: Sources/StarlingsPeerRoutes.swift
+      - path: Sources/StarlingsRoomRoutes.swift
+      - path: Sources/StarlingsDocsRoutes.swift
+      - path: Sources/StarlingsSettingsRoutes.swift
+      # The timeout, the retry rule and the lists each write clears: one table
+      # (meet#597). The generated half is the table as data.
+      - path: Sources/StarlingsRequestPolicy.swift
+      - path: Sources/Generated/RequestPolicyRegistry.swift
+      # One dismissible, 24-hour response-driven native upgrade notice.
+      - path: Sources/StarlingsUpgradeRecommendation.swift
+      # Every error carries Copy, on every surface. The clipboard text and the
+      # SwiftUI notice, alert and retry states are shared so the phone and the
+      # Mac's SwiftUI panes cannot drift; `StarlingsNoticeView` is the AppKit twin
+      # and stays behind.
+      - path: Sources/StarlingsErrorReport.swift
+      - path: Sources/StarlingsErrorNotice.swift
+      - path: Sources/StarlingsToastAction.swift
+      # What "upcoming" means. Shared because a Friday evening has to read the
+      # same way on the Mac and on the phone, and because the rules answer to
+      # one table of cases (fixtures/upcoming-tiers.json) rather than to a
+      # filter written twice.
+      # Background blur and the background gallery (meet#862). Vision person
+      # segmentation plus a LiveKit VideoProcessor, both cross-platform; the
+      # tone colours are CGColor precisely so this file needs no AppKit and no
+      # second copy. The gallery's tables are generated beside it.
+      - path: Sources/BackgroundGallery.swift
+      - path: Sources/WorkspaceBackgrounds.swift
+      - path: Sources/Generated/BackgroundGalleryRegistry.swift
+      # The in-memory diagnostic ring the suggestion engine writes to when an
+      # extraction fails. Foundation-only, and it never records transcript text
+      # or credentials — see docs/OPERATIONS.md.
+      - path: Sources/StarlingsDiagnosticsLog.swift
+      # CRM filing and the task suggestions the transcript proposes. All four
+      # are Foundation-only value types and one actor; the AppKit panels that
+      # render them on the Mac stay behind. FoundationModels is gated to
+      # macOS 26 / iOS 26 inside the extractor.
+      - path: Sources/MeetingCategory.swift
+      - path: Sources/Generated/MeetingKindsRegistry.swift
+      # The offer's words and the read parts Mac and iPhone share (meet#1282).
+      - path: Sources/Generated/OfferValuesRegistry.swift
+      - path: Sources/OfferParts.swift
+      - path: Sources/LicenseParts.swift
+      - path: Sources/Generated/TaskValuesRegistry.swift
+      - path: Sources/Generated/SubjectKindsRegistry.swift
+      # Compact CRM interaction rows used by the Work project/lead pane.
+      - path: Sources/WorkInteractions.swift
+      - path: Sources/SalesInbox.swift
+      - path: Sources/Generated/SalesValuesRegistry.swift
+      # What a pasted link turns into on a card, and which link in a message
+      # gets one. Shared because the Worker reads the page for all three
+      # clients — no device fetches a link somebody pasted — and because
+      # "which link" has to be the parser's answer, not a second pattern.
+      - path: Sources/LinkPreview.swift
+      # Raised hands: the attribute key, the staleness rule, and the queue
+      # order. Shared for the same reason the reaction palette is — a hand has
+      # to mean the same thing on the Mac, the phone and the web.
+      - path: Sources/MeetingHands.swift
+      # Which app each participant is on, decoded from the metadata the Worker
+      # stamps at mint. One vocabulary for the lobby badge and the People row.
+      - path: Sources/MeetingParticipantClient.swift
+      # Somebody's own picture behind them. Device-local on purpose — the web
+      # mirror in web/src/custom-background.ts explains why — and shared here
+      # because the scaling ceiling and the one-slot rule have to match.
+      - path: Sources/CustomBackground.swift
+      # A picture attached to a GitHub issue: the size cap, the types the
+      # Worker will vouch for, and the markdown line that goes in the body.
+      # Shared so the Mac and the phone write the same link.
+      - path: Sources/CrmIssueImage.swift
+      - path: Sources/GitHubReactions.swift
+      # Where in Work a surface can point, and what of your work is today's.
+      # Shared so Home and the menu bar name the same place on both devices.
+      - path: Sources/WorkSurface.swift
+      - path: Sources/Generated/WorkRankerRegistry.swift
+      # The follow / star / mute rule and its wire shapes (meet#147). Pure
+      # Foundation; iOS reads it when its rail lands (slice 7).
+      - path: Sources/SubjectState.swift
+      # The plan limit's words and the read-only rule (meet#765), shared with the Mac.
+      - path: Sources/WorkspacePlanNotice.swift
+      - path: Sources/Generated/WorkspacePlansRegistry.swift
+      # INBOX's wire shape and the glance helpers every badge reads (meet#147).
+      - path: Sources/AttentionQuestionState.swift
+      - path: Sources/WorkInbox.swift
+      - path: Sources/Generated/InboxSourcesRegistry.swift
+      - path: Sources/Generated/SubjectPanesRegistry.swift
+      # A subject Overview's groups and their order, shared with the Mac (meet#1061).
+      - path: Sources/Generated/SubjectOverviewGroupsRegistry.swift
+      # What an INBOX row's menu offers, shared with the Mac.
+      - path: Sources/WorkRowActions.swift
+      - path: Sources/Generated/WorkActionsRegistry.swift
+      # A subject's context blocks and their order, shared with the Mac (meet#570).
+      - path: Sources/SubjectContextBlocks.swift
+      - path: Sources/Generated/SubjectContextRegistry.swift
+      # The status words a project or a lead holds, and the choices built from them (meet#580).
+      - path: Sources/SubjectStatus.swift
+      - path: Sources/Generated/SubjectStatusRegistry.swift
+      # A lead's five qualification checks, the keys and how many are set (meet#625).
+      - path: Sources/LeadQualification.swift
+      - path: Sources/Generated/LeadQualificationRegistry.swift
+      # Work's form fields: captions, required, what a blank sends (fixtures/form-fields.json).
+      - path: Sources/FormFields.swift
+      - path: Sources/Generated/FormFieldsRegistry.swift
+      # Edit organization's draft and the patch it sends (meet#1211).
+      - path: Sources/OrganizationDraft.swift
+      # The keys calendar choices are stored under, and the rules that change them (meet#580).
+      - path: Sources/CalendarKeys.swift
+      - path: Sources/Generated/CalendarKeysRegistry.swift
+      # Team's rail order and which conversations trail it (meet#580).
+      - path: Sources/TeamRailRules.swift
+      - path: Sources/Generated/TeamRailRegistry.swift
+      # What Browse offers per group: status filter, sort, folded, Sales, saved key (meet#580).
+      - path: Sources/BrowseGroups.swift
+      - path: Sources/Generated/WorkModulesRegistry.swift
+      - path: Sources/Generated/BrowseGroupsRegistry.swift
+      # The blocks of Docs' and Team's rails: order, fold key, empty rule (meet#580).
+      - path: Sources/RailBlocks.swift
+      - path: Sources/Generated/RailBlocksRegistry.swift
+      # How many Quick Notes a Home page holds, shared with the Mac.
+      - path: Sources/QuickNotePage.swift
+      # The banner for a new INBOX row somebody else made, shared with the Mac.
+      - path: Sources/InboxNotices.swift
+      # How a subject row reads, shared with the Mac (fixtures/work-rows.json).
+      - path: Sources/WorkSubjectRowSpec.swift
+      # Today's meetings about a subject, Overview's TODAY block (meet#147).
+      - path: Sources/WorkTodayMeetings.swift
+      - path: Sources/DocsRailGroups.swift
+      - path: Sources/Generated/DocsValuesRegistry.swift
+      # PII-free breadcrumbs shared with iOS's Docs graph loader.
+      - path: Sources/DocsDiagnostics.swift
+      # One linked-document graph model, loader, and SwiftUI view for Mac and iOS.
+      - path: Sources/DocsGraph.swift
+      # Core in Work: the token, the registry, the repository, and the loader
+      # a related-record tap opens. Shared whole with the Mac; only the broker differs.
+      - path: Sources/CoreAccess.swift
+      - path: Sources/CoreRelatedTargetLoader.swift
+      # The Fields pane: a subject's fields through the Worker (meet#721).
+      - path: Sources/SubjectFieldsView.swift
+      # Placeholder rows for a SwiftUI pane that is not a List (DESIGN.md, Waiting).
+      - path: Sources/StarlingsPlaceholderStack.swift
+      # Docs: the token and the client, shared whole with the Mac (docs/DOCS.md).
+      - path: Sources/DocsAccess.swift
+      # Keep: the token and the key session, shared whole with the Mac (docs/KEEP.md).
+      - path: Sources/KeepAccess.swift
+      # An agent's Keep release request: the approval sheet and the card's words (keep#5).
+      - path: Sources/KeepReleaseSheet.swift
+      # The status-filter and sort choice per Work sidebar section, keyed by
+      # section, and read here for the same reason: a status or sort chosen
+      # on the phone answers to the same preference key the Mac section uses,
+      # even though each device keeps its own value (UserDefaults is per
+      # device, not per account, same as the status filter already was).
+      - path: Sources/WorkSidebarPreferences.swift
+      # What "my work" is and the order it is owed. Shared for the same reason
+      # MeetingFocus is: the rules answer to one table of cases
+      # (fixtures/work-items.json) rather than to a filter written three times.
+      - path: Sources/WorkItems.swift
+      - path: Sources/Generated/WorkItemsRegistry.swift
+      # What Home is made of and the order it is drawn in. Shared for the same
+      # reason: one table (fixtures/home-layout.json), three surfaces.
+      - path: Sources/HomeLayout.swift
+      - path: Sources/Generated/HomeLayoutRegistry.swift
+      # One search row, one door grammar, one matcher (fixtures/search-rows.json).
+      - path: Sources/Search.swift
+      - path: Sources/Generated/MemberSurfacesRegistry.swift
+      # Which destinations the tab bar lists (meet#982), the same rule as the Mac's switcher.
+      - path: Sources/SurfaceVisibility.swift
+      - path: Sources/Generated/SearchValuesRegistry.swift
+      # The rows Work, Team and Docs write into the recents when a thing opens.
+      - path: Sources/SearchRecentRows.swift
+      - path: Sources/TaskSuggestion.swift
+      - path: Sources/TaskSuggestionEngine.swift
+      # The engine records every StarlingsError here rather than NSLogging it, so the
+      # log comes with it. Foundation-only, like the rest of this block.
+      - path: Sources/StarlingsDiagnosticsLog.swift
+      - path: Sources/FoundationModelsTaskExtractor.swift
+      - path: Sources/MeetingFocus.swift
+      # The meeting warning's plan and its device-local settings (meet#239).
+      - path: Sources/MeetingAlertPlan.swift
+      - path: Sources/GuestEntryWords.swift
+      # Quick add's grammar (meet#235). Foundation-only.
+      - path: Sources/CalendarQuickAdd.swift
+      - path: Sources/UpcomingConfiguration.swift
+      - path: Sources/MeetingInvite.swift
+      # Which languages this device expects to hear. Per device rather than
+      # per person, and shared so the Mac and the phone label a transcript the
+      # same way. Foundation-only, like the rest of this block.
+      - path: Sources/TranscriptionLanguages.swift
+      # The transcript name pass: names spelled the roster's way before a
+      # segment reaches the outbox (meet#155). Pure; the spell checker is
+      # per platform (StarlingsSpellChecker / MobileSpellChecker).
+      - path: Sources/TranscriptNameLexicon.swift
+      # A transcript as a file and as a link (meet#692). Pure; the web's twin
+      # is packages/contracts/src/transcript-export.ts.
+      - path: Sources/TranscriptExport.swift
+      # The reaction palette and its wire body. Six emoji, one topic, three
+      # clients — a seventh on one of them would be a packet the others drop.
+      - path: Sources/MeetingReactions.swift
+      - path: Sources/Generated/ReactionsRegistry.swift
+      # Reactions on a chat message: same six emoji, its own reliable topic,
+      # and the tally every client keeps. Shared for the same reason.
+      - path: Sources/ChatReactions.swift
+      - path: Sources/StarlingsScheduleTimeZone.swift
+      - path: Sources/WeatherForecast.swift
+      - path: Sources/ParticipantInitials.swift
+      # Team presence wire types. Shared so "around" cannot mean two different
+      # things on the phone and in the Mac window.
+      - path: Sources/PeerPresence.swift
+      - path: Sources/Generated/PresenceValuesRegistry.swift
+      # Profile pictures: the cache and the version registry, Foundation-only.
+      # Shared for the same reason presence is — a face is fetched once per
+      # person per version, whichever client is drawing it.
+      - path: Sources/PersonAvatars.swift
+      - path: Sources/PublicEventsCalendar.swift
+      # How a stage divides itself between the people on it. Shared so the
+      # phone's grid and the Mac's are the same arithmetic. Camera/avatar cells
+      # are square; media framing still keeps screen shares native.
+      - path: Sources/StageGridLayout.swift
+      # Spatial audio (meet#263): the arc, the engine and the preference key
+      # are one file so a voice sits in the same place on both stages.
+      - path: Sources/SpatialAudio.swift
+      # Local Vision framing is intentionally shared by both native clients;
+      # web has the same default and a browser detector as progressive enhance.
+      - path: Sources/FaceCentering.swift
+      - path: Sources/TranscriptModels.swift
+      - path: Sources/StarlingsCountryFlag.swift
+      # Quick Notes wire types are shared with the Mac client; the Mac-only
+      # panel and watcher remain in the Sources folder used by Starlings above.
+      - path: Sources/QuickNotes.swift
+      # Their destination rows and short-lived option cache are shared by the
+      # Mac AppKit and iOS SwiftUI filing flows.
+      - path: Sources/QuickNoteDestinations.swift
+      - path: Sources/Generated/QuickNoteValuesRegistry.swift
+      - path: Sources/StarlingsSearchablePickerOption.swift
+      # Connected Claudes wire types (docs/MCP.md), shared the same way.
+      - path: Sources/McpGrants.swift
+      # Signed-in devices wire types (docs/ADMIN.md §5a), shared the same way.
+      - path: Sources/OwnerDevices.swift
+      - path: Resources/Assets.xcassets
+        type: folder
+        buildPhase: resources
+      - path: Resources/Flags
+        type: folder
+        buildPhase: resources
+      - path: Resources/starlings.icon
+        buildPhase: resources
+      - path: Resources/starlings-graphite-accent.icon
+        buildPhase: resources
+      - path: Resources/starlings-graphite-white.icon
+        buildPhase: resources
+      # Keep the native Upcoming reader on the same config as the Worker and web.
+      - path: packages/contracts/src/upcoming-config.json
+        buildPhase: resources
+      # The Docs graph's limits, folder palette and layout are shared with web.
+      - path: packages/contracts/src/docs-graph-config.json
+        buildPhase: resources
+    dependencies:
+      - package: EnvisioningUI
+      - package: CoreKit
+        product: CoreKit
+      - package: CoreKit
+        product: CoreCRMUI
+      - package: CoreKit
+        product: DocsKit
+      - package: CoreKit
+        product: DocsUI
+      - package: CoreKit
+        product: KeepKit
+      - package: CoreKit
+        product: KeepUI
+      - package: FluidAudio
+      - package: LiveKit
+      - package: StarlingsContracts
+      - target: Starlings-Activities
+      - target: Starlings-Share
+      - target: Starlings-Watch
+      - sdk: EventKit.framework
+    info:
+      path: Config/StarlingsiOS-Info.plist
+      properties:
+        # The languages the interface ships in (meet#245); this is also what
+        # makes iOS offer Meet its own language row in Settings.
+        CFBundleLocalizations: [en, pt-BR]
+        # Lock Screen / Dynamic Island countdown to the next meeting. The
+        # extension renders it; this key is what lets the app request one.
+        NSSupportsLiveActivities: true
+        CFBundleDisplayName: Starlings
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        ITSAppUsesNonExemptEncryption: false
+        LSApplicationCategoryType: public.app-category.business
+        UILaunchScreen: {}
+        UIApplicationSupportsIndirectInputEvents: true
+        UIBackgroundModes:
+          - audio
+        UISupportedInterfaceOrientations~iphone:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSCameraUsageDescription: Starlings uses your camera so people in your meeting can see you, and to take photos and scans for messages.
+        NSMicrophoneUsageDescription: Starlings uses your microphone so people in your meeting can hear you, and to record voice messages.
+        NSContactsUsageDescription: Starlings uses Contacts to suggest people when you schedule a meeting.
+        # The Calendar tab reads iCloud / on-device calendars through EventKit,
+        # alongside Google. Event details stay on this device.
+        NSCalendarsUsageDescription: Starlings shows your iCloud and on-device calendars in the Calendar tab. Event details stay on this device.
+        NSCalendarsFullAccessUsageDescription: Starlings shows your iCloud and on-device calendars in the Calendar tab, and adds events you create there. Event details stay on this device.
+        NSLocalNetworkUsageDescription: Starlings can connect to your development meeting service on the local network.
+        # Optional app lock (Settings > App lock). Without this key iOS kills the
+        # app the first time it asks for Face ID.
+        NSFaceIDUsageDescription: Starlings uses Face ID to unlock the app when you turn on the app lock.
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        MEET_API_ENDPOINT: "$(MEET_API_ENDPOINT)"
+        MEET_WEB_ORIGIN: "$(MEET_WEB_ORIGIN)"
+        MEET_GOOGLE_NATIVE_CLIENT_ID: "$(MEET_GOOGLE_NATIVE_CLIENT_ID)"
+        MEET_GOOGLE_REDIRECT_SCHEME: "$(MEET_GOOGLE_REDIRECT_SCHEME)"
+        CFBundleURLTypes:
+          - CFBundleTypeRole: Editor
+            CFBundleURLName: $(STARLINGS_BUNDLE_ID).oauth
+            CFBundleURLSchemes:
+              - "$(MEET_GOOGLE_REDIRECT_SCHEME)"
+          # `starlings://event/<reference>`: a glance surface opening a
+          # meeting that has no link (meet#184, `StarlingsGlance.eventURL`).
+          # Widgets, Live Activities and notifications write `starlings://`
+          # only; `meet://` stays registered for the ones written before the
+          # rename (meet#1059), for at least two App Store releases.
+          - CFBundleTypeRole: Viewer
+            CFBundleURLName: $(STARLINGS_BUNDLE_ID).glance
+            CFBundleURLSchemes:
+              - starlings
+              - meet
+    settings:
+      base:
+        # Kept by hand, as on the Mac target. The App Group: the app writes the
+        # agenda there for the Home Screen widget and the controls read the
+        # launch action from it; the token never goes there. Same group as the
+        # watch bundles. The App ID needs the App Groups capability, so the App
+        # Store profile must be regenerated. The overlay's copy adds associated
+        # domains, for Keep's passkeys and the https sign-in callback on every
+        # workspace host (meet#905); the App ID needs that capability too.
+        CODE_SIGN_ENTITLEMENTS: $(STARLINGS_ENTITLEMENTS_DIR)/StarlingsiOS.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: $(STARLINGS_BUNDLE_ID)
+        PRODUCT_NAME: Starlings
+        PRODUCT_MODULE_NAME: Starlings
+        GENERATE_INFOPLIST_FILE: NO
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_APPICON_NAME: starlings
+        ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES: "starlings-graphite-accent starlings-graphite-white"
+      configs:
+        # Debug signs automatically, so it has no specifier.
+        Release:
+          # scripts/build-ios.sh exports this before running xcodegen; a
+          # command-line PROVISIONING_PROFILE_SPECIFIER cannot be used because
+          # xcodebuild would apply the app's profile to the extension too. Left
+          # unsubstituted on a developer machine, where signing is automatic and
+          # the specifier is ignored.
+          PROVISIONING_PROFILE_SPECIFIER: ${IOS_APP_STORE_PROFILE_NAME}
+    preBuildScripts:
+      - name: Refresh Version.xcconfig
+        basedOnDependencyAnalysis: false
+        script: '"${SRCROOT}/scripts/version-env.sh" --write-xcconfig'
+    postCompileScripts:
+      - name: Stamp Apple version
+        basedOnDependencyAnalysis: false
+        script: '"${SRCROOT}/scripts/version-env.sh" --stamp-product'
+  # WidgetKit extension carrying the meeting Live Activity. It shares only the
+  # ActivityKit attributes and the colour table with the app — WidgetKit rejects
+  # `Canvas`, so the rest of StarlingsMobileDesign stays app-only.
+  # iOS 18, not the app's 17: `supplementalActivityFamilies` (the watchOS 11
+  # Smart Stack layout) has no availability-gated form for a
+  # `WidgetConfiguration`, and an unavailable `@main` would crash on 17. An
+  # iOS 17 phone installs the app and skips this extension — no Live Activity.
+  Starlings-Activities:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "18.0"
+    configFiles:
+      Debug: Config/Starlings.xcconfig
+      Release: Config/Starlings.xcconfig
+    sources:
+      - path: iOSActivities
+      # UserDefaults: the App Group launch action and EnvisioningUI's
+      # appearance (meet#328).
+      - path: Config/Privacy/Activities/PrivacyInfo.xcprivacy
+        buildPhase: resources
+      # The one String Catalog, shared by every target (meet#245).
+      - path: Resources/Localizable.xcstrings
+        buildPhase: resources
+      - path: Resources/Extensions/InfoPlist.xcstrings
+        buildPhase: resources
+      - path: iOS/MeetingActivityAttributes.swift
+      # The one shape every glance surface draws (meet#184).
+      - path: iOS/StarlingsGlance.swift
+      - path: iOS/StarlingsMobileColors.swift
+      - path: Sources/StarlingsSemanticColors.swift
+      # The next-meeting widget and the controls: the agenda file's shape and
+      # reader, the launch-action slot, and the one time formatter.
+      - path: iOS/WatchBridge.swift
+      # The App Group, the widget kinds and the link scheme (meet#735).
+      - path: Sources/Generated/SharedConstantsRegistry.swift
+      - path: iOS/AgendaFile.swift
+      - path: iOS/LaunchAction.swift
+      # The workspace's accent, written by the app (meet#1133).
+      - path: iOS/WidgetAccent.swift
+      - path: Sources/StarlingsDateFormatting.swift
+      # The widget places events the way Home does: the one rule, and the
+      # bundled config it reads.
+      - path: Sources/MeetingFocus.swift
+      - path: Sources/UpcomingConfiguration.swift
+      - path: packages/contracts/src/upcoming-config.json
+      - path: Resources/Assets.xcassets
+    dependencies:
+      - package: EnvisioningUI
+      - package: StarlingsContracts
+    entitlements:
+      path: Config/StarlingsiOSActivities.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.$(STARLINGS_BUNDLE_ID)
+    info:
+      path: Config/StarlingsiOSActivities-Info.plist
+      properties:
+        CFBundleLocalizations: [en, pt-BR]
+        CFBundleDisplayName: Starlings
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(STARLINGS_BUNDLE_ID).activities
+        PRODUCT_NAME: StarlingsActivities
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
+      configs:
+        Release:
+          # Its own App Store profile — see the app target's note.
+          PROVISIONING_PROFILE_SPECIFIER: ${IOS_ACTIVITIES_APP_STORE_PROFILE_NAME}
+    preBuildScripts:
+      - name: Refresh Version.xcconfig
+        basedOnDependencyAnalysis: false
+        script: '"${SRCROOT}/scripts/version-env.sh" --write-xcconfig'
+  # The share extension (docs/DOCS.md, link saves): Save to Docs from
+  # Safari's share sheet. Safari runs PageCapture.js and hands over the page's
+  # HTML. It has no session and gets none: it writes the page to the App
+  # Group outbox (iOS/ShareOutbox.swift) and the app saves it when it is next
+  # active. The token never goes there.
+  Starlings-Share:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "17.0"
+    configFiles:
+      Debug: Config/Starlings.xcconfig
+      Release: Config/Starlings.xcconfig
+    sources:
+      - path: iOSShare
+        excludes:
+          - "*.js"
+      - path: iOSShare/PageCapture.js
+        buildPhase: resources
+      # UserDefaults: the App Group's workspace slot.
+      - path: Config/Privacy/Share/PrivacyInfo.xcprivacy
+        buildPhase: resources
+      # The one String Catalog, shared by every target (meet#245).
+      - path: Resources/Localizable.xcstrings
+        buildPhase: resources
+      - path: Resources/Extensions/InfoPlist.xcstrings
+        buildPhase: resources
+      - path: iOS/ShareOutbox.swift
+      # The App Group (meet#735).
+      - path: Sources/Generated/SharedConstantsRegistry.swift
+      # The house field and toolbar buttons. The form is
+      # EnvisioningForm itself (StarlingsMobileDesign, which aliases it, draws
+      # the app's glyph and needs half the app).
+      - path: iOS/StarlingsConcentricDesign.swift
+      - path: iOS/StarlingsSingleLineField.swift
+      - path: iOS/StarlingsMobileColors.swift
+      - path: Sources/StarlingsSemanticColors.swift
+      - path: Resources/Assets.xcassets
+    dependencies:
+      - package: EnvisioningUI
+    entitlements:
+      path: Config/StarlingsiOSShare.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.$(STARLINGS_BUNDLE_ID)
+    info:
+      path: Config/StarlingsiOSShare-Info.plist
+      properties:
+        CFBundleLocalizations: [en, pt-BR]
+        CFBundleDisplayName: Starlings
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionJavaScriptPreprocessingFile: PageCapture
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+              NSExtensionActivationSupportsWebPageWithMaxCount: 1
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(STARLINGS_BUNDLE_ID).share
+        PRODUCT_NAME: StarlingsShare
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
+      configs:
+        Release:
+          # Its own App Store profile — see the app target's note.
+          PROVISIONING_PROFILE_SPECIFIER: ${IOS_SHARE_APP_STORE_PROFILE_NAME}
+    preBuildScripts:
+      - name: Refresh Version.xcconfig
+        basedOnDependencyAnalysis: false
+        script: '"${SRCROOT}/scripts/version-env.sh" --write-xcconfig'
+  # The watch app (issue #179). It shares the bridge contract, the lobby wire
+  # models and the quick-note wire with the phone, and nothing else: no
+  # EnvisioningUI (iOS/macOS only), no StarlingsAPI, no LiveKit. It never hosts,
+  # joins, or records.
+  Starlings-Watch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "11.0"
+    configFiles:
+      Debug: Config/Starlings.xcconfig
+      Release: Config/Starlings.xcconfig
+    sources:
+      - path: watchOS
+      # UserDefaults for queued quick notes; the notes go to the Worker
+      # (meet#328).
+      - path: Config/Privacy/Watch/PrivacyInfo.xcprivacy
+        buildPhase: resources
+      # The one String Catalog, shared by every target (meet#245).
+      - path: Resources/Localizable.xcstrings
+        buildPhase: resources
+      - path: Resources/Extensions/InfoPlist.xcstrings
+        buildPhase: resources
+      - path: iOS/WatchBridge.swift
+      - path: iOS/AgendaFile.swift
+      # `AgendaFile.next` is Home's focus rule (meet#184): the rule, the
+      # glance shape it fills, and the bundled config the rule reads.
+      - path: iOS/StarlingsGlance.swift
+      - path: Sources/MeetingFocus.swift
+      - path: packages/contracts/src/upcoming-config.json
+      # For `UpcomingPreferencesWire` in the agenda file's shape; the watch
+      # passes the defaults and never reads them.
+      - path: Sources/UpcomingConfiguration.swift
+      - path: Sources/ContractsExtensions.swift
+      - path: Sources/Generated/SharedConstantsRegistry.swift
+      - path: Sources/QuickNotes.swift
+      - path: Sources/ISODate.swift
+      - path: Sources/StarlingsDateFormatting.swift
+      # The same Icon Composer package the phone uses; it carries a watch layer.
+      - path: Resources/starlings.icon
+        buildPhase: resources
+    dependencies:
+      - target: Starlings-WatchWidgets
+      - package: StarlingsContracts
+    entitlements:
+      path: Config/StarlingsWatch.entitlements
+      properties:
+        # The complication reads the agenda from this group; the token never
+        # goes there.
+        com.apple.security.application-groups:
+          - group.$(STARLINGS_BUNDLE_ID)
+    info:
+      path: Config/StarlingsWatch-Info.plist
+      properties:
+        CFBundleLocalizations: [en, pt-BR]
+        CFBundleDisplayName: Starlings
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: $(STARLINGS_BUNDLE_ID)
+        WKRunsIndependentlyOfCompanionApp: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(STARLINGS_BUNDLE_ID).watchkitapp
+        # Xcode 27 builds watchOS for arm64 alone. App Store Connect needs
+        # arm64_32 too while the minimum watchOS is below 27 (ITMS-90733;
+        # the 6.8.5 upload, 2026-10-10).
+        ARCHS: "arm64 arm64_32"
+        # Not `Starlings`: the phone app already produces Starlings.app, and a
+        # flat products directory would have the two write the same path.
+        PRODUCT_NAME: StarlingsWatch
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: "4"
+        ASSETCATALOG_COMPILER_APPICON_NAME: starlings
+      configs:
+        Release:
+          PROVISIONING_PROFILE_SPECIFIER: ${IOS_WATCH_APP_STORE_PROFILE_NAME}
+    preBuildScripts:
+      - name: Refresh Version.xcconfig
+        basedOnDependencyAnalysis: false
+        script: '"${SRCROOT}/scripts/version-env.sh" --write-xcconfig'
+  # The watch complication. Reads meetings from the shared group only.
+  Starlings-WatchWidgets:
+    type: app-extension
+    platform: watchOS
+    deploymentTarget: "11.0"
+    configFiles:
+      Debug: Config/Starlings.xcconfig
+      Release: Config/Starlings.xcconfig
+    sources:
+      - path: watchOSWidgets
+      # No required-reason API and no collected data; the manifest says so
+      # (meet#328).
+      - path: Config/Privacy/WatchWidgets/PrivacyInfo.xcprivacy
+        buildPhase: resources
+      # The one String Catalog, shared by every target (meet#245).
+      - path: Resources/Localizable.xcstrings
+        buildPhase: resources
+      - path: Resources/Extensions/InfoPlist.xcstrings
+        buildPhase: resources
+      - path: iOS/AgendaFile.swift
+      - path: Sources/UpcomingConfiguration.swift
+      - path: iOS/WatchBridge.swift
+      # The App Group, the widget kinds and the link scheme (meet#735).
+      - path: Sources/Generated/SharedConstantsRegistry.swift
+      - path: Sources/StarlingsDateFormatting.swift
+      # Same reason as the watch app: the complication reads Home's rule.
+      - path: iOS/StarlingsGlance.swift
+      - path: Sources/MeetingFocus.swift
+      - path: packages/contracts/src/upcoming-config.json
+      # The complications draw the still Starlings glyph.
+      - path: Sources/StarlingsGlyph.swift
+      - path: Sources/Generated/GatheringDotsRegistry.swift
+    dependencies:
+      - package: StarlingsContracts
+    entitlements:
+      path: Config/StarlingsWatchWidgets.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.$(STARLINGS_BUNDLE_ID)
+    info:
+      path: Config/StarlingsWatchWidgets-Info.plist
+      properties:
+        CFBundleLocalizations: [en, pt-BR]
+        CFBundleDisplayName: Starlings
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(STARLINGS_BUNDLE_ID).watchkitapp.widgets
+        # Xcode 27 builds watchOS for arm64 alone. App Store Connect needs
+        # arm64_32 too while the minimum watchOS is below 27 (ITMS-90733;
+        # the 6.8.5 upload, 2026-10-10).
+        ARCHS: "arm64 arm64_32"
+        PRODUCT_NAME: StarlingsWatchWidgets
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: "4"
+      configs:
+        Release:
+          PROVISIONING_PROFILE_SPECIFIER: ${IOS_WATCH_WIDGETS_APP_STORE_PROFILE_NAME}
+    preBuildScripts:
+      - name: Refresh Version.xcconfig
+        basedOnDependencyAnalysis: false
+        script: '"${SRCROOT}/scripts/version-env.sh" --write-xcconfig'
+  Starlings-iOSTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: iOSTests
+      # The test workspace's member domains, the same as the Worker's test config.
+      - path: Tests/TestWorkspace.swift
+      # The fixed-reply URL stub the session-renewal tests share (meet#332).
+      - path: Tests/SessionRenewalStub.swift
+      # The shared transport's tests, the same on both clients (meet#331).
+      - path: Tests/StarlingsHTTPTransportTests.swift
+      # Native error classification and the offline spool are shared by both clients (meet#417).
+      - path: Tests/StarlingsOperationalErrorTests.swift
+      - path: Tests/StarlingsUpgradeRecommendationTests.swift
+      # Guest entry uses the generated room and booking projections.
+      - path: Tests/RoomEntryContractFixtureTests.swift
+      - path: fixtures/room-entry.json
+        buildPhase: resources
+      # Run the shared table here too: it is the only thing that would notice
+      # Sources/MeetingFocus.swift falling out of the iOS target.
+      - path: Tests/UpcomingTierFixtureTests.swift
+      - path: fixtures/upcoming-tiers.json
+        buildPhase: resources
+      # The meeting warning's table, the same on both schedulers (meet#239).
+      - path: Tests/MeetingAlertFixtureTests.swift
+      - path: Tests/MeetingAlertFixtureRunner.swift
+      - path: fixtures/meeting-alerts.json
+        buildPhase: resources
+      # Quick add's table, the same grammar on both parsers (meet#235).
+      - path: Tests/QuickAddFixtureTests.swift
+      - path: fixtures/quick-add.json
+        buildPhase: resources
+      # Same reason: the only thing that would notice Sources/WorkItems.swift
+      # falling out of the iOS target.
+      - path: Tests/WorkItemFixtureTests.swift
+      - path: fixtures/work-items.json
+        buildPhase: resources
+      # Same again for Sources/HomeLayout.swift.
+      - path: Tests/HomeLayoutFixtureTests.swift
+      - path: fixtures/home-layout.json
+        buildPhase: resources
+      # Same again for Sources/GoalsDecisions.swift.
+      - path: Tests/GoalsDecisionsFixtureTests.swift
+      - path: fixtures/goals-decisions.json
+        buildPhase: resources
+      # Same again for Sources/Responsible.swift.
+      - path: Tests/ResponsibleFixtureTests.swift
+      - path: fixtures/responsible.json
+        buildPhase: resources
+      # Same again for Sources/Search.swift.
+      - path: Tests/SearchFixtureTests.swift
+      - path: fixtures/search-rows.json
+        buildPhase: resources
+      # Same again for Sources/SubjectState.swift.
+      - path: Tests/SubjectStateFixtureTests.swift
+      - path: fixtures/subject-state.json
+        buildPhase: resources
+      - path: Tests/WorkRowFixtureTests.swift
+      - path: fixtures/work-rows.json
+        buildPhase: resources
+      - path: Tests/AttentionQuestionStateTests.swift
+      - path: Tests/WorkRowActionFixtureTests.swift
+      - path: fixtures/work-actions.json
+        buildPhase: resources
+      - path: fixtures/subject-kinds.json
+        buildPhase: resources
+      # A subject's context blocks, the same table on both clients (meet#570).
+      - path: Tests/SubjectContextFixtureTests.swift
+      - path: fixtures/subject-context.json
+        buildPhase: resources
+      - path: Tests/SubjectStatusFixtureTests.swift
+      - path: fixtures/subject-status.json
+        buildPhase: resources
+      - path: Tests/LeadQualificationFixtureTests.swift
+      - path: fixtures/lead-qualification.json
+        buildPhase: resources
+      - path: Tests/FormFieldsFixtureTests.swift
+      - path: fixtures/form-fields.json
+        buildPhase: resources
+      - path: Tests/RequestPolicyFixtureTests.swift
+      - path: fixtures/request-policy.json
+        buildPhase: resources
+      - path: Tests/CalendarKeysFixtureTests.swift
+      - path: fixtures/calendar-keys.json
+        buildPhase: resources
+      - path: Tests/TeamRailFixtureTests.swift
+      - path: fixtures/team-rail.json
+        buildPhase: resources
+      - path: Tests/WorkRankerFixtureTests.swift
+      - path: fixtures/work-ranker.json
+        buildPhase: resources
+      - path: Tests/BrowseGroupsFixtureTests.swift
+      - path: fixtures/browse-groups.json
+        buildPhase: resources
+      - path: Tests/RailBlocksFixtureTests.swift
+      - path: fixtures/rail-blocks.json
+        buildPhase: resources
+      - path: Tests/SettingsPagesFixtureTests.swift
+      - path: fixtures/settings-pages.json
+        buildPhase: resources
+      - path: Tests/SetupStepsFixtureTests.swift
+      - path: fixtures/setup-steps.json
+        buildPhase: resources
+      # Shared cross-client rule cases, read by RuleFixtureTests and the web suite.
+      - path: Tests/RuleFixtureTests.swift
+      - path: fixtures/docs-slug.json
+        buildPhase: resources
+      - path: fixtures/participant-initials.json
+        buildPhase: resources
+      - path: fixtures/thread-markdown.json
+        buildPhase: resources
+      - path: fixtures/subject-query.json
+        buildPhase: resources
+      - path: fixtures/contact-query.json
+        buildPhase: resources
+      # Mention-recipient boundaries across native and web (#1065).
+      - path: fixtures/mention-matching.json
+        buildPhase: resources
+      - path: fixtures/transcript-export.json
+        buildPhase: resources
+      # Which destinations a client lists (meet#982), read by RuleFixtureTests.
+      - path: fixtures/surface-visibility.json
+        buildPhase: resources
+      - path: fixtures/workspace-defaults.json
+        buildPhase: resources
+      # The colour roles all three surfaces share (meet#599); the loader is shared with the Mac.
+      - path: Tests/ColorTokenFixture.swift
+      - path: fixtures/color-tokens.json
+        buildPhase: resources
+      # The Worker's recorded responses (meet#593), decoded with the models this app compiles.
+      - path: Tests/ResponseFixtureTests.swift
+      - path: Tests/StarlingsWorkspaceDefaultsTests.swift
+      - path: fixtures/responses
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - target: Starlings-iOS
+      - package: StarlingsContracts
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(STARLINGS_BUNDLE_ID).ios.tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Starlings.app/Starlings"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+# Scheme names are the target names. The app product is Starlings.app
+# (meet#797). The Swift module and every product name say Starlings too
+# (MZ, 2026-10-20).
+#
+# Run and Profile default to Release with the debugger detached, so what gets
+# tried by hand is what ships. Test stays on Debug: a Release configuration
+# turns ENABLE_TESTABILITY off and `@testable import` stops resolving.
+schemes:
+  Starlings:
+    build:
+      targets: {Starlings: all}
+    run: {config: Release, debugEnabled: false}
+    test:
+      config: Debug
+      targets: [StarlingsTests]
+    profile: {config: Release}
+    analyze: {config: Release}
+    archive: {config: Release}
+  Starlings-iOS:
+    build:
+      targets: {Starlings-iOS: all}
+    run: {config: Release, debugEnabled: false}
+    test:
+      config: Debug
+      targets: [Starlings-iOSTests]
+    profile: {config: Release}
+    analyze: {config: Release}
+    archive: {config: Release}
+  Starlings-Activities:
+    build:
+      targets: {Starlings-Activities: all}
+    run: {config: Release, debugEnabled: false}
+    profile: {config: Release}
+    analyze: {config: Release}
+    archive: {config: Release}
+  Starlings-CLI:
+    build:
+      targets: {Starlings-CLI: all}
+    run: {config: Release, debugEnabled: false}
+    profile: {config: Release}
+    analyze: {config: Release}
+    archive: {config: Release}

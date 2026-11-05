@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "sectionTitle": "UPCOMING",
+  "horizonDays": 2,
+  "requestSlackDays": 1,
+  "homeFollowingRows": 2,
+  "joinWindowMinutes": 10,
+  "showTomorrow": true,
+  "maxAgendaEvents": 40,
+  "placeholderTitles": [
+    "",
+    "block",
+    "blank",
+    "(no title)"
+  ]
+}

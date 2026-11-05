@@ -1,0 +1,564 @@
+{
+  "contract": "subject-state",
+  "version": 3,
+  "about": [
+    "Per-user subject state (envisioning/starlings#147 decision 5, slice 2; follow",
+    "removed 2026-09-15): which subjects a person stars and mutes, and which",
+    "group a subject is in. The Worker stores overrides only; a subject with",
+    "no row is plain. Every client draws the rail from the same answer, so",
+    "the rule is pinned here rather than re-derived per surface.",
+    "TypeScript: packages/contracts/src/subject-state.ts. Swift:",
+    "Sources/SubjectState.swift, reading this same file.",
+    "work_list (2026-09-18): how the SUBJECTS list is ordered and cut, per",
+    "person, one answer on every surface. Its resolution is pinned here too."
+  ],
+  "rules": [
+    "GROUP: a subject is in exactly one group. partner -> partners. event ->",
+    "events (docs/EVENTS.md). lead ->",
+    "sales. project -> envisioning when Core's `internal` flag is true, or,",
+    "only when the flag is absent, when the title starts with 'Envisioning ';",
+    "otherwise clients. `internal: false` is external whatever the title says.",
+    "RESOLVE: starred and muted have no default: absent is false. listed is",
+    "what the rail shows and INBOX reads: not muted, and not of a kind the",
+    "person hides. hidden_kinds, when present, decides (meet#975); absent",
+    "(an older Worker), a lead is hidden while sales_enabled is off. Mute is",
+    "about noise; the hide is about kinds.",
+    "WORK_LIST: sort is activity | upcoming | busiest | alphabetical (default activity);",
+    "group is none | relationship (default none); starred_only defaults false.",
+    "A stored value resolves field by field: a field that is missing or",
+    "unknown falls back alone, and the other fields keep what was stored.",
+    "ORDER (work_list_order): one block in one sort. busiest = overdue desc,",
+    "open desc, title. alphabetical = title. activity = the activity key",
+    "descending, rows with none after in busiest order. The activity key is the",
+    "later of last_activity_at and FLOAT. FLOAT (docs/EVENTS.md): a dated event",
+    "from today out to 30 days floats to `now - daysUntil days`, so each day",
+    "closer is a day higher and on the day it reads as touched now; past,",
+    "undated or farther events do not float. Civil days in UTC. upcoming =",
+    "dated events from today out, soonest first, then the rest as activity."
+  ],
+  "groups": [
+    {
+      "name": "partner is partners",
+      "subject": {
+        "kind": "organization",
+        "title": "Acme Labs"
+      },
+      "expect": "partners"
+    },
+    {
+      "name": "event is events",
+      "subject": {
+        "kind": "event",
+        "title": "Web Summit"
+      },
+      "expect": "events"
+    },
+    {
+      "name": "lead is sales",
+      "subject": {
+        "kind": "lead",
+        "title": "Envisioning for Acme"
+      },
+      "expect": "sales"
+    },
+    {
+      "name": "internal flag wins",
+      "subject": {
+        "kind": "project",
+        "title": "Meet",
+        "internal": true
+      },
+      "expect": "envisioning"
+    },
+    {
+      "name": "external flag wins over prefix",
+      "subject": {
+        "kind": "project",
+        "title": "Envisioning for Acme",
+        "internal": false
+      },
+      "expect": "clients"
+    },
+    {
+      "name": "prefix only when the flag is absent",
+      "subject": {
+        "kind": "project",
+        "title": "Envisioning Meet"
+      },
+      "expect": "envisioning"
+    },
+    {
+      "name": "plain project is clients",
+      "subject": {
+        "kind": "project",
+        "title": "Acme rollout"
+      },
+      "expect": "clients"
+    }
+  ],
+  "resolve": [
+    {
+      "name": "no override, client project",
+      "sales_enabled": false,
+      "subject": {
+        "kind": "project",
+        "title": "Acme rollout",
+        "internal": false
+      },
+      "override": null,
+      "expect": {
+        "listed": true,
+        "starred": false,
+        "muted": false
+      }
+    },
+    {
+      "name": "a muted client project leaves the rail",
+      "sales_enabled": false,
+      "subject": {
+        "kind": "project",
+        "title": "Acme rollout",
+        "internal": false
+      },
+      "override": {
+        "starred": false,
+        "muted": true
+      },
+      "expect": {
+        "listed": false,
+        "starred": false,
+        "muted": true
+      }
+    },
+    {
+      "name": "a lead is hidden while Sales is off, star or not",
+      "sales_enabled": false,
+      "subject": {
+        "kind": "lead",
+        "title": "Acme"
+      },
+      "override": {
+        "starred": true,
+        "muted": false
+      },
+      "expect": {
+        "listed": false,
+        "starred": true,
+        "muted": false
+      }
+    },
+    {
+      "name": "a lead is listed with Sales on",
+      "sales_enabled": true,
+      "subject": {
+        "kind": "lead",
+        "title": "Acme"
+      },
+      "override": null,
+      "expect": {
+        "listed": true,
+        "starred": false,
+        "muted": false
+      }
+    },
+    {
+      "name": "starred and muted together",
+      "sales_enabled": true,
+      "subject": {
+        "kind": "lead",
+        "title": "Acme"
+      },
+      "override": {
+        "starred": true,
+        "muted": true
+      },
+      "expect": {
+        "listed": false,
+        "starred": true,
+        "muted": true
+      }
+    },
+    {
+      "name": "a partner is listed with no row",
+      "sales_enabled": false,
+      "subject": {
+        "kind": "organization",
+        "title": "Acme Labs"
+      },
+      "override": null,
+      "expect": {
+        "listed": true,
+        "starred": false,
+        "muted": false
+      }
+    },
+    {
+      "name": "a hidden kind leaves the rail",
+      "sales_enabled": true,
+      "hidden_kinds": [
+        "project"
+      ],
+      "subject": {
+        "kind": "project",
+        "title": "Acme rollout",
+        "internal": false
+      },
+      "override": null,
+      "expect": {
+        "listed": false,
+        "starred": false,
+        "muted": false
+      }
+    },
+    {
+      "name": "hidden_kinds decides over sales_enabled",
+      "sales_enabled": false,
+      "hidden_kinds": [],
+      "subject": {
+        "kind": "lead",
+        "title": "Northwind pilot"
+      },
+      "override": null,
+      "expect": {
+        "listed": true,
+        "starred": false,
+        "muted": false
+      }
+    },
+    {
+      "name": "a hidden kind keeps its star",
+      "sales_enabled": true,
+      "hidden_kinds": [
+        "event"
+      ],
+      "subject": {
+        "kind": "event",
+        "title": "Summit"
+      },
+      "override": {
+        "starred": true,
+        "muted": false
+      },
+      "expect": {
+        "listed": false,
+        "starred": true,
+        "muted": false
+      }
+    }
+  ],
+  "work_list": [
+    {
+      "name": "nothing stored is the default",
+      "stored": null,
+      "expect": {
+        "sort": "activity",
+        "group": "none",
+        "starred_only": false
+      }
+    },
+    {
+      "name": "a full row reads back",
+      "stored": {
+        "sort": "alphabetical",
+        "group": "relationship",
+        "starred_only": true
+      },
+      "expect": {
+        "sort": "alphabetical",
+        "group": "relationship",
+        "starred_only": true
+      }
+    },
+    {
+      "name": "an unknown sort falls back alone",
+      "stored": {
+        "sort": "newest",
+        "group": "relationship",
+        "starred_only": true
+      },
+      "expect": {
+        "sort": "activity",
+        "group": "relationship",
+        "starred_only": true
+      }
+    },
+    {
+      "name": "a missing field falls back alone",
+      "stored": {
+        "sort": "busiest"
+      },
+      "expect": {
+        "sort": "busiest",
+        "group": "none",
+        "starred_only": false
+      }
+    },
+    {
+      "name": "a wrong type falls back alone",
+      "stored": {
+        "sort": "busiest",
+        "group": "none",
+        "starred_only": "yes"
+      },
+      "expect": {
+        "sort": "busiest",
+        "group": "none",
+        "starred_only": false
+      }
+    }
+  ],
+  "work_list_order": [
+    {
+      "name": "activity: an event today reads as touched now",
+      "now": "2026-09-19T12:00:00Z",
+      "sort": "activity",
+      "rows": [
+        {
+          "id": "p",
+          "kind": "project",
+          "title": "Acme",
+          "last_activity_at": "2026-09-19T09:00:00Z"
+        },
+        {
+          "id": "e",
+          "kind": "event",
+          "title": "Summit",
+          "event_date": "2026-09-19"
+        }
+      ],
+      "expect": [
+        "e",
+        "p"
+      ]
+    },
+    {
+      "name": "activity: an event in ten days sits under work touched this week",
+      "now": "2026-09-19T12:00:00Z",
+      "sort": "activity",
+      "rows": [
+        {
+          "id": "e",
+          "kind": "event",
+          "title": "Summit",
+          "event_date": "2026-09-29"
+        },
+        {
+          "id": "p",
+          "kind": "project",
+          "title": "Acme",
+          "last_activity_at": "2026-09-15T09:00:00Z"
+        },
+        {
+          "id": "q",
+          "kind": "project",
+          "title": "Zeta",
+          "last_activity_at": "2026-09-01T09:00:00Z"
+        }
+      ],
+      "expect": [
+        "p",
+        "e",
+        "q"
+      ]
+    },
+    {
+      "name": "activity: beyond the horizon only talk counts",
+      "now": "2026-09-19T12:00:00Z",
+      "sort": "activity",
+      "rows": [
+        {
+          "id": "e",
+          "kind": "event",
+          "title": "Summit",
+          "event_date": "2026-12-01"
+        },
+        {
+          "id": "q",
+          "kind": "project",
+          "title": "Zeta",
+          "last_activity_at": "2026-01-01T09:00:00Z"
+        }
+      ],
+      "expect": [
+        "q",
+        "e"
+      ]
+    },
+    {
+      "name": "activity: talk on an event beats its float",
+      "now": "2026-09-19T12:00:00Z",
+      "sort": "activity",
+      "rows": [
+        {
+          "id": "p",
+          "kind": "project",
+          "title": "Acme",
+          "last_activity_at": "2026-09-18T09:00:00Z"
+        },
+        {
+          "id": "e",
+          "kind": "event",
+          "title": "Summit",
+          "event_date": "2026-10-10",
+          "last_activity_at": "2026-09-19T08:00:00Z"
+        }
+      ],
+      "expect": [
+        "e",
+        "p"
+      ]
+    },
+    {
+      "name": "activity: a past event does not float",
+      "now": "2026-09-19T12:00:00Z",
+      "sort": "activity",
+      "rows": [
+        {
+          "id": "e",
+          "kind": "event",
+          "title": "Summit",
+          "event_date": "2026-09-18"
+        },
+        {
+          "id": "p",
+          "kind": "project",
+          "title": "Acme",
+          "last_activity_at": "2026-08-01T09:00:00Z"
+        }
+      ],
+      "expect": [
+        "p",
+        "e"
+      ]
+    },
+    {
+      "name": "activity: rows with nothing fall to busiest order",
+      "now": "2026-09-19T12:00:00Z",
+      "sort": "activity",
+      "rows": [
+        {
+          "id": "a",
+          "kind": "project",
+          "title": "Beta",
+          "open_tasks": 1
+        },
+        {
+          "id": "b",
+          "kind": "project",
+          "title": "Alpha",
+          "open_tasks": 1
+        },
+        {
+          "id": "c",
+          "kind": "project",
+          "title": "Gamma",
+          "open_tasks": 3,
+          "overdue_tasks": 1
+        },
+        {
+          "id": "u",
+          "kind": "event",
+          "title": "Undated"
+        }
+      ],
+      "expect": [
+        "c",
+        "b",
+        "a",
+        "u"
+      ]
+    },
+    {
+      "name": "upcoming: dated events soonest first, then the rest by activity",
+      "now": "2026-09-19T12:00:00Z",
+      "sort": "upcoming",
+      "rows": [
+        {
+          "id": "p",
+          "kind": "project",
+          "title": "Acme",
+          "last_activity_at": "2026-09-19T09:00:00Z"
+        },
+        {
+          "id": "far",
+          "kind": "event",
+          "title": "Far",
+          "event_date": "2026-12-01"
+        },
+        {
+          "id": "near",
+          "kind": "event",
+          "title": "Near",
+          "event_date": "2026-09-20"
+        },
+        {
+          "id": "past",
+          "kind": "event",
+          "title": "Past",
+          "event_date": "2026-09-01",
+          "last_activity_at": "2026-09-02T09:00:00Z"
+        }
+      ],
+      "expect": [
+        "near",
+        "far",
+        "p",
+        "past"
+      ]
+    },
+    {
+      "name": "busiest: overdue, then open, then title",
+      "now": "2026-09-19T12:00:00Z",
+      "sort": "busiest",
+      "rows": [
+        {
+          "id": "a",
+          "kind": "project",
+          "title": "Beta",
+          "open_tasks": 5
+        },
+        {
+          "id": "b",
+          "kind": "project",
+          "title": "Alpha",
+          "open_tasks": 5
+        },
+        {
+          "id": "c",
+          "kind": "lead",
+          "title": "Gamma",
+          "open_tasks": 1,
+          "overdue_tasks": 1
+        }
+      ],
+      "expect": [
+        "c",
+        "b",
+        "a"
+      ]
+    },
+    {
+      "name": "alphabetical: title only",
+      "now": "2026-09-19T12:00:00Z",
+      "sort": "alphabetical",
+      "rows": [
+        {
+          "id": "b",
+          "kind": "project",
+          "title": "Beta",
+          "overdue_tasks": 3
+        },
+        {
+          "id": "a",
+          "kind": "event",
+          "title": "Alpha",
+          "event_date": "2026-09-19"
+        }
+      ],
+      "expect": [
+        "a",
+        "b"
+      ]
+    }
+  ]
+}

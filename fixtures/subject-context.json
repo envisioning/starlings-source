@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "blocks": [
+    "team",
+    "agents",
+    "when",
+    "where",
+    "links",
+    "website",
+    "work",
+    "goals",
+    "relationship",
+    "about",
+    "email"
+  ],
+  "layout": {
+    "project": [
+      "team",
+      "agents",
+      "work",
+      "goals",
+      "relationship",
+      "about",
+      "email"
+    ],
+    "lead": [
+      "team",
+      "agents",
+      "work",
+      "relationship",
+      "about",
+      "email"
+    ],
+    "organization": [
+      "team",
+      "agents",
+      "work",
+      "relationship",
+      "about",
+      "email"
+    ],
+    "event": [
+      "team",
+      "agents",
+      "when",
+      "where",
+      "links",
+      "website",
+      "work",
+      "email"
+    ]
+  },
+  "notOn": {
+    "goals": [
+      "mac",
+      "ios",
+      "web"
+    ]
+  },
+  "resolved": {
+    "project": {
+      "mac": [
+        "team",
+        "agents",
+        "work",
+        "relationship",
+        "about",
+        "email"
+      ],
+      "ios": [
+        "team",
+        "agents",
+        "work",
+        "relationship",
+        "about",
+        "email"
+      ],
+      "web": [
+        "team",
+        "agents",
+        "work",
+        "relationship",
+        "about",
+        "email"
+      ]
+    },
+    "lead": {
+      "mac": [
+        "team",
+        "agents",
+        "work",
+        "relationship",
+        "about",
+        "email"
+      ],
+      "ios": [
+        "team",
+        "agents",
+        "work",
+        "relationship",
+        "about",
+        "email"
+      ],
+      "web": [
+        "team",
+        "agents",
+        "work",
+        "relationship",
+        "about",
+        "email"
+      ]
+    },
+    "organization": {
+      "mac": [
+        "team",
+        "agents",
+        "work",
+        "relationship",
+        "about",
+        "email"
+      ],
+      "ios": [
+        "team",
+        "agents",
+        "work",
+        "relationship",
+        "about",
+        "email"
+      ],
+      "web": [
+        "team",
+        "agents",
+        "work",
+        "relationship",
+        "about",
+        "email"
+      ]
+    },
+    "event": {
+      "mac": [
+        "team",
+        "agents",
+        "when",
+        "where",
+        "links",
+        "website",
+        "work",
+        "email"
+      ],
+      "ios": [
+        "team",
+        "agents",
+        "when",
+        "where",
+        "links",
+        "website",
+        "work",
+        "email"
+      ],
+      "web": [
+        "team",
+        "agents",
+        "when",
+        "where",
+        "links",
+        "website",
+        "work",
+        "email"
+      ]
+    }
+  }
+}

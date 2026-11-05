@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "cases": [
+    { "name": "older workspace follows device", "defaults": null, "choice": null, "device": "pt-BR", "zones": ["losAngeles", "newYork", "saoPaulo", "lisbon", "london", "amsterdam", "riyadh", "dubai", "mumbai", "tokyo"], "languages": ["en", "pt-BR"], "language": "pt-BR", "group": "HQ" },
+    { "name": "workspace default and registry order", "defaults": {"time_zones":["london","saoPaulo"],"default_language":"pt-BR","languages_offered":["en","pt-BR"],"project_group_name":"HQ Lab"}, "choice": null, "device": "en", "zones": ["saoPaulo", "london"], "languages": ["en", "pt-BR"], "language": "pt-BR", "group": "HQ Lab" },
+    { "name": "personal language still wins", "defaults": {"time_zones":["tokyo"],"default_language":"pt-BR","languages_offered":["en","pt-BR"],"project_group_name":null}, "choice": "en", "device": "pt-BR", "zones": ["tokyo"], "languages": ["en", "pt-BR"], "language": "en", "group": "HQ" },
+    { "name": "removed choice uses offered fallback", "defaults": {"time_zones":["mumbai"],"default_language":null,"languages_offered":["en"],"project_group_name":null}, "choice": "pt-BR", "device": "pt-BR", "zones": ["mumbai"], "languages": ["en"], "language": "en", "group": "HQ" },
+    { "name": "newer registry values keep known choices", "defaults": {"time_zones":["future","lisbon"],"default_language":"future","languages_offered":["future","pt-BR"],"project_group_name":"Studio"}, "choice": null, "device": "en", "zones": ["lisbon"], "languages": ["pt-BR"], "language": "pt-BR", "group": "Studio" }
+  ]
+}

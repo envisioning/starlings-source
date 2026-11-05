@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The editor's Share and Send for signature (workspace/docs/DocsShareSheet.kt),
+  DocsUI's ShareSheet and SignatureSheet (core-kit). Share, Revoke and Send are
+  the iOS catalog's, with pt-BR. DocsUI has no catalog and the app's catalog
+  lacks the other lines, so iOS shows them in English in every language: they
+  are translatable="false" here, as strings_docs.xml says. DocsUI's
+  "Signers — one address per line" drops its em dash (no em dashes in copy).
+  Errors stay English.
+-->
+<resources>
+    <string name="docs_share">Share</string>
+    <string name="docs_revoke">Revoke</string>
+    <string name="docs_send">Send</string>
+    <string name="docs_share_www" translatable="false">Share on org.example</string>
+    <string name="docs_share_www_on" translatable="false">Anyone with the link can read it after entering their email. Each visit is logged to the CRM.</string>
+    <string name="docs_share_www_off" translatable="false">Off: the document is staff-only. Links below still work.</string>
+    <string name="docs_share_can_view" translatable="false">Can view</string>
+    <string name="docs_share_can_comment" translatable="false">Can comment</string>
+    <string name="docs_share_role" translatable="false">Role</string>
+    <string name="docs_share_address" translatable="false">Anyone with the link, or an address</string>
+    <string name="docs_share_create" translatable="false">Create link</string>
+    <string name="docs_share_anyone_note" translatable="false">Anyone holding the link can open it.</string>
+    <string name="docs_share_bound_note" translatable="false">Only %1$s can open it; they prove the address with a mailed code.</string>
+    <string name="docs_share_none" translatable="false">No links yet.</string>
+    <string name="docs_share_anyone" translatable="false">Anyone with the link</string>
+    <string name="docs_share_used" translatable="false">%1$s · used %2$d×</string>
+    <string name="docs_sign_title" translatable="false">Send for signature</string>
+    <string name="docs_sign_sent" translatable="false">Sent</string>
+    <string name="docs_sign_signers" translatable="false">Signers, one address per line</string>
+    <string name="docs_sign_subject" translatable="false">Subject (optional)</string>
+    <string name="docs_sign_note" translatable="false">A note to the signers (optional)</string>
+    <string name="docs_sign_version_note" translatable="false">Signers sign this exact version. Edit the document afterwards and the signature stays on the version they saw.</string>
+    <string name="docs_sign_expires_on" translatable="false">Each signer got their own link by mail. The request expires on %1$s.</string>
+    <string name="docs_sign_expires_default" translatable="false">Each signer got their own link by mail. The request expires in 30 days.</string>
+    <plurals name="docs_sign_sent_to" translatable="false">
+        <item quantity="one">Sent to %1$d signer</item>
+        <item quantity="other">Sent to %1$d signers</item>
+    </plurals>
+</resources>

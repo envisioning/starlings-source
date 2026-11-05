@@ -1,0 +1,542 @@
+{
+  "version": 1,
+  "now": "2026-09-30T12:00:00Z",
+  "criteria": {
+    "railLimit": 12,
+    "starred": 1000,
+    "directAttention": 500,
+    "unread": 150,
+    "overduePerTask": 90,
+    "overdueCap": 3,
+    "eventToday": 120,
+    "eventSoonBase": 90,
+    "eventSoonDecayPerDay": 10,
+    "eventHorizonDays": 14,
+    "openWorkPerTask": 18,
+    "openWorkCap": 5,
+    "recentActivityMax": 80,
+    "activityHalfLifeMs": 259200000,
+    "staleAfterMs": 604800000,
+    "staleWork": 24
+  },
+  "cases": [
+    {
+      "name": "a star beats direct attention, attention beats unread, unread beats nothing",
+      "subjects": [
+        {
+          "id": "a",
+          "title": "Alpha",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "b",
+          "title": "Bravo",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "c",
+          "title": "Charlie",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "d",
+          "title": "Delta",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        }
+      ],
+      "signals": {
+        "a": {
+          "unread": true
+        },
+        "b": {
+          "starred": true
+        },
+        "c": {
+          "direct_attention": true
+        }
+      },
+      "order": [
+        "b",
+        "c",
+        "a",
+        "d"
+      ],
+      "rail": [
+        "b",
+        "c",
+        "a",
+        "d"
+      ],
+      "scores": {
+        "b": 1000,
+        "c": 500,
+        "a": 150,
+        "d": 0
+      }
+    },
+    {
+      "name": "overdue counts up to three tasks, open work up to five",
+      "subjects": [
+        {
+          "id": "a",
+          "title": "Alpha",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 9,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "b",
+          "title": "Bravo",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 3,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "c",
+          "title": "Charlie",
+          "kind": "project",
+          "open_tasks": 40,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "d",
+          "title": "Delta",
+          "kind": "project",
+          "open_tasks": 5,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        }
+      ],
+      "signals": {},
+      "order": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "rail": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "scores": {
+        "a": 270,
+        "b": 270,
+        "c": 90,
+        "d": 90
+      }
+    },
+    {
+      "name": "an event today, soon, at the edge of the horizon, beyond it, and past",
+      "subjects": [
+        {
+          "id": "today",
+          "title": "Today",
+          "kind": "event",
+          "event_date": "2026-09-30"
+        },
+        {
+          "id": "soon",
+          "title": "Soon",
+          "kind": "event",
+          "event_date": "2026-10-03"
+        },
+        {
+          "id": "edge",
+          "title": "Edge",
+          "kind": "event",
+          "event_date": "2026-10-14"
+        },
+        {
+          "id": "far",
+          "title": "Far",
+          "kind": "event",
+          "event_date": "2026-10-15"
+        },
+        {
+          "id": "past",
+          "title": "Past",
+          "kind": "event",
+          "event_date": "2026-09-28"
+        },
+        {
+          "id": "undated",
+          "title": "Undated",
+          "kind": "event",
+          "event_date": null
+        }
+      ],
+      "signals": {},
+      "order": [
+        "today",
+        "soon",
+        "edge",
+        "far",
+        "past",
+        "undated"
+      ],
+      "rail": [
+        "today",
+        "soon",
+        "edge",
+        "far",
+        "past",
+        "undated"
+      ],
+      "scores": {
+        "today": 120,
+        "soon": 70,
+        "edge": 0,
+        "far": 0,
+        "past": 0,
+        "undated": 0
+      }
+    },
+    {
+      "name": "activity fades by half every three days, and old open work turns stale",
+      "subjects": [
+        {
+          "id": "fresh",
+          "title": "Fresh",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": "2026-09-30T12:00:00.000Z",
+          "event_date": null
+        },
+        {
+          "id": "three",
+          "title": "Three",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": "2026-09-27T12:00:00.000Z",
+          "event_date": null
+        },
+        {
+          "id": "week",
+          "title": "Week",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": "2026-09-23T12:00:00.000Z",
+          "event_date": null
+        },
+        {
+          "id": "staleWork",
+          "title": "StaleWork",
+          "kind": "project",
+          "open_tasks": 1,
+          "overdue_tasks": 0,
+          "last_activity_at": "2026-09-22T12:00:00.000Z",
+          "event_date": null
+        },
+        {
+          "id": "staleQuiet",
+          "title": "StaleQuiet",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": "2026-09-22T12:00:00.000Z",
+          "event_date": null
+        }
+      ],
+      "signals": {},
+      "order": [
+        "fresh",
+        "staleWork",
+        "three",
+        "week",
+        "staleQuiet"
+      ],
+      "rail": [
+        "fresh",
+        "staleWork",
+        "three",
+        "week",
+        "staleQuiet"
+      ],
+      "scores": {
+        "fresh": 80,
+        "staleWork": 54.59921,
+        "three": 40,
+        "week": 15.874011,
+        "staleQuiet": 12.59921
+      }
+    },
+    {
+      "name": "ties break on the latest activity, then the title, then the id",
+      "subjects": [
+        {
+          "id": "z1",
+          "title": "Same",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": "2026-08-31T12:00:00.000Z",
+          "event_date": null
+        },
+        {
+          "id": "z2",
+          "title": "Same",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": "2026-08-31T12:00:00.000Z",
+          "event_date": null
+        },
+        {
+          "id": "m",
+          "title": "Middle",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": "2026-08-31T12:00:00.000Z",
+          "event_date": null
+        },
+        {
+          "id": "n",
+          "title": "Newer",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": "2026-08-30T12:00:00.000Z",
+          "event_date": null
+        },
+        {
+          "id": "o",
+          "title": "Older",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": "2026-08-21T12:00:00.000Z",
+          "event_date": null
+        }
+      ],
+      "signals": {},
+      "order": [
+        "m",
+        "z1",
+        "z2",
+        "n",
+        "o"
+      ],
+      "rail": [
+        "m",
+        "z1",
+        "z2",
+        "n",
+        "o"
+      ],
+      "scores": {
+        "m": 0.078125,
+        "z1": 0.078125,
+        "z2": 0.078125,
+        "n": 0.062008,
+        "o": 0.007751
+      }
+    },
+    {
+      "name": "the rail holds twelve",
+      "subjects": [
+        {
+          "id": "p00",
+          "title": "Project 00",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p01",
+          "title": "Project 01",
+          "kind": "project",
+          "open_tasks": 1,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p02",
+          "title": "Project 02",
+          "kind": "project",
+          "open_tasks": 2,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p03",
+          "title": "Project 03",
+          "kind": "project",
+          "open_tasks": 3,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p04",
+          "title": "Project 04",
+          "kind": "project",
+          "open_tasks": 4,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p05",
+          "title": "Project 05",
+          "kind": "project",
+          "open_tasks": 5,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p06",
+          "title": "Project 06",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p07",
+          "title": "Project 07",
+          "kind": "project",
+          "open_tasks": 1,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p08",
+          "title": "Project 08",
+          "kind": "project",
+          "open_tasks": 2,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p09",
+          "title": "Project 09",
+          "kind": "project",
+          "open_tasks": 3,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p10",
+          "title": "Project 10",
+          "kind": "project",
+          "open_tasks": 4,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p11",
+          "title": "Project 11",
+          "kind": "project",
+          "open_tasks": 5,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p12",
+          "title": "Project 12",
+          "kind": "project",
+          "open_tasks": 0,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        },
+        {
+          "id": "p13",
+          "title": "Project 13",
+          "kind": "project",
+          "open_tasks": 1,
+          "overdue_tasks": 0,
+          "last_activity_at": null,
+          "event_date": null
+        }
+      ],
+      "signals": {},
+      "order": [
+        "p05",
+        "p11",
+        "p04",
+        "p10",
+        "p03",
+        "p09",
+        "p02",
+        "p08",
+        "p01",
+        "p07",
+        "p13",
+        "p00",
+        "p06",
+        "p12"
+      ],
+      "rail": [
+        "p05",
+        "p11",
+        "p04",
+        "p10",
+        "p03",
+        "p09",
+        "p02",
+        "p08",
+        "p01",
+        "p07",
+        "p13",
+        "p00"
+      ],
+      "scores": {
+        "p05": 90,
+        "p11": 90,
+        "p04": 72,
+        "p10": 72,
+        "p03": 54,
+        "p09": 54,
+        "p02": 36,
+        "p08": 36,
+        "p01": 18,
+        "p07": 18,
+        "p13": 18,
+        "p00": 0,
+        "p06": 0,
+        "p12": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+#!/bin/sh
+# One heavy build at a time on this Mac, across every repository (2026-10-19).
+#
+# On 2026-10-19 four Bipe xcodebuilds, two Bipe verifies and four Starlings
+# gates ran together on a 10-core M4 with 16 GB. The load reached 153 and every
+# gate stalled for hours. Each repository serialised only its own builds.
+#
+# This file is the one implementation of the mkdir lock. Starlings' gate locks
+# (gate-lock.sh) use it for their per-repository locks, and every heavy build
+# on the Mac (xcodebuild, Gradle, a Starlings Apple gate) also takes the
+# machine lock in ~/Library/Caches/build-lock/heavy.lock.
+#
+#   build-lock <what> <command> [args]  run the command under the machine lock
+#   build-lock --status                 print the holder and any waiting queue
+#   build-lock --install                copy this file to ~/.local/bin/build-lock
+#   BUILD_LOCK_SOURCED=1 . build-lock   define the functions only
+#
+# Other repositories (the Bipe repos) call the installed copy:
+#
+#   build-lock "bipe-ios verify" xcodebuild build-for-testing ...
+#
+# The Starlings land queue installs this file from origin/main each time it
+# fetches, and `pnpm verify` installs it when it is missing.
+#
+# A waiter prints the holder (PID, folder, what) when it starts to wait, and
+# again every minute with the holder's age. It warns when the holder's process
+# tree has used no CPU for ten minutes. A lock whose process has exited, or
+# whose PID now names a different process, is cleared. A command started
+# inside a holder passes through: the holder exports BUILD_LOCK_HELD=1.
+#
+# A waiter with BUILD_LOCK_FIRST=1 (the Starlings land queue) goes first.
+# While it waits, it leaves `<lock>.queue-waiting` with its PID, and no other
+# waiter takes that lock until it has had it.
+#
+#   BUILD_LOCK_WAIT  seconds to wait before giving up (default 3600)
+#   BUILD_LOCK_ROOT  folder of the machine lock (default ~/Library/Caches/build-lock)
+#   BUILD_LOCK_TAG   prefix of the messages (default build-lock)
+
+# Seconds of CPU time used by a process and all its descendants (0 when it is gone).
+build_lock_tree_cpu() {
+  ps -axo pid=,ppid=,cputime= 2>/dev/null | awk -v root="$1" '
+    { split($3, t, /[:.]/); n = length(t); sec = (n >= 3 ? t[n-2] * 60 : 0) + t[n-1] + 0; if (n >= 4) sec += t[n-3] * 3600
+      cpu[$1] = sec; parent[$1] = $2 }
+    END { total = 0; for (p in cpu) { q = p; while (q != "" && q != 0) { if (q == root) { total += cpu[p]; break } q = parent[q] } } print total }'
+}
+
+# The start time of a process, which tells a live holder from a reused PID.
+build_lock_started() {
+  ps -o lstart= -p "$1" 2>/dev/null | tr -s ' '
+}
+
+# True while a live first-in-line waiter waits for this lock; a mark left by
+# one that has exited is cleared.
+build_lock_queue_waits() {
+  bl_queue_pid=$(cat "$bl_queue_mark" 2>/dev/null || true)
+  [ -n "$bl_queue_pid" ] || return 1
+  if kill -0 "$bl_queue_pid" 2>/dev/null; then return 0; fi
+  rm -f "$bl_queue_mark"
+  return 1
+}
+
+# build_lock_take <lock dir> <what> <held variable>
+#
+# Waits for the lock, then holds it until this shell exits. The held variable
+# is exported as 1, so a child that asks for the same lock passes through.
+build_lock_take() {
+  bl_dir=$1
+  bl_held_var=$3
+  if [ "$(eval "printf '%s' \"\${$bl_held_var:-}\"")" = 1 ]; then return 0; fi
+  bl_tag=${BUILD_LOCK_TAG:-build-lock}
+  bl_name=$(basename "$bl_dir" .lock)
+  bl_limit=${BUILD_LOCK_WAIT:-3600}
+  bl_waited=0
+  bl_start=$(date +%s)
+  bl_next_report=60
+  bl_said=0
+  bl_queue_mark="${bl_dir%.lock}.queue-waiting"
+  bl_yielding=0
+  bl_idle_since=0
+  bl_last_cpu=
+  mkdir -p "$(dirname "$bl_dir")"
+  # mkdir is atomic: exactly one process creates the directory.
+  while :; do
+    bl_behind_queue=0
+    if [ "${BUILD_LOCK_FIRST:-}" != 1 ] && build_lock_queue_waits; then
+      bl_behind_queue=1
+      if [ "$bl_yielding" -eq 0 ]; then
+        printf '%s: waiting; the land queue goes first for the %s lock\n' "$bl_tag" "$bl_name" >&2
+        bl_yielding=1
+      fi
+    elif mkdir "$bl_dir" 2>/dev/null; then
+      break
+    else
+      bl_holder=$(cat "$bl_dir/pid" 2>/dev/null || true)
+      if [ -n "$bl_holder" ] && ! kill -0 "$bl_holder" 2>/dev/null; then
+        printf '%s: clearing the %s lock of PID %s, which has exited\n' "$bl_tag" "$bl_name" "$bl_holder" >&2
+        rm -rf "$bl_dir"
+        continue
+      fi
+      # The lock outlives a restart; after one, its PID can name another process.
+      bl_recorded=$(cat "$bl_dir/started" 2>/dev/null || true)
+      if [ -n "$bl_holder" ] && [ -n "$bl_recorded" ] && [ "$bl_recorded" != "$(build_lock_started "$bl_holder")" ]; then
+        printf '%s: clearing the %s lock of PID %s, which is now another process\n' "$bl_tag" "$bl_name" "$bl_holder" >&2
+        rm -rf "$bl_dir"
+        continue
+      fi
+      # A holder that died between mkdir and writing its PID leaves no PID.
+      if [ -z "$bl_holder" ] && [ -n "$(find "$bl_dir" -maxdepth 0 -mmin +1 2>/dev/null)" ]; then
+        printf '%s: clearing a %s lock with no PID, older than a minute\n' "$bl_tag" "$bl_name" >&2
+        rm -rf "$bl_dir"
+        continue
+      fi
+      if [ "$bl_said" -eq 0 ]; then
+        bl_said=1
+        printf '%s: waiting; PID %s holds the %s lock in %s (%s)\n' \
+          "$bl_tag" "${bl_holder:-?}" "$bl_name" \
+          "$(cat "$bl_dir/where" 2>/dev/null || echo '?')" \
+          "$(cat "$bl_dir/what" 2>/dev/null || echo '?')" >&2
+      fi
+      # The first-in-line waiter says it is waiting, so nobody takes the lock before it.
+      if [ "${BUILD_LOCK_FIRST:-}" = 1 ]; then printf '%s\n' "$$" > "$bl_queue_mark"; fi
+    fi
+    if [ "$bl_waited" -ge "$bl_limit" ]; then
+      printf '%s: gave up after %s s; remove %s if PID %s is not a build\n' \
+        "$bl_tag" "$bl_waited" "$bl_dir" "${bl_holder:-?}" >&2
+      exit 1
+    fi
+    # A waiter that nobody watches must still say it is blocked: one line a minute
+    # with the holder, and a louder one when its whole process tree has used
+    # no CPU for ten minutes. The lock is not cleared here: the holder's exit trap
+    # would delete the next holder's lock. Kill the holder, and the next waiter takes over.
+    # Behind the queue there is no holder to watch: the queue is waiting too.
+    # Seconds by the clock: under load each pass takes longer than its sleep.
+    if [ "$bl_waited" -lt "$bl_next_report" ]; then
+      :
+    elif [ "$bl_behind_queue" -eq 1 ]; then
+      printf '%s: still waiting %s s; the land queue (PID %s) goes first for the %s lock\n' \
+        "$bl_tag" "$bl_waited" "${bl_queue_pid:-?}" "$bl_name" >&2
+      bl_idle_since=$bl_waited
+    else
+      bl_cpu=$(build_lock_tree_cpu "${bl_holder:-0}")
+      if [ "$bl_cpu" != "$bl_last_cpu" ]; then bl_idle_since=$bl_waited; fi
+      bl_last_cpu=$bl_cpu
+      printf '%s: still waiting %s s; PID %s holds the %s lock in %s (%s) for %s\n' \
+        "$bl_tag" "$bl_waited" "${bl_holder:-?}" "$bl_name" \
+        "$(cat "$bl_dir/where" 2>/dev/null || echo '?')" \
+        "$(cat "$bl_dir/what" 2>/dev/null || echo '?')" \
+        "$(ps -o etime= -p "${bl_holder:-0}" 2>/dev/null | tr -d ' ' || echo '?')" >&2
+      if [ $((bl_waited - bl_idle_since)) -ge 600 ]; then
+        printf '%s: PID %s and its children have used no CPU for 10 min; it may be stuck. kill %s to free the lock\n' \
+          "$bl_tag" "${bl_holder:-?}" "${bl_holder:-?}" >&2
+      fi
+    fi
+    if [ "$bl_waited" -ge "$bl_next_report" ]; then bl_next_report=$((bl_waited + 60)); fi
+    sleep 5
+    bl_waited=$(( $(date +%s) - bl_start ))
+  done
+  if [ "${BUILD_LOCK_FIRST:-}" = 1 ]; then rm -f "$bl_queue_mark"; fi
+  printf '%s\n' "$$" > "$bl_dir/pid"
+  build_lock_started "$$" > "$bl_dir/started"
+  printf '%s\n' "$PWD" > "$bl_dir/where"
+  printf '%s\n' "$2" > "$bl_dir/what"
+  eval "$bl_held_var=1; export $bl_held_var"
+  # Every lock this shell holds is released when it exits.
+  bl_held_dirs="${bl_held_dirs:-} $bl_dir"
+  trap 'rm -rf $bl_held_dirs' EXIT
+  trap 'exit 130' INT
+  trap 'exit 143' TERM
+}
+
+build_lock_machine_dir() {
+  printf '%s/heavy.lock\n' "${BUILD_LOCK_ROOT:-$HOME/Library/Caches/build-lock}"
+}
+
+# build_lock_machine <what>: the machine-wide lock, held until this shell exits.
+build_lock_machine() {
+  build_lock_take "$(build_lock_machine_dir)" "$1" BUILD_LOCK_HELD
+}
+
+if [ "${BUILD_LOCK_SOURCED:-}" != 1 ]; then
+  case "${1:-}" in
+    --install)
+      bl_target="$HOME/.local/bin/build-lock"
+      if cmp -s "$0" "$bl_target"; then exit 0; fi
+      mkdir -p "$HOME/.local/bin"
+      # Copy, then rename: a build that starts mid-copy reads the old file or the new one.
+      cp "$0" "$bl_target.$$" && chmod 755 "$bl_target.$$" && mv -f "$bl_target.$$" "$bl_target"
+      printf 'build-lock: installed %s\n' "$bl_target" >&2
+      exit 0
+      ;;
+    --status)
+      bl_dir=$(build_lock_machine_dir)
+      bl_holder=$(cat "$bl_dir/pid" 2>/dev/null || true)
+      if [ -d "$bl_dir" ] && [ -z "$bl_holder" ]; then
+        printf 'the machine lock is changing hands\n'
+      elif [ -d "$bl_dir" ]; then
+        printf 'PID %s holds the machine lock in %s (%s) for %s\n' "$bl_holder" \
+          "$(cat "$bl_dir/where" 2>/dev/null || echo '?')" "$(cat "$bl_dir/what" 2>/dev/null || echo '?')" \
+          "$(ps -o etime= -p "$bl_holder" 2>/dev/null | tr -d ' ' || echo '?')"
+      else
+        printf 'the machine lock is free\n'
+      fi
+      bl_queue_mark="${bl_dir%.lock}.queue-waiting"
+      if build_lock_queue_waits; then printf 'the land queue (PID %s) waits for it\n' "$bl_queue_pid"; fi
+      exit 0
+      ;;
+    ''|-*)
+      printf 'usage: build-lock <what> <command> [args] | --status | --install\n' >&2
+      exit 2
+      ;;
+  esac
+  if [ $# -lt 2 ]; then
+    printf 'usage: build-lock <what> <command> [args]\n' >&2
+    exit 2
+  fi
+  bl_what=$1
+  shift
+  build_lock_machine "$bl_what"
+  "$@"
+fi

@@ -1,0 +1,15 @@
+{
+  "subject": {
+    "kind": "project",
+    "id": "aaaaaaaa-0000-4000-8000-000000000001"
+  },
+  "type": "event",
+  "text": "Ada Example closed #12 · Draft the pilot scope",
+  "refs": [
+    {
+      "kind": "issue",
+      "id": "example-org/pilot#12"
+    }
+  ],
+  "idempotency_key": "github:example-org/pilot#12:closed"
+}

@@ -1,0 +1,143 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "NSCalendarsFullAccessUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings shows your iCloud and on-device calendars in the Calendar tab, and adds events you create there. Event details stay on this device."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings mostra seus calendários do iCloud e do dispositivo na aba Agenda e adiciona os eventos que você cria nela, mantendo os detalhes neste dispositivo."
+          }
+        }
+      }
+    },
+    "NSCalendarsUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings shows your iCloud and on-device calendars in the Calendar tab. Event details stay on this device."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings mostra seus calendários do iCloud e do dispositivo na aba Agenda, mantendo os detalhes dos eventos neste dispositivo."
+          }
+        }
+      }
+    },
+    "NSCameraUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings uses your camera so people in your meeting can see you, and to take photos and scans for messages."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings usa sua câmera para que as pessoas na reunião vejam você e para tirar fotos e digitalizar documentos para mensagens."
+          }
+        }
+      }
+    },
+    "NSContactsUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings uses Contacts to suggest people when you schedule a meeting."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings usa o app Contatos para sugerir pessoas quando você agenda uma reunião."
+          }
+        }
+      }
+    },
+    "NSFaceIDUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings uses Face ID to unlock the app when you turn on the app lock."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings usa o Face ID para desbloquear o app quando você ativa o bloqueio do app."
+          }
+        }
+      }
+    },
+    "NSLocalNetworkUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings can connect to your development meeting service on the local network."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings pode se conectar ao seu serviço de reuniões em desenvolvimento na rede local."
+          }
+        }
+      }
+    },
+    "NSMicrophoneUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings uses your microphone so people in your meeting can hear you, and to record voice messages."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings usa seu microfone para que as pessoas na reunião ouçam você e para gravar mensagens de voz."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -1,0 +1,13 @@
+-- What a ring is asking for.
+--
+-- 'wave' is the nudge that has always been here: attention, 45 seconds, no
+-- room. 'call' asks the other person to open their room and talk now — the
+-- walk-up-to-a-desk gesture, which until now had nowhere to land unless a
+-- meeting happened to be running already.
+--
+-- One column on `rings` rather than a second table: there is still exactly one
+-- outstanding ring per person, the newest still replaces the older, and both
+-- kinds expire on the same 45-second clock. A call nobody answered inside a
+-- minute is not a missed call, it is a person who was not there.
+-- See docs/SURFACES.md §Reaching a person.
+ALTER TABLE rings ADD COLUMN kind TEXT NOT NULL DEFAULT 'wave';

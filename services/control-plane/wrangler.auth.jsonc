@@ -1,0 +1,71 @@
+// Template for wrangler.auth.jsonc. Work through the `replace-with-…` values.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // starlings-auth: Google sign-in and Google consent for every workspace,
+  // on auth.replace-with-your-domain only (docs/CENTRAL_AUTH.md). It holds
+  // sign-in attempts and signup (links, workspace requests, held slugs;
+  // docs/ONBOARDING.md) in its own D1. It serves no workspace page, no
+  // private API and no session. Workspaces reach it over a service binding
+  // named AUTH (entrypoint AuthService); starlings-site over SIGNUP
+  // (SignupService); starlings-ops over SIGNUP_ADMIN (SignupAdminService).
+  // Deploy it before any Worker that binds it:
+  //   pnpm --filter @starlings/control-plane deploy:auth
+  // Secrets (wrangler secret put --config wrangler.auth.jsonc):
+  // AUTH_SIGNING_SECRET, GOOGLE_WEB_CLIENT_SECRET, POSTMARK_API_KEY (the
+  // Starlings server in Postmark).
+  "name": "starlings-auth",
+  "account_id": "replace-with-your-cloudflare-account-id",
+  "main": "src/auth-worker/index.ts",
+  "compatibility_date": "2026-08-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "routes": [{ "pattern": "auth.replace-with-your-domain", "custom_domain": true }],
+  "vars": {
+    "ENVIRONMENT": "production",
+    "AUTH_ORIGIN": "https://auth.replace-with-your-domain",
+    // A return origin that is not <slug>.replace-with-your-domain, by exact name. Empty:
+    // only workspace hosts receive a code.
+    "RETURN_ORIGIN_ALIASES": "",
+    // The same clients as every workspace that binds this Worker: a workspace
+    // exchanges a consent code with its own client, so they must match.
+    // Your web client. Its
+    // redirect URIs on auth.replace-with-your-domain are exactly the three callbacks in
+    // CENTRAL_AUTH_CALLBACK_PATHS (@starlings/contracts/browser-auth).
+    "GOOGLE_WEB_CLIENT_ID": "replace-with-google-web-client-id",
+    "GOOGLE_CONNECTOR_CLIENT_ID": "",
+    // Calendar consent only (a Google project with its own
+    // sensitive-scope review). Sign-in stays on the web client, which asks
+    // for basic scopes only and is published without review. Its one
+    // redirect URI is https://auth.replace-with-your-domain/api/auth/calendar/callback.
+    "GOOGLE_CALENDAR_CLIENT_ID": "replace-with-google-calendar-client-id",
+    // Signup mail (docs/ONBOARDING.md §Mails), from the verified
+    // domain in Postmark. Replies to a question or a decline reach the operator.
+    "MAIL_FROM": "Starlings <hello@replace-with-your-domain>",
+    "OPS_ALERT_EMAIL": "replace-with-owner@example.com",
+    "SIGNUP_ORIGIN": "https://replace-with-your-site",
+    "OPS_ORIGIN": "https://ops.replace-with-your-domain"
+  },
+  // Shared keys from the Secrets Store starlings-shared (packages/contracts/src/shared-secrets.ts).
+  "secrets_store_secrets": [
+    { "binding": "SHARED_GOOGLE_WEB_CLIENT_SECRET", "store_id": "replace-with-your-secrets-store-id", "secret_name": "GOOGLE_WEB_CLIENT_SECRET" },
+    { "binding": "SHARED_POSTMARK_API_KEY", "store_id": "replace-with-your-secrets-store-id", "secret_name": "POSTMARK_API_KEY" },
+    // The LiveKit key pair for the LiveKit broker (LiveKitService).
+    { "binding": "SHARED_LIVEKIT_API_KEY", "store_id": "replace-with-your-secrets-store-id", "secret_name": "LIVEKIT_API_KEY" },
+    { "binding": "SHARED_LIVEKIT_API_SECRET", "store_id": "replace-with-your-secrets-store-id", "secret_name": "LIVEKIT_API_SECRET" }
+  ],
+  "d1_databases": [
+    {
+      "binding": "AUTH_DB",
+      "database_name": "starlings-auth",
+      // Fill in after `wrangler d1 create starlings-auth`. The
+      // production check refuses a deploy while this is a placeholder.
+      "database_id": "replace-with-your-d1-database-id",
+      "migrations_dir": "./auth-migrations"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "invocation_logs": false, "head_sampling_rate": 1 },
+    "traces": { "enabled": false }
+  }
+}

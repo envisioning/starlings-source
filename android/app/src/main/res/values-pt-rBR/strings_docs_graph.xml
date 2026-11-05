@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="docs_graph_explore">Explorar</string>
+    <string name="docs_graph_title">Grafo</string>
+    <string name="docs_graph_caption">Cada ponto representa um documento; as linhas são links wiki. As cores agrupam documentos por pasta.</string>
+    <string name="docs_graph_zoom_in">Ampliar</string>
+    <string name="docs_graph_zoom_out">Reduzir</string>
+    <string name="docs_graph_fit">Ajustar</string>
+    <string name="docs_graph_show_all">Mostrar todos os grupos</string>
+    <string name="docs_graph_loading_documents">Carregando documentos…</string>
+    <string name="docs_graph_loading_links">Carregando links dos documentos…</string>
+    <string name="docs_graph_progress">%1$d / %2$d</string>
+    <string name="docs_graph_label">Grafo do Docs</string>
+    <string name="docs_graph_help">Arraste para mover, ou arraste um documento para puxar seus links; use o gesto de pinça ou os controles para ampliar. Aponte para um documento para destacar seus links; selecione-o para abri-lo.</string>
+    <string name="docs_graph_empty_title">Ainda não há documentos para mostrar.</string>
+    <string name="docs_graph_empty_message">Os documentos que você adicionar ao Docs aparecerão aqui.</string>
+</resources>

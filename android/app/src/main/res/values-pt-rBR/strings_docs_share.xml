@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="docs_share">Compartilhar</string>
+    <string name="docs_revoke">Revogar</string>
+    <string name="docs_send">Enviar</string>
+</resources>

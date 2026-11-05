@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cal_weather_title">Clima</string>
+    <string name="cal_show_weather">Mostrar clima</string>
+    <string name="cal_weather_clear_place">Limpar</string>
+    <string name="cal_weather_city">Cidade</string>
+    <string name="cal_weather_footer">O clima usa a cidade que você escolher.</string>
+    <!-- The catalog has one "Clear" key, the button's. iOS draws it for the clear sky too. -->
+    <string name="cal_weather_clear">Limpar</string>
+    <string name="cal_weather_mainly_clear">Céu quase limpo</string>
+    <string name="cal_weather_partly_cloudy">Parcialmente nublado</string>
+    <string name="cal_weather_overcast">Nublado</string>
+    <string name="cal_weather_fog">Neblina</string>
+    <string name="cal_weather_drizzle">Garoa</string>
+    <string name="cal_weather_freezing_drizzle">Garoa congelante</string>
+    <string name="cal_weather_rain">Chuva</string>
+    <string name="cal_weather_heavy_rain">Chuva forte</string>
+    <string name="cal_weather_freezing_rain">Chuva congelante</string>
+    <string name="cal_weather_snow">Neve</string>
+    <string name="cal_weather_heavy_snow">Neve forte</string>
+    <string name="cal_weather_snow_grains">Grãos de neve</string>
+    <string name="cal_weather_showers">Pancadas de chuva</string>
+    <string name="cal_weather_heavy_showers">Pancadas fortes</string>
+    <string name="cal_weather_snow_showers">Pancadas de neve</string>
+    <string name="cal_weather_thunderstorm">Tempestade</string>
+    <string name="cal_weather_thunderstorm_hail">Tempestade com granizo</string>
+
+    <string name="settings_cal_show_in_upcoming">Mostrar em Próximos</string>
+    <string name="settings_cal_upcoming_detail">Escolha as agendas do Google e as agendas assinadas para Próximos</string>
+    <string name="settings_cal_display_detail">Escolha o layout, as horas e a grade</string>
+    <string name="settings_cal_weather_detail">Mostrar clima ao lado da agenda</string>
+    <string name="settings_cal_booking_detail">Escolha quando convidados podem agendar um horário com você</string>
+
+    <string name="cal_google_calendars">Agendas do Google</string>
+    <string name="cal_upcoming_feeds_footer">Agendas assinadas adicionadas em Contas e fontes também podem aparecer em Próximos.</string>
+
+    <string name="booking_title">Horários de agendamento</string>
+    <string name="booking_take">Aceitar agendamentos</string>
+    <string name="booking_time_zone">Fuso horário</string>
+    <string name="booking_days">Dias</string>
+    <string name="booking_save">Salvar horários de agendamento</string>
+    <string name="booking_from">%1$s de</string>
+    <string name="booking_until">%1$s até</string>
+    <string name="booking_to">até</string>
+    <string name="booking_meeting_length">Duração da reunião (minutos)</string>
+    <string name="booking_slot_step">Iniciar um horário a cada (minutos)</string>
+    <string name="booking_buffer">Intervalo entre reuniões (minutos)</string>
+    <string name="booking_notice">Antecedência (horas)</string>
+    <string name="booking_max_days">Agendar até (dias à frente)</string>
+    <string name="booking_note_none">Estes são seus horários de trabalho. Você ainda não tem uma página de agendamento.</string>
+    <string name="booking_note_path">Convidados agendam um horário em %1$s dentro destes horários, evitando seus compromissos.</string>
+    <string name="booking_not_taking">Conecte o Google Agenda acima para aceitar agendamentos. Até lá, sua página de agendamento informa que você não está aceitando agendamentos.</string>
+    <string name="booking_saved">Salvo. Seus horários em Equipe seguem a mesma configuração.</string>
+
+    <string name="cal_local_calendars">Agendas locais</string>
+    <string name="cal_include_local">Incluir agendas locais</string>
+    <string name="cal_local_off">Desligado até você ligar.</string>
+    <string name="cal_show_all">Mostrar tudo</string>
+    <string name="cal_hide_all">Ocultar tudo</string>
+    <string name="cal_local_new_hidden">Novas agendas ficam ocultas até serem ativadas aqui.</string>
+    <string name="cal_on_this_device">Neste dispositivo</string>
+    <string name="cal_no_device_calendars">Nenhuma agenda encontrada neste dispositivo.</string>
+    <string name="cal_allow_calendar_access">Permita acesso à agenda em Ajustes</string>
+    <string name="cal_checking_calendar_access">Verificando acesso à agenda…</string>
+</resources>

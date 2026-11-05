@@ -1,0 +1,143 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "NSAudioCaptureUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings captures the audio of a meeting you are in so it can write the notes. Nothing is recorded; the audio is transcribed on this Mac and discarded."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings usa o áudio da reunião da qual você participa para escrever as notas, com transcrição neste Mac e descarte do áudio sem gravá-lo."
+          }
+        }
+      }
+    },
+    "NSCalendarsFullAccessUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings shows your iCloud and On My Mac calendars in the Calendar window. Event details stay on this Mac."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings mostra seus calendários do iCloud e locais na janela Agenda, mantendo os detalhes dos eventos neste Mac."
+          }
+        }
+      }
+    },
+    "NSCalendarsUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings shows your iCloud and On My Mac calendars in the Calendar window. Event details stay on this Mac."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings mostra seus calendários do iCloud e locais na janela Agenda, mantendo os detalhes dos eventos neste Mac."
+          }
+        }
+      }
+    },
+    "NSCameraUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings uses your camera so people in your meeting can see you."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings usa sua câmera para que as pessoas na reunião vejam você."
+          }
+        }
+      }
+    },
+    "NSContactsUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings uses Contacts to suggest attendees when you schedule a meeting."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings usa o app Contatos para sugerir participantes quando você agenda uma reunião."
+          }
+        }
+      }
+    },
+    "NSMicrophoneUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings uses your microphone so people in your meeting can hear you and to provide live captions."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings usa seu microfone para que as pessoas na reunião ouçam você e para oferecer legendas ao vivo."
+          }
+        }
+      }
+    },
+    "NSScreenCaptureUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starlings uses Screen Recording access to share the screen or window you choose with people in your meeting."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Starlings usa a permissão de gravação da tela para compartilhar a tela ou janela que você escolher com as pessoas na reunião."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -1,0 +1,58 @@
+{
+  "rows": [
+    {
+      "kind": "subject",
+      "id": "aaaaaaaa-0000-4000-8000-000000000001",
+      "title": "Pilot programme",
+      "subtitle": "Project · Example Partners · Active",
+      "door": "subject:project:aaaaaaaa-0000-4000-8000-000000000001",
+      "image": "https://img.example.test/org.png"
+    },
+    {
+      "kind": "subject",
+      "id": "aaaaaaaa-0000-4000-8000-000000000002",
+      "title": "Example Partners pilot",
+      "subtitle": "Lead · Example Partners · Cleo Example · Qualified",
+      "door": "subject:lead:aaaaaaaa-0000-4000-8000-000000000002",
+      "image": "https://img.example.test/org.png"
+    },
+    {
+      "kind": "task",
+      "id": "aaaaaaaa-0000-4000-8000-000000000004",
+      "title": "Send the pilot scope",
+      "subtitle": "Pilot programme",
+      "door": "task:aaaaaaaa-0000-4000-8000-000000000004"
+    },
+    {
+      "kind": "issue",
+      "id": "example-org/pilot#12",
+      "title": "Draft the pilot scope",
+      "subtitle": "example-org/pilot",
+      "door": "issue:example-org/pilot#12"
+    },
+    {
+      "kind": "goal",
+      "id": "aaaaaaaa-0000-4000-8000-000000000005",
+      "title": "Ship the pilot",
+      "subtitle": "Pilot programme",
+      "door": "subject:project:aaaaaaaa-0000-4000-8000-000000000001"
+    },
+    {
+      "kind": "decision",
+      "id": "aaaaaaaa-0000-4000-8000-000000000006",
+      "title": "We go with the smaller pilot.",
+      "subtitle": "Pilot programme",
+      "door": "subject:project:aaaaaaaa-0000-4000-8000-000000000001"
+    },
+    {
+      "kind": "thread",
+      "id": "msg_0000000000000001",
+      "title": "Ada Example",
+      "subtitle": "Rosa Example: Did the pilot scope go out?",
+      "door": "thread:dm_3iNqxI5ybPp_e_gTcqFUVh8aePhC-1sV"
+    }
+  ],
+  "partial": [
+    "events"
+  ]
+}

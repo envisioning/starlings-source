@@ -1,0 +1,15 @@
+{
+  "options": [{"id":"easy","label":"Easy to use"},{"id":"polish","label":"Needs more polish"},{"id":"context","label":"Show more context"}],
+  "cases": [
+    {"name":"single choice","mode":"single","selected":["polish"],"expected":["polish"]},
+    {"name":"empty single","mode":"single","selected":[],"expected":null},
+    {"name":"two choices for single","mode":"single","selected":["easy","polish"],"expected":null},
+    {"name":"duplicate choice","mode":"multiple","selected":["easy","easy"],"expected":null},
+    {"name":"unknown choice","mode":"single","selected":["missing"],"expected":null},
+    {"name":"mixed valid and unknown","mode":"multiple","selected":["easy","missing"],"expected":null},
+    {"name":"empty multiple","mode":"multiple","selected":[],"expected":null},
+    {"name":"one of multiple","mode":"multiple","selected":["context"],"expected":["context"]},
+    {"name":"source order wins","mode":"multiple","selected":["context","easy"],"expected":["easy","context"]},
+    {"name":"all choices","mode":"multiple","selected":["context","polish","easy"],"expected":["easy","polish","context"]}
+  ]
+}

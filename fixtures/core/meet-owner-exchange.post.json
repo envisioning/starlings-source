@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "token": "example-token-not-a-secret",
+  "scopes": [
+    "tasks:read",
+    "tasks:write"
+  ],
+  "expires_at": "2026-12-29T09:00:00.000Z",
+  "email": "owner@example.com"
+}

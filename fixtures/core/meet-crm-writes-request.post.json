@@ -1,0 +1,9 @@
+{
+  "action": "create",
+  "entity": "organizations",
+  "values": {
+    "name": "Example Ltd",
+    "legal_name": "Example Ltd",
+    "country": "NL"
+  }
+}

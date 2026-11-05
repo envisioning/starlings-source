@@ -1,0 +1,51 @@
+{
+  "contract": "goals-decisions",
+  "version": 1,
+  "about": [
+    "Goals and decisions (envisioning/starlings#261, #262), stored in Core. A goal",
+    "sits on one project; a decision belongs to one subject of any kind and",
+    "may cite a goal. The rules every surface shares — which goals are live,",
+    "which are late, and the Overview order — are pinned here.",
+    "TypeScript: packages/contracts/src/goals-decisions.ts. Swift:",
+    "Sources/GoalsDecisions.swift, reading this same file."
+  ],
+  "rules": [
+    "STATUSES: open | met | dropped. SOURCES: message | meeting | manual | agent.",
+    "LIVE: a goal is live while open. The task picker offers live goals only.",
+    "LATE: a live goal whose target_date (a civil YYYY-MM-DD) is before today,",
+    "civil days in the caller's zone. Met and dropped goals are never late.",
+    "ORDER: open first, late before on-time, soonest target first, undated",
+    "last, ties by title; then met, then dropped, newest updated_at first."
+  ],
+  "today": "2026-09-21T12:00:00Z",
+  "time_zone": "UTC",
+  "late": [
+    { "name": "open, target yesterday, late", "goal": { "status": "open", "target_date": "2026-09-20" }, "expect": true },
+    { "name": "open, target today, not late", "goal": { "status": "open", "target_date": "2026-09-21" }, "expect": false },
+    { "name": "open, target tomorrow, not late", "goal": { "status": "open", "target_date": "2026-09-22" }, "expect": false },
+    { "name": "open, undated, not late", "goal": { "status": "open", "target_date": null }, "expect": false },
+    { "name": "met, target yesterday, not late", "goal": { "status": "met", "target_date": "2026-09-20" }, "expect": false },
+    { "name": "dropped, target yesterday, not late", "goal": { "status": "dropped", "target_date": "2026-09-20" }, "expect": false }
+  ],
+  "live": [
+    { "name": "open is live", "goal": { "status": "open" }, "expect": true },
+    { "name": "met is not", "goal": { "status": "met" }, "expect": false },
+    { "name": "dropped is not", "goal": { "status": "dropped" }, "expect": false }
+  ],
+  "order": [
+    {
+      "name": "open first, late first, then soonest, undated last; met then dropped by newest",
+      "goals": [
+        { "id": "undated", "status": "open", "target_date": null, "title": "B undated", "created_at": "2026-09-01T00:00:00Z", "updated_at": null },
+        { "id": "dropped-old", "status": "dropped", "target_date": null, "title": "Dropped old", "created_at": "2026-09-01T00:00:00Z", "updated_at": "2026-09-02T00:00:00Z" },
+        { "id": "soon", "status": "open", "target_date": "2026-10-01", "title": "Soon", "created_at": "2026-09-01T00:00:00Z", "updated_at": null },
+        { "id": "met-new", "status": "met", "target_date": "2026-09-10", "title": "Met new", "created_at": "2026-09-01T00:00:00Z", "updated_at": "2026-09-19T00:00:00Z" },
+        { "id": "late", "status": "open", "target_date": "2026-09-01", "title": "Late", "created_at": "2026-09-01T00:00:00Z", "updated_at": null },
+        { "id": "met-old", "status": "met", "target_date": null, "title": "Met old", "created_at": "2026-09-01T00:00:00Z", "updated_at": "2026-09-05T00:00:00Z" },
+        { "id": "undated-a", "status": "open", "target_date": null, "title": "A undated", "created_at": "2026-09-01T00:00:00Z", "updated_at": null },
+        { "id": "dropped-new", "status": "dropped", "target_date": null, "title": "Dropped new", "created_at": "2026-09-01T00:00:00Z", "updated_at": "2026-09-18T00:00:00Z" }
+      ],
+      "expect": ["late", "soon", "undated-a", "undated", "met-new", "met-old", "dropped-new", "dropped-old"]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "asks": [
+    {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "status": "open",
+      "question": "Ship the pilot scope this week?",
+      "context": "The scope is two pages.",
+      "options": [
+        {
+          "key": "ship",
+          "label": "Ship it"
+        },
+        {
+          "key": "wait",
+          "label": "Wait for Cleo"
+        }
+      ],
+      "recommendation": "ship",
+      "default_by": "2026-10-07",
+      "overdue": false,
+      "subject": {
+        "kind": "project",
+        "id": "aaaaaaaa-0000-4000-8000-000000000001",
+        "title": "Pilot programme"
+      },
+      "links": [
+        {
+          "url": "https://pilot.example.test/scope",
+          "title": "Scope"
+        }
+      ],
+      "waits_on_email": "rf-rosa@example.com",
+      "asked_by": "Rosa Example",
+      "asked_by_email": "rf-rosa@example.com",
+      "created_at": "2026-10-01T09:00:00.000Z",
+      "answer": null,
+      "answer_label": null,
+      "answer_note": null,
+      "answered_at": null,
+      "answered_by_email": null,
+      "core_decision_id": null
+    }
+  ]
+}

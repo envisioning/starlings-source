@@ -1,0 +1,22 @@
+-- Who is allowed to change something that belongs to everyone.
+--
+-- Admin was read-only when it shipped, so one guard was enough:
+-- `requireEnvisioningMember` let any verified Envisioning address open it, and
+-- looking is harmless. Then two writes arrived — hiding a colleague from the
+-- global roster and changing org-wide roles — and "any member" quietly became
+-- the authorization model for both. It was never chosen; it was inherited from
+-- a page that used to only read.
+--
+-- So: reads stay open to every member, and writes take `role = 'admin'`.
+--
+-- The bootstrap problem is the reason this column has a fallback rather than
+-- being the whole answer. A role column that starts empty locks the surface
+-- that grants the role, and a `meet-usage` rebuilt from migrations — a fresh
+-- local D1, a restore — starts empty every time. `requireOrgAdmin` therefore
+-- also admits any address in `OWNER_ROOM_MAP`: the people who already operate
+-- this thing, named in configuration that is not the database being restored.
+--
+-- Two guards live in code beside it, because a disabled button is not a
+-- permission: nobody may change their own role, and the last admin may not be
+-- demoted.
+ALTER TABLE people ADD COLUMN role TEXT NOT NULL DEFAULT 'member';

@@ -1,0 +1,25 @@
+{
+  "favorites": [
+    {
+      "kind": "crm.lead",
+      "target_ref": "aaaaaaaa-0000-4000-8000-000000000002",
+      "created_at": "2026-10-01T09:00:00.000Z"
+    },
+    {
+      "kind": "crm.project",
+      "target_ref": "aaaaaaaa-0000-4000-8000-000000000001",
+      "created_at": "2026-10-01T09:00:00.000Z"
+    },
+    {
+      "kind": "crm.task",
+      "target_ref": "aaaaaaaa-0000-4000-8000-000000000004",
+      "created_at": "2026-10-01T09:00:00.000Z"
+    },
+    {
+      "kind": "github.issue",
+      "target_ref": "example-org/pilot#12",
+      "created_at": "2026-10-01T09:00:00.000Z"
+    }
+  ],
+  "synced": true
+}

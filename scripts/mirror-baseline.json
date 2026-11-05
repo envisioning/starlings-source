@@ -1,0 +1,390 @@
+{
+  "about": "Mirror comments that existed on 2026-10-03 (scripts/check-mirrors.mjs). issue: a child of envisioning/starlings#777 for a list still to move into a registry (793: not yet sorted into a child); \"registry\": the list is generated and the comment only describes it; \"rule\": a case fixture pins both sides; \"cross-repo\": the other copy lives in another repository; \"behaviour\": a port of behaviour or a word match that is not a list.",
+  "entries": [
+    {
+      "file": "iOS/StarlingsAPI.swift",
+      "text": "/// Mirrors `MeetingControlAPI.crmSubjectCounts` on the Mac.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "iOS/StarlingsGlance.swift",
+      "text": "/// Smart Stack mirror and its complication. One information architecture,",
+      "issue": "behaviour"
+    },
+    {
+      "file": "iOS/MessageNotices.swift",
+      "text": "/// Mirrors `MessageNotices.plan` on the other Apple client so a message",
+      "issue": "behaviour"
+    },
+    {
+      "file": "iOS/MobileDocsView.swift",
+      "text": "// Kept while empty (the table): a mirror that failed to load says so inside it.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "iOS/MobileHomeView.swift",
+      "text": "// Legacy CRM star actions mirror into shared favorites; refresh the",
+      "issue": "behaviour"
+    },
+    {
+      "file": "iOS/PeerRosterViews.swift",
+      "text": "/// Mirrors the Mac's `WorkOrgLogoMarkView`.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "iOS/PeerRosterViews.swift",
+      "text": "/// rather than as a row. Mirrors the Mac's `WorkGlyphMarkView`, down to the",
+      "issue": "behaviour"
+    },
+    {
+      "file": "iOS/WorkSidebarRow.swift",
+      "text": "/// plain SF Symbol (folder, flag) for a subject with neither. Mirrors the",
+      "issue": "behaviour"
+    },
+    {
+      "file": "iOSActivities/MeetingActivityWidget.swift",
+      "text": "// watchOS 11 mirrors the activity into the Smart Stack. Without this",
+      "issue": "behaviour"
+    },
+    {
+      "file": "packages/contracts/src/browse-groups.ts",
+      "text": "* rule input, not a wire shape: Swift mirrors it (`Sources/BrowseGroups.swift`)",
+      "issue": "registry"
+    },
+    {
+      "file": "packages/contracts/src/chat-reactions.ts",
+      "text": "* The same four as the flying reactions.",
+      "issue": "registry"
+    },
+    {
+      "file": "packages/contracts/src/home-layout-values.ts",
+      "text": "/** The default order — the table in `fixtures/home-layout.json`, kept in step by its test. */",
+      "issue": "registry"
+    },
+    {
+      "file": "packages/contracts/src/index.ts",
+      "text": "* `native` is what Meet wrote; `core` the mirror of Core's published",
+      "issue": "behaviour"
+    },
+    {
+      "file": "packages/contracts/src/index.ts",
+      "text": "* copy Docs keeps. Mirrors `LinkSave` in envisioning/docs and `DocsLinkSave`",
+      "issue": "cross-repo"
+    },
+    {
+      "file": "packages/contracts/src/index.ts",
+      "text": "* in core-kit — keep the two in step).",
+      "issue": "behaviour"
+    },
+    {
+      "file": "packages/contracts/src/lead-qualification.ts",
+      "text": "* It is rule input, not a wire shape: no zod. Swift mirrors the keys",
+      "issue": "registry"
+    },
+    {
+      "file": "packages/contracts/src/rail-blocks.ts",
+      "text": "* wire shape: Swift mirrors it (`Sources/RailBlocks.swift`) and",
+      "issue": "registry"
+    },
+    {
+      "file": "packages/contracts/src/rail-blocks.ts",
+      "text": "// Kept while empty: a mirror that failed to load says so inside it.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "packages/contracts/src/reactions.ts",
+      "text": "* Four, and the same four as the chat quick row: thumbs up, heart,",
+      "issue": "registry"
+    },
+    {
+      "file": "packages/contracts/src/subject-context.ts",
+      "text": "* mirrors it (`Sources/SubjectContextBlocks.swift`) and",
+      "issue": "registry"
+    },
+    {
+      "file": "packages/contracts/src/subject-status.ts",
+      "text": "* list. It is rule input, not a wire shape: Swift mirrors it",
+      "issue": "registry"
+    },
+    {
+      "file": "packages/contracts/src/team-rail.ts",
+      "text": "* each wrote this; this is the one statement. Swift mirrors the rules",
+      "issue": "registry"
+    },
+    {
+      "file": "packages/contracts/src/wire.ts",
+      "text": "// here is a mirror, and mirrors drift (meet, 2026-09-21: one mechanism).",
+      "issue": "behaviour"
+    },
+    {
+      "file": "services/control-plane/src/calendar-extract.ts",
+      "text": "/** The JSON Schema the model fills. Mirrors `extractedEventSchema`, stated once for the wire. */",
+      "issue": "behaviour"
+    },
+    {
+      "file": "services/control-plane/src/capabilities.ts",
+      "text": "* One row per thing a signed-in person can reach. Keep in step with the",
+      "issue": "rule"
+    },
+    {
+      "file": "services/control-plane/src/granola.ts",
+      "text": "//   shape. There is no second code path to keep in step.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "services/control-plane/src/peers.ts",
+      "text": "* `status` is kept in step for clients that have not learned `agent_state`,",
+      "issue": "behaviour"
+    },
+    {
+      "file": "services/control-plane/src/suggestion-eval.ts",
+      "text": "// --- Text helpers (mirrors of TaskSuggestionHeuristics in Sources/TaskSuggestion.swift) ---",
+      "issue": "behaviour"
+    },
+    {
+      "file": "services/control-plane/src/threads.ts",
+      "text": "// somebody reads it, not a roster to keep in step with the company.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/CalendarAppKitChrome.swift",
+      "text": "// orientation at that boundary, which mirrors this person mark. Draw",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/CalendarModels.swift",
+      "text": "/// device the new answer immediately; `CalendarWorkspace` mirrors it to the",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/CalendarModels.swift",
+      "text": "/// for the Mac grid and the iPhone grid; the web mirrors it in",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/CalendarWeekGridView.swift",
+      "text": "/// Mirrors the timed grid so all-day bars slide with the columns.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/CalendarWindowPreferences.swift",
+      "text": "/// window, not an exhaustive mirror of Calendar.app's preferences.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/ContractsExtensions.swift",
+      "text": "/// Mirrors `isMobileOwnerIdentity` in `packages/contracts`: an owner identity",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/CrmIssueImage.swift",
+      "text": "/// holds the reasoning and the mirror of these limits.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/DesignSystem.swift",
+      "text": "/// API mirrors the subset of `NSSegmentedControl` the app uses, so a site",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/DesignSystem.swift",
+      "text": "/// mirror their enabled state here and the monitor stops responding.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/DesignSystem.swift",
+      "text": "/// Mirrors `--hover-lift` on web so the two surfaces move by the same amount.",
+      "issue": "rule"
+    },
+    {
+      "file": "Sources/DesignSystem.swift",
+      "text": "/// Mirrors web's `--presence-busy` and iOS's `StarlingsMobileColors.presenceBusy`.",
+      "issue": "rule"
+    },
+    {
+      "file": "Sources/DesignSystem.swift",
+      "text": "/// Mirrors web's `--presence-in-meeting` and iOS's",
+      "issue": "rule"
+    },
+    {
+      "file": "Sources/DirectMessages.swift",
+      "text": "/// The github.com page a GitHub ref names — mirror of the",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/DocsRailGroups.swift",
+      "text": "/// form (`ø`, CJK) is a separator, not a letter. The web mirror is",
+      "issue": "rule"
+    },
+    {
+      "file": "Sources/DocsRailView.swift",
+      "text": "/// row; LIBRARY is the mirror of Core's published writing. Deeper folders",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/EnvisioningIdentity.swift",
+      "text": "/// Macs. Mirrors `deviceScopedOwnerIdentity` in `packages/contracts`.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/InboxNotices.swift",
+      "text": "/// notification about history. Mirrors `MessageNotices.plan`.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/LinkPreview.swift",
+      "text": "/// The web mirror is `web/src/link-preview.tsx`; the wire shape is",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/MeetingViewController.swift",
+      "text": "/// Mirrors the web guest lobby socket so Mac Join learns admit/waiting updates promptly.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/MeetingViewController.swift",
+      "text": "/// The camera the stage's prejoin mirror may hold for a given phase — nil",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/MeetingViewController.swift",
+      "text": "/// the remove is in flight, mirrors `lobbyDecisionInFlight` for requests.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/MeetingViewController.swift",
+      "text": "/// whenever the mirror is not the thing on screen.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/MentionMatching.swift",
+      "text": "/// share. Web mirrors this in `web/src/ThreadPane.tsx` and `web/src/markdown.tsx`.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/MessageNotices.swift",
+      "text": "/// Mirrors `MessageNotices.plan` on the other Apple client so a message",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/SearchRecentRows.swift",
+      "text": "/// mirrors the Worker's builder in `search.ts` (`subjectRow`, `threadRow`,",
+      "issue": "rule"
+    },
+    {
+      "file": "Sources/SnapshotStore.swift",
+      "text": "/// live response — there is no second shape to keep in step, and a model",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/ThreadMarkdown.swift",
+      "text": "/// another on the phone. The web mirror is `web/src/markdown.ts`.",
+      "issue": "rule"
+    },
+    {
+      "file": "Sources/ThreadMarkdown.swift",
+      "text": "/// be CommonMark is a parser nobody can keep in step across three renderers.",
+      "issue": "rule"
+    },
+    {
+      "file": "Sources/ThreadTranscript.swift",
+      "text": "/// Same four as the meeting palette (`MeetingReaction`). A",
+      "issue": "registry"
+    },
+    {
+      "file": "Sources/WorkInbox.swift",
+      "text": "/// A capped read, said as what shows, not as a failure. Same line as",
+      "issue": "behaviour"
+    },
+    {
+      "file": "Sources/WorkItems.swift",
+      "text": "// board; declined is dropped. Mirrors contracts/work-items.ts.",
+      "issue": "rule"
+    },
+    {
+      "file": "Sources/WorkItems.swift",
+      "text": "/// `agent:*` stage means an agent holds it. Mirrors `isUnowned`.",
+      "issue": "rule"
+    },
+    {
+      "file": "Sources/WorkItems.swift",
+      "text": "/// judged and the issue it claims never is. Mirrors `planUnowned`.",
+      "issue": "rule"
+    },
+    {
+      "file": "Sources/WorkSurface.swift",
+      "text": "/// click that picked it. Mirrors `holdWorkRankPlace` in",
+      "issue": "rule"
+    },
+    {
+      "file": "watchOS/WatchStore.swift",
+      "text": "/// The door is the phone's: a knock banner mirrors to the wrist and its",
+      "issue": "behaviour"
+    },
+    {
+      "file": "web/src/crm-work.ts",
+      "text": "* subjects. Same line as the Mac's `WorkInboxResponse.partialLine`.",
+      "issue": "behaviour"
+    },
+    {
+      "file": "web/src/crm-work.ts",
+      "text": "* the cap. Not a failure, so no Retry. Same line as the Mac's",
+      "issue": "behaviour"
+    },
+    {
+      "file": "web/src/docs.ts",
+      "text": "* iOS mirror is `DocsRailGroups.slug`; `fixtures/docs-slug.json` pins both.",
+      "issue": "rule"
+    },
+    {
+      "file": "web/src/DocsPage.tsx",
+      "text": "* (`docsRailFolders`), and LIBRARY, the mirror of Core's",
+      "issue": "behaviour"
+    },
+    {
+      "file": "web/src/document-markdown-parse.ts",
+      "text": "* `./markdown` is the message subset and mirrors `ThreadMarkdown.swift`; it",
+      "issue": "rule"
+    },
+    {
+      "file": "web/src/HomeGridBackground.tsx",
+      "text": "// Nested fades (vertical, then horizontal) mirror `BrandGridBackground`'s",
+      "issue": "behaviour"
+    },
+    {
+      "file": "web/src/markdown-parse.ts",
+      "text": "* The browser mirror of `Sources/ThreadMarkdown.swift` — same subset, same",
+      "issue": "rule"
+    },
+    {
+      "file": "web/src/meeting-types.ts",
+      "text": "/** Keep native button availability aligned with the shared wire contract. */",
+      "issue": "behaviour"
+    },
+    {
+      "file": "web/src/mentions.ts",
+      "text": "* mirror of `Sources/MentionMatching.swift`. Same rule everywhere: a mention",
+      "issue": "behaviour"
+    },
+    {
+      "file": "web/src/owner-agenda.ts",
+      "text": "// The owner's day, on the web. Same feed, same rules, and the same words as",
+      "issue": "behaviour"
+    },
+    {
+      "file": "web/src/OwnerHomeCards.tsx",
+      "text": "* and the same words as the Mac launch card and the iOS Home tab, so the",
+      "issue": "rule"
+    },
+    {
+      "file": "web/src/PrejoinDevices.tsx",
+      "text": "/** LiveKit + browser defaults — keep preview aligned with the published call track. */",
+      "issue": "behaviour"
+    },
+    {
+      "file": "web/src/ThreadPane.tsx",
+      "text": "* then deleted is not a mention. Mirrors `MentionMatching` on Mac/iOS.",
+      "issue": "behaviour"
+    }
+  ]
+}

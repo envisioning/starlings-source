@@ -1,0 +1,74 @@
+{
+  "ok": true,
+  "subject": {
+    "id": "aaaaaaaa-0000-4000-8000-0000000000e1",
+    "kind": "event",
+    "title": "Pilot open house",
+    "subtitle": "2026-10-08 · Lisbon, Portugal",
+    "event_date": "2026-10-08",
+    "start_at": "2026-10-08T15:00:00+00:00",
+    "timezone": "Europe/Lisbon",
+    "location": "Example Hall, Lisbon",
+    "place": null,
+    "location_label": "Lisbon, Portugal",
+    "attendance": "in_person",
+    "cancelled": false,
+    "url": "https://events.example.test/open-house",
+    "image_url": "https://img.example.test/event.png",
+    "host": "Ada Example",
+    "partner": "Example Partners",
+    "partner_url": "https://partners.example.test",
+    "published": true,
+    "description": "Meet the team.",
+    "updated_at": "2026-09-30T09:00:00.000Z",
+    "organization_id": null,
+    "organization_name": null,
+    "organization_logo_url": "https://img.example.test/event.png",
+    "open_tasks": 1,
+    "overdue_tasks": 1,
+    "has_repo": false,
+    "status": "Dated",
+    "related": {
+      "projects": [
+        {
+          "id": "aaaaaaaa-0000-4000-8000-000000000001",
+          "title": "Pilot programme",
+          "status": "Active"
+        }
+      ],
+      "leads": [],
+      "contacts": []
+    }
+  },
+  "subjects": [
+    {
+      "id": "aaaaaaaa-0000-4000-8000-0000000000e1",
+      "kind": "event",
+      "title": "Pilot open house",
+      "subtitle": "2026-10-08 · Lisbon, Portugal",
+      "event_date": "2026-10-08",
+      "start_at": "2026-10-08T15:00:00+00:00",
+      "timezone": "Europe/Lisbon",
+      "location": "Example Hall, Lisbon",
+      "place": null,
+      "location_label": "Lisbon, Portugal",
+      "attendance": "in_person",
+      "cancelled": false,
+      "url": "https://events.example.test/open-house",
+      "image_url": "https://img.example.test/event.png",
+      "host": "Ada Example",
+      "partner": "Example Partners",
+      "partner_url": "https://partners.example.test",
+      "published": true,
+      "description": "Meet the team.",
+      "updated_at": "2026-09-30T09:00:00.000Z",
+      "organization_id": null,
+      "organization_name": null,
+      "organization_logo_url": "https://img.example.test/event.png",
+      "open_tasks": 1,
+      "overdue_tasks": 1,
+      "has_repo": false
+    }
+  ],
+  "has_more": false
+}

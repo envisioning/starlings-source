@@ -1,0 +1,18 @@
+{
+  // Separate program: the scripts run on Node, and Node's globals conflict with
+  // @cloudflare/workers-types if both are in one program.
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    // The scripts import the Worker's adapter module by its .ts name, which is
+    // how `node --experimental-strip-types` resolves it.
+    "allowImportingTsExtensions": true,
+    "types": ["node"]
+  },
+  "include": ["scripts/**/*.ts"]
+}

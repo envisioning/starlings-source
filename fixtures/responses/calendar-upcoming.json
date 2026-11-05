@@ -1,0 +1,29 @@
+{
+  "events": [
+    {
+      "id": "sub:example-feed:0",
+      "calendarId": "sub:example-feed",
+      "calendarSummary": "Pilot calendar",
+      "htmlLink": "",
+      "title": "Pilot open house",
+      "start": "2026-10-02T15:00:00.000Z",
+      "end": "2026-10-02T16:00:00.000Z",
+      "joinUrl": "https://envisioning.starlings.example/room/example-room",
+      "roomSlug": "example-room",
+      "isMeetEvent": true,
+      "attendees": [],
+      "organizerSelf": true,
+      "platform": "starlings",
+      "conferenceUrl": "https://envisioning.starlings.example/room/example-room",
+      "allDay": false,
+      "recurringEventId": "",
+      "recurring": false,
+      "description": "",
+      "location": "Example Hall, Lisbon",
+      "travelTimeMinutes": null,
+      "demoted": false,
+      "calendarRole": "ordinary",
+      "subject": null
+    }
+  ]
+}

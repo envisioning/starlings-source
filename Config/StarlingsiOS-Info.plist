@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Starlings</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>pt-BR</string>
+	</array>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>$(STARLINGS_BUNDLE_ID).oauth</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(MEET_GOOGLE_REDIRECT_SCHEME)</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>$(STARLINGS_BUNDLE_ID).glance</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>starlings</string>
+				<string>meet</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.business</string>
+	<key>MEET_API_ENDPOINT</key>
+	<string>$(MEET_API_ENDPOINT)</string>
+	<key>MEET_GOOGLE_NATIVE_CLIENT_ID</key>
+	<string>$(MEET_GOOGLE_NATIVE_CLIENT_ID)</string>
+	<key>MEET_GOOGLE_REDIRECT_SCHEME</key>
+	<string>$(MEET_GOOGLE_REDIRECT_SCHEME)</string>
+	<key>MEET_WEB_ORIGIN</key>
+	<string>$(MEET_WEB_ORIGIN)</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Starlings shows your iCloud and on-device calendars in the Calendar tab, and adds events you create there. Event details stay on this device.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Starlings shows your iCloud and on-device calendars in the Calendar tab. Event details stay on this device.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Starlings uses your camera so people in your meeting can see you, and to take photos and scans for messages.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Starlings uses Contacts to suggest people when you schedule a meeting.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Starlings uses Face ID to unlock the app when you turn on the app lock.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Starlings can connect to your development meeting service on the local network.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Starlings uses your microphone so people in your meeting can hear you, and to record voice messages.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~iphone</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
+</plist>

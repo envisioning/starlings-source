@@ -1,0 +1,2718 @@
+{
+  "note": "The Worker routes each released Mac and iOS app calls, by first and last release (meet#1163). `cut-release.sh` adds each release with `node scripts/check-client-routes.mjs --record-release <version>`; `--from <tag>` reads an older release. Do not edit by hand.",
+  "releases": [
+    "6.8.2",
+    "6.8.3",
+    "6.8.4",
+    "6.8.5",
+    "6.8.6",
+    "6.8.7",
+    "6.8.8",
+    "6.8.9",
+    "6.9.2",
+    "6.9.4",
+    "6.9.5",
+    "6.9.6",
+    "6.9.7",
+    "6.9.8",
+    "6.9.9",
+    "7.0.0",
+    "7.0.1",
+    "7.0.2",
+    "7.0.3",
+    "7.0.4",
+    "7.0.5",
+    "7.0.6",
+    "7.0.7",
+    "7.0.8",
+    "7.0.9",
+    "7.1.0",
+    "7.1.1",
+    "7.1.2",
+    "7.1.3",
+    "7.1.4",
+    "7.1.5",
+    "7.1.6",
+    "7.1.7",
+    "7.1.8",
+    "7.1.9",
+    "7.2.0",
+    "7.2.1",
+    "7.2.2",
+    "7.2.3",
+    "7.2.4",
+    "7.2.5",
+    "7.2.6",
+    "7.2.7",
+    "7.2.8",
+    "7.2.9",
+    "7.3.0",
+    "7.3.1"
+  ],
+  "routes": [
+    {
+      "client": "ios",
+      "route": "DELETE /api/calendar/accounts/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/calendar/event",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/calendar/subscriptions/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/crm/contacts/{}",
+      "first": "7.0.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/crm/favorites",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/crm/inbox/{}/dismiss",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/crm/interactions/{}",
+      "first": "7.1.1",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/crm/offers/{}/lines/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/crm/sales-inbox/{}/dismiss",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/crm/subjects/{}/{}",
+      "first": "7.0.6",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/crm/tasks/{}",
+      "first": "7.1.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/profile/avatar",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/quick-notes/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/rooms/{}/meetings/{}/follow-up",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/rooms/{}/meetings/{}/hands",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "DELETE /api/threads/{}/messages/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/attention/{}",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/auth/devices",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/avatar",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/accounts",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/availability",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/booking-settings",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/calendars",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/events",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/invitations",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/pending",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/preferences",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/status",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/subscriptions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/subscriptions/events",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/upcoming",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/calendar/work-items",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/card-lines",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/avatar",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/board",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/commercial-summary",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/contact-options",
+      "first": "7.0.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/contacts",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/contacts/{}",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/decisions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/favorites",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/github-repos",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/goals",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/inbox",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/interactions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/issue",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/issue-facets",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/issues",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/licenses",
+      "first": "7.3.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/mine",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/offer-options",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/offers",
+      "first": "7.3.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/offers/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/offers/{}/versions/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/organizations",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/organizations/{}/default-discount",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/project-repos",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/recently-closed",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/sales-inbox",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/services",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/starred",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/subject-counts",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/subject-state",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/subjects",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/subjects/{}/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/subjects/{}/{}/commercial",
+      "first": "7.1.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/subjects/lead/{}/submission",
+      "first": "6.8.4",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/subjects/organization/{}/project-tasks",
+      "first": "7.1.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/tasks",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/tasks/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/team",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/unowned",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/crm/work",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/home/preferences",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/link-preview",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/mcp/grants",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/mcp/grants/{}/calls",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/owner/room",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/peers",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/profile/language",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/public/events",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/quick-notes",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/rooms/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/rooms/{}/bookings/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/rooms/{}/join-requests/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/rooms/{}/lobby",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/rooms/{}/meetings/{}/category",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/rooms/{}/meetings/{}/link-preview",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/rooms/{}/meetings/{}/transcript",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/search",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/setup",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/threads",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/threads/{}/attachments/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/threads/{}/messages",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "GET /api/workspace/plan",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/calendar/event",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/contacts/{}",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/goals/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/interactions/{}",
+      "first": "7.1.1",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/issue",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/licenses/{}",
+      "first": "7.3.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/mine",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/offers/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/offers/{}/lines/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/organizations/{}/default-discount",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/services/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/subject-state",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/subjects/{}/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/crm/tasks/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/docs/annotations/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/quick-notes/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/rooms/{}/settings",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PATCH /api/threads/{}/messages/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/agents/cancel",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/attention/{}/resolve",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/auth/devices/revoke",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/auth/native/exchange",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/auth/native/redeem",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/auth/refresh",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/accounts/connect/exchange",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/booking-token",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/connect/exchange",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/disconnect",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/event/move",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/event/respond",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/events",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/free-busy",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/pending/{}/add",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/pending/{}/discard",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/quick-add",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/calendar/subscriptions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/core/merge/contacts",
+      "first": "7.0.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/core/merge/organizations",
+      "first": "7.0.7",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/core/token",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/contacts",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/decisions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/favorites",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/goals",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/inbox/{}/dismiss",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/interactions",
+      "first": "7.1.1",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/issue",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/licenses",
+      "first": "7.3.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/licenses/{}/end",
+      "first": "7.3.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/offers",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/offers/{}/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/offers/{}/decision",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/offers/{}/duplicate",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/offers/{}/lines",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/organizations",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/project-repos",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/sales-inbox/{}/dismiss",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/services",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/subjects",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/subjects/lead/{}/win",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/crm/tasks",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/decision-asks/{}/answer",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/diagnostics",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/docs/documents",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/docs/documents/{}/refetch",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/docs/token",
+      "first": "6.8.2",
+      "last": "6.8.9"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/keep/token",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/mcp/grants/{}/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/mcp/grants/{}/revoke",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/operational-errors",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/owner/heartbeat",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/owner/host-session",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/peers/appear-offline",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/peers/call",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/peers/dnd",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/peers/intent",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/peers/ring",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/peers/ring/clear",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/quick-notes",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/quick-notes/{}/promote",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/guest-presence",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/guest-presence/{}/remove",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/join-requests",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/join-requests/{}/decision",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/join-requests/{}/exchange",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/downstream-usage",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/end",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/finalize",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/follow-up",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/hand",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/heartbeat",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/host/claim",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/host/offer",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/host/offer/answer",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/host/release",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/participants/{}",
+      "first": "6.8.2",
+      "last": "6.8.9"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/participants/mute",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/participants/remove",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/quality",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/screen-share/stop",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/task-candidates",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/{}/transcript",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/meetings/ambient",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/presence",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/rooms/{}/session/door",
+      "first": "6.8.4",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/threads",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/threads/{}/archive",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/threads/{}/attachments",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/threads/{}/messages",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/threads/{}/messages/{}/reactions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/threads/{}/mute",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/threads/{}/questions/{}/answer",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/threads/{}/read",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "POST /api/threads/{}/releases/{}",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/admin/plan",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/admin/plan/kept-project",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/admin/setup",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/calendar/booking-settings",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/calendar/preferences",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/crm/subject-state/{}/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/home/preferences",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/issue-images",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/profile/avatar",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/profile/language",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/rooms/{}/meetings/{}/category",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/setup/skip",
+      "first": "6.9.8",
+      "last": "7.3.1"
+    },
+    {
+      "client": "ios",
+      "route": "PUT /api/threads/{}/attachments/{}",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/calendar/accounts/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/calendar/event",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/calendar/subscriptions/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/crm/contacts/{}",
+      "first": "7.0.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/crm/favorites",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/crm/inbox/{}/dismiss",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/crm/interactions/{}",
+      "first": "7.1.1",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/crm/offers/{}/lines/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/crm/sales-inbox/{}/dismiss",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/crm/subjects/{}/{}",
+      "first": "7.0.6",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/crm/tasks/{}",
+      "first": "7.1.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/profile/avatar",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/quick-notes/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/rooms/{}/meetings/{}/follow-up",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/rooms/{}/meetings/{}/hands",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "DELETE /api/threads/{}/messages/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/attention/{}",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/auth/devices",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/avatar",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/accounts",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/availability",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/booking-settings",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/calendars",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/events",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/invitations",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/pending",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/preferences",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/status",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/subscriptions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/subscriptions/events",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/upcoming",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/calendar/work-items",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/card-lines",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/avatar",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/board",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/commercial-summary",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/contact-options",
+      "first": "7.0.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/contacts",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/contacts/{}",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/decisions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/favorites",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/github-repos",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/goals",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/inbox",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/interactions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/issue",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/issue-facets",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/issues",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/licenses",
+      "first": "7.3.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/mine",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/offer-options",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/offers",
+      "first": "7.3.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/offers/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/offers/{}/versions/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/organizations",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/organizations/{}/default-discount",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/project-repos",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/recently-closed",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/sales-inbox",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/services",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/starred",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/subject-counts",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/subject-state",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/subjects",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/subjects/{}/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/subjects/{}/{}/commercial",
+      "first": "7.1.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/subjects/lead/{}/submission",
+      "first": "6.8.4",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/subjects/organization/{}/project-tasks",
+      "first": "7.1.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/tasks",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/tasks/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/team",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/unowned",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/crm/work",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/home/preferences",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/link-preview",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/mcp/grants",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/mcp/grants/{}/calls",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/owner/room",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/peers",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/profile/language",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/public/events",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/quick-notes",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/rooms/{}",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/rooms/{}/bookings/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/rooms/{}/join-requests/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/rooms/{}/lobby",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/rooms/{}/lobby/socket",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/rooms/{}/meetings/{}/category",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/rooms/{}/meetings/{}/link-preview",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/rooms/{}/meetings/{}/transcript",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/search",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/setup",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/threads",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/threads/{}/attachments/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/threads/{}/messages",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "GET /api/workspace/plan",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/calendar/event",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/contacts/{}",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/goals/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/interactions/{}",
+      "first": "7.1.1",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/issue",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/licenses/{}",
+      "first": "7.3.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/mine",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/offers/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/offers/{}/lines/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/organizations/{}/default-discount",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/services/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/subject-state",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/subjects/{}/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/crm/tasks/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/docs/annotations/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/quick-notes/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/rooms/{}/settings",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PATCH /api/threads/{}/messages/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/agents/cancel",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/attention/{}/resolve",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/auth/devices/revoke",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/auth/native/exchange",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/auth/native/redeem",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/auth/refresh",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/accounts/connect/exchange",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/booking-token",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/connect/exchange",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/disconnect",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/event/move",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/event/respond",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/events",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/free-busy",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/pending/{}/add",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/pending/{}/discard",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/quick-add",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/calendar/subscriptions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/core/merge/contacts",
+      "first": "7.0.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/core/merge/organizations",
+      "first": "7.0.7",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/core/token",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/contacts",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/decisions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/favorites",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/goals",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/inbox/{}/dismiss",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/interactions",
+      "first": "7.1.1",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/issue",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/licenses",
+      "first": "7.3.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/licenses/{}/end",
+      "first": "7.3.0",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/offers",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/offers/{}/{}",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/offers/{}/decision",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/offers/{}/duplicate",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/offers/{}/lines",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/organizations",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/project-repos",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/sales-inbox/{}/dismiss",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/services",
+      "first": "7.2.9",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/subjects",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/subjects/lead/{}/win",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/crm/tasks",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/decision-asks/{}/answer",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/dev/session",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/diagnostics",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/docs/documents",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/docs/documents/{}/refetch",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/docs/token",
+      "first": "6.8.2",
+      "last": "6.8.9"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/keep/token",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/mcp/grants/{}/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/mcp/grants/{}/revoke",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/operational-errors",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/owner/heartbeat",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/owner/host-session",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/peers/appear-offline",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/peers/call",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/peers/dnd",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/peers/intent",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/peers/ring",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/peers/ring/clear",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/quick-notes",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/quick-notes/{}/promote",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/guest-presence",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/guest-presence/{}/remove",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/join-requests",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/join-requests/{}/decision",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/join-requests/{}/exchange",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/downstream-usage",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/end",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/finalize",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/follow-up",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/hand",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/heartbeat",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/host/claim",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/host/offer",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/host/offer/answer",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/host/release",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/participants/mute",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/participants/remove",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/quality",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/screen-share/stop",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/task-candidates",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/{}/transcript",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/meetings/ambient",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/presence",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/session/door",
+      "first": "6.8.4",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/rooms/{}/start",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/threads",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/threads/{}/archive",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/threads/{}/attachments",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/threads/{}/messages",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/threads/{}/messages/{}/reactions",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/threads/{}/mute",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/threads/{}/questions/{}/answer",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/threads/{}/read",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "POST /api/threads/{}/releases/{}",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/admin/plan",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/admin/plan/kept-project",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/admin/setup",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/calendar/booking-settings",
+      "first": "6.8.5",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/calendar/preferences",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/crm/subject-state/{}/{}",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/home/preferences",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/issue-images",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/profile/avatar",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/profile/language",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/rooms/{}/meetings/{}/category",
+      "first": "6.8.2",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/setup/skip",
+      "first": "6.9.8",
+      "last": "7.3.1"
+    },
+    {
+      "client": "macos",
+      "route": "PUT /api/threads/{}/attachments/{}",
+      "first": "6.9.2",
+      "last": "7.3.1"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+// Template for wrangler.jsonc. Work through the `replace-with-…` values.
+{
+  "$schema": "../control-plane/node_modules/wrangler/config-schema.json",
+  "name": "starlings-site",
+  "account_id": "replace-with-your-cloudflare-account-id",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-03",
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "replace-with-your-site", "custom_domain": true }
+  ],
+  // The Plausible site that counts visits (docs/ANALYTICS.md). Empty: count nothing.
+  "vars": {
+    "PLAUSIBLE_DOMAIN": "",
+    // /download/ios redirects here (src/index.js). An https URL, or /download/ios answers 404.
+    "IOS_TESTFLIGHT_URL": ""
+  },
+  // The notarized Mac zips the release uploads: /download/mac and /download/mac/<version>/Starlings-macOS.zip (docs/UPDATER.md).
+  "r2_buckets": [
+    { "binding": "DOWNLOADS", "bucket_name": "meet-downloads" }
+  ],
+  "services": [
+    // Early-access enquiries land in this workspace.
+    { "binding": "HQ", "service": "replace-with-your-worker-name" },
+    { "binding": "SIGNUP", "service": "starlings-auth", "entrypoint": "SignupService" }
+  ],
+  "assets": {
+    "directory": "../../web/marketing/dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "none"
+  }
+}

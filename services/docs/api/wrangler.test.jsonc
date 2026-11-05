@@ -1,0 +1,35 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "docs-test",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-08",
+  "compatibility_flags": ["nodejs_compat"],
+  // No `assets` block: tests only exercise /api/*, and pointing at web/dist
+  // would make the test run depend on the SPA having been built.
+  "vars": {
+    "ENVIRONMENT": "test",
+    "WEB_ORIGIN": "http://localhost:5174",
+    "PUBLIC_API_ORIGIN": "http://localhost:8788",
+    "GOOGLE_WEB_CLIENT_ID": "test-client-id",
+    "CORE_API_ORIGIN": "https://core.envisioning.test",
+    "EMAIL_FROM": "docs@org.example",
+    "EMAIL_MODE": "log",
+    "SESSION_SIGNING_SECRET": "test-signing-secret-at-least-32-characters",
+    "SIGNATURE_SEAL_SECRET": "test-seal-secret-at-least-32-characters-ok",
+    "GOOGLE_WEB_CLIENT_SECRET": "test-client-secret",
+    "INTERNAL_REQUEST_SECRET": "test-internal-secret-shared-with-core-abc",
+    "DOCS_INTERNAL_SECRET": "test-docs-internal-secret-shared-with-meet",
+    "SUPABASE_URL_CMS": "https://cms.supabase.test",
+    "SUPABASE_SERVICE_ROLE_KEY_CMS": "test-cms-key",
+    "POSTMARK_TOKEN": ""
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "docs-test",
+      "database_id": "test",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [{ "binding": "DOCS_FILES", "bucket_name": "docs-files-test" }]
+}

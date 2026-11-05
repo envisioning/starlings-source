@@ -1,0 +1,23 @@
+{
+  "name": "keep-envisioning",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @keep/api dev",
+    "dev:web": "pnpm --filter @keep/web dev",
+    "build:web": "pnpm --filter @keep/web build",
+    "typecheck": "pnpm --filter @keep/api --filter @keep/web --filter @keep/contracts --filter @keep/crypto typecheck",
+    "test": "pnpm --filter @keep/crypto test && pnpm --filter @keep/api test && pnpm --filter @keep/web test",
+    "verify": "node ./scripts/sync-meet-fixtures.mjs --check && node ./scripts/sync-meet-ui.mjs --check && node ./scripts/check-central-auth-fixture.mjs && pnpm --filter @keep/api --filter @keep/web --filter @keep/contracts --filter @keep/crypto typecheck && pnpm --filter @keep/crypto test && pnpm --filter @keep/api test && pnpm --filter @keep/web test && pnpm --filter @keep/web build",
+    "db:migrate:local": "pnpm --filter @keep/api db:migrate:local",
+    "db:migrate": "pnpm --filter @keep/api db:migrate",
+    "deploy": "pnpm build:web && pnpm --filter @keep/api run deploy"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.1",
+    "typescript": "5.9.3"
+  }
+}

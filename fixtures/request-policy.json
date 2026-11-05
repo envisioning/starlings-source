@@ -1,0 +1,316 @@
+{
+  "version": 1,
+  "timeoutSeconds": 15,
+  "retry": {
+    "methods": [
+      "GET",
+      "HEAD",
+      "PUT",
+      "PATCH"
+    ],
+    "extraAttempts": 1,
+    "delaySeconds": 0.7,
+    "statusFloor": 500,
+    "statuses": [
+      408,
+      429
+    ]
+  },
+  "snapshots": [
+    {
+      "name": "threads",
+      "key": "threads",
+      "read": "GET /api/threads",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": [
+        "thread.open",
+        "thread.message",
+        "thread.state"
+      ]
+    },
+    {
+      "name": "peers",
+      "key": "peers",
+      "read": "GET /api/peers",
+      "clients": [
+        "ios"
+      ],
+      "invalidatedBy": []
+    },
+    {
+      "name": "mine",
+      "key": "crm/mine",
+      "read": "GET /api/crm/mine",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": [
+        "task.create",
+        "task.update",
+        "issue.write",
+        "githubLogin.set"
+      ]
+    },
+    {
+      "name": "inbox",
+      "key": "crm/inbox",
+      "read": "GET /api/crm/inbox",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": [
+        "attention.resolve",
+        "comment.resolve",
+        "quickNote.write",
+        "task.update",
+        "workPreferences.set"
+      ]
+    },
+    {
+      "name": "quickNotes",
+      "key": "quick-notes",
+      "read": "GET /api/quick-notes",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": [
+        "quickNote.write"
+      ]
+    },
+    {
+      "name": "subjects",
+      "key": "crm/subjects",
+      "read": "GET /api/crm/subjects",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": [
+        "subject.write",
+        "subjectState.set",
+        "workPreferences.set"
+      ]
+    },
+    {
+      "name": "subjectCounts",
+      "key": "crm/subject-counts",
+      "read": "GET /api/crm/subject-counts",
+      "clients": [
+        "mac",
+        "ios"
+      ],
+      "invalidatedBy": [
+        "subject.write",
+        "subjectState.set",
+        "workPreferences.set"
+      ]
+    },
+    {
+      "name": "subjectState",
+      "key": "crm/subject-state",
+      "read": "GET /api/crm/subject-state",
+      "clients": [
+        "mac"
+      ],
+      "invalidatedBy": [
+        "subjectState.set",
+        "workPreferences.set"
+      ]
+    },
+    {
+      "name": "tasks",
+      "key": "crm/tasks",
+      "read": "GET /api/crm/tasks",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": [
+        "task.create",
+        "task.update"
+      ]
+    },
+    {
+      "name": "interactions",
+      "key": "crm/interactions",
+      "read": "GET /api/crm/interactions",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": [
+        "interaction.write"
+      ]
+    },
+    {
+      "name": "issues",
+      "key": "crm/issues",
+      "read": "GET /api/crm/issues",
+      "clients": [
+        "ios"
+      ],
+      "invalidatedBy": [
+        "issue.write"
+      ]
+    },
+    {
+      "name": "starred",
+      "key": "crm/starred",
+      "read": "GET /api/crm/starred",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": [
+        "favorite.set"
+      ]
+    },
+    {
+      "name": "favorites",
+      "key": "crm/favorites",
+      "read": "GET /api/crm/favorites",
+      "clients": [
+        "ios"
+      ],
+      "invalidatedBy": [
+        "favorite.set"
+      ]
+    },
+    {
+      "name": "commercialSummary",
+      "key": "crm/commercial-summary",
+      "read": "GET /api/crm/commercial-summary",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": []
+    },
+    {
+      "name": "ownerRoom",
+      "key": "owner/room",
+      "read": "GET /api/owner/room",
+      "clients": [
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": []
+    },
+    {
+      "name": "calendarUpcoming",
+      "key": "calendar/upcoming",
+      "read": "GET /api/calendar/upcoming",
+      "clients": [
+        "mac",
+        "web"
+      ],
+      "invalidatedBy": []
+    },
+    {
+      "name": "calendarPreferences",
+      "key": "calendar/preferences",
+      "read": "GET /api/calendar/preferences",
+      "clients": [
+        "mac",
+        "web"
+      ],
+      "invalidatedBy": []
+    },
+    {
+      "name": "calendarInvitations",
+      "key": "calendar/invitations",
+      "read": "GET /api/calendar/invitations",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": []
+    },
+    {
+      "name": "calendarPending",
+      "key": "calendar/pending",
+      "read": "GET /api/calendar/pending",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "invalidatedBy": []
+    }
+  ],
+  "writes": {
+    "thread.open": [
+      "threads"
+    ],
+    "thread.message": [
+      "threads"
+    ],
+    "thread.state": [
+      "threads"
+    ],
+    "attention.resolve": [
+      "crm/inbox"
+    ],
+    "comment.resolve": [
+      "crm/inbox"
+    ],
+    "quickNote.write": [
+      "crm/inbox",
+      "quick-notes"
+    ],
+    "task.create": [
+      "crm/mine",
+      "crm/tasks"
+    ],
+    "task.update": [
+      "crm/mine",
+      "crm/inbox",
+      "crm/tasks"
+    ],
+    "issue.write": [
+      "crm/mine",
+      "crm/issues"
+    ],
+    "githubLogin.set": [
+      "crm/mine"
+    ],
+    "subject.write": [
+      "crm/subjects",
+      "crm/subject-counts"
+    ],
+    "subjectState.set": [
+      "crm/subjects",
+      "crm/subject-counts",
+      "crm/subject-state"
+    ],
+    "workPreferences.set": [
+      "crm/inbox",
+      "crm/subjects",
+      "crm/subject-counts",
+      "crm/subject-state"
+    ],
+    "favorite.set": [
+      "crm/starred",
+      "crm/favorites"
+    ],
+    "interaction.write": [
+      "crm/interactions"
+    ]
+  }
+}

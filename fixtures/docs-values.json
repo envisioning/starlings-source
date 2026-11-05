@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "selectionWords": {
+    "graph": { "title": "Graph", "empty": "There are no documents to show yet." },
+    "recent": { "title": "Recent", "empty": "Documents you write appear here, newest first." },
+    "unfiled": { "title": "Unfiled", "empty": "Everything is filed." },
+    "links": { "title": "Links", "empty": "Paste or drop a link to save it." },
+    "subject": { "title": "Subject", "empty": "Nothing written about this yet." },
+    "folder": { "title": null, "empty": "Nothing filed here yet." }
+  }
+}

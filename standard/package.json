@@ -1,0 +1,22 @@
+{
+  "name": "@starlings/subject-spec",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Starlings Subject Spec: subject kinds, doors, records and a conformance suite.",
+  "repository": { "type": "git", "url": "https://github.com/envisioning/starlings-subject-spec.git" },
+  "type": "module",
+  "sideEffects": false,
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./src/index.ts",
+    "./doors": "./src/doors.ts",
+    "./kinds": "./src/kinds.ts",
+    "./schema": "./src/schema.ts"
+  },
+  "dependencies": {
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

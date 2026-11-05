@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "registrations": [
+    {
+      "id": "abcdef12-0000-4000-8000-000000000002",
+      "event_id": "abcdef12-0000-4000-8000-000000000001",
+      "name": "Ada Example",
+      "join_token": "K7Q2M9X4C8V1B6N3",
+      "source": "meet",
+      "status": "registered",
+      "ics_uid": "abcdef12-0000-4000-8000-000000000002@meet.example.test",
+      "ics_sequence": 0,
+      "confirmation_sent_at": "2026-10-05T10:00:00.000Z",
+      "reminder_sent_at": null,
+      "follow_up_sent_at": null,
+      "created_at": "2026-10-05T10:00:00.000Z",
+      "email": "ada@example.test"
+    }
+  ]
+}

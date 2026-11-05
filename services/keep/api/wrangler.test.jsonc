@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "keep-test",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-08",
+  "compatibility_flags": ["nodejs_compat"],
+  // No `assets` block: tests only exercise /api/*.
+  "vars": {
+    "ENVIRONMENT": "test",
+    "WEB_ORIGIN": "http://localhost:5175",
+    "PUBLIC_API_ORIGIN": "http://localhost:8789",
+    "GOOGLE_WEB_CLIENT_ID": "test-client-id",
+    "CORE_WEB_ORIGIN": "https://core.envisioning.test",
+    "APPLE_APP_IDS": "TEAM.com.envisioning.meet",
+    "KEEP_INTERNAL_SECRET": "test-keep-internal-secret-shared-with-meet",
+    "SESSION_SIGNING_SECRET": "test-signing-secret-at-least-32-characters",
+    "GOOGLE_WEB_CLIENT_SECRET": "test-client-secret"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "keep-test", "database_id": "test", "migrations_dir": "migrations" }
+  ]
+}

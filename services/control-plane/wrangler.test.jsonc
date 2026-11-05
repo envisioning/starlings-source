@@ -1,0 +1,147 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "meet-test",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "OPS_ALERT_EMAIL": "",
+    "ENVIRONMENT": "development",
+    "WEB_ORIGIN": "http://127.0.0.1:5173",
+    // The tests stand in for Envisioning: its room links are this Worker's (meet#935).
+    "PUBLIC_WEB_ORIGIN": "https://envisioning.starlings.example",
+    "NATIVE_APPLE_TEAM_ID": "TESTTEAM00",
+    "PUBLIC_API_ORIGIN": "http://127.0.0.1:8787",
+    "LIVEKIT_URL": "ws://livekit.invalid:7880",
+    "GOOGLE_WEB_CLIENT_ID": "replace-with-google-web-client-id",
+    // The Google connector grant (docs/CONNECTORS.md): its own Google Cloud
+    // project with an Internal consent screen, so a Gmail or Drive revoke never
+    // touches sign-in or Calendar. Empty = not set up; the secret is
+    // GOOGLE_CONNECTOR_CLIENT_SECRET.
+    "GOOGLE_CONNECTOR_CLIENT_ID": "",
+    "GOOGLE_NATIVE_CLIENT_ID": "replace-with-google-native-client-id",
+    "GOOGLE_NATIVE_CLIENT_ID_STARLINGS": "",
+    "IDENTITY_DOMAINS": "example.com,example.org",
+    "SIGN_IN_DOMAIN": "example.com",
+    "OWNER_ROOM_MAP": "{\"rosa@example.com\":\"rosa\"}",
+    "ROOT_ADMIN_EMAILS": "rosa@example.com",
+    // The tests stand in for Envisioning, which names itself (meet#934).
+    "WORKSPACE_NAME": "Envisioning",
+    "GLOBAL_INTEREST_CALENDAR_TITLE": "Envisioning Internal",
+    "INTERNAL_ROOM_MAP": "{\"*\":\"team\"}",
+    "IOS_TESTFLIGHT_URL": "https://testflight.apple.com/join/Y24XzRpe",
+    // Every outside origin is a reserved `.invalid` host (RFC 2606): it never
+    // resolves, and test/no-network.ts refuses the call before it is tried. A
+    // test that needs one stubs `fetch` and asserts on these (meet#591).
+    "CORE_API_ORIGIN": "https://core.invalid",
+    // Envisioning's store; unset is d1 (meet#937).
+    "WORK_STORE": "core",
+    "DOCS_ORIGIN": "https://docs.invalid",
+    "KEEP_ORIGIN": "https://keep.invalid",
+    "SUMMARY_MODE": "fallback",
+    "SUMMARY_MODEL": "@cf/meta/llama-3.1-8b-instruct-fp8",
+    "CALENDAR_EXTRACT_MODEL": "claude-sonnet-5",
+    "TASK_SUGGEST_MODE": "off",
+    "TASK_SUGGEST_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "GRANOLA_SUGGEST_MODE": "off",
+    "GRANOLA_SUGGEST_MODEL": "typesafe/jev",
+    // The GitHub connector (docs/GITHUB_CONNECTOR.md): the Starlings App,
+    // reached over the GITHUB binding to the token broker in starlings-auth;
+    // an admin connects an installation from Admin. `GITHUB_SYNC_ENABLED` is
+    // the kill switch; off means the hourly pass enqueues nothing.
+    "GITHUB_SYNC_ENABLED": "off",
+    // The Slack import (docs/SLACK_IMPORT.md). `SLACK_IMPORT_ENABLED` is the
+    // kill switch; off means the hourly pass enqueues nothing and the
+    // mapping list is read-only. The token is the SLACK_USER_TOKEN secret.
+    "SLACK_IMPORT_ENABLED": "off",
+    "GITHUB_ISSUES_REPO": "",
+    "AGENT_ROSTER": "{\"agent-vocab@example.com\":\"Vocab\"}",
+    // `on`: this Worker takes mail at `<slug>.<local>@starlings.example` (meet#1056). `off`: no inbound addresses.
+    // The suite has no starlings.example origin, so the mailbox has no slug and stays shut;
+    // the mail tests give it one (`test/inbound-mailbox.ts`). An alias here would also
+    // become the site origin of every event page and the workspace descriptor.
+    "INBOUND_EMAIL": "on",
+    // Public contact@ / support@ door (meet#929). Independent of INBOUND_EMAIL. Empty: closed.
+    "SUPPORT_EMAIL_DOMAIN": "support.test",
+    // The app channel door (#1176). Closed here; test/app-intake.test.ts opens it per case.
+    "APP_INTAKE_REPLY_URL": "",
+    "APP_INTAKE_ALLOWED_ATTACHMENT_HOSTS": ""
+  },
+  // No `ratelimits` here on purpose. Counters shared across a suite make tests
+  // order-dependent — the twelfth knock in a file would start failing for a
+  // reason that has nothing to do with what it asserts. The absent-binding path
+  // is the one under test instead.
+  "durable_objects": {
+    "bindings": [
+      { "name": "ROOMS", "class_name": "RoomCoordinator" },
+      { "name": "THREADS", "class_name": "ThreadCoordinator" },
+      { "name": "QUICK_NOTES", "class_name": "QuickNotesCoordinator" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["RoomCoordinator"] },
+    { "tag": "v2", "new_sqlite_classes": ["ThreadCoordinator"] },
+    { "tag": "v3", "new_sqlite_classes": ["QuickNotesCoordinator"] }
+  ],
+  "queues": {
+    "producers": [
+      { "binding": "ARTIFACT_JOBS", "queue": "meet-artifact-jobs-test" },
+      { "binding": "IMPORT_JOBS", "queue": "meet-import-jobs-test" }
+    ]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "CALENDAR_TOKENS",
+      "id": "00000000000000000000000000000001",
+      "preview_id": "00000000000000000000000000000001"
+    },
+    {
+      "binding": "CORE_CACHE",
+      "id": "00000000000000000000000000000002",
+      "preview_id": "00000000000000000000000000000002"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "USAGE",
+      "database_name": "meet-usage-test",
+      "database_id": "00000000000000000000000000000002",
+      "migrations_dir": "./migrations"
+    },
+    // A second workspace's D1, for the isolation case in test/work-d1.test.ts.
+    // The Worker never reads this binding; the test passes it as `USAGE`.
+    {
+      "binding": "USAGE_OTHER",
+      "database_name": "meet-usage-test-other",
+      "database_id": "00000000000000000000000000000003",
+      "migrations_dir": "./migrations"
+    },
+    {
+      // The starlings-auth Worker's D1 (wrangler.auth.jsonc), for
+      // test/central-auth.test.ts. The workspace code never reads it; the
+      // test reaches it only through the auth Worker's functions.
+      "binding": "AUTH_DB",
+      "database_name": "starlings-auth-test",
+      "database_id": "00000000000000000000000000000004",
+      "migrations_dir": "./auth-migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "DOWNLOADS",
+      "bucket_name": "meet-downloads-test"
+    },
+    {
+      "binding": "AVATARS",
+      "bucket_name": "meet-avatars-test"
+    },
+    {
+      "binding": "ATTACHMENTS",
+      "bucket_name": "meet-attachments-test"
+    },
+    {
+      "binding": "BACKUPS",
+      "bucket_name": "meet-backups-test"
+    }
+  ]
+}

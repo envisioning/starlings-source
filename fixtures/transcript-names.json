@@ -1,0 +1,124 @@
+{
+  "$comment": [
+    "The transcript name pass (meet#155): what local STT heard, spelled the",
+    "way the room spells it. Swift: Sources/TranscriptNameLexicon.swift, held",
+    "to this file by Tests/TranscriptNameLexiconTests.swift. `words` stands in",
+    "for the spell checker: a listed word is a plain word of that language and",
+    "is never rewritten. Each case gives the names in the room and the line as",
+    "heard; `expected` is the line as written."
+  ],
+  "words": {
+    "en": [
+      "table",
+      "fable",
+      "joelle"
+    ],
+    "pt": [
+      "mesa",
+      "luis"
+    ]
+  },
+  "cases": [
+    {
+      "name": "an accent is not a different person",
+      "names": [
+        "Sergio Andrade"
+      ],
+      "language": "en",
+      "heard": "Sérgio will send it.",
+      "expected": "Sergio will send it."
+    },
+    {
+      "name": "the same sound as one name is that name",
+      "names": [
+        "Luiz Silva",
+        "Sergio Andrade"
+      ],
+      "language": "en",
+      "heard": "Luís and Sérgio agreed.",
+      "expected": "Luiz and Sergio agreed."
+    },
+    {
+      "name": "one edit from one name is that name",
+      "names": [
+        "Joell Rivers"
+      ],
+      "language": "en",
+      "heard": "Joel said no.",
+      "expected": "Joell said no."
+    },
+    {
+      "name": "a plain word is never a name, however close",
+      "names": [
+        "Sergio Andrade"
+      ],
+      "language": "en",
+      "heard": "A fable about a table.",
+      "expected": "A fable about a table."
+    },
+    {
+      "name": "a dictionary word in the segment's language stays, even when it is a name elsewhere",
+      "names": [
+        "Luiz Silva"
+      ],
+      "language": "pt",
+      "heard": "O Luís chegou.",
+      "expected": "O Luís chegou."
+    },
+    {
+      "name": "two names within reach is a tie, and a tie is left alone",
+      "names": [
+        "Joell Rivers",
+        "Joelle Moreau"
+      ],
+      "language": "en",
+      "heard": "Joel will call Joelle.",
+      "expected": "Joel will call Joelle."
+    },
+    {
+      "name": "short words are never touched",
+      "names": [
+        "Bo Lee",
+        "Ana Reis"
+      ],
+      "language": "en",
+      "heard": "Bob and Anna and Ann.",
+      "expected": "Bob and Anna and Ann."
+    },
+    {
+      "name": "surnames count, and punctuation and case around a name survive",
+      "names": [
+        "Sergio Andrade"
+      ],
+      "language": "en",
+      "heard": "ANDRADI, are you there? (andrade's turn.)",
+      "expected": "Andrade, are you there? (Andrade's turn.)"
+    },
+    {
+      "name": "the roster's spelling outranks the team's for the same person",
+      "names": [
+        "Sergio Andrade",
+        "Sergío Andrade"
+      ],
+      "language": "en",
+      "heard": "Sérgio is here.",
+      "expected": "Sergio is here."
+    },
+    {
+      "name": "idempotent",
+      "names": [
+        "Luiz Silva"
+      ],
+      "language": "en",
+      "heard": "Luiz is here.",
+      "expected": "Luiz is here."
+    },
+    {
+      "name": "nothing known, nothing changed",
+      "names": [],
+      "language": "en",
+      "heard": "Luís and Sérgio agreed.",
+      "expected": "Luís and Sérgio agreed."
+    }
+  ]
+}

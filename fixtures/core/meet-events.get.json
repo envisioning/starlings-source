@@ -1,0 +1,17 @@
+{
+  "events": [
+    {
+      "id": "aaaaaaaa-0000-4000-8000-0000000000e1",
+      "title": "Pilot open house",
+      "date": "2026-10-08",
+      "starts_at": "2026-10-08T15:00:00.000Z",
+      "ends_at": "2026-10-08T16:30:00.000Z",
+      "is_all_day": false,
+      "location": "Lisbon, Portugal",
+      "attendance": "in_person",
+      "cancelled": false,
+      "signup_url": "https://events.example.test/open-house",
+      "host": "Ada Example"
+    }
+  ]
+}

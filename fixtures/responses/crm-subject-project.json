@@ -1,0 +1,74 @@
+{
+  "subject": {
+    "open_tasks": 0,
+    "overdue_tasks": 0,
+    "has_repo": false,
+    "responsible_email": "owner@example.com",
+    "responsible_set_by": "owner@example.com",
+    "responsible_set_at": "2026-09-30T09:00:00.000Z",
+    "organization_logo_url": "https://img.example.test/org.png",
+    "organization_id": "aaaaaaaa-0000-4000-8000-000000000003",
+    "organization_name": "Example Partners",
+    "internal": false,
+    "id": "aaaaaaaa-0000-4000-8000-000000000001",
+    "kind": "project",
+    "title": "Pilot programme",
+    "subtitle": "Example Partners · Active",
+    "status": "Active",
+    "updated_at": "2026-09-30T09:00:00.000Z",
+    "description": "A two-month pilot.",
+    "url": "https://pilot.example.test",
+    "lead_id": "aaaaaaaa-0000-4000-8000-000000000002",
+    "license_id": null,
+    "contact_ids": [
+      "aaaaaaaa-0000-4000-8000-000000000008"
+    ],
+    "evid": null,
+    "start_date": "2026-09-01",
+    "end_date": "2026-11-30",
+    "specs": null,
+    "technical": null,
+    "research": null,
+    "design": null,
+    "contract": null,
+    "analytics": null,
+    "authentication": null,
+    "related": {
+      "projects": [],
+      "leads": [
+        {
+          "id": "aaaaaaaa-0000-4000-8000-000000000002",
+          "title": "Example Partners pilot",
+          "status": "Qualified"
+        }
+      ],
+      "contacts": []
+    },
+    "created_at": null,
+    "is_internal": false,
+    "last_viewed_at": null,
+    "organization": {
+      "id": "aaaaaaaa-0000-4000-8000-000000000003",
+      "name": "Example Partners",
+      "profile_image_url": "https://img.example.test/org.png"
+    },
+    "lead": null,
+    "license": null,
+    "project_contacts": [
+      {
+        "contact": {
+          "id": "aaaaaaaa-0000-4000-8000-000000000008",
+          "name": "Cleo Example",
+          "email": "cleo@client.test"
+        }
+      }
+    ],
+    "contacts": [
+      {
+        "id": "aaaaaaaa-0000-4000-8000-000000000008",
+        "name": "Cleo Example",
+        "email": "cleo@client.test"
+      }
+    ]
+  }
+}

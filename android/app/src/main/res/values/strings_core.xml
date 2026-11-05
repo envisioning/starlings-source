@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Other records, the registry at the foot of Browse (core/). Every sentence is the Starlings catalog's (Resources/Localizable.xcstrings) or core-kit CoreCRMUI's; pt-BR in values-pt-rBR/strings_core.xml only where the catalog has one. -->
+<resources>
+    <string name="core_title">Other records</string>
+    <string name="core_open_in_core">Open full record</string>
+
+    <!-- The Other records page (MobileCoreSection) -->
+    <string name="core_search">Search records</string>
+    <string name="core_search_subtitle">Any record, by name</string>
+    <string name="core_read_and_edit">Read and edit</string>
+    <string name="core_read_only">Read only</string>
+    <string name="core_connect">Connect records</string>
+    <string name="core_settings_footer">Lets this device read and edit records with no subject page.</string>
+    <string name="core_not_listed">This account can’t see that.</string>
+    <plurals name="core_entries">
+        <item quantity="one">%1$s entry</item>
+        <item quantity="other">%1$s entries</item>
+    </plurals>
+
+    <!-- Settings › Account › Other records (MobileCoreSettingsSection) -->
+    <string name="core_account">Account</string>
+    <string name="core_expires">Expires</string>
+    <string name="core_reconnect">Reconnect</string>
+    <string name="core_disconnect">Disconnect</string>
+
+    <!-- An entity's list (EntityListView) -->
+    <string name="core_search_entity">Search %1$s</string>
+    <string name="core_sort">Sort</string>
+    <string name="core_filter">Filter</string>
+    <string name="core_any">Any</string>
+    <string name="core_clear_filters">Clear Filters</string>
+    <string name="core_showing_cached">Showing cached data</string>
+    <string name="core_no_records">No %1$s</string>
+
+    <!-- A record (EntityDetailView) -->
+    <string name="core_overview">Overview</string>
+    <string name="core_yes">Yes</string>
+    <string name="core_no">No</string>
+    <string name="core_none">None</string>
+    <string name="core_load_failed">Couldn’t load the record</string>
+    <string name="core_retry">Retry</string>
+    <string name="core_save">Save</string>
+    <string name="core_saving">Saving…</string>
+    <string name="core_revert">Revert</string>
+    <string name="core_delete_entity">Delete %1$s</string>
+    <string name="core_delete_ask">Delete this %1$s?</string>
+    <string name="core_delete">Delete</string>
+    <string name="core_cancel">Cancel</string>
+    <string name="core_discard_ask">Discard unsaved changes?</string>
+    <string name="core_discard_message">Your changes to this %1$s have not been saved.</string>
+    <string name="core_discard">Discard Changes</string>
+    <string name="core_updated">%1$s updated</string>
+    <string name="core_deleted">%1$s deleted</string>
+    <string name="core_unable_to_save">Unable to Save</string>
+    <string name="core_ok">OK</string>
+    <string name="core_no_access">No access</string>
+    <string name="core_open">Open</string>
+    <string name="core_open_named">Open %1$s</string>
+
+    <!-- Search records (CRMGlobalSearchView) -->
+    <string name="core_search_field">Search</string>
+    <string name="core_searching">Searching…</string>
+    <string name="core_unable_to_search">Unable to Search</string>
+    <string name="core_no_results">No Results for “%1$s”</string>
+
+    <!-- Signals (SignalsOutreachView, SignalsOutreachSection) -->
+    <string name="core_signals_section">Signals outreach</string>
+    <string name="core_signals_status">Status</string>
+    <string name="core_signals_mark">Mark %1$s</string>
+    <string name="core_signals_moved">Moved to %1$s</string>
+    <string name="core_signals_failed">Couldn\'t update outreach status</string>
+
+    <!-- Editing (EntityFieldRow, TypeaheadPicker, CharacteristicPillPicker, ContactBirthdayEditor) -->
+    <string name="core_unassigned">Unassigned</string>
+    <string name="core_search_countries">Search countries</string>
+    <string name="core_image_url">Image URL</string>
+    <string name="core_no_matches">No matches</string>
+    <string name="core_remove_named">Remove %1$s</string>
+    <string name="core_no_characteristics">No characteristics configured</string>
+    <string name="core_record">Record</string>
+    <string name="core_open_linked">Open linked record</string>
+    <string name="core_birthday">Birthday</string>
+    <string name="core_month">Month</string>
+    <string name="core_day">Day</string>
+    <string name="core_year_optional">Year (optional)</string>
+    <string name="core_not_set">Not set</string>
+    <string name="core_clear_birthday">Clear Birthday</string>
+    <string name="core_saved_as">Saved as</string>
+
+    <!-- Create (DynamicEntityFormView) -->
+    <string name="core_add">Add</string>
+    <string name="core_new_entity">New %1$s</string>
+    <string name="core_created">%1$s created</string>
+
+    <!-- Board and row actions (EntityListView, CRMBoardView, recordContextMenu) -->
+    <string name="core_presentation">Presentation</string>
+    <string name="core_list">List</string>
+    <string name="core_board">Board</string>
+    <string name="core_move_to">Move to %1$s</string>
+    <string name="core_unable_to_load">Unable to Load</string>
+    <string name="core_copy_name">Copy name</string>
+    <string name="core_name_copied">Name copied</string>
+    <string name="core_copy_public_link">Copy Public Link</string>
+    <string name="core_public_link_copied">Public link copied</string>
+    <string name="core_email">Email</string>
+    <string name="core_open_link">Open link</string>
+
+    <!-- The search sheet's record rows (MobileSearchView.coreRows) -->
+    <string name="core_search_row_count">%1$d records</string>
+    <!-- The tasks checklist (EntityListView.taskChecklist). iOS draws the due words, the owner and the toasts as plain English. -->
+    <string name="core_tasks_show_completed">Show Completed</string>
+    <string name="core_tasks_all_caught_up">All Caught Up</string>
+    <string name="core_tasks_none">No open tasks.</string>
+    <string name="core_tasks_new">New Task</string>
+    <string name="core_tasks_new_in">New task in %1$s</string>
+    <string name="core_tasks_completed">Completed %1$s</string>
+    <string name="core_tasks_reopened">Reopened %1$s</string>
+    <string name="core_tasks_complete">Complete %1$s</string>
+    <string name="core_tasks_reopen">Reopen %1$s</string>
+    <string name="core_tasks_no_project">No Project</string>
+    <string name="core_tasks_today">Today</string>
+    <string name="core_tasks_tomorrow">Tomorrow</string>
+    <string name="core_tasks_yesterday">Yesterday</string>
+    <string name="core_tasks_envisioning">Envisioning</string>
+    <string name="core_tasks_client">Client</string>
+
+    <!-- Around a record's fields (EntityDetailView, RecordMetadataFooter, LicenseOverviewSection, CRMRelatedSectionsView). The footer labels, the license title and Add are plain English on iOS. -->
+    <string name="core_footer_created">Created</string>
+    <string name="core_footer_updated">Updated</string>
+    <string name="core_footer_id">ID</string>
+    <string name="core_license_title">License · %1$s</string>
+    <string name="core_license_arr">ARR</string>
+    <string name="core_license_seats">Seats</string>
+    <string name="core_license_active">Active</string>
+    <string name="core_license_inactive">Inactive</string>
+    <string name="core_license_renewal">Renewal</string>
+    <string name="core_reply_to_customer">Reply to Customer</string>
+    <string name="core_reply_footer">Opens Mail to %1$s, CC’d to %2$s so the reply is logged on this case.</string>
+    <string name="core_related_add">Add %1$s</string>
+    <string name="core_tap_to_edit">Tap to edit</string>
+</resources>

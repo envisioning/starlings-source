@@ -1,0 +1,13 @@
+Starlings Subject Spec
+Copyright 2026 Envisioning
+
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+"Starlings", the Starlings mark and "Works with Starlings" are trademarks of
+Envisioning. The Apache License grants rights to the spec, the code and the
+skills in this repository; it grants no rights to those marks.
+
+Anyone may implement this spec. An implementation may say that it
+"implements the Starlings Subject Spec" and name the version. Only an
+implementation that passes the conformance suite for that version may use
+"Works with Starlings".

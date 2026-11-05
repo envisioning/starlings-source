@@ -1,0 +1,147 @@
+/*
+ * Tailwind for the shadcn components. Theme and
+ * utilities only: no preflight. Preflight resets every element, and
+ * styles.css was written against the browser defaults.
+ *
+ * Cascade: the layer order below is declared once, here, and
+ * main.tsx imports this file before styles.css. styles.css puts its element
+ * rules in `base` and `.md` in `components`, so every utility beats them
+ * whatever the specificity. Only its tokens, @font-face, @keyframes and the
+ * coarse-pointer field font stay unlayered.
+ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "tw-animate-css";
+@import "./ui-theme.css";
+
+/* Preflight gives every element the theme's border colour; without it a
+   `border` utility draws in currentColor, which is white on dark. The base
+   layer below restores that one part. */
+@layer base {
+  /* The part of preflight the components rely on, for shadcn's own
+     controls only: none of the browser's button and field chrome (border,
+     padding, grey face). styles.css gives every control the page's font. A
+     Radix `*-trigger` / `*-anchor` slot copied onto one of our own buttons
+     by `asChild` keeps its own look. A tab is never one of ours: without the
+     reset each tab drew the grey button face (meet#491). A shadcn Button
+     under a trigger is still ours: the trigger's `data-slot` replaces
+     `button`, but `data-variant` stays, so the reset finds it by that. */
+  :is(button, input, select, textarea)[data-slot]:not([data-slot$="-trigger"], [data-slot$="-anchor"]),
+  button[data-variant],
+  [data-slot="tabs-trigger"] {
+    margin: 0;
+    padding: 0;
+    /* Width and style only. The `border: 0 solid` shorthand also set the
+       colour to currentColor and outranked the theme colour below, so a
+       bordered Button (Home's tiles, the sign-in tile) drew white. */
+    border-width: 0;
+    border-style: solid;
+    border-radius: 0;
+    background-color: transparent;
+    color: inherit;
+    letter-spacing: inherit;
+  }
+
+  /* Preflight's margin reset, for shadcn's text slots only: an
+     `ItemDescription` is a `<p>`, and the browser's 1em margin stood every
+     rail subtitle 12px off its title. A margin utility still wins. */
+  :is(h1, h2, h3, h4, h5, h6, p)[data-slot] {
+    margin: 0;
+  }
+
+  /* Preflight's link reset, for shadcn links only: a Button or Item link
+     draws no underline unless a variant asks for one. The colour and the
+     underline offset come from the `a` rule in styles.css. */
+  a[data-slot] {
+    text-decoration: inherit;
+  }
+
+  /* Every element, not only shadcn's: a `border` or `divide-y` utility on
+     one of our own elements drew in currentColor, a white hairline on dark
+     (meet#485, meet#486). A border colour that styles.css or a utility
+     sets still wins: the one is later in this layer, the other a later
+     layer. */
+  *,
+  ::before,
+  ::after,
+  ::backdrop {
+    border-color: var(--color-border);
+  }
+}
+
+/* Meet opens dark. Light is `data-theme="light"`, or `auto` under a light
+   system appearance (theme.ts). `dark:` follows the same rule. */
+@custom-variant dark {
+  &:where(:root:not([data-theme="light"], [data-theme="auto"]) *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root[data-theme="auto"] *) {
+      @slot;
+    }
+  }
+}
+
+/*
+ * The shadcn theme, mapped onto Meet's own tokens (styles.css) while the web
+ * client moves over. A shadcn component then sits on the same
+ * surface ladder, hairline, corner scale and accent as the page around it.
+ * The Meet tokens already switch with `data-theme`, so these follow light,
+ * dark and auto without a block per theme. To move to core-web's neutral
+ * look later, change the values here and nowhere else.
+ *
+ * Every variable carries a `--ui-` prefix. Meet's own `--accent` (the lime)
+ * and `--muted` (a text colour) mean other things than shadcn's `--accent`
+ * and `--muted`, and styles.css reads them on every page. The `@theme inline`
+ * block below maps the prefixed values onto the Tailwind colour names that
+ * the components use (`bg-primary`, `text-muted-foreground`). When the
+ * shadcn CLI adds a component with its own CSS variables, rename them to
+ * `--ui-*` here before commit.
+ */
+:root {
+  /* md = --radius-field (12), lg = --radius-control (14), xl = --radius-card (18). */
+  --ui-radius: var(--radius-control);
+  --ui-background: var(--surface-bg);
+  --ui-foreground: var(--ink);
+  --ui-card: var(--surface);
+  --ui-card-foreground: var(--ink);
+  /* A menu floats one rung above the card it opens from. */
+  --ui-popover: var(--surface-raised);
+  --ui-popover-foreground: var(--ink);
+  --ui-primary: var(--accent-cta);
+  --ui-primary-foreground: var(--on-accent);
+  --ui-secondary: var(--control-fill);
+  --ui-secondary-foreground: var(--ink);
+  --ui-muted: var(--surface-sunken);
+  --ui-muted-foreground: var(--muted);
+  /* The highlighted item: the hover veil, stated as a value rather than
+     `--hover-lift`, which goes transparent on touch and would hide the
+     keyboard's place in a menu. */
+  --ui-accent: rgb(var(--veil-rgb) / 0.06);
+  --ui-accent-foreground: var(--ink);
+  --ui-destructive: var(--danger);
+  --ui-border: var(--line);
+  --ui-input: var(--control-line);
+  --ui-ring: var(--focus);
+}
+
+/*
+ * Page typography. A utility, so a page names it like any other
+ * utility and no page depends on a global class in styles.css. `lede`: the
+ * paragraph under a page title. It sits in the utilities layer, so it beats
+ * `.md` and the base rules. Pages have no eyebrow over the heading.
+ */
+@utility lede {
+  max-width: 42rem;
+  margin: 0 0 32px;
+  color: rgb(var(--ink-rgb) / 0.68);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+
+  @media (max-width: 640px) {
+    margin-bottom: 24px;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The static launcher shortcuts: iOS's App Intents (iOSActivities/StarlingsControls.swift),
+  JoinNextMeetingIntent and NewQuickNoteIntent. Each starts MainActivity with
+  LaunchAction.EXTRA and the iOS LaunchAction raw value (widgets/Controls.kt), the
+  same verb the Quick Settings tiles hand over. Held to LaunchAction by ControlsTest.
+
+  The capability is the Assistant's door to the same two verbs (App Actions,
+  OPEN_APP_FEATURE with inline inventory). Each shortcut binds the feature to its names; a match hands MainActivity the
+  shortcut's id, which is the LaunchAction raw value, in LaunchAction.EXTRA. An
+  unmatched feature opens the app as a plain launch does. As iOS, both open the
+  app (openAppWhenRun).
+-->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <capability android:name="actions.intent.OPEN_APP_FEATURE">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="work.starlings.android"
+            android:targetClass="work.starlings.android.MainActivity">
+            <parameter android:name="feature" android:key="work.starlings.android.extra.LAUNCH_ACTION" />
+        </intent>
+    </capability>
+    <shortcut
+        android:shortcutId="joinNextMeeting"
+        android:enabled="true"
+        android:icon="@drawable/widget_ic_video"
+        android:shortcutShortLabel="@string/shortcut_join_next"
+        android:shortcutLongLabel="@string/shortcut_join_next">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="work.starlings.android"
+            android:targetClass="work.starlings.android.MainActivity">
+            <extra android:name="work.starlings.android.extra.LAUNCH_ACTION" android:value="joinNextMeeting" />
+        </intent>
+        <capability-binding android:key="actions.intent.OPEN_APP_FEATURE">
+            <parameter-binding android:key="feature" android:value="@array/shortcut_join_next_names" />
+        </capability-binding>
+    </shortcut>
+    <shortcut
+        android:shortcutId="newQuickNote"
+        android:enabled="true"
+        android:icon="@drawable/control_ic_note"
+        android:shortcutShortLabel="@string/shortcut_new_note"
+        android:shortcutLongLabel="@string/shortcut_new_note">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="work.starlings.android"
+            android:targetClass="work.starlings.android.MainActivity">
+            <extra android:name="work.starlings.android.extra.LAUNCH_ACTION" android:value="newQuickNote" />
+        </intent>
+        <capability-binding android:key="actions.intent.OPEN_APP_FEATURE">
+            <parameter-binding android:key="feature" android:value="@array/shortcut_new_note_names" />
+        </capability-binding>
+    </shortcut>
+</shortcuts>

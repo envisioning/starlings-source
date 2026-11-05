@@ -1,0 +1,85 @@
+{
+  "request": {
+    "version": 1,
+    "id": "test-request",
+    "command": "status",
+    "arguments": {
+      "room": "rosa"
+    }
+  },
+  "success_response": {
+    "version": 1,
+    "id": "test-request",
+    "ok": true,
+    "message": "State returned.",
+    "state": {
+      "phase": "setup",
+      "role": "host",
+      "room": "rosa",
+      "status": "Your room",
+      "identity": {
+        "name": "Rosa",
+        "email": "rosa@example.com"
+      },
+      "authenticated_owner_email": "rosa@example.com",
+      "participant_count": 1,
+      "camera_permission": "authorized",
+      "microphone_permission": "authorized",
+      "media": {
+        "microphone_enabled": true,
+        "camera_enabled": true,
+        "screen_share_enabled": false,
+        "background_blur_enabled": false,
+        "selected_camera_id": "camera-1",
+        "selected_microphone_id": "microphone-1",
+        "selected_speaker_id": "speaker-1"
+      },
+      "cameras": [
+        { "id": "camera-1", "name": "Camera", "selected": true }
+      ],
+      "microphones": [
+        { "id": "microphone-1", "name": "Microphone", "selected": true }
+      ],
+      "speakers": [
+        { "id": "speaker-1", "name": "Speaker", "selected": true }
+      ],
+      "waiting_guest": {
+        "id": "guest-1",
+        "name": "Ana",
+        "email": "ana@example.net"
+      },
+      "waiting_guests": [
+        {
+          "id": "guest-1",
+          "name": "Ana",
+          "email": "ana@example.net"
+        }
+      ],
+      "host_appliance": {
+        "wake_assertion_active": true,
+        "lease_healthy": true,
+        "detail": "Host appliance healthy"
+      }
+    },
+    "output": {
+      "transcript": "Finalized words.",
+      "waiting_guests": [
+        {
+          "id": "guest-1",
+          "name": "Ana",
+          "email": "ana@example.net"
+        }
+      ]
+    }
+  },
+  "failure_response": {
+    "version": 1,
+    "id": "test-request",
+    "ok": false,
+    "message": "The meeting is not open.",
+    "error": {
+      "code": "meeting_not_open",
+      "message": "The meeting is not open."
+    }
+  }
+}

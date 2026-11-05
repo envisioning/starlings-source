@@ -1,0 +1,107 @@
+{
+  "public_rooms": [
+    {
+      "name": "public room with member identity",
+      "valid": true,
+      "value": {
+        "slug": "rosa",
+        "kind": "permanent",
+        "internal": false,
+        "owner_name": "Rosa",
+        "you": { "name": "ROSA", "email": "rosa@example.com" }
+      }
+    },
+    {
+      "name": "room without optional fields",
+      "valid": true,
+      "value": { "slug": "team-room", "kind": "permanent", "owner_name": null }
+    },
+    {
+      "name": "internal room with member identity",
+      "valid": true,
+      "value": {
+        "slug": "team",
+        "kind": "permanent",
+        "internal": true,
+        "owner_name": "Rosa",
+        "you": { "name": "Ada", "email": "ada@example.com" }
+      }
+    },
+    {
+      "name": "room with invalid kind",
+      "valid": false,
+      "value": { "slug": "rosa", "kind": "temporary", "owner_name": null }
+    },
+    {
+      "name": "room with malformed optional member",
+      "valid": false,
+      "value": { "slug": "rosa", "kind": "permanent", "owner_name": null, "you": { "name": "ROSA" } }
+    },
+    {
+      "name": "room with malformed internal flag",
+      "valid": false,
+      "value": { "slug": "rosa", "kind": "permanent", "internal": "yes", "owner_name": null }
+    }
+  ],
+  "booking_projections": [
+    {
+      "name": "scheduled booking",
+      "valid": true,
+      "value": {
+        "title": "Planning",
+        "subject": null,
+        "starts_at": "2026-09-24T10:00:00.000Z",
+        "ends_at": "2026-09-24T10:30:00.000Z",
+        "status": "scheduled",
+        "reschedule_url": "https://core.org.example/reschedule/one",
+        "cancel_url": null,
+        "guest_name": "Ana",
+        "guest_email": "ana@example.net"
+      }
+    },
+    {
+      "name": "cancelled booking with empty projection",
+      "valid": true,
+      "value": {
+        "title": null,
+        "subject": null,
+        "starts_at": null,
+        "ends_at": null,
+        "status": "cancelled",
+        "reschedule_url": null,
+        "cancel_url": null,
+        "guest_name": null,
+        "guest_email": null
+      }
+    },
+    {
+      "name": "booking with invalid status",
+      "valid": false,
+      "value": {
+        "title": null,
+        "subject": null,
+        "starts_at": null,
+        "ends_at": null,
+        "status": "pending",
+        "reschedule_url": null,
+        "cancel_url": null,
+        "guest_name": null,
+        "guest_email": null
+      }
+    },
+    {
+      "name": "booking with a missing required field",
+      "valid": false,
+      "value": {
+        "title": null,
+        "subject": null,
+        "starts_at": null,
+        "ends_at": null,
+        "status": "scheduled",
+        "reschedule_url": null,
+        "cancel_url": null,
+        "guest_name": null
+      }
+    }
+  ]
+}

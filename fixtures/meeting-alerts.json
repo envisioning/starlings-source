@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "$comment": "The meeting warning (meet#239): which upcoming meetings get a local notification and when. Read by Tests/MeetingAlertFixtureTests.swift and iOSTests/MeetingAlertFixtureTests.swift. Times are seconds relative to now; lead is minutes.",
+  "cases": [
+    {
+      "name": "fires lead minutes before the start",
+      "lead": 5,
+      "meetings": [{ "id": "a", "startsIn": 1800, "minutes": 30 }],
+      "expect": [{ "id": "a", "firesIn": 1500 }]
+    },
+    {
+      "name": "a meeting already inside the lead window is skipped",
+      "lead": 5,
+      "meetings": [{ "id": "a", "startsIn": 240, "minutes": 30 }],
+      "expect": []
+    },
+    {
+      "name": "a demoted meeting never warns",
+      "lead": 1,
+      "meetings": [{ "id": "a", "startsIn": 1800, "minutes": 30, "demoted": true }],
+      "expect": []
+    },
+    {
+      "name": "an all-day block has no minute to warn at",
+      "lead": 1,
+      "meetings": [{ "id": "a", "startsIn": 7200, "minutes": 1440, "allDay": true }],
+      "expect": []
+    },
+    {
+      "name": "nearest first, and the longer lead moves the earlier one",
+      "lead": 15,
+      "meetings": [
+        { "id": "late", "startsIn": 7200, "minutes": 30 },
+        { "id": "soon", "startsIn": 3600, "minutes": 30 }
+      ],
+      "expect": [{ "id": "soon", "firesIn": 2700 }, { "id": "late", "firesIn": 6300 }]
+    },
+    {
+      "name": "the nearest thirty-two win the slots",
+      "lead": 1,
+      "meetings": { "count": 50, "everyMinutes": 60, "minutes": 30 },
+      "expectCount": 32,
+      "expectFirst": "e0"
+    }
+  ]
+}

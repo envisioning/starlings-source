@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Settings (workspace/settings/). English and pt-BR are the iOS catalog's
+  (Resources/Localizable.xcstrings). A sentence the catalog has without
+  pt-BR is here only, so pt-BR shows the English iOS shows. Literals iOS
+  draws in English outside the catalog ("General", "iPhone") are
+  translatable="false", as are errors.
+-->
+<resources>
+    <string name="settings_title">Settings</string>
+    <string name="settings_done">Done</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_opens">Opens %1$s settings</string>
+
+    <string name="settings_group_account">Account</string>
+    <string name="settings_group_preferences">Preferences</string>
+    <string name="settings_group_system">System</string>
+
+    <string name="settings_page_account" translatable="false">General</string>
+    <string name="settings_page_home">Home</string>
+    <string name="settings_page_room">Room</string>
+    <string name="settings_page_notifications">Notifications</string>
+    <string name="settings_page_calls">Calls</string>
+    <string name="settings_page_appearance">Appearance</string>
+    <string name="settings_page_about">About</string>
+
+    <string name="settings_account">Account</string>
+    <string name="settings_name">Name</string>
+    <string name="settings_email">Email</string>
+    <string name="settings_devices">Devices</string>
+    <string name="settings_devices_none">None</string>
+    <string name="settings_sign_out">Sign out</string>
+    <string name="settings_devices_footer">Lost a phone? Sign it out here. Its Starlings session ends at its next request.</string>
+    <string name="settings_sign_out_footer">Removes this device’s session. You can sign in to %1$s again.</string>
+    <string name="settings_kind_android">Android phone</string>
+    <string name="settings_kind_ios">iPhone or iPad</string>
+    <string name="settings_kind_mac">Mac</string>
+    <string name="settings_title_iphone" translatable="false">iPhone</string>
+    <string name="settings_device_renewed" translatable="false">%1$s · renewed %2$s</string>
+    <string name="settings_this_device">This device · %1$s</string>
+
+    <string name="settings_meeting_warning">Meeting warning</string>
+    <string name="settings_warn">Warn</string>
+    <string name="settings_minutes_before">%1$d min before</string>
+    <string name="settings_hours_before">%1$dh before</string>
+    <string name="settings_countdown">Lock Screen countdown</string>
+
+    <string name="settings_recording_notetakers">Recording notetakers</string>
+    <string name="settings_refuse_recorders">Refuse recording notetakers</string>
+    <string name="settings_loading_room">Loading room settings…</string>
+    <string name="settings_your_room">Your room: /room/%1$s</string>
+    <string name="settings_try_again">Try again</string>
+    <string name="settings_recorders_footer">Notetakers declare that they record. They still wait for admission when this is off.</string>
+
+    <string name="settings_participation">Participation</string>
+    <string name="settings_host_and_join" translatable="false">Host and join</string>
+    <string name="settings_background_audio">Background audio</string>
+    <string name="settings_on">On</string>
+    <string name="settings_never_records">Starlings never records audio or video.</string>
+
+    <string name="settings_language">Language</string>
+    <string name="settings_language_system">System</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_pt">Português</string>
+
+    <string name="settings_version">Version</string>
+    <string name="settings_build">Build</string>
+    <string name="settings_server">Server</string>
+    <string name="settings_help">Help</string>
+    <string name="settings_privacy">Privacy</string>
+    <!-- Work (MobileWorkSettingsSection) and Calendar (MobileCalendarSettingsRootView). -->
+    <string name="settings_group_security" translatable="false">Security</string>
+    <string name="settings_page_work">Work</string>
+    <string name="settings_page_calendar">Calendar</string>
+    <string name="settings_show_in_work">Show in Work</string>
+    <string name="settings_show_in_work_footer">Follows your account. Star or mute a subject from its row in Work.</string>
+    <string name="settings_kind_projects">Projects</string>
+    <string name="settings_kind_projects_detail">Projects in Browse and on your rail.</string>
+    <string name="settings_kind_leads">Leads</string>
+    <string name="settings_kind_leads_detail">The lead pipeline in Browse, leads on your rail by default, and sales touches in INBOX.</string>
+    <string name="settings_kind_organizations">Organizations</string>
+    <string name="settings_kind_organizations_detail">Organizations in Browse and on your rail.</string>
+    <string name="settings_kind_events">Events</string>
+    <string name="settings_kind_events_detail">Events in Browse and on your rail.</string>
+    <string name="settings_inbox">Inbox</string>
+    <string name="settings_inbox_footer">What Inbox carries. Follows your account.</string>
+    <string name="settings_inbox_decision">A question an agent asked you, with options and a recommendation. Leaves when you answer it or it is withdrawn.</string>
+    <string name="settings_inbox_question">An agent question assigned to you. Leaves when answered, dismissed or withdrawn. Answer from Inbox or its conversation.</string>
+    <string name="settings_inbox_card">A card an agent moved to Review or Blocked, for the person who handed it off. Leaves when the card moves on.</string>
+    <string name="settings_inbox_followup">After a call with people outside the team, a drafted follow-up and the tasks it proposed. Leaves when you approve or dismiss it, or after a week.</string>
+    <string name="settings_inbox_talk">A subject conversation with something unread. Leaves when read.</string>
+    <string name="settings_inbox_guest">A guest or an organization wrote on a subject you can see, and nobody here has answered. Leaves when someone replies or you dismiss it.</string>
+    <string name="settings_inbox_support">Starlings support answered a question you asked in Help. Leaves when you read it.</string>
+    <string name="settings_inbox_task">A proposed task. Leaves when accepted or declined.</string>
+    <string name="settings_inbox_note">A note not yet filed. Leaves when filed or deleted.</string>
+    <string name="settings_inbox_sales">A CRM touch with no lead yet, with Sales on. Leaves when a lead starts or it is dismissed.</string>
+    <string name="settings_inbox_comment">An open comment thread on a document about your subjects. Leaves when resolved.</string>
+    <string name="settings_inbox_booking">A guest booked, moved or cancelled a time on your page. Leaves when filed, dismissed, or the meeting starts.</string>
+    <string name="settings_inbox_invitation">Someone invited you to an event. Leaves when you accept, decline or say maybe, or when the event ends.</string>
+    <string name="settings_inbox_forwarded">An event read from mail you forwarded to calendar@. Leaves when you add or discard it, or after a week.</string>
+    <string name="settings_inbox_interest">A company filled in /interest, for admins. Leaves when dismissed.</string>
+    <string name="settings_inbox_submission">Someone filled in one of the workspace’s public forms, for the people the form names. Leaves when dismissed.</string>
+    <string name="settings_inbox_commercial">An offer that expires within a week, or a license that renews within 30 days, on a lead or organization you can see, with Sales on. Leaves when it is decided or renewed, or when dismissed.</string>
+    <!-- CalendarSettingGroup titles: iOS draws the raw values in English. -->
+    <string name="settings_cal_accounts_and_sources" translatable="false">Accounts &amp; sources</string>
+    <string name="settings_cal_behavior" translatable="false">Calendar behavior</string>
+    <string name="settings_cal_sources">Calendars in Starlings</string>
+    <string name="settings_cal_sources_detail">Choose accounts, local calendars, and subscriptions</string>
+    <string name="settings_cal_layers_detail">Show or hide %1$s layers</string>
+    <string name="settings_cal_new_events_detail">Choose where new events are created</string>
+
+    <!--
+      App Lock (lock/, EnvisioningAppLockSection and StarlingsLockScreen). iOS
+      draws this copy from EnvisioningUI in English, outside the catalog, so
+      it is English here too, except Unlocking… and the page title.
+    -->
+    <string name="lock_title">App Lock</string>
+    <string name="lock_require" translatable="false">Require %1$s</string>
+    <string name="lock_footer" translatable="false">Starlings asks for %1$s on launch, and again when you come back after %2$d seconds away. The screen lock still works if %1$s fails. This protects what is shown on screen; it does not encrypt data already stored on this device.</string>
+    <string name="lock_unavailable" translatable="false">Set up a fingerprint, face unlock or a screen lock in the Settings app first.</string>
+    <string name="lock_fingerprint" translatable="false">fingerprint</string>
+    <string name="lock_face" translatable="false">face unlock</string>
+    <string name="lock_biometric" translatable="false">biometric unlock</string>
+    <string name="lock_screen_lock" translatable="false">screen lock</string>
+    <string name="lock_device_unlock" translatable="false">device unlock</string>
+    <string name="lock_unlock" translatable="false">Unlock</string>
+    <string name="lock_unlocking">Unlocking…</string>
+    <string name="lock_unlock_reason" translatable="false">Unlock %1$s</string>
+    <string name="lock_turn_on_reason" translatable="false">Turn on the %1$s app lock</string>
+    <string name="lock_turn_off_reason" translatable="false">Turn off the %1$s app lock</string>
+    <string name="lock_cannot_ask" translatable="false">This device cannot ask for a fingerprint, face unlock or the screen lock.</string>
+    <string name="lock_error" translatable="false">App Lock error: %1$s</string>
+    <string name="lock_unlock_error" translatable="false">Unlock error: %1$s</string>
+</resources>

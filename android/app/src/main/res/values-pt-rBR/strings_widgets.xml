@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- pt-BR for values/strings_widgets.xml, from the iOS catalog. -->
+<resources>
+    <string name="widget_next_name">Próximos</string>
+    <string name="widget_next_description">O que vem a seguir no Starlings.</string>
+    <string name="widget_agenda_name">Agenda de hoje</string>
+    <string name="widget_agenda_description">O que resta de hoje no Starlings.</string>
+    <string name="widget_work_name">Trabalho de hoje</string>
+    <string name="widget_work_description">O que está atrasado e vence hoje.</string>
+    <string name="widget_today">HOJE</string>
+    <string name="widget_work">TRABALHO</string>
+    <string name="widget_nothing_due">Nada vence hoje.</string>
+    <string name="widget_more_in_work">e mais %1$d no Trabalho</string>
+    <string name="widget_overdue">atrasada</string>
+    <string name="widget_due_today">vence hoje</string>
+    <string name="widget_all_day">Dia inteiro</string>
+    <string name="widget_join">Participar</string>
+    <string name="widget_to_go">restantes</string>
+    <string name="widget_starts">Começa %1$s</string>
+    <string name="widget_ends">Termina %1$s</string>
+    <!-- The Quick Settings tiles (widgets/Controls.kt), iOSActivities/StarlingsControls.swift. -->
+    <string name="control_join_name">Participar da reunião</string>
+    <string name="control_note_name">Nota rápida</string>
+    <string name="shortcut_join_next">Entrar na próxima reunião</string>
+    <string name="shortcut_new_note">Nova nota rápida</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="background">Fundo</string>
+    <string name="background_none">Nenhum</string>
+    <string name="background_blur">Desfoque</string>
+    <string name="background_pixels">Pixels</string>
+    <string name="background_flock">Bando</string>
+    <string name="background_grid">Grade</string>
+    <string name="background_tone_night">Noite</string>
+    <string name="background_tone_lime">Lima</string>
+    <string name="background_tone_ice">Gelo</string>
+    <string name="background_tone_dark">Escuro</string>
+    <string name="background_tone_accent">Destaque</string>
+    <string name="background_tone_bright">Claro</string>
+    <string name="background_workspace_picture">Imagem do workspace</string>
+    <string name="background_my_image">Minha imagem</string>
+    <string name="background_choose_image">Escolher imagem…</string>
+    <string name="background_replace_image">Substituir imagem…</string>
+    <string name="background_remove_image">Remover imagem</string>
+</resources>

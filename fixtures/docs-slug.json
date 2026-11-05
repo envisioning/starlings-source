@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "rule": "DocsRailGroups.slug / DocsRailGroups.folderPath (Sources/DocsRailGroups.swift) and slugify / subjectFolderPath (web/src/docs.ts). The Docs service's own slugify (docs: packages/contracts), capped at 60.",
+  "cases": [
+    {"name": "a plain title", "title": "Acme Corp.", "slug": "acme-corp"},
+    {"name": "punctuation and spacing collapse to one dash", "title": "  Acme  --  Corp / Labs!! ", "slug": "acme-corp-labs"},
+    {"name": "accents are dropped", "title": "Café Münster", "slug": "cafe-munster"},
+    {"name": "an accent typed as a separate mark", "title": "Cafe\u0301 Mu\u0308nster", "slug": "cafe-munster"},
+    {"name": "a letter with no ASCII form is a separator", "title": "Bjørn Tech", "slug": "bj-rn-tech"},
+    {"name": "the sharp s is a separator", "title": "Straße 5", "slug": "stra-e-5"},
+    {"name": "CJK is a separator", "title": "東京 Project", "slug": "project"},
+    {"name": "only CJK has no slug", "title": "東京", "slug": "untitled"},
+    {"name": "apostrophes are dropped, not separators", "title": "Acme's Plan", "slug": "acmes-plan"},
+    {"name": "a typographic apostrophe too", "title": "Acme’s Plan", "slug": "acmes-plan"},
+    {"name": "compatibility forms fold", "title": "ﬁnance Ⅳ ² Ａｃｍｅ", "slug": "finance-iv-2-acme"},
+    {"name": "a dotted capital I", "title": "İstanbul", "slug": "istanbul"},
+    {"name": "digits stay", "title": "2026 Plan 9", "slug": "2026-plan-9"},
+    {"name": "empty", "title": "", "slug": "untitled"},
+    {"name": "only punctuation", "title": "!!! ???", "slug": "untitled"},
+    {"name": "emoji is a separator", "title": "Launch 🚀 Day", "slug": "launch-day"},
+    {"name": "capped at sixty characters", "title": "This is a very long subject name that goes on and on past the cap", "slug": "this-is-a-very-long-subject-name-that-goes-on-and-on-past-th"},
+    {"name": "a cut that lands on a dash drops it", "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa bbb", "slug": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"name": "exactly sixty stays whole", "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "slug": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
+  ],
+  "folders": [
+    {"name": "a project", "kind": "project", "title": "Acme Corp.", "path": "/work/project/acme-corp"},
+    {"name": "a lead", "kind": "lead", "title": "Bjørn Tech", "path": "/work/lead/bj-rn-tech"},
+    {"name": "an organization", "kind": "organization", "title": "東京", "path": "/work/organization/untitled"}
+  ]
+}

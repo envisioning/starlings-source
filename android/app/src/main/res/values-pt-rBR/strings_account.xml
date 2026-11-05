@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_picture">Foto</string>
+    <string name="account_picture_initials">Mostrando suas iniciais</string>
+    <string name="account_picture_visible">Visível para seus colegas</string>
+    <string name="account_picture_choose">Escolher foto…</string>
+    <string name="account_picture_change">Trocar foto…</string>
+    <string name="account_picture_remove">Remover foto</string>
+    <string name="account_picture_uploading">Enviando…</string>
+    <string name="account_picture_removing">Removendo…</string>
+    <string name="account_picture_footer">Visível para colegas, não para convidados.</string>
+
+    <string name="account_agents">Agentes conectados</string>
+    <string name="account_agents_none">Nenhum</string>
+    <string name="account_agents_no_calls">Sem chamadas ainda.</string>
+    <string name="account_agents_resume">Retomar</string>
+    <string name="account_agents_pause">Pausar</string>
+    <string name="account_agents_revoke">Revogar</string>
+    <string name="account_agents_paused">Pausado</string>
+    <string name="account_agents_reads">Lê</string>
+    <string name="account_agents_reads_writes">Lê e escreve</string>
+    <string name="account_agents_scope_no_calls">%1$s · sem chamadas ainda</string>
+    <string name="account_agents_replayed">Repetida</string>
+    <string name="account_copy">Copiar</string>
+    <string name="account_copied">Copiado</string>
+</resources>

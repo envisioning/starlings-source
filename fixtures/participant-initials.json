@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "rule": "ParticipantInitials.make (Sources/ParticipantInitials.swift) and participantInitials (web/src/MeetParticipantTile.tsx): the letters a camera-off tile shows.",
+  "cases": [
+    {"name": "one word", "in": "madonna", "out": "M"},
+    {"name": "two words", "in": "Ana Silva", "out": "AS"},
+    {"name": "three words keep two letters", "in": "Ana Maria Silva", "out": "AM"},
+    {"name": "lower case is uppercased", "in": "ana silva", "out": "AS"},
+    {"name": "extra whitespace", "in": "   Ana \t  Silva  ", "out": "AS"},
+    {"name": "a trailing parenthetical", "in": "Ana (Envisioning)", "out": "A"},
+    {"name": "a pronoun in brackets", "in": "Ana Silva (she/her)", "out": "AS"},
+    {"name": "a parenthetical of several words", "in": "Ana (Envisioning Labs) Silva", "out": "AS"},
+    {"name": "a parenthetical first", "in": "(Guest) Ana Silva", "out": "AS"},
+    {"name": "only a parenthetical", "in": "(Guest)", "out": "?"},
+    {"name": "an unclosed parenthesis runs to the end", "in": "Ana Silva (admin", "out": "AS"},
+    {"name": "an unclosed parenthesis hides what follows", "in": "Ana (admin Silva", "out": "A"},
+    {"name": "a stray closing parenthesis is a letter", "in": "Ana ) Silva", "out": "A)"},
+    {"name": "empty", "in": "", "out": "?"},
+    {"name": "only whitespace", "in": "   \t ", "out": "?"},
+    {"name": "accents keep their letter", "in": "émile zola", "out": "ÉZ"},
+    {"name": "an accent typed as a separate mark", "in": "e\u0301mile zola", "out": "E\u0301Z"},
+    {"name": "a letter with no upper case form", "in": "ødegård ål", "out": "ØÅ"},
+    {"name": "CJK", "in": "李 小龍", "out": "李小"},
+    {"name": "a flag is one letter", "in": "🇳🇴 Nora", "out": "🇳🇴N"},
+    {"name": "a joined emoji is one letter", "in": "👩‍💻 Dev", "out": "👩‍💻D"},
+    {"name": "a non-breaking space separates words", "in": "Ana\u00a0Silva", "out": "AS"},
+    {"name": "the sharp s uppercases to two letters", "in": "ßeta", "out": "SS"}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "rule": "CrmContactsQuery.list (Sources/ContactListFilter.swift) and contactListSearchParams (web/src/contacts.ts): the query string the Contacts group sends to GET /api/crm/contacts (meet#1213), as [name, value] pairs in the contract's order. A filter is sent only when it is set; padding is trimmed; a country code is upper case. The group always asks for the facets.",
+  "cases": [
+    {"name": "the default view sends only the facets", "query": "", "filter": {"partner": false, "existing_client": false}, "out": [["facets", "true"]]},
+    {"name": "a search is trimmed", "query": " ada ", "filter": {"partner": false, "existing_client": false}, "out": [["q", "ada"], ["facets", "true"]]},
+    {"name": "partners on one organization", "query": "", "filter": {"organization_id": "3f0c8a52-6a55-4b0e-9a1f-0a5c6f1d2e77", "partner": true, "existing_client": false}, "out": [["organization_id", "3f0c8a52-6a55-4b0e-9a1f-0a5c6f1d2e77"], ["partner", "true"], ["facets", "true"]]},
+    {"name": "every filter, in the contract's order", "query": "lab", "filter": {"organization_id": "3f0c8a52-6a55-4b0e-9a1f-0a5c6f1d2e77", "country": "nl", "partner": true, "existing_client": true, "signals_outreach_status": "replied", "preferred_language": "pt"}, "out": [["q", "lab"], ["organization_id", "3f0c8a52-6a55-4b0e-9a1f-0a5c6f1d2e77"], ["country", "NL"], ["partner", "true"], ["existing_client", "true"], ["signals_outreach_status", "replied"], ["preferred_language", "pt"], ["facets", "true"]]},
+    {"name": "a blank value is none", "query": "   ", "filter": {"country": "  ", "partner": false, "existing_client": false, "preferred_language": " "}, "out": [["facets", "true"]]}
+  ]
+}

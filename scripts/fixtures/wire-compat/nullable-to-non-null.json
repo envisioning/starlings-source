@@ -1,0 +1,21 @@
+{
+  "$defs": {
+    "Output": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "optional": { "type": "string" },
+        "label": { "type": "string" },
+        "nullable": { "type": "string" },
+        "mode": {
+          "type": "string",
+          "enum": ["a", "b"],
+          "x-closed": true
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    },
+    "ExistingScalar": { "type": "string" }
+  }
+}

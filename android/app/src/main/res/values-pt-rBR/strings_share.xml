@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sharesheet_save_to_docs">Salvar no Docs</string>
+    <string name="sharesheet_quick_note">Nota rápida</string>
+    <string name="sharesheet_close">Fechar</string>
+    <string name="sharesheet_save">Salvar</string>
+    <string name="sharesheet_done">Concluir</string>
+    <string name="sharesheet_title">Título</string>
+    <string name="sharesheet_note">Nota</string>
+    <string name="sharesheet_saves_to">Salva em %1$s.</string>
+    <string name="sharesheet_not_a_page">Compartilhe uma página da web para salvá-la.</string>
+    <string name="sharesheet_sign_in_first">Abra o Starlings e entre primeiro.</string>
+    <string name="sharesheet_saved">Salvo</string>
+    <string name="sharesheet_saved_later">Salvo. O Starlings arquiva no Docs na próxima vez que você abrir o app.</string>
+    <string name="sharesheet_note_saved">Salvo nas notas rápidas.</string>
+    <string name="sharesheet_note_later">Salva, envia depois</string>
+    <string name="sharesheet_copy">Copiar</string>
+    <string name="sharesheet_copied">Copiado</string>
+    <string name="sharesheet_copy_error">Copiar erro</string>
+    <string name="sharesheet_saved_from">Salvo pelo Starlings</string>
+</resources>

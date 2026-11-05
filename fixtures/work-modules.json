@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "modules": [
+    "sales",
+    "partners",
+    "events",
+    "support",
+    "offers",
+    "licenses",
+    "spec_fields"
+  ],
+  "specs": {
+    "sales": {
+      "subjectKind": "lead",
+      "stores": [
+        "core",
+        "d1"
+      ],
+      "commercial": false
+    },
+    "partners": {
+      "subjectKind": null,
+      "stores": [
+        "core",
+        "d1"
+      ],
+      "commercial": false
+    },
+    "events": {
+      "subjectKind": "event",
+      "stores": [
+        "core",
+        "d1"
+      ],
+      "commercial": false
+    },
+    "support": {
+      "subjectKind": null,
+      "stores": [],
+      "commercial": false
+    },
+    "offers": {
+      "subjectKind": null,
+      "stores": [
+        "core",
+        "d1"
+      ],
+      "commercial": true
+    },
+    "licenses": {
+      "subjectKind": null,
+      "stores": [
+        "core",
+        "d1"
+      ],
+      "commercial": true
+    },
+    "spec_fields": {
+      "subjectKind": null,
+      "stores": [
+        "core"
+      ],
+      "commercial": true
+    }
+  },
+  "available": [
+    {
+      "store": "core",
+      "modules": [
+        "sales",
+        "partners",
+        "events",
+        "offers",
+        "licenses",
+        "spec_fields"
+      ]
+    },
+    {
+      "store": "d1",
+      "modules": [
+        "sales",
+        "partners",
+        "events",
+        "offers",
+        "licenses"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "kind": "project",
+      "module": null
+    },
+    {
+      "kind": "lead",
+      "module": "sales"
+    },
+    {
+      "kind": "organization",
+      "module": "partners"
+    },
+    {
+      "kind": "event",
+      "module": "events"
+    }
+  ]
+}

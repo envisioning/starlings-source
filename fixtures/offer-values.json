@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "statuses": [
+    "draft",
+    "sent",
+    "viewed",
+    "accepted",
+    "declined",
+    "expired",
+    "rejected"
+  ],
+  "statusLabels": {
+    "draft": "Draft",
+    "sent": "Sent",
+    "viewed": "Viewed",
+    "accepted": "Accepted",
+    "declined": "Declined",
+    "expired": "Expired",
+    "rejected": "Rejected"
+  },
+  "serviceGroups": [
+    "Base",
+    "License",
+    "Research",
+    "Optional"
+  ],
+  "serviceGroupLabels": {
+    "Base": "Base",
+    "License": "License",
+    "Research": "Research",
+    "Optional": "Optional"
+  },
+  "serviceCategories": [
+    "visualization",
+    "architecture",
+    "signals"
+  ],
+  "recurringIntervals": [
+    "yearly",
+    "monthly"
+  ]
+}

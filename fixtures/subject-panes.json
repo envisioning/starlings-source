@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "panes": [
+    { "id": "overview", "title": "Overview" },
+    { "id": "talk", "title": "Talk" },
+    { "id": "tasks", "title": "Tasks" },
+    { "id": "issues", "title": "Issues" },
+    { "id": "board", "title": "Board" },
+    { "id": "interactions", "title": "History" },
+    { "id": "fields", "title": "Fields" },
+    { "id": "documents", "title": "Documents" },
+    { "id": "partner", "title": "Partner" },
+    { "id": "event", "title": "Event" }
+  ],
+  "layout": {
+    "project": ["overview", "talk", "board", "tasks", "issues", "interactions", "documents", "fields"],
+    "lead": ["overview", "talk", "tasks", "interactions", "documents", "fields"],
+    "organization": ["overview", "partner", "talk", "tasks", "interactions", "documents", "fields"],
+    "event": ["overview", "event", "talk", "tasks"]
+  },
+  "needs": { "issues": "repo", "talk": "narrow", "documents": "docs" }
+}

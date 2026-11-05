@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="host_start_room">Iniciar sala</string>
+    <string name="host_opening">Abrindo sua sala…</string>
+    <string name="host_ending">Encerrando a reunião…</string>
+    <string name="host_close">Fechar</string>
+    <string name="host_end">Encerrar</string>
+    <string name="host_leave">Sair</string>
+    <string name="host_companion">Seu outro dispositivo tem o microfone nesta reunião.</string>
+    <string name="host_lease_lapsed">Sala fechada para novos convidados</string>
+    <string name="host_waiting_room">Sala de espera</string>
+    <string name="host_waiting_room_count">Sala de espera, %1$d esperando</string>
+    <string name="host_done">Concluir</string>
+    <string name="host_nobody_waiting">Ninguém está esperando.</string>
+    <string name="host_on_the_page">Na página</string>
+    <string name="host_on_join_page">Na página de entrada</string>
+    <string name="host_waiting_to_join">Aguardando para entrar</string>
+    <string name="host_guest">Convidado</string>
+    <string name="host_admit">Admitir</string>
+    <string name="host_decline">Recusar</string>
+    <string name="host_recording">Gravando</string>
+    <string name="host_for">Para %1$s</string>
+    <string name="host_choose_sender">Escolha quem enviou este anotador</string>
+    <string name="host_session_door">Fazer os inscritos baterem</string>
+    <string name="host_knock_title">%1$s quer entrar</string>
+    <plurals name="host_knock_at_door">
+        <item quantity="one">%1$d pessoas na porta</item>
+        <item quantity="other">%1$d pessoas na porta</item>
+    </plurals>
+    <string name="host_move">Mover anfitrião…</string>
+    <string name="host_take">Assumir como anfitrião</string>
+    <string name="host_not_now">Agora não</string>
+    <string name="host_offer_from">%1$s pediu que você seja o anfitrião.</string>
+    <string name="host_someone">Alguém</string>
+    <string name="host_asked">Pedido enviado a %1$s…</string>
+    <string name="host_not_taken">%1$s não assumiu como anfitrião.</string>
+    <string name="host_awaiting_hand_over">Aguardando o anfitrião passar a função…</string>
+</resources>

@@ -1,0 +1,56 @@
+{
+  "about": "What a workspace's service (Docs, Keep) sends and receives when it signs in through the auth host as that workspace (docs/CENTRAL_AUTH.md \"Services\"). Docs and Keep copy this file and parse it with their copy of the schemas; Meet parses it with the originals (scripts/check-central-auth-fixture.mjs).",
+  "bindingProps": [
+    { "origin": "https://docs-hq.starlings.example", "workspace": "hq", "service": "docs" },
+    { "origin": "https://keep-hq.starlings.example", "workspace": "hq", "service": "keep" }
+  ],
+  "beginInput": [
+    {
+      "v": 1,
+      "kind": "login",
+      "returnPath": "/",
+      "browserHash": "Q2hlY2tlZEJyb3dzZXJIYXNoMDEyMzQ1Njc4OWFiYw",
+      "ownerSub": null,
+      "product": null,
+      "loginHint": null,
+      "workspaceName": "Docs",
+      "markPath": null,
+      "hostedDomain": "org.example"
+    }
+  ],
+  "beginResult": [
+    { "ok": true, "ticket": "dGlja2V0MDEyMzQ1Njc4OWFiY2RlZg" },
+    { "ok": false, "reason": "origin_refused" },
+    { "ok": false, "reason": "invalid_request" }
+  ],
+  "redeemInput": [
+    {
+      "v": 1,
+      "kind": "login",
+      "ticket": "dGlja2V0MDEyMzQ1Njc4OWFiY2RlZg",
+      "code": "Y29kZTAxMjM0NTY3ODlhYmNkZWZnaGlqa2xtbm9w",
+      "browserHash": "Q2hlY2tlZEJyb3dzZXJIYXNoMDEyMzQ1Njc4OWFiYw",
+      "ownerSub": null
+    }
+  ],
+  "redeemResult": [
+    {
+      "ok": true,
+      "returnPath": "/",
+      "result": { "kind": "login", "sub": "110248495921238986420", "email": "person@example.com", "name": "A Person", "hd": "org.example" }
+    },
+    { "ok": true, "returnPath": "/", "result": { "kind": "cancelled" } },
+    { "ok": false, "reason": "expired_or_used" },
+    { "ok": false, "reason": "invalid_request" }
+  ],
+  "memberCheckInput": [
+    { "v": 1, "sub": "110248495921238986420", "email": "person@example.com", "hd": "org.example" },
+    { "v": 1, "sub": "110248495921238986420", "email": "person@example.com" }
+  ],
+  "memberCheckResult": [
+    { "ok": true },
+    { "ok": false, "reason": "not_member" },
+    { "ok": false, "reason": "blocked" },
+    { "ok": false, "reason": "invalid_request" }
+  ]
+}

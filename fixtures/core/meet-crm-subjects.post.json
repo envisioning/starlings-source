@@ -1,0 +1,64 @@
+{
+  "ok": true,
+  "subject": {
+    "id": "aaaaaaaa-0000-4000-8000-000000000001",
+    "created_at": null,
+    "updated_at": "2026-09-30T09:00:00.000Z",
+    "title": "Pilot programme",
+    "description": "A two-month pilot.",
+    "url": "https://pilot.example.test",
+    "organization_id": "aaaaaaaa-0000-4000-8000-000000000003",
+    "lead_id": "aaaaaaaa-0000-4000-8000-000000000002",
+    "start_date": "2026-09-01",
+    "end_date": "2026-11-30",
+    "status": "Active",
+    "contract": null,
+    "analytics": null,
+    "authentication": null,
+    "specs": null,
+    "technical": null,
+    "research": null,
+    "design": null,
+    "license_id": null,
+    "evid": null,
+    "is_internal": false,
+    "last_viewed_at": null,
+    "responsible_email": "owner@example.com",
+    "responsible_set_by": "owner@example.com",
+    "responsible_set_at": "2026-09-30T09:00:00.000Z",
+    "organization": {
+      "id": "aaaaaaaa-0000-4000-8000-000000000003",
+      "name": "Example Partners",
+      "profile_image_url": "https://img.example.test/org.png"
+    },
+    "lead": null,
+    "license": null,
+    "project_contacts": [
+      {
+        "contact": {
+          "id": "aaaaaaaa-0000-4000-8000-000000000008",
+          "name": "Cleo Example",
+          "email": "cleo@client.test"
+        }
+      }
+    ],
+    "contact_ids": [
+      "aaaaaaaa-0000-4000-8000-000000000008"
+    ],
+    "contacts": [
+      {
+        "id": "aaaaaaaa-0000-4000-8000-000000000008",
+        "name": "Cleo Example",
+        "email": "cleo@client.test"
+      }
+    ],
+    "kind": "project",
+    "subtitle": "Example Partners · Active",
+    "open_tasks": 0,
+    "overdue_tasks": 0,
+    "has_repo": false,
+    "organization_logo_url": "https://img.example.test/org.png",
+    "organization_name": "Example Partners",
+    "internal": false
+  }
+}

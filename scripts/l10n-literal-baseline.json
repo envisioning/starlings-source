@@ -1,0 +1,880 @@
+{
+  "note": "Literals a person reads that skip t() / String(localized:), and hand-made plurals, as of 2026-10-04. Each entry names the issue that removes it, or \"english\" when it stays English on purpose. scripts/check-l10n-literals.py fails on anything not here (meet#799).",
+  "entries": [
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureManifest.swift",
+      "kind": "swift",
+      "text": "Recovered at launch: the app was not running when this capture ended.",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCapturePass.swift",
+      "kind": "plural",
+      "text": "== 1 ? \"\" : \"s\")",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCapturePass.swift",
+      "kind": "swift",
+      "text": "Filed as meeting \\(meetingID); finalized.",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCapturePass.swift",
+      "kind": "swift",
+      "text": "Pass failed: \\(error). Will retry at the next launch.",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCapturePass.swift",
+      "kind": "swift",
+      "text": "Transcribed: \\(segments.count) segments across \\(record.parts.count) part\\(record.parts.count == 1 ? \"\" : \"s\").",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCapturePass.swift",
+      "kind": "swift",
+      "text": "ambient:\\(segment.speaker.lowercased().replacingOccurrences(of: \" \", with: \"-\"))",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Could not listen for route changes (\\(CoreAudioProperties.statusName(status))).",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Graph at stop: running \\(graph.isRunning), output playing \\(graph.outputIsPlaying), streams \\(graph.streamLayout), rate \\(graph.sampleRate).",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "IO deliveries \\(count); mic: \\(micWriter?.diagnostics ?? \"-\"); system: \\(systemWriter?.diagnostics ?? \"-\")",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Rebuild failed: \\(error).",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Rebuilt after a route change. Output: \\(graph?.outputName ?? \"?\").",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Rebuilt after a route change; \\(String(format: \"%.1f\", gap))s back-filled as silence. Output: \\(graph?.outputName ?? \"?\").",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Resumed as part \\(manifest.parts.count). Microphone: \\(input.name). Output: \\(graph?.outputName ?? \"?\").",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Route change; rebuild due in \\(String(format: \"%.1f\", fireAt - now))s.",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Started. Microphone: \\(input.name). Output: \\(graph?.outputName ?? \"?\").",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Stopped on failure: \\(failure)",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Stopped.",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientCaptureSession.swift",
+      "kind": "swift",
+      "text": "Warning: \\(warning.text)",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientTrackWriter.swift",
+      "kind": "swift",
+      "text": "no 16 kHz mono Int16 format",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientTrackWriter.swift",
+      "kind": "swift",
+      "text": "track format: \\(text)",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AmbientTrackWriter.swift",
+      "kind": "swift",
+      "text": "track write: \\(text)",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/AmbientCapture/AttendeeConfirmation.swift",
+      "kind": "swift",
+      "text": "Attendees confirmed at stop: \\(names.joined(separator: \", \")).",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/StarlingsAutomationController.swift",
+      "kind": "swift",
+      "text": "Zoom",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/StarlingsEventsListener.swift",
+      "kind": "swift",
+      "text": "Bad Request",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/StarlingsEventsListener.swift",
+      "kind": "swift",
+      "text": "Error",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/StarlingsEventsListener.swift",
+      "kind": "swift",
+      "text": "Method Not Allowed",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/StarlingsEventsListener.swift",
+      "kind": "swift",
+      "text": "Not Found",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/StarlingsEventsListener.swift",
+      "kind": "swift",
+      "text": "Payload Too Large",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/StarlingsEventsListener.swift",
+      "kind": "swift",
+      "text": "Request Header Fields Too Large",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/StarlingsEventsListener.swift",
+      "kind": "swift",
+      "text": "Unauthorized",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/ZoomCallReader.swift",
+      "kind": "swift",
+      "text": "Zoom is not running.",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/ZoomCallReader.swift",
+      "kind": "swift",
+      "text": "zoom meeting",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "Sources/Automation/ZoomCallReader.swift",
+      "kind": "swift",
+      "text": "zoom workplace meeting",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "Sources/CalendarModels.swift",
+      "kind": "swift",
+      "text": "GMT\\(sign)\\(hours)",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "Sources/CalendarModels.swift",
+      "kind": "swift",
+      "text": "GMT\\(sign)\\(hours):\\(String(format: \"%02d\", rest))",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "Sources/CalendarModels.swift",
+      "kind": "swift",
+      "text": "Google Meet",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/CalendarModels.swift",
+      "kind": "swift",
+      "text": "Starlings",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/CalendarModels.swift",
+      "kind": "swift",
+      "text": "Teams",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/CalendarModels.swift",
+      "kind": "swift",
+      "text": "Webex",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/CalendarModels.swift",
+      "kind": "swift",
+      "text": "Zoom",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/CalendarWorkspace.swift",
+      "kind": "swift",
+      "text": "\\(text) · \\(cause)",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "Docs list load: \\(diagnosticKind)",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "Docs rail CRM refresh",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "Docs rail metadata",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "cached lead groups",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "cached project groups",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "list load finished: \\(diagnosticKind)",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "list load started: \\(diagnosticKind)",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "list rows loaded",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail CRM leads",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail CRM projects",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail CRM refresh started",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail CRM source unavailable",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail folders loaded",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail lead groups",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail load finished",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail load started",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail project groups",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail summary cache applied",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsBrowser.swift",
+      "kind": "swift",
+      "text": "rail written documents",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsGraph.swift",
+      "kind": "swift",
+      "text": "Docs graph load",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsGraph.swift",
+      "kind": "swift",
+      "text": "graph cached documents",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsGraph.swift",
+      "kind": "swift",
+      "text": "graph documents loaded",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsGraph.swift",
+      "kind": "swift",
+      "text": "graph documents skipped",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsGraph.swift",
+      "kind": "swift",
+      "text": "graph first page documents",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsGraph.swift",
+      "kind": "swift",
+      "text": "graph links resolved",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsGraph.swift",
+      "kind": "swift",
+      "text": "graph load cancelled",
+      "issue": "english",
+      "count": 2
+    },
+    {
+      "file": "Sources/DocsGraph.swift",
+      "kind": "swift",
+      "text": "graph load finished",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsGraph.swift",
+      "kind": "swift",
+      "text": "graph load started",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsRailView.swift",
+      "kind": "swift",
+      "text": "rail rows rebuilding",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsRailView.swift",
+      "kind": "swift",
+      "text": "rail rows: folders",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsRailView.swift",
+      "kind": "swift",
+      "text": "rail rows: leads",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsRailView.swift",
+      "kind": "swift",
+      "text": "rail rows: projects",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsRailView.swift",
+      "kind": "swift",
+      "text": "rail view initialized",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsWindowController.swift",
+      "kind": "swift",
+      "text": "hosted views refreshed; linked=\\(docs.isLinked)",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsWindowController.swift",
+      "kind": "swift",
+      "text": "view controller loaded",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsWindowController.swift",
+      "kind": "swift",
+      "text": "window opened",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/DocsWindowController.swift",
+      "kind": "swift",
+      "text": "window show requested",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/StarlingsSearchablePickerOption.swift",
+      "kind": "swift",
+      "text": "\\(context) · \\(title)",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "Sources/MeetingViewController.swift",
+      "kind": "plural",
+      "text": "== 1 ? \"\" : \"s\")",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/PeerPresence.swift",
+      "kind": "swift",
+      "text": "cause: \\(String(describing: CalendarRefreshFailure.classify(error)))",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/SpatialAudio.swift",
+      "kind": "swift",
+      "text": "engine did not start: \\(error.localizedDescription)",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/ThreadMarkdown.swift",
+      "kind": "swift",
+      "text": "1. ",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "Sources/TranscriptExport.swift",
+      "kind": "swift",
+      "text": "# \\(title)\\n\\n\\(facts)\\n\\n## Transcript\\n\\n\\(body)\\n",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "Sources/TranscriptExport.swift",
+      "kind": "swift",
+      "text": "Meeting",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "Sources/TranscriptExport.swift",
+      "kind": "swift",
+      "text": "No transcript.",
+      "issue": "english",
+      "count": 2
+    },
+    {
+      "file": "Sources/TranscriptExport.swift",
+      "kind": "swift",
+      "text": "\\(day) \\(time) (\\(zoneName(timeZone)))",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "Sources/TranscriptExport.swift",
+      "kind": "swift",
+      "text": "\\(slug)-\\(wallClock(startedAt, zone: zone(timeZone)).day).\\(format.rawValue)",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileDocsView.swift",
+      "kind": "swift",
+      "text": "By lead",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileDocsView.swift",
+      "kind": "swift",
+      "text": "By partner",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileDocsView.swift",
+      "kind": "swift",
+      "text": "By project",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileDocsView.swift",
+      "kind": "swift",
+      "text": "Explore",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileDocsView.swift",
+      "kind": "swift",
+      "text": "Folders",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileDocsView.swift",
+      "kind": "swift",
+      "text": "Library",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileDocsView.swift",
+      "kind": "swift",
+      "text": "Work",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileGuestSession.swift",
+      "kind": "swift",
+      "text": "Mac",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileTeamView.swift",
+      "kind": "swift",
+      "text": "Agents",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileTeamView.swift",
+      "kind": "swift",
+      "text": "Groups",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileTeamView.swift",
+      "kind": "swift",
+      "text": "People",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileTeamView.swift",
+      "kind": "swift",
+      "text": "You",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileWorkView.swift",
+      "kind": "swift",
+      "text": "Inbox",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileWorkView.swift",
+      "kind": "swift",
+      "text": "Mine",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileWorkView.swift",
+      "kind": "swift",
+      "text": "Quick Notes",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOS/MobileWorkView.swift",
+      "kind": "swift",
+      "text": "Unowned",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsControls.swift",
+      "kind": "swift",
+      "text": "Opens Starlings with the quick-note field ready.",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsControls.swift",
+      "kind": "swift",
+      "text": "Opens the next meeting in Starlings.",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsGlancePreviews.swift",
+      "kind": "swift",
+      "text": "Home medium",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsGlancePreviews.swift",
+      "kind": "swift",
+      "text": "Home small",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsGlancePreviews.swift",
+      "kind": "swift",
+      "text": "Island compact",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsGlancePreviews.swift",
+      "kind": "swift",
+      "text": "Island expanded",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsGlancePreviews.swift",
+      "kind": "swift",
+      "text": "Island minimal",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsGlancePreviews.swift",
+      "kind": "swift",
+      "text": "Lock Screen",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsGlancePreviews.swift",
+      "kind": "swift",
+      "text": "Lock Screen rectangular",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsGlancePreviews.swift",
+      "kind": "swift",
+      "text": "Today’s agenda",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "iOSActivities/StarlingsGlancePreviews.swift",
+      "kind": "swift",
+      "text": "Today’s work",
+      "issue": "code",
+      "count": 1
+    },
+    {
+      "file": "web/src/App.tsx",
+      "kind": "web",
+      "text": "Artificial Insights",
+      "issue": "english",
+      "count": 1
+    },
+    {
+      "file": "web/src/SearchPalette.tsx",
+      "kind": "web",
+      "text": "(table: Record",
+      "issue": 804,
+      "count": 1
+    },
+    {
+      "file": "web/src/SiteChrome.tsx",
+      "kind": "web",
+      "text": ", calendar:",
+      "issue": 804,
+      "count": 1
+    },
+    {
+      "file": "web/src/SiteChrome.tsx",
+      "kind": "web",
+      "text": ", docs:",
+      "issue": 804,
+      "count": 1
+    },
+    {
+      "file": "web/src/SiteChrome.tsx",
+      "kind": "web",
+      "text": ", team:",
+      "issue": 804,
+      "count": 1
+    },
+    {
+      "file": "web/src/SiteChrome.tsx",
+      "kind": "web",
+      "text": ", work:",
+      "issue": 804,
+      "count": 1
+    },
+    {
+      "file": "web/src/SystemDiagram.tsx",
+      "kind": "web",
+      "text": "How Starlings services fit together",
+      "issue": 804,
+      "count": 1
+    },
+    {
+      "file": "web/src/SystemDiagram.tsx",
+      "kind": "web",
+      "text": "What runs between them",
+      "issue": 804,
+      "count": 1
+    },
+    {
+      "file": "web/src/meeting-error-log.ts",
+      "kind": "web",
+      "text": "Unknown error",
+      "issue": 804,
+      "count": 1
+    },
+    {
+      "file": "web/src/rail-row.tsx",
+      "kind": "web",
+      "text": "; targetProps: Record",
+      "issue": 804,
+      "count": 1
+    }
+  ]
+}

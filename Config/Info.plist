@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Starlings</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>pt-BR</string>
+	</array>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>$(STARLINGS_BUNDLE_ID).oauth</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(MEET_GOOGLE_REDIRECT_SCHEME)</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.business</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>MEET_ALLOW_DEV_AUTH</key>
+	<string>$(MEET_ALLOW_DEV_AUTH)</string>
+	<key>MEET_API_ENDPOINT</key>
+	<string>$(MEET_API_ENDPOINT)</string>
+	<key>MEET_GOOGLE_NATIVE_CLIENT_ID</key>
+	<string>$(MEET_GOOGLE_NATIVE_CLIENT_ID)</string>
+	<key>MEET_GOOGLE_REDIRECT_SCHEME</key>
+	<string>$(MEET_GOOGLE_REDIRECT_SCHEME)</string>
+	<key>MEET_WEB_ORIGIN</key>
+	<string>$(MEET_WEB_ORIGIN)</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSAudioCaptureUsageDescription</key>
+	<string>Starlings captures the audio of a meeting you are in so it can write the notes. Nothing is recorded; the audio is transcribed on this Mac and discarded.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Starlings shows your iCloud and On My Mac calendars in the Calendar window. Event details stay on this Mac.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Starlings shows your iCloud and On My Mac calendars in the Calendar window. Event details stay on this Mac.</string>
+	<key>NSCameraPortraitEffectEnabled</key>
+	<true/>
+	<key>NSCameraReactionEffectGesturesEnabledDefault</key>
+	<false/>
+	<key>NSCameraReactionEffectsEnabled</key>
+	<true/>
+	<key>NSCameraStudioLightEnabled</key>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Starlings uses your camera so people in your meeting can see you.</string>
+	<key>NSCameraUseContinuityCameraDeviceType</key>
+	<true/>
+	<key>NSContactsUsageDescription</key>
+	<string>Starlings uses Contacts to suggest attendees when you schedule a meeting.</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Starlings uses your microphone so people in your meeting can hear you and to provide live captions.</string>
+	<key>NSScreenCaptureUsageDescription</key>
+	<string>Starlings uses Screen Recording access to share the screen or window you choose with people in your meeting.</string>
+	<key>NSSupportsAutomaticGraphicsSwitching</key>
+	<true/>
+	<key>STARLINGS_TEAM_ID</key>
+	<string>$(DEVELOPMENT_TEAM)</string>
+	<key>STARLINGS_UPDATE_FEED_URL</key>
+	<string>$(STARLINGS_UPDATE_FEED_URL)</string>
+</dict>
+</plist>

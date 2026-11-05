@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The host's side of a meeting and the notices around it: moderation in
+  People (iOS/MobileParticipantsSheet.swift), filing
+  (iOS/MobileMeetingFilingView.swift), the transcript share
+  (iOS/MobileTranscriptPanel.swift), the unfiled-meeting nudge
+  (iOS/MeetingNotices.swift), ring notices (iOS/RingNotices.swift) and the
+  join flow's invite card (iOS/JoinView.swift). Sentences from the iOS
+  catalog, Resources/Localizable.xcstrings, with its pt-BR values; a sentence
+  iOS keeps in English is translatable="false".
+-->
+<resources>
+    <!-- People. -->
+    <string name="people_reconnecting">Reconnecting…</string>
+    <string name="people_reconnecting_footer">Media resumes when the network returns.</string>
+    <string name="people_mute_everyone">Mute everyone else</string>
+    <string name="people_mute_everyone_footer">Each person chooses when to unmute their microphone.</string>
+    <string name="people_mute">Mute</string>
+    <string name="people_remove_ellipsis">Remove…</string>
+    <string name="people_remove">Remove</string>
+    <string name="people_remove_title">Remove %1$s from the meeting?</string>
+    <string name="people_this_person">this person</string>
+    <string name="people_remove_message">They will be disconnected and must ask to join again.</string>
+    <string name="people_sharing">Sharing a screen</string>
+    <string name="people_stop_share">Stop share</string>
+    <string name="people_cancel">Cancel</string>
+    <!-- The host chrome's lapsed lease. -->
+    <string name="host_stopped_admitting" translatable="false">Your room stopped admitting guests</string>
+    <!-- Filing. -->
+    <string name="filing_title">File this meeting</string>
+    <string name="filing_filed_as">Filed as</string>
+    <string name="filing_kind">Kind</string>
+    <string name="filing_selected">Selected</string>
+    <string name="filing_open_in_work">Open in Work</string>
+    <string name="filing_choose_another">Choose a different one</string>
+    <string name="filing_search">Search</string>
+    <string name="filing_no_match">Nothing matches that.</string>
+    <string name="filing_save">Save</string>
+    <string name="filing_close">Close</string>
+    <string name="meeting_kind_uncategorized">Unfiled</string>
+    <string name="meeting_kind_status">Status</string>
+    <string name="meeting_kind_lead">Lead</string>
+    <string name="meeting_kind_project">Project</string>
+    <string name="meeting_kind_internal">Internal</string>
+    <string name="meeting_kind_partner">Partner</string>
+    <string name="meeting_kind_event">Event</string>
+    <string name="meeting_kind_personal">Personal</string>
+    <!-- The unfiled-meeting nudge. -->
+    <string name="unfiled_title">Meeting not filed</string>
+    <string name="unfiled_body" translatable="false">It was saved without a subject</string>
+    <!-- The transcript share. -->
+    <string name="transcript_share">Share transcript</string>
+    <string name="transcript_share_link">Share link</string>
+    <string name="transcript_copy_link">Copy link</string>
+    <string name="transcript_share_file">Share transcript…</string>
+    <string name="transcript_copy">Copy transcript</string>
+    <string name="transcript_link_copied">Link copied</string>
+    <string name="transcript_copied">Transcript copied</string>
+    <string name="transcript_subject">Meeting transcript</string>
+    <string name="transcript_untitled">Meeting</string>
+    <string name="transcript_file_failed" translatable="false">Couldn’t prepare the transcript file</string>
+    <string name="transcript_load_failed" translatable="false">Couldn’t load the transcript</string>
+    <!-- Ring notices; the titles are team_ring_*. -->
+    <string name="ring_answer_in_team">Open Team to answer: Open room or Not now.</string>
+    <string name="ring_their_room">Asked for you · their room is %1$s</string>
+    <string name="ring_asked_in_team">Asked for you in Team</string>
+    <!-- The join flow's invite. -->
+    <string name="invite_loading">Loading invite…</string>
+    <string name="invite_expired" translatable="false">Invite expired</string>
+    <string name="invite_still_ask">You can still ask to join this room.</string>
+    <string name="invite_range" translatable="false">%1$s · %2$s–%3$s</string>
+    <string name="invite_day_time" translatable="false">%1$s · %2$s</string>
+</resources>

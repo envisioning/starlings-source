@@ -1,0 +1,51 @@
+// Template for wrangler.ops.jsonc. Work through the `replace-with-…` values.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // starlings-ops: the platform operator console on ops.replace-with-your-domain only
+  // (docs/OPS_CONSOLE.md). The product dashboard shows every
+  // workspace's activity, devices, features and health. It keeps no data: no
+  // D1, KV, R2, queue or Durable Object. It reads each workspace over one
+  // service binding per workspace, `WORKSPACE_<SLUG>`, to that Worker's
+  // OpsService entrypoint.
+  //
+  // Cloudflare Access protects the host. The Worker also
+  // checks the Access token and the operator list on every request, and
+  // refuses everything while the team domain or the AUD tag is empty.
+  //
+  // It deploys with the shared Workers (docs/DEPLOY_STRATEGY.md). A
+  // workspace that does not export OpsService yet shows as an error row.
+  //   pnpm deploy:ops   (builds the dashboard first)
+  "name": "starlings-ops",
+  "account_id": "replace-with-your-cloudflare-account-id",
+  "main": "src/ops-worker/index.ts",
+  "compatibility_date": "2026-08-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "routes": [{ "pattern": "ops.replace-with-your-domain", "custom_domain": true }],
+  // The dashboard (web/ops, `pnpm --filter @starlings/web build:ops`). Every
+  // request runs the Worker first, so the Access check covers the files too.
+  "assets": { "directory": "../../web/ops/dist", "binding": "ASSETS", "run_worker_first": true },
+  "vars": {
+    "ENVIRONMENT": "production",
+    // From the Access application for ops.replace-with-your-domain. Filled
+    // in by hand. Empty: the Worker refuses every request, and
+    // `deploy:ops` refuses to deploy.
+    "OPS_ACCESS_TEAM_DOMAIN": "",
+    "OPS_ACCESS_AUD": "",
+    // Who may read the console, a comma list. A workspace admin is not an
+    // operator because of that role.
+    "OPS_OPERATORS": "replace-with-owner@example.com"
+  },
+  // One binding per workspace in wrangler.jsonc, `WORKSPACE_<SLUG>`.
+  "services": [
+    { "binding": "WORKSPACE_MAIN", "service": "replace-with-your-worker-name", "entrypoint": "OpsService" },
+    // The Requests page: signup links and workspace requests, kept in the auth
+    // Worker's D1 (docs/ONBOARDING.md).
+    { "binding": "SIGNUP_ADMIN", "service": "starlings-auth", "entrypoint": "SignupAdminService" }
+  ],
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "invocation_logs": false, "head_sampling_rate": 1 },
+    "traces": { "enabled": false }
+  }
+}

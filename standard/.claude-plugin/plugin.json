@@ -1,0 +1,11 @@
+{
+  "name": "starlings-skills",
+  "displayName": "Starlings skills",
+  "version": "0.4.0",
+  "description": "Five skills for working on a subject: find it, read its history, file work to it, propose before changing, record decisions. They work in any workspace that holds subjects, Starlings included.",
+  "author": { "name": "Envisioning", "url": "https://starlingshq.com" },
+  "homepage": "https://starlingshq.com/skills",
+  "repository": "https://github.com/envisioning/starlings-subject-spec",
+  "license": "Apache-2.0",
+  "keywords": ["subjects", "agents", "skills", "starlings"]
+}

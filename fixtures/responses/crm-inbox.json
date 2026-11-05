@@ -1,0 +1,144 @@
+{
+  "items": [
+    {
+      "key": "decision:00000000-0000-4000-8000-000000000001",
+      "at": 1790845200000,
+      "source": "decision",
+      "ask": {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "status": "open",
+        "question": "Ship the pilot scope this week?",
+        "context": "The scope is two pages.",
+        "options": [
+          {
+            "key": "ship",
+            "label": "Ship it"
+          },
+          {
+            "key": "wait",
+            "label": "Wait for Cleo"
+          }
+        ],
+        "recommendation": "ship",
+        "default_by": "2026-10-07",
+        "overdue": false,
+        "subject": {
+          "kind": "project",
+          "id": "aaaaaaaa-0000-4000-8000-000000000001",
+          "title": "Pilot programme"
+        },
+        "links": [
+          {
+            "url": "https://pilot.example.test/scope",
+            "title": "Scope"
+          }
+        ],
+        "waits_on_email": "rf-rosa@example.com",
+        "asked_by": "Rosa Example",
+        "asked_by_email": "rf-rosa@example.com",
+        "created_at": "2026-10-01T09:00:00.000Z",
+        "answer": null,
+        "answer_label": null,
+        "answer_note": null,
+        "answered_at": null,
+        "answered_by_email": null,
+        "core_decision_id": null
+      }
+    },
+    {
+      "key": "task:aaaaaaaa-0000-4000-8000-000000000004",
+      "at": 1790758800000,
+      "source": "task",
+      "task": {
+        "id": "aaaaaaaa-0000-4000-8000-000000000004",
+        "title": "Send the pilot scope",
+        "notes": "Two pages, no appendix.",
+        "status": "in_progress",
+        "responsible_party": "team",
+        "assignee_id": "00000000-0000-4000-8000-000000000002",
+        "assignee_name": "Ada Example",
+        "assignee_email": "ada@example.test",
+        "due_date": "2026-10-07T12:00:00+00:00",
+        "priority": "high",
+        "tags": [
+          "pilot"
+        ],
+        "project_id": "aaaaaaaa-0000-4000-8000-000000000001",
+        "lead_id": null,
+        "event_id": null,
+        "organization_id": "aaaaaaaa-0000-4000-8000-000000000003",
+        "meeting_id": null,
+        "signals_account_id": null,
+        "updated_at": "2026-09-30T09:00:00.000Z",
+        "github_owner": "example-org",
+        "github_repo": "pilot",
+        "github_issue_number": 12,
+        "goal_id": "aaaaaaaa-0000-4000-8000-000000000005",
+        "milestone_id": "aaaaaaaa-0000-4000-8000-00000000000a",
+        "updated_by": "00000000-0000-4000-8000-000000000003"
+      },
+      "subject": {
+        "kind": "project",
+        "id": "aaaaaaaa-0000-4000-8000-000000000001",
+        "title": "Pilot programme"
+      }
+    },
+    {
+      "key": "task:aaaaaaaa-0000-4000-8000-0000000000f4",
+      "at": 0,
+      "source": "task",
+      "task": {
+        "id": "aaaaaaaa-0000-4000-8000-0000000000f4",
+        "title": "A bare task",
+        "notes": null,
+        "status": "pending",
+        "responsible_party": "unassigned",
+        "assignee_id": null,
+        "assignee_name": null,
+        "assignee_email": null,
+        "due_date": null,
+        "priority": null,
+        "tags": [],
+        "project_id": "aaaaaaaa-0000-4000-8000-000000000001",
+        "lead_id": null,
+        "event_id": null,
+        "organization_id": null,
+        "meeting_id": null,
+        "signals_account_id": null,
+        "updated_at": null,
+        "github_owner": null,
+        "github_repo": null,
+        "github_issue_number": null,
+        "goal_id": null,
+        "milestone_id": null,
+        "updated_by": null
+      },
+      "subject": {
+        "kind": "project",
+        "id": "aaaaaaaa-0000-4000-8000-000000000001",
+        "title": "Pilot programme"
+      }
+    }
+  ],
+  "recent": [
+    {
+      "subject": {
+        "kind": "project",
+        "id": "aaaaaaaa-0000-4000-8000-000000000001",
+        "title": "Pilot programme",
+        "group": "clients"
+      },
+      "id": "aaaaaaaa-0000-4000-8000-000000000007",
+      "title": "Pilot kickoff",
+      "type": "meeting",
+      "date": "2026-09-30T09:00:00.000Z",
+      "url": "https://envisioning.starlings.example/r/example"
+    }
+  ],
+  "partial": [
+    "booking"
+  ],
+  "recent_partial": [],
+  "task_partial": [],
+  "capped": []
+}

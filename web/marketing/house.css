@@ -1,0 +1,96 @@
+/*
+ * The Starlings house style: one source for every public page.
+ *
+ * The home page links this file as plain CSS. The React pages import it
+ * after the workspace's tailwind.css and styles.css. For them it also sets
+ * the workspace tokens to house values, so shadcn components and the
+ * shared presentation code draw in the house palette. Dark mode inherits the
+ * app palette from styles.css; light mode keeps the public house palette.
+ *
+ * Layers: element rules sit in `base` and the type utilities in `utilities`,
+ * after the workspace's own, so a page's own utility classes still win. The
+ * header, footer and page column are Tailwind utilities in SiteChrome.tsx,
+ * and every page, the home page included, is shadcn components and
+ * utilities. This file holds no component class.
+ */
+@font-face{font-family:Inter;src:url('/fonts/InterVariable.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+
+/* Dark colors come directly from the app stylesheet, including its surface ladder. */
+:root{
+  /* Two weights on the site: 400 for display and body, 500 for
+     labels and buttons. Tailwind's weight utilities read these. */
+  --font-weight-light:400;--font-weight-medium:500;--font-weight-semibold:500;--font-weight-bold:500;
+  --paper:var(--surface-bg);--radius:20px;--radius-card:var(--radius);--radius-field:9px;--radius-control:9px}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --paper:#f6f6f3;--ink:#20231f;--muted:#62665d;--line:#dcded6;--surface:#eeefe8;--accent:#d6f249;--hover-lift:rgb(32 35 31 / .06);--radius:20px;
+  /* The workspace tokens, in house values. */
+  --surface-bg:var(--paper);--surface-raised:#fbfbf8;--surface-sunken:#e7e9df;
+  --text-muted:var(--muted);--ink-rgb:32 35 31;--muted-rgb:98 102 93;--veil-rgb:32 35 31;
+  --hover-border:#b9bcb1;--control-fill:rgb(32 35 31 / .05);--control-line:#c9ccc1;
+  --accent-cta:var(--accent);--accent-cta-hover:#e0f76f;--accent-cta-down:#c4e030;--accent-mark:var(--accent);--on-accent:var(--ink);
+  --focus:var(--ink);--md-link:var(--ink);--radius-card:var(--radius);
+  --shadow-card:none;--shadow-raised:0 12px 28px -8px rgb(32 35 31 / .16);
+  --radius-field:9px;--radius-control:9px;
+}
+@media(prefers-color-scheme:light){
+:root[data-theme="auto"]{
+  color-scheme:light;
+  --paper:#f6f6f3;--ink:#20231f;--muted:#62665d;--line:#dcded6;--surface:#eeefe8;--accent:#d6f249;--hover-lift:rgb(32 35 31 / .06);--radius:20px;
+  /* The workspace tokens, in house values. */
+  --surface-bg:var(--paper);--surface-raised:#fbfbf8;--surface-sunken:#e7e9df;
+  --text-muted:var(--muted);--ink-rgb:32 35 31;--muted-rgb:98 102 93;--veil-rgb:32 35 31;
+  --hover-border:#b9bcb1;--control-fill:rgb(32 35 31 / .05);--control-line:#c9ccc1;
+  --accent-cta:var(--accent);--accent-cta-hover:#e0f76f;--accent-cta-down:#c4e030;--accent-mark:var(--accent);--on-accent:var(--ink);
+  --focus:var(--ink);--md-link:var(--ink);--radius-card:var(--radius);
+  --shadow-card:none;--shadow-raised:0 12px 28px -8px rgb(32 35 31 / .16);
+  --radius-field:9px;--radius-control:9px;
+}
+}
+
+/*
+ * The four signature chapters' tones on /workspace (TentpoleShowcase): a
+ * chapter's mark and the focal part of its scene, never a fill for an
+ * action. The accent budget's one exception (docs/DESIGN.md, Public site;
+ * MZ, 2026-10-09). Dark first; light takes deeper shades for contrast.
+ */
+:root{--tent-attention:#f0b553;--tent-memory:#b39dfa;--tent-record:#4fcfb2;--tent-agents:#6fb0f7}
+:root[data-theme="light"]{--tent-attention:#c27d12;--tent-memory:#7656e0;--tent-record:#14917a;--tent-agents:#2f72cc}
+@media(prefers-color-scheme:light){:root[data-theme="auto"]{--tent-attention:#c27d12;--tent-memory:#7656e0;--tent-record:#14917a;--tent-agents:#2f72cc}}
+
+/*
+ * The showcase wallpaper behind every product figure (docs/DESIGN.md, Public
+ * site). appearance.js sets data-daypart from the visitor's local hour. With
+ * no script, the theme picks: dusk in dark, the meadow in light.
+ */
+:root{--wallpaper:url('/wallpapers/lake.webp')}
+:root[data-theme="light"]{--wallpaper:url('/wallpapers/meadow.webp')}
+@media(prefers-color-scheme:light){:root[data-theme="auto"]{--wallpaper:url('/wallpapers/meadow.webp')}}
+:root[data-daypart="morning"]{--wallpaper:url('/wallpapers/hills.webp')}
+:root[data-daypart="day"]{--wallpaper:url('/wallpapers/meadow.webp')}
+:root[data-daypart="evening"]{--wallpaper:url('/wallpapers/coast.webp')}
+:root[data-daypart="night"]{--wallpaper:url('/wallpapers/lake.webp')}
+
+@layer base{
+  html{scroll-behavior:smooth;scroll-padding-top:32px}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-feature-settings:'cv01','ss03';line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:4px}
+  /* A link in running text is underlined, so it reads as a link without a
+     hover. Components (data-slot: buttons, cards, tiles), navigation and a
+     class with no-underline opt out; hover darkens the line to the ink. */
+  main :is(p,li,dd,td) a:not([data-slot]):not(nav *){text-decoration:underline;text-decoration-color:color-mix(in srgb,currentColor 45%,transparent);text-decoration-thickness:1px;text-underline-offset:3px}
+  main :is(p,li,dd,td) a:not([data-slot]):not(nav *):hover{text-decoration-color:currentColor}
+  a:focus-visible{outline:2px solid var(--ink);outline-offset:5px;border-radius:3px}
+  h1{font-family:Inter,system-ui,sans-serif;font-variation-settings:normal;font-size:clamp(44px,6vw,72px);line-height:1.04;letter-spacing:-.022em;font-weight:400;margin:0 0 28px}
+  h2{font-size:clamp(30px,3.5vw,44px);line-height:1.12;letter-spacing:-.02em;font-weight:400;margin:0 0 22px}
+  h3{font-size:18px;line-height:1.35;letter-spacing:-.4px;font-weight:500;margin:0 0 13px}
+  p{margin:0 0 16px}
+  b,strong{font-weight:500}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+}
+
+@layer utilities{
+  .lede{font-size:20px;line-height:1.65;font-weight:400;max-width:740px;color:var(--muted)}
+  @media(max-width:800px){.lede{font-size:18px}}
+}

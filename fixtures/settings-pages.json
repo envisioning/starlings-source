@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "account",
+      "title": "Account"
+    },
+    {
+      "id": "preferences",
+      "title": "Preferences"
+    },
+    {
+      "id": "security",
+      "title": "Security"
+    },
+    {
+      "id": "system",
+      "title": "System"
+    }
+  ],
+  "pages": [
+    {
+      "id": "account",
+      "group": "account",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ]
+    },
+    {
+      "id": "home",
+      "group": "preferences",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ]
+    },
+    {
+      "id": "work",
+      "group": "preferences",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ]
+    },
+    {
+      "id": "calendar",
+      "group": "preferences",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ],
+      "iosCalendarSettings": true
+    },
+    {
+      "id": "video",
+      "group": "preferences",
+      "clients": [
+        "mac"
+      ]
+    },
+    {
+      "id": "audio",
+      "group": "preferences",
+      "clients": [
+        "mac"
+      ]
+    },
+    {
+      "id": "captions",
+      "group": "preferences",
+      "clients": [
+        "mac",
+        "ios"
+      ]
+    },
+    {
+      "id": "meetings",
+      "group": "preferences",
+      "clients": [
+        "mac"
+      ]
+    },
+    {
+      "id": "room",
+      "group": "preferences",
+      "clients": [
+        "mac",
+        "ios"
+      ]
+    },
+    {
+      "id": "notifications",
+      "group": "preferences",
+      "clients": [
+        "mac",
+        "ios"
+      ]
+    },
+    {
+      "id": "calls",
+      "group": "preferences",
+      "clients": [
+        "ios"
+      ]
+    },
+    {
+      "id": "appearance",
+      "group": "preferences",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ]
+    },
+    {
+      "id": "appLock",
+      "group": "security",
+      "clients": [
+        "ios"
+      ]
+    },
+    {
+      "id": "about",
+      "group": "system",
+      "clients": [
+        "mac",
+        "ios",
+        "web"
+      ]
+    },
+    {
+      "id": "developmentServer",
+      "group": "system",
+      "clients": [
+        "ios"
+      ]
+    }
+  ],
+  "everywhere": [
+    "account",
+    "home",
+    "work",
+    "calendar",
+    "appearance",
+    "about"
+  ]
+}

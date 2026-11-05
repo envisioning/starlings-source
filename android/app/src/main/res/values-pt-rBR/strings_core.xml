@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Core, pt-BR values from Resources/Localizable.xcstrings. A sentence the catalog leaves untranslated stays English, as on iOS. -->
+<resources>
+    <string name="core_search_subtitle">Qualquer registro, por nome</string>
+    <string name="core_read_and_edit">Ler e editar</string>
+    <string name="core_read_only">Somente leitura</string>
+    <plurals name="core_entries">
+        <item quantity="one">%1$s entrada</item>
+        <item quantity="many">%1$s entradas</item>
+        <item quantity="other">%1$s entradas</item>
+    </plurals>
+    <string name="core_account">Conta</string>
+    <string name="core_expires">Expira</string>
+    <string name="core_reconnect">Reconectar</string>
+    <string name="core_disconnect">Desconectar</string>
+    <string name="core_sort">Ordenar</string>
+    <string name="core_overview">Visão geral</string>
+    <string name="core_none">Nenhum</string>
+    <string name="core_retry">Tentar de novo</string>
+    <string name="core_save">Salvar</string>
+    <string name="core_saving">Salvando…</string>
+    <string name="core_delete">Apagar</string>
+    <string name="core_cancel">Cancelar</string>
+    <string name="core_ok">OK</string>
+    <string name="core_open">Abrir</string>
+    <string name="core_open_named">Abrir %1$s</string>
+    <string name="core_search_field">Buscar</string>
+    <string name="core_searching">Buscando…</string>
+    <string name="core_signals_status">Status</string>
+    <string name="core_unassigned">Sem responsável</string>
+    <string name="core_no_matches">Nenhum resultado</string>
+    <string name="core_remove_named">Remover %1$s</string>
+    <string name="core_add">Adicionar</string>
+    <string name="core_new_entity">Novo %1$s</string>
+    <string name="core_board">Quadro</string>
+    <string name="core_copy_name">Copiar nome</string>
+    <string name="core_email">E-mail</string>
+    <string name="core_open_link">Abrir link</string>
+    <string name="core_tasks_none">Sem tarefas abertas.</string>
+    <string name="core_tasks_new">Nova tarefa</string>
+    <string name="core_tasks_complete">Concluir %1$s</string>
+    <string name="core_license_active">Ativo</string>
+</resources>

@@ -1,0 +1,28 @@
+{
+  "threads": [
+    {
+      "id": "dm_3iNqxI5ybPp_e_gTcqFUVh8aePhC-1sV",
+      "kind": "dm",
+      "parent_id": null,
+      "audience": "members",
+      "title": null,
+      "peer_email": "rf-ada@example.com",
+      "peer_name": "Ada Example",
+      "peers": [
+        {
+          "email": "rf-ada@example.com",
+          "name": "Ada Example",
+          "kind": "human"
+        }
+      ],
+      "last_message_at": 1790845260000,
+      "last_message_preview": "Yes, this morning.",
+      "last_sender_email": "rf-ada@example.com",
+      "unread": true,
+      "last_read_at": 1790845200000,
+      "has_mention": false,
+      "muted_until": null,
+      "archived_at": null
+    }
+  ]
+}

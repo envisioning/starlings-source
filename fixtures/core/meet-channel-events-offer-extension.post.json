@@ -1,0 +1,9 @@
+{
+  "subject": {
+    "kind": "lead",
+    "id": "aaaaaaaa-0000-4000-8000-000000000002"
+  },
+  "type": "event",
+  "text": "Offer Extension Requested: Pilot offer",
+  "idempotency_key": "crm:offer:aaaaaaaa-0000-4000-8000-0000000000f0:extension-requested:2026-11-01T10:00:00.000Z"
+}

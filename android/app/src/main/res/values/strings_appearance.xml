@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Settings › Appearance and Settings › Notifications › Channels
+  (workspace/settings/DeviceSections.kt). English and pt-BR are the iOS
+  catalog's (Resources/Localizable.xcstrings). "Light" is the one word the
+  catalog does not hold: iOS draws EnvisioningUI's own "Light". App icon
+  names iOS draws in English outside the catalog are translatable="false",
+  as is the error.
+-->
+<resources>
+    <string name="appearance_section">Appearance</string>
+    <string name="appearance_auto">System</string>
+    <string name="appearance_light">Light</string>
+    <string name="appearance_dark">Dark</string>
+    <string name="appearance_grid_texture">Grid texture</string>
+    <string name="appearance_this_phone_only">This phone only.</string>
+
+    <string name="notifications_channels">Channels</string>
+    <string name="notifications_every_channel_message">Every channel message</string>
+    <string name="notifications_channel_footer">Off notifies only when a channel names you.</string>
+    <string name="app_icon_section">App icon</string>
+    <string name="app_icon_footer">Choose the icon Starlings uses on your Home Screen and in the App Library.</string>
+    <string name="app_icon_lime_black" translatable="false">Lime / black</string>
+    <string name="app_icon_black_lime" translatable="false">Black / lime</string>
+    <string name="app_icon_black_white" translatable="false">Black / white</string>
+    <string name="app_icon_lime_black_detail">Lime background, black mark</string>
+    <string name="app_icon_black_lime_detail">Black background, lime mark</string>
+    <string name="app_icon_black_white_detail">Black background, white mark</string>
+    <string name="app_icon_label">App icon, %1$s</string>
+    <string name="app_icon_selected">Selected</string>
+    <string name="app_icon_failed" translatable="false">Starlings couldn’t change its app icon.</string>
+</resources>

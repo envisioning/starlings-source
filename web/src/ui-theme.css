@@ -1,0 +1,73 @@
+/*
+ * The shadcn names, mapped onto the `--ui-*` values a surface defines, and
+ * the house hover utilities. One copy for every shadcn surface: the web app
+ * (tailwind.css, on Meet's tokens) and the operator dashboard (ops/src/ops.css,
+ * on its own). A surface that imports this file defines every `--ui-*` value
+ * and the hover tokens `--hover-lift`, `--hover-border` and
+ * `--accent-cta-hover`.
+ */
+@theme inline {
+  /* The display face, as `h1` in styles.css sets it. */
+  --font-display: "Envisioning Octa", "Inter", sans-serif;
+  --radius-sm: calc(var(--ui-radius) - 4px);
+  --radius-md: calc(var(--ui-radius) - 2px);
+  --radius-lg: var(--ui-radius);
+  --radius-xl: calc(var(--ui-radius) + 4px);
+  --color-background: var(--ui-background);
+  --color-foreground: var(--ui-foreground);
+  --color-card: var(--ui-card);
+  --color-card-foreground: var(--ui-card-foreground);
+  --color-popover: var(--ui-popover);
+  --color-popover-foreground: var(--ui-popover-foreground);
+  --color-primary: var(--ui-primary);
+  --color-primary-foreground: var(--ui-primary-foreground);
+  --color-secondary: var(--ui-secondary);
+  --color-secondary-foreground: var(--ui-secondary-foreground);
+  --color-muted: var(--ui-muted);
+  --color-muted-foreground: var(--ui-muted-foreground);
+  --color-accent: var(--ui-accent);
+  --color-accent-foreground: var(--ui-accent-foreground);
+  --color-destructive: var(--ui-destructive);
+  --color-border: var(--ui-border);
+  --color-input: var(--ui-input);
+  --color-ring: var(--ui-ring);
+}
+
+/*
+ * The house hover (docs/DESIGN.md, "Hover: the house rule"; AGENTS.md
+ * invariant 18), as utilities, so no component names a hover colour.
+ *
+ * `hover-lift`: the veil, one rung up, composited over whatever fill the
+ * element already has (a `bg-*` colour stays underneath). `hover-edge`: the
+ * hairline brightens. `hover-field`: an input's answer, the hairline only
+ * and never while focused, so the focus ring stays the loudest thing.
+ *
+ * Both tokens go transparent under `(hover: none)`, and the `(hover: hover)`
+ * guard matches Tailwind's own `hover:` variant. Disabled controls do not
+ * respond. The `:where` keeps the specificity at `.x:hover`, so a later
+ * `hover:bg-none` or a state variant (`aria-pressed:bg-none`) still wins.
+ * The accent CTA does not use these: it hovers to `--accent-cta-hover`.
+ */
+@utility hover-lift {
+  @media (hover: hover) {
+    &:hover:where(:not(:disabled, [aria-disabled="true"], [data-disabled])) {
+      background-image: linear-gradient(var(--hover-lift), var(--hover-lift));
+    }
+  }
+}
+
+@utility hover-edge {
+  @media (hover: hover) {
+    &:hover:where(:not(:disabled, [aria-disabled="true"], [data-disabled])) {
+      border-color: var(--hover-border);
+    }
+  }
+}
+
+@utility hover-field {
+  @media (hover: hover) {
+    &:hover:where(:not(:focus, :disabled, [aria-disabled="true"], [data-disabled])) {
+      border-color: var(--hover-border);
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_title">Buscar</string>
+    <string name="search_open">Buscar qualquer coisa…</string>
+    <string name="search_done">Concluir</string>
+    <string name="search_cancel">Cancelar</string>
+    <string name="search_recent">Recentes</string>
+    <string name="search_go_to">Ir para</string>
+    <string name="search_do">Fazer</string>
+    <string name="search_docs">Docs</string>
+    <string name="search_nothing">Nada corresponde.</string>
+    <string name="search_row_verbs">Mensagem, Acenar, Chamar</string>
+
+    <string name="search_kind_subject">Assunto</string>
+    <string name="search_kind_person">Pessoa</string>
+    <string name="search_kind_agent">Agente</string>
+    <string name="search_kind_contact">Contato</string>
+    <string name="search_kind_thread">Conversa</string>
+    <string name="search_kind_document">Documento</string>
+    <string name="search_kind_folder">Pasta</string>
+    <string name="search_kind_event">Evento</string>
+    <string name="search_kind_task">Tarefa</string>
+    <string name="search_kind_issue">Issue</string>
+    <string name="search_kind_goal">Meta</string>
+    <string name="search_kind_decision">Decisão</string>
+    <string name="search_kind_milestone">Marco</string>
+    <string name="search_kind_call">Chamar</string>
+    <string name="search_kind_settings">Ajustes</string>
+
+    <string name="search_verb_start_room">Iniciar sala</string>
+    <string name="search_verb_message">Mensagem</string>
+    <string name="search_verb_wave">Acenar</string>
+    <string name="search_verb_call">Chamar</string>
+    <string name="search_verb_new_task">Nova tarefa</string>
+    <string name="search_verb_new_issue">Nova issue</string>
+    <string name="search_verb_new_document">Novo documento</string>
+    <string name="search_verb_meet_about">Reunir sobre isto</string>
+    <string name="search_verb_open_team_room">Abrir a Sala da equipe</string>
+</resources>

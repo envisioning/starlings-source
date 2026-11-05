@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The Docs graph (workspace/docs/DocsGraph.kt). Every sentence is one of the
+  iOS catalog's (Resources/Localizable.xcstrings), with its pt-BR value in
+  values-pt-rBR/strings_docs_graph.xml. Errors stay English.
+-->
+<resources>
+    <string name="docs_graph_explore">Explore</string>
+    <string name="docs_graph_title">Graph</string>
+    <string name="docs_graph_caption">Each dot is a document; lines are wikilinks. Colors group documents by folder.</string>
+    <string name="docs_graph_zoom_in">Zoom in</string>
+    <string name="docs_graph_zoom_out">Zoom out</string>
+    <string name="docs_graph_fit">Fit</string>
+    <string name="docs_graph_show_all">Show all groups</string>
+    <string name="docs_graph_loading_documents">Loading documents…</string>
+    <string name="docs_graph_loading_links">Loading document links…</string>
+    <string name="docs_graph_progress">%1$d / %2$d</string>
+    <string name="docs_graph_label">Docs graph</string>
+    <string name="docs_graph_help">Drag to pan, or drag a document to pull its links; pinch or use the controls to zoom. Point at a document to trace its links; select it to open it.</string>
+    <string name="docs_graph_empty_title">There are no documents to show yet.</string>
+    <string name="docs_graph_empty_message">Documents you add to Docs will appear here.</string>
+    <string name="docs_graph_failed" translatable="false">Couldn’t load Docs graph</string>
+</resources>

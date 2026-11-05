@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The Team tab (workspace/TeamScreen.kt, workspace/team/). English and pt-BR
+  are the iOS catalog's (Resources/Localizable.xcstrings). The few lines iOS
+  draws without a catalog entry stay English on both, as on iOS, and are
+  translatable="false"; so are the errors.
+-->
+<resources>
+    <string name="team_title">Team</string>
+    <string name="team_new_group">New group</string>
+    <string name="team_block_you">You</string>
+    <string name="team_block_groups">Groups</string>
+    <string name="team_block_people">People</string>
+    <string name="team_block_agents">Agents</string>
+    <string name="team_collapsed">Collapsed</string>
+    <string name="team_expanded">Expanded</string>
+    <string name="team_everyone">Everyone</string>
+    <string name="team_private">Private</string>
+    <string name="team_private_conversation">Private conversation</string>
+    <string name="team_unread_row">%1$s, unread message</string>
+    <string name="team_conversation">Conversation</string>
+
+    <string name="team_status">Status</string>
+    <string name="team_status_value">Status, %1$s</string>
+    <string name="team_appear_offline_reminder" translatable="false">You appear offline to others</string>
+
+    <string name="presence_dnd">Unavailable</string>
+    <string name="presence_in_meeting">In a meeting</string>
+    <string name="presence_busy">Busy</string>
+    <string name="presence_available">Available</string>
+    <string name="presence_active">Active</string>
+    <string name="presence_offline">Offline</string>
+    <string name="presence_focused">Focused</string>
+    <string name="presence_client_mac">Desktop</string>
+    <string name="presence_client_ios">Mobile</string>
+    <string name="presence_client_web">Web</string>
+
+    <string name="team_line_focused_until">Focused · until %1$s</string>
+    <string name="team_line_unavailable_until" translatable="false">Unavailable · until %1$s</string>
+    <plurals name="team_line_in_meeting">
+        <item quantity="one">In a meeting · 1 person</item>
+        <item quantity="other">In a meeting · %1$d people</item>
+    </plurals>
+    <string name="team_line_busy_until">Busy · free at %1$s</string>
+    <string name="team_line_available_room">Available · %1$s%2$s</string>
+    <string name="team_line_active_on">Active · %1$s</string>
+    <string name="team_line_last_seen">Last seen %1$s</string>
+    <string name="team_line_working">Working…</string>
+
+    <string name="team_wave">Wave</string>
+    <string name="team_join_room">Join room</string>
+    <string name="team_call">Call</string>
+    <string name="team_cancel_call">Cancel call</string>
+    <string name="team_waved_at">Waved at %1$s</string>
+    <string name="team_asking" translatable="false">Asking %1$s to open their room…</string>
+    <string name="team_no_answer" translatable="false">No answer from %1$s.</string>
+    <string name="team_call_self" translatable="false">You can’t call yourself</string>
+    <string name="team_call_agent" translatable="false">Agents don’t take calls</string>
+    <string name="team_call_no_room" translatable="false">%1$s doesn’t have a room yet</string>
+    <string name="team_call_unreachable" translatable="false">%1$s isn’t available for a call</string>
+
+    <string name="team_ring_call">%1$s wants to talk</string>
+    <string name="team_ring_agent_start">%1$s asks to open your room</string>
+    <string name="team_ring_wave">%1$s waved at you</string>
+    <string name="team_ring_join">Join</string>
+    <string name="team_ring_dismiss">Dismiss</string>
+    <string name="team_ring_not_now">Not now</string>
+    <string name="team_ring_open_room">Open room</string>
+    <string name="team_room">Team Room</string>
+    <string name="team_room_join">Join Team Room</string>
+
+    <string name="team_notes_to_self">Notes to self</string>
+    <string name="team_write_note" translatable="false">Write a note</string>
+    <string name="team_ask">Ask %1$s</string>
+    <string name="team_message_to">Message %1$s</string>
+    <string name="team_message_everyone">Message everyone</string>
+    <string name="team_only_you">Only you can read this</string>
+    <string name="team_appear_offline">Appear offline</string>
+    <string name="team_their_time">%1$s their time</string>
+    <string name="team_their_time_off">%1$s their time · off hours</string>
+    <!-- A group is always three people or more, you included. -->
+    <string name="team_people_count">%1$d people</string>
+    <string name="team_nobody_else">Nobody else has signed in yet.</string>
+    <string name="team_group_footer">Everyone you choose can read it.</string>
+    <string name="team_open">Open</string>
+
+    <string name="thread_options">Conversation options</string>
+    <string name="thread_mute">Mute</string>
+    <string name="thread_unmute">Unmute</string>
+    <string name="thread_archive">Archive conversation</string>
+    <string name="thread_keep">Keep in chat</string>
+    <string name="thread_load_earlier">Load earlier messages</string>
+    <string name="thread_today">Today</string>
+    <string name="thread_yesterday">Yesterday</string>
+    <string name="thread_new">New</string>
+    <string name="thread_new_below">New messages below</string>
+    <string name="thread_withdrawn">Message withdrawn</string>
+    <string name="thread_edited">edited</string>
+    <string name="thread_via">via %1$s</string>
+    <string name="thread_copy">Copy</string>
+    <string name="thread_edit">Edit</string>
+    <string name="thread_withdraw">Withdraw</string>
+    <string name="thread_withdraw_title">Withdraw this message?</string>
+    <string name="thread_withdraw_body">The text and any files are gone. This can’t be undone.</string>
+    <string name="thread_editing">Editing</string>
+    <string name="thread_cancel">Cancel</string>
+    <string name="thread_send">Send</string>
+    <string name="thread_save">Save</string>
+    <string name="thread_message">Message</string>
+    <string name="thread_edit_message">Edit message</string>
+    <string name="thread_is_working">%1$s is working</string>
+    <string name="thread_react_with">React with %1$s</string>
+    <string name="thread_reactions">Message reactions</string>
+    <string name="thread_reaction_count">%1$s, %2$d</string>
+    <string name="thread_event">Starlings: %1$s</string>
+    <plurals name="thread_steps">
+        <item quantity="one">%1$d step</item>
+        <item quantity="other">%1$d steps</item>
+    </plurals>
+    <string name="thread_show_steps">Show steps</string>
+    <string name="thread_hide_steps">Hide steps</string>
+    <string name="thread_try_again">Try again</string>
+    <string name="thread_sign_in" translatable="false">Sign in to send messages.</string>
+    <string name="thread_earlier_message">Earlier message</string>
+    <string name="thread_attachment">Attachment</string>
+    <string name="thread_reply_to">Reply to %1$s</string>
+    <string name="thread_question">Interactive question</string>
+    <string name="thread_asked_by">Asked by %1$s</string>
+    <string name="thread_choose_one">Choose one option</string>
+    <string name="thread_choose_all">Choose all that apply</string>
+    <string name="thread_answer_withdrawn">Answer withdrawn.</string>
+    <string name="thread_answered_by">Answered by %1$s · %2$s</string>
+    <string name="thread_submitting">Submitting…</string>
+    <string name="thread_submit_answer">Submit answer</string>
+    <string name="thread_choose_at_least_one">Choose at least one option.</string>
+    <string name="thread_attach">Attach a file</string>
+    <string name="thread_photo_library">Photo library</string>
+    <string name="thread_files">Files</string>
+    <string name="thread_remove_file">Remove %1$s</string>
+    <string name="thread_uploading">Uploading…</string>
+    <string name="thread_paste_and_send">Paste and send</string>
+    <string name="team_messages">Messages</string>
+    <string name="team_new_message">New message</string>
+    <string name="team_about">About</string>
+    <string name="team_about_peer">About %1$s</string>
+    <string name="team_done">Done</string>
+    <string name="team_role">Role</string>
+    <string name="team_pronouns">Pronouns</string>
+    <string name="team_runs_on">Runs on %1$s</string>
+    <string name="team_reaching_them">Reaching them</string>
+    <string name="team_devices">Devices</string>
+    <string name="team_local_time">Local time</string>
+    <string name="team_outside_hours">" · outside their hours"</string>
+    <string name="team_last_seen_label">Last seen</string>
+    <string name="thread_format">Format message</string>
+    <string name="thread_bold">Bold</string>
+    <string name="thread_italic">Italic</string>
+    <string name="thread_strikethrough">Strikethrough</string>
+    <string name="thread_inline_code">Inline code</string>
+    <string name="thread_link">Link</string>
+    <string name="thread_bulleted_list">Bulleted list</string>
+    <string name="thread_numbered_list">Numbered list</string>
+    <string name="thread_quote">Quote</string>
+    <string name="thread_code_block">Code block</string>
+    <string name="thread_bold_text">bold text</string>
+    <string name="thread_italic_text">italic text</string>
+    <!-- About: today's schedule, between us, shared work (iOS/MobilePeerInfoView.swift). -->
+    <string name="team_today_schedule">Today’s schedule</string>
+    <string name="team_between_us">Between us</string>
+    <string name="team_shared_work">Shared work</string>
+    <string name="team_new_task">New task</string>
+    <string name="team_schedule_not_connected">Connect Google Calendar in Settings to see their schedule.</string>
+    <string name="team_schedule_google_expired">Google Calendar access expired. Reconnect it in Settings.</string>
+    <string name="team_schedule_sign_in_expired">Your Starlings sign-in expired. Sign in again.</string>
+    <string name="team_schedule_failed">Couldn’t load their calendar.</string>
+    <string name="team_schedule_not_shared">Their calendar isn’t shared with you.</string>
+    <string name="team_schedule_unavailable" translatable="false">Their calendar isn’t available to you.</string>
+    <string name="team_no_shared_work">No open work in common.</string>
+    <string name="team_shared_counts" translatable="false">them %1$d, you %2$d</string>
+    <string name="team_no_crm_record">%1$s has no record in the CRM.</string>
+    <string name="team_nothing_open_for">Nothing open for %1$s.</string>
+    <string name="team_more_count">%1$d more</string>
+    <string name="team_work_unavailable">Work information is not available yet.</string>
+    <string name="team_crm_unreachable" translatable="false">Couldn’t reach the CRM.</string>
+    <string name="team_retry">Retry</string>
+    <string name="team_late">Late</string>
+    <!-- The composer's camera and voice message (iOS/MobileComposerCapture.swift). -->
+    <string name="thread_camera">Camera</string>
+    <string name="thread_video">Video</string>
+    <string name="thread_voice_message">Voice message</string>
+    <string name="thread_record">Record</string>
+    <string name="thread_stop">Stop</string>
+    <string name="thread_microphone_off" translatable="false">Microphone access is off.</string>
+    <string name="thread_camera_off" translatable="false">Camera access is off.</string>
+    <string name="thread_recording_failed" translatable="false">Couldn’t record that message.</string>
+    <!-- A subject's channel (ThreadAddress.subject, ThreadKind.channelNoun) -->
+    <string name="team_message_channel">Message the %1$s channel</string>
+    <string name="team_noun_project">project</string>
+    <string name="team_noun_lead">lead</string>
+    <string name="team_noun_partner">partner</string>
+    <string name="team_noun_event">event</string>
+    <string name="thread_reply">Reply</string>
+    <string name="thread_mark_as_decision">Mark as Decision</string>
+    <string name="thread_recorded_decision">Recorded as a decision</string>
+    <string name="thread_replying_to">Replying to %s</string>
+    <string name="thread_cancel_reply">Cancel reply</string>
+    <string name="thread_reply_gone">This message can no longer be replied to.</string>
+    <string name="thread_earlier_gone">That earlier message is no longer available.</string>
+    <string name="thread_reply_to_jump">Reply to %s; jump to parent message</string>
+    <string name="thread_ref_commit">Commit</string>
+    <string name="thread_ref_release">Release</string>
+    <string name="thread_ref_open_task">Open task</string>
+    <string name="thread_ref_open_issue">Open issue %s</string>
+    <string name="thread_ref_open_pull">Open pull request %s on GitHub</string>
+    <string name="thread_ref_open_commit">Open commit %s on GitHub</string>
+    <string name="thread_ref_open_run">Open CI run on GitHub</string>
+    <string name="thread_ref_open_release">Open release %s on GitHub</string>
+    <string name="thread_ref_show_decisions">Show decisions</string>
+    <string name="thread_ref_show_goals">Show goals</string>
+    <string name="thread_save_as_quick_note">Save as Quick Note</string>
+    <string name="thread_saved_quick_note">Saved to Quick Notes.</string>
+    <string name="thread_save_quick_note_failed">Couldn’t save as Quick Note</string>
+    <!-- An agent's manifest (MobilePeerInfoView.agentSection, AgentManifestCard). -->
+    <string name="team_agent_activity">Activity</string>
+    <string name="team_agent_skills">What it can do</string>
+    <string name="team_agent_tools">Tools</string>
+    <string name="team_agent_docs">Docs</string>
+    <string name="team_agent_read_every_job">Read on every job</string>
+    <string name="team_agent_doc_read">Read</string>
+    <string name="team_agent_doc_edit">Edit</string>
+    <string name="team_agent_connections">Connections</string>
+    <string name="team_agent_schedules">Schedules</string>
+    <string name="team_agent_keys">Keys</string>
+    <string name="team_agent_keys_missing">Keys · %1$d missing</string>
+    <string name="team_agent_keys_all_set">%1$d keys, all set</string>
+    <string name="team_agent_keys_some_missing">%1$d keys, %2$d missing</string>
+    <string name="team_agent_links">Links</string>
+    <string name="team_agent_build">Build %1$s</string>
+    <plurals name="team_agent_jobs">
+        <item quantity="one">%1$d job</item>
+        <item quantity="other">%1$d jobs</item>
+    </plurals>
+    <!-- iOS appends this in English on every language. -->
+    <string name="team_agent_jobs_recent" translatable="false">, %1$d in the last 30 days</string>
+    <plurals name="team_agent_resets">
+        <item quantity="one">%1$d reset in the last 30 days</item>
+        <item quantity="other">%1$d resets in the last 30 days</item>
+    </plurals>
+    <string name="team_agent_last_reply">Last reply %1$s</string>
+    <string name="team_agent_usually_replies">Usually replies in %1$s</string>
+    <!-- iOS draws these in English on every language. -->
+    <string name="team_agent_asks_first" translatable="false">%1$s (asks first)</string>
+    <string name="team_agent_link_home" translatable="false">Home</string>
+    <string name="team_agent_link_readme" translatable="false">Readme</string>
+    <string name="team_agent_link_repo" translatable="false">Repo</string>
+    <string name="team_tile_expanded">expanded</string>
+    <string name="team_tile_collapsed">collapsed</string>
+    <!-- MobilePeerTaskSubjectPicker. -->
+    <string name="team_file_task_under">File task under</string>
+    <string name="team_task_subject_label">Project, lead or partner</string>
+    <string name="team_task_subject_placeholder">Choose a project, lead or partner</string>
+    <string name="team_task_subject_none">No subjects match that search.</string>
+    <string name="team_subject_project">Project</string>
+    <string name="team_subject_partner">Partner</string>
+    <string name="team_subject_lead">Lead</string>
+    <string name="team_search">Search</string>
+    <string name="team_opens_searchable_list">Opens a searchable list.</string>
+</resources>

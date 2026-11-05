@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "documents": [
+    { "id": "c", "path": "research/c.md", "title": "C" },
+    { "id": "d", "path": "projects/d.md", "title": "D" },
+    { "id": "a", "path": "research/a.md", "title": "A" },
+    { "id": "e", "path": "archive/e.md", "title": "E" },
+    { "id": "b", "path": "research/b.md", "title": "B" }
+  ],
+  "links": [
+    { "source": "a", "target": "b" },
+    { "source": "b", "target": "a" },
+    { "source": "b", "target": "d" },
+    { "source": "c", "target": "c" },
+    { "source": "d", "target": "missing" }
+  ],
+  "expect": {
+    "groups": {
+      "a": "Research",
+      "b": "Research",
+      "c": "Research",
+      "d": "Projects",
+      "e": "Archive"
+    },
+    "edges": [
+      { "source": "a", "target": "b" },
+      { "source": "b", "target": "d" }
+    ],
+    "visibleIds": ["a", "b", "c"]
+  }
+}

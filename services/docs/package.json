@@ -1,0 +1,24 @@
+{
+  "name": "docs-envisioning",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @docs/api dev",
+    "dev:web": "pnpm --filter @docs/web dev",
+    "build:web": "pnpm --filter @docs/web build",
+    "build:cli": "pnpm --filter @docs/cli build",
+    "typecheck": "pnpm --filter @docs/api --filter @docs/web --filter @docs/cli --filter @docs/contracts typecheck",
+    "test": "pnpm --filter @docs/api test",
+    "verify": "node ./scripts/sync-meet-fixtures.mjs --check && node ./scripts/sync-meet-ui.mjs --check && node ./scripts/check-central-auth-fixture.mjs && pnpm --filter @docs/api --filter @docs/web --filter @docs/cli --filter @docs/contracts typecheck && pnpm --filter @docs/api test && pnpm --filter @docs/web build",
+    "db:migrate:local": "pnpm --filter @docs/api db:migrate:local",
+    "db:migrate": "pnpm --filter @docs/api db:migrate",
+    "deploy": "pnpm build:web && pnpm --filter @docs/api run deploy"
+  },
+  "devDependencies": {
+    "@types/node": "26.2.0",
+    "typescript": "5.9.3"
+  }
+}

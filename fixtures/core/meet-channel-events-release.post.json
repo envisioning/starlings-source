@@ -1,0 +1,15 @@
+{
+  "subject": {
+    "kind": "project",
+    "id": "aaaaaaaa-0000-4000-8000-000000000001"
+  },
+  "type": "event",
+  "text": "Ada Example released v1.2.0 · v1.2.0 · Pilot",
+  "refs": [
+    {
+      "kind": "release",
+      "id": "example-org/pilot@v1.2.0"
+    }
+  ],
+  "idempotency_key": "github:example-org/pilot:release:v1.2.0"
+}

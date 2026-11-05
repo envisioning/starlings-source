@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The Starlings mark for the launcher icons, from Resources/starlings.icon/Assets/symbol.svg
+  (the iOS icons' one symbol): its 1024 canvas scaled to the adaptive icon's 72 dp
+  visible square, centred on 108 dp. Held to the SVG by AppIconTest.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="1536"
+    android:viewportHeight="1536">
+    <group android:translateX="348" android:translateY="348">
+        <group android:scaleX="30" android:scaleY="30">
+            <path android:fillColor="#FF000000" android:pathData="M2.444,4.4 a1.956,1.956 0 1,0 3.912,0 a1.956,1.956 0 1,0 -3.912,0 Z M8.306,4.4 a2.494,2.494 0 1,0 4.988,0 a2.494,2.494 0 1,0 -4.988,0 Z M14.6,4.4 a2.6,2.6 0 1,0 5.2,0 a2.6,2.6 0 1,0 -5.2,0 Z M21.55,4.4 a2.05,2.05 0 1,0 4.1,0 a2.05,2.05 0 1,0 -4.1,0 Z M3,10.8 a1.4,1.4 0 1,0 2.8,0 a1.4,1.4 0 1,0 -2.8,0 Z M8.306,10.8 a2.494,2.494 0 1,0 4.988,0 a2.494,2.494 0 1,0 -4.988,0 Z M14.15,10.8 a3.05,3.05 0 1,0 6.1,0 a3.05,3.05 0 1,0 -6.1,0 Z M21.106,10.8 a2.494,2.494 0 1,0 4.988,0 a2.494,2.494 0 1,0 -4.988,0 Z M3.4,17.2 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0 Z M9.1,17.2 a1.7,1.7 0 1,0 3.4,0 a1.7,1.7 0 1,0 -3.4,0 Z M14.706,17.2 a2.494,2.494 0 1,0 4.988,0 a2.494,2.494 0 1,0 -4.988,0 Z M21.644,17.2 a1.956,1.956 0 1,0 3.912,0 a1.956,1.956 0 1,0 -3.912,0 Z M3.95,23.6 a0.45,0.45 0 1,0 0.9,0 a0.45,0.45 0 1,0 -0.9,0 Z M9.8,23.6 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0 Z M15.5,23.6 a1.7,1.7 0 1,0 3.4,0 a1.7,1.7 0 1,0 -3.4,0 Z M22.2,23.6 a1.4,1.4 0 1,0 2.8,0 a1.4,1.4 0 1,0 -2.8,0 Z" />
+        </group>
+    </group>
+</vector>

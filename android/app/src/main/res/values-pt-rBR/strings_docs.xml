@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="docs_title">Docs</string>
+    <string name="docs_search">Buscar</string>
+    <string name="docs_clear">Limpar</string>
+    <string name="docs_retry">Tentar de novo</string>
+    <string name="docs_collapsed">Recolhida</string>
+    <string name="docs_expanded">Expandida</string>
+    <string name="docs_loading">Carregando documentos…</string>
+
+    <string name="docs_block_work">Trabalho</string>
+    <string name="docs_by_project">Por projeto</string>
+    <string name="docs_by_lead">Por lead</string>
+    <string name="docs_by_partner">Por parceiro</string>
+    <string name="docs_folders">Pastas</string>
+    <string name="docs_library">Biblioteca</string>
+    <string name="docs_library_empty">Nada espelhado aqui ainda.</string>
+
+    <string name="docs_recent">Recentes</string>
+    <string name="docs_recent_empty">Os documentos que você escreve aparecem aqui, os mais novos primeiro.</string>
+    <string name="docs_links">Links</string>
+    <string name="docs_links_empty">Cole ou solte um link para salvá-lo.</string>
+    <string name="docs_unfiled">Não arquivado</string>
+    <string name="docs_unfiled_empty">Tudo está arquivado.</string>
+    <string name="docs_subject_empty">Nada escrito sobre isto ainda.</string>
+    <string name="docs_folder_empty">Nada arquivado aqui ainda.</string>
+
+    <string name="docs_nothing_here">Nada aqui</string>
+    <string name="docs_search_empty">Nenhum documento menciona “%1$s”.</string>
+    <string name="docs_category_empty">Nenhum %1$s ainda.</string>
+
+    <string name="docs_open">Abrir</string>
+    <string name="docs_copy_link">Copiar link</string>
+    <string name="docs_link_copied">Link copiado</string>
+    <string name="docs_edited">editado</string>
+    <string name="docs_mirrored">Documentos espelhados não podem ser alterados</string>
+
+    <string name="docs_opening">Abrindo…</string>
+    <string name="docs_open_in">Abrir em %1$s</string>
+
+    <string name="docs_new_document">Novo documento</string>
+    <string name="docs_save_link">Salvar link</string>
+    <string name="docs_filed_in_work">Arquivada em /work.</string>
+    <string name="docs_filed_in_folder">Arquivada em %1$s.</string>
+    <string name="docs_created_from">Criado no Starlings</string>
+    <string name="docs_saved_from">Salvo pelo Starlings</string>
+    <string name="docs_field_title">Título</string>
+    <string name="docs_category">Categoria</string>
+    <string name="docs_cancel">Cancelar</string>
+    <string name="docs_create">Criar</string>
+    <string name="docs_save">Salvar</string>
+    <string name="docs_link_header">Link</string>
+    <string name="docs_link_placeholder">Cole ou digite um link HTTPS</string>
+    <string name="docs_link_url">URL do link</string>
+    <string name="docs_paste_link">Colar link</string>
+    <string name="docs_link_footer">Os links salvos ficam visíveis para todas as pessoas no espaço de trabalho.</string>
+    <string name="docs_link_saved">Link salvo</string>
+    <string name="docs_link_not_loaded">Salvo. A página não carregou.</string>
+
+    <string name="docs_edit">Editar</string>
+    <string name="docs_saving">Salvando…</string>
+    <string name="docs_mine">Meu</string>
+
+    <string name="docs_reply">Responder</string>
+    <string name="docs_resolve">Resolver</string>
+    <string name="docs_reopen">Reabrir</string>
+
+    <string name="docs_rename_menu">Renomear…</string>
+    <string name="docs_rename">Renomear</string>
+    <string name="docs_archive">Arquivar</string>
+    <string name="docs_file">Arquivo</string>
+    <string name="docs_folder">Pasta</string>
+    <string name="docs_project">Projeto</string>
+    <string name="docs_lead">Lead</string>
+    <string name="docs_partner">Parceiro</string>
+    <string name="docs_taken_off">Removido de %1$s</string>
+    <string name="docs_took_off">%1$d documentos removidos de %2$s</string>
+    <string name="docs_category_cleared">Categoria removida</string>
+    <string name="docs_category_cleared_on">Categoria removida de %1$d documentos</string>
+    <string name="docs_filed_in">Arquivado em %1$s</string>
+    <string name="docs_filed_count">%1$d documentos arquivados em %2$s</string>
+
+    <string name="docs_add">Adicionar</string>
+    <string name="docs_paste">Colar</string>
+    <string name="docs_remove">Remover</string>
+    <string name="docs_done">Concluir</string>
+    <string name="docs_subject">Assunto</string>
+
+    <plurals name="docs_document_count">
+        <item quantity="one">%1$d documento</item>
+        <item quantity="other">%1$d documentos</item>
+    </plurals>
+</resources>

@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The Work tab. Every sentence is in Resources/Localizable.xcstrings, with its pt-BR value in values-pt-rBR/strings_work.xml. -->
+<resources>
+    <string name="work_title">Work</string>
+    <string name="work_mine">Mine</string>
+    <string name="work_unowned">Unowned</string>
+    <string name="work_subjects">Subjects</string>
+    <string name="work_search">Search</string>
+    <string name="work_nothing_matches">Nothing matches.</string>
+    <string name="work_nothing_assigned">Nothing is assigned to you.</string>
+    <string name="work_nothing_needs_you">Nothing needs you.</string>
+    <string name="work_browse_subjects">Browse subjects</string>
+    <string name="work_browse_row">Browse…</string>
+    <string name="work_browse_row_subtitle">Every subject, by relationship</string>
+    <string name="work_browse_row_label">Browse every subject</string>
+    <string name="work_browse">Browse</string>
+    <string name="work_no_active_subjects">No active subjects yet.</string>
+    <string name="work_filter_mine">Filter Mine</string>
+    <string name="work_folded">Folded</string>
+    <string name="work_open">Open</string>
+    <string name="work_reset">Reset</string>
+    <string name="work_due">Due</string>
+    <string name="work_type">Type</string>
+    <string name="work_counted">%1$s (%2$d)</string>
+    <string name="work_matched_github">Matched to @%1$s on GitHub.</string>
+    <string name="work_unowned_footer">Open on a subject, and nobody on our side holds it.</string>
+    <string name="work_not_on_list">Not on your list</string>
+    <string name="work_not_assigned_any_more">This task is not assigned to you any more.</string>
+    <string name="work_loading">Loading…</string>
+    <string name="work_done">Done</string>
+    <string name="work_task">Task</string>
+    <string name="work_tasks">Tasks</string>
+    <string name="work_back">Back</string>
+    <string name="work_retry">Retry</string>
+    <string name="work_updated_at">Updated %1$s</string>
+    <string name="work_first_n">First %1$d. Search to find the rest.</string>
+    <string name="work_open_in_github">Open in GitHub</string>
+
+    <!-- Mine's menus (MINE_SECTION_FILTERS, MINE_ORIGIN_FILTERS) -->
+    <string name="work_filter_all_open">All open</string>
+    <string name="work_filter_focus">Focus</string>
+    <string name="work_filter_unfiled">Unfiled</string>
+    <string name="work_filter_late">Late</string>
+    <string name="work_filter_today">Today</string>
+    <string name="work_filter_soon">Soon</string>
+    <string name="work_filter_undated">Undated</string>
+    <string name="work_filter_all_work">All work</string>
+    <string name="work_filter_tasks">Tasks</string>
+    <string name="work_filter_issues">GitHub issues</string>
+
+    <!-- The task reader (MobileTaskView) -->
+    <string name="work_no_notes" translatable="false">No notes.</string>
+    <string name="work_open_from">Open this task from %1$s in Work.</string>
+    <string name="work_task_no_subject">This task has no subject.</string>
+    <string name="work_details_not_loaded">Full details are not loaded yet.</string>
+    <string name="work_details">Details</string>
+    <string name="work_where">Where</string>
+    <string name="work_status">Status</string>
+    <string name="work_responsible">Responsible</string>
+    <string name="work_assigned_to">Assigned to</string>
+    <string name="work_email">Email</string>
+    <string name="work_priority">Priority</string>
+    <string name="work_tags">Tags</string>
+    <string name="work_updated">Updated</string>
+    <string name="work_github_issue">GitHub issue #%1$d</string>
+    <string name="work_edit_task">Edit task</string>
+    <string name="work_delete">Delete</string>
+    <string name="work_delete_title">Delete “%1$s”?</string>
+    <string name="work_delete_message">This can’t be undone.</string>
+    <string name="work_delete_failure" translatable="false">Couldn’t delete that task.</string>
+    <string name="work_cancel">Cancel</string>
+
+    <!-- The task editor (MobileTaskEditor) -->
+    <string name="work_new_task">New task</string>
+    <string name="work_task_title">Task title</string>
+    <string name="work_notes_optional">Notes (optional)</string>
+    <string name="work_due_date">Due date</string>
+    <string name="work_assignee">Assignee</string>
+    <string name="work_nobody_yet">Nobody yet</string>
+    <string name="work_no_options_match">No options match that search.</string>
+    <string name="work_save">Save</string>
+    <string name="work_close">Close</string>
+    <string name="work_team_error" translatable="false">Couldn’t load the team.</string>
+
+    <!-- Where a task lives (MobileTaskWhere) -->
+    <string name="work_kind_project">Project</string>
+    <string name="work_kind_lead">Lead</string>
+    <string name="work_kind_event">Event</string>
+    <string name="work_kind_partner">Partner</string>
+    <string name="work_kind_meeting">Meeting</string>
+    <string name="work_kind_no_subject">No subject</string>
+    <string name="work_kind_subject">Subject</string>
+    <string name="work_kind_client">Client</string>
+
+    <!-- CrmTaskStatus.menuTitle, CrmTaskResponsible.menuTitle -->
+    <string name="work_status_pending">Pending</string>
+    <string name="work_status_in_progress">In progress</string>
+    <string name="work_status_review">In review</string>
+    <string name="work_status_blocked">Blocked</string>
+    <string name="work_status_completed">Done</string>
+    <string name="work_status_cancelled">Cancelled</string>
+    <string name="work_status_proposed">Proposed</string>
+    <string name="work_status_declined">Declined</string>
+    <string name="work_side_team">Team</string>
+    <string name="work_side_client">Client</string>
+    <string name="work_side_unassigned">Unassigned</string>
+
+    <!-- A subject's tasks (MobileSubjectTasksView) -->
+    <string name="work_n_open">%1$d open</string>
+    <string name="work_n_overdue">%1$d overdue</string>
+    <string name="work_github">GitHub</string>
+    <string name="work_no_open_tasks_for">No open tasks for %1$s.</string>
+    <string name="work_complete_task">Complete %1$s</string>
+    <string name="work_proposed">Proposed</string>
+    <string name="work_proposed_badge">PROPOSED</string>
+    <string name="work_proposed_footer">Proposed; accept or decline.</string>
+    <string name="work_proposed_label">Proposed task: %1$s. Accept or decline.</string>
+    <string name="work_due_on">Due %1$s</string>
+    <string name="work_accept">Accept</string>
+    <string name="work_decline">Decline</string>
+
+    <!-- An event's standing (EventPhase, eventCountdownLabel) -->
+    <string name="work_event_upcoming">Upcoming</string>
+    <string name="work_event_today">Today</string>
+    <string name="work_event_past">Past</string>
+    <string name="work_event_one_day_left">1 day left</string>
+    <string name="work_event_days_left">%1$d days left</string>
+
+    <!-- Browse and the board -->
+    <string name="work_group_projects">Projects</string>
+    <string name="work_group_events">Events</string>
+    <string name="work_group_sales">Sales</string>
+    <string name="work_board">Board</string>
+    <string name="work_stage_queued">QUEUED</string>
+    <string name="work_stage_doing">DOING</string>
+    <string name="work_stage_review">REVIEW</string>
+    <string name="work_stage_blocked">BLOCKED</string>
+    <string name="work_stage_done">DONE</string>
+    <string name="work_stage_dropped">DROPPED</string>
+    <string name="work_issue_by">by %1$s</string>
+    <string name="work_issue_owners">Owners: %1$s</string>
+    <string name="work_issue_sub_done">%1$d/%2$d done</string>
+    <!-- INBOX (MobileWorkView.inboxSection, Sources/WorkInbox.swift) -->
+    <string name="work_inbox">Inbox</string>
+    <string name="work_filter_inbox">Filter Inbox</string>
+    <string name="work_all_items">All items</string>
+    <string name="work_source_decision">Decisions</string>
+    <string name="work_source_question">Questions</string>
+    <string name="work_source_card">Agent work to check</string>
+    <string name="work_source_followup">Follow-ups to send</string>
+    <string name="work_source_talk">Unread talk</string>
+    <string name="work_source_guest">Guest messages</string>
+    <string name="work_source_support">Starlings support</string>
+    <string name="work_source_task">Proposed tasks</string>
+    <string name="work_source_note">Quick Notes</string>
+    <string name="work_source_sales">Sales touches</string>
+    <string name="work_source_comment">Document comments</string>
+    <string name="work_source_booking">Bookings</string>
+    <string name="work_source_invitation">Calendar invitations</string>
+    <string name="work_source_forwarded">Events from email</string>
+    <string name="work_source_interest">Interest</string>
+    <string name="work_source_submission">Form submissions</string>
+    <string name="work_source_commercial">Offers and licenses</string>
+    <string name="work_inbox_proposed">Proposed · %1$s</string>
+    <string name="work_inbox_review">Review · %1$s · %2$s</string>
+    <string name="work_inbox_blocked">Blocked · %1$s · %2$s</string>
+    <string name="work_inbox_followup">Follow-up · %1$s · %2$s</string>
+    <string name="work_inbox_sales">Sales · %1$s</string>
+    <string name="work_inbox_comment">Comment · %1$s</string>
+    <string name="work_docs">Docs</string>
+    <string name="work_unread">Unread</string>
+    <string name="work_mentions_you">"Mentions you · "</string>
+    <string name="work_invitation">Invitation</string>
+    <string name="work_calendar_invitation">Calendar invitation</string>
+    <string name="work_interest">Interest</string>
+    <string name="work_booked" translatable="false">Booked</string>
+    <string name="work_rescheduled" translatable="false">Rescheduled</string>
+    <string name="work_cancelled" translatable="false">Cancelled</string>
+    <string name="work_was" translatable="false">was %1$s</string>
+    <string name="work_inbox_partial" translatable="false">Couldn’t read %1$s.</string>
+    <string name="work_inbox_capped">Showing comments on the newest documents only.</string>
+    <string name="work_decision">Decision</string>
+    <string name="work_question">Question</string>
+    <string name="work_overdue">Overdue</string>
+    <string name="work_asked_by">Asked by %1$s</string>
+    <string name="work_recommended_value">Recommended: %1$s</string>
+    <string name="work_default_by">Default by %1$s</string>
+    <string name="work_recommended">Recommended</string>
+    <string name="work_recommended_option">%1$s, recommended</string>
+    <string name="work_note_optional">Note (optional)</string>
+    <string name="work_choose_option">Choose an option to send your answer.</string>
+    <string name="work_links">Links</string>
+    <string name="work_submit_answer">Submit answer</string>
+    <string name="work_dismiss">Dismiss</string>
+    <string name="work_waiting_on">Waiting on %1$s</string>
+    <string name="work_answered">Answered</string>
+    <string name="work_dismissed">Dismissed</string>
+    <string name="work_withdrawn">Withdrawn</string>
+    <string name="work_default_applied">Default applied</string>
+    <string name="work_maybe">Maybe</string>
+    <string name="work_add_to_calendar">Add to calendar</string>
+    <string name="work_discard">Discard</string>
+    <string name="work_open_action">Open</string>
+    <string name="work_add">Add</string>
+    <string name="work_open_decision_label">%1$s. %2$s. Open the decision.</string>
+    <string name="work_open_question_label">%1$s. %2$s. Open the question.</string>
+    <string name="work_opens_event_label">%1$s. %2$s. Opens the event in Calendar.</string>
+    <string name="work_today_at" translatable="false">Today %1$s</string>
+    <string name="work_tomorrow_at" translatable="false">Tomorrow %1$s</string>
+    <string name="work_from_email">From email</string>
+    <!-- Quick Notes (MobileWorkView.quickNotesSection, MobileQuickNoteTriageSheet) -->
+    <string name="work_quick_notes">Quick Notes</string>
+    <string name="work_new_quick_note">New Quick Note</string>
+    <string name="work_new_quick_note_menu">New quick note…</string>
+    <string name="work_what_remember">What should you remember?</string>
+    <string name="work_capture_later">Capture now, file later.</string>
+    <string name="work_file_ellipsis">File…</string>
+    <string name="work_file_note_label">%1$s. %2$s. File this note.</string>
+    <string name="work_not_sent_yet">Not sent yet</string>
+    <string name="work_file_quick_note">File Quick Note</string>
+    <string name="work_file_under">File under</string>
+    <string name="work_file_under_project">File under (project)</string>
+    <string name="work_subject">Subject</string>
+    <string name="work_choose_project">Choose a project</string>
+    <string name="work_choose_subject">Choose a project, lead or partner</string>
+    <string name="work_no_destinations">No destinations match that search.</string>
+    <string name="work_issue">Issue</string>
+    <string name="work_issue_title">Issue title</string>
+    <string name="work_create_task">Create task</string>
+    <string name="work_create_issue">Create issue</string>
+    <string name="work_filing">Filing…</string>
+    <string name="work_destination">Destination</string>
+    <string name="work_add_menu">Add</string>
+    <!-- Recently finished (MobileWorkView.finishedRows) -->
+    <string name="work_recently_finished_count">Recently finished (%1$d)</string>
+    <string name="work_nothing_finished">Nothing finished this week.</string>
+    <string name="work_reopen">Reopen</string>
+    <string name="work_github_usernames">GitHub usernames, not emails.</string>
+    <!-- Row menus (WorkRowActions), Move to… and the goal picker -->
+    <string name="work_assign_to">Assign to</string>
+    <string name="work_cancel_task">Cancel task</string>
+    <string name="work_file_on_github">File on GitHub</string>
+    <string name="work_close_issue">Close issue</string>
+    <string name="work_close_not_planned">Close as not planned</string>
+    <string name="work_reopen_issue">Reopen issue</string>
+    <string name="work_open_named">Open %1$s</string>
+    <string name="work_open_in_mine">Open in Mine</string>
+    <string name="work_me">Me</string>
+    <string name="work_move_to">Move to…</string>
+    <string name="work_goal">Goal</string>
+    <string name="work_none">None</string>
+    <string name="work_kind">Kind</string>
+    <string name="work_nothing_here_yet">Nothing here yet.</string>
+    <string name="work_nothing_in_core">Nothing matches that.</string>
+    <!-- The phone's board (MobileProjectBoardView) -->
+    <string name="work_nothing_here">Nothing here.</string>
+    <string name="work_show_finished">Show finished</string>
+    <string name="work_hide_finished">Hide finished</string>
+    <string name="work_move_to_stage">Move to</string>
+    <string name="work_board_task_number">Task · #%1$d</string>
+    <!-- The issue reader (MobileIssueView) -->
+    <string name="work_no_description">No description.</string>
+    <string name="work_about">About</string>
+    <string name="work_state">State</string>
+    <string name="work_assignees">Assignees</string>
+    <string name="work_labels">Labels</string>
+    <string name="work_milestone">Milestone</string>
+    <string name="work_issue_type">Type</string>
+    <string name="work_sub_issues">Sub-issues</string>
+    <string name="work_sub_issues_done">%1$d of %2$d done</string>
+    <string name="work_sub_issues_named">Sub-issues · %1$d of %2$d done</string>
+    <string name="work_closed">Closed</string>
+    <string name="work_activity">Activity</string>
+    <string name="work_showing_comments">Showing %1$d of %2$d comments. Open GitHub for all.</string>
+    <string name="work_write_comment">Write a comment</string>
+    <string name="work_comment">Comment</string>
+    <string name="work_edit_issue">Edit title and description…</string>
+    <string name="work_title_field">Title</string>
+    <string name="work_description">Description</string>
+    <string name="work_written_in_your_name">The change is written to GitHub in your name.</string>
+    <string name="work_edit_named">Edit %1$s</string>
+    <string name="work_issue_open" translatable="false">Open</string>
+    <string name="work_issue_closed_not_planned">Closed as not planned</string>
+    <string name="work_issue_closed_duplicate">Closed as duplicate</string>
+    <string name="work_opened">Opened</string>
+    <string name="work_opened_by" translatable="false">Opened by %1$s</string>
+    <string name="work_opened_on" translatable="false">%1$s on %2$s</string>
+    <string name="work_milestone_due" translatable="false">%1$s · due %2$s</string>
+    <string name="work_edited">edited</string>
+    <string name="work_react_on_github">React on GitHub</string>
+    <string name="work_somebody">Somebody</string>
+    <string name="work_a_label">a label</string>
+    <string name="work_a_milestone">a milestone</string>
+    <string name="work_somewhere_else">somewhere else</string>
+    <string name="work_a_pull_request">a pull request</string>
+    <string name="work_a_sub_issue">a sub-issue</string>
+    <string name="work_another_issue">another issue</string>
+    <string name="work_somebody_lower" translatable="false">somebody</string>
+    <string name="work_ev_added" translatable="false">%1$s added %2$s</string>
+    <string name="work_ev_removed" translatable="false">%1$s removed %2$s</string>
+    <string name="work_ev_assigned" translatable="false">%1$s assigned %2$s</string>
+    <string name="work_ev_unassigned" translatable="false">%1$s unassigned %2$s</string>
+    <string name="work_ev_milestoned" translatable="false">%1$s added this to %2$s</string>
+    <string name="work_ev_demilestoned" translatable="false">%1$s removed this from %2$s</string>
+    <string name="work_ev_mentioned" translatable="false">%1$s mentioned this in %2$s</string>
+    <string name="work_ev_linked" translatable="false">%1$s linked %2$s</string>
+    <string name="work_ev_unlinked" translatable="false">%1$s unlinked %2$s</string>
+    <string name="work_ev_parent_added" translatable="false">%1$s made this part of %2$s</string>
+    <string name="work_ev_parent_removed" translatable="false">%1$s took this out of %2$s</string>
+    <string name="work_ev_renamed">%1$s changed the title</string>
+    <string name="work_ev_closed">%1$s closed this</string>
+    <string name="work_ev_closed_not_planned">%1$s closed this as not planned</string>
+    <string name="work_ev_closed_duplicate">%1$s closed this as a duplicate</string>
+    <string name="work_ev_reopened">%1$s reopened this</string>
+    <string name="work_ev_referenced">%1$s referenced this</string>
+    <string name="work_ev_marked_duplicate">%1$s marked this a duplicate</string>
+    <string name="work_ev_unmarked_duplicate">%1$s unmarked this as a duplicate</string>
+    <string name="work_ev_locked">%1$s locked the conversation</string>
+    <string name="work_ev_unlocked">%1$s unlocked the conversation</string>
+    <string name="work_ev_pinned">%1$s pinned this</string>
+    <string name="work_ev_unpinned">%1$s unpinned this</string>
+    <string name="work_ev_transferred">%1$s transferred this from another repository</string>
+    <!-- Organizations and Contacts in Browse (MobileContactsGroup, MobileContactView) -->
+    <string name="work_group_partners">Partners</string>
+    <string name="work_no_partners">No partners yet.</string>
+    <string name="work_contacts">Contacts</string>
+    <string name="work_search_contacts">Search contacts</string>
+    <string name="work_no_contacts">No contacts yet.</string>
+    <string name="work_contact">Contact</string>
+    <string name="work_addresses">Addresses</string>
+    <string name="work_no_addresses">No addresses.</string>
+    <string name="work_primary">Primary</string>
+    <string name="work_write_to">Write to %1$s</string>
+    <string name="work_projects">Projects</string>
+    <string name="work_leads">Leads</string>
+    <string name="work_on_no_project">On no project.</string>
+    <string name="work_on_no_lead">On no lead.</string>
+    <string name="work_calls">Calls</string>
+    <string name="work_no_calls">No calls yet.</string>
+    <string name="work_untitled">Untitled</string>
+    <string name="work_unnamed">Unnamed</string>
+    <string name="work_issues">Issues</string>
+    <string name="work_documents">Documents</string>
+    <string name="work_new_issue">New issue</string>
+    <string name="work_filter_these_issues">Filter these issues</string>
+    <string name="work_filter_issues_label">Filter issues</string>
+    <string name="work_issues_footer">Closing an issue here closes it in GitHub.</string>
+    <string name="work_load_more_github">Load more from GitHub</string>
+    <string name="work_no_state_issues">No %1$s issues.</string>
+    <string name="work_no_issues_match">No issues match these filters.</string>
+    <string name="work_link_repo_footer">Choose a repository the GitHub App can reach to see its issues here.</string>
+    <string name="work_no_repo_linked">No repository is linked to %1$s.</string>
+    <string name="work_link_repo">Link GitHub repository…</string>
+    <string name="work_all">All</string>
+    <string name="work_sort_updated">Recently updated</string>
+    <string name="work_sort_newest">Newest</string>
+    <string name="work_sort_comments">Most commented</string>
+    <string name="work_label_menu">Label</string>
+    <string name="work_assignee_menu">Assignee</string>
+    <string name="work_all_labels">All labels</string>
+    <string name="work_anyone">Anyone</string>
+    <string name="work_nobody">Nobody</string>
+    <string name="work_any_milestone">Any milestone</string>
+    <string name="work_no_milestone">No milestone</string>
+    <string name="work_clear_filters">Clear filters</string>
+    <string name="work_new_issue_footer">Filed on this project’s primary repository, in your name.</string>
+    <string name="work_give_it_to_somebody">Give it to somebody</string>
+    <string name="work_file">File</string>
+    <string name="work_unassigned">Unassigned</string>
+    <string name="work_n_selected">%1$d selected</string>
+    <string name="work_n_chosen">%1$d chosen</string>
+    <string name="work_label_named">Label %1$s</string>
+    <string name="work_link_github">Link GitHub</string>
+    <string name="work_already_linked">Already linked</string>
+    <string name="work_available_repos">Available repositories</string>
+    <string name="work_no_repos_available">No repositories available.</string>
+    <string name="work_no_repos_match">No repositories match.</string>
+    <string name="work_follow_up">Follow-up</string>
+    <string name="work_follow_up_to">To %1$s</string>
+    <string name="work_follow_up_tasks">Tasks from this call</string>
+    <string name="work_follow_up_footer">Approve opens this in your mail app. Edit it there, then send it.</string>
+    <string name="work_approve">Approve</string>
+    <string name="work_follow_up_on_clipboard">The message is on the clipboard. Paste it into the mail.</string>
+    <string name="work_new_lead">New Lead</string>
+    <string name="work_saving">Saving…</string>
+    <string name="work_dates">Dates</string>
+    <string name="work_field_name">Name</string>
+    <string name="work_field_start_date">Start date</string>
+    <string name="work_field_qualification">Qualification</string>
+    <string name="work_field_organization">Organization</string>
+    <string name="work_field_notes">Notes</string>
+    <string name="work_n_qualified">%1$d/%2$d qualified</string>
+    <string name="work_q_budget">Budget Availability</string>
+    <string name="work_q_timeline">Event Timeline</string>
+    <string name="work_q_engagement">Previous Engagement</string>
+    <string name="work_q_fit">Project Fit</string>
+    <string name="work_q_buy_in">Stakeholder Buy In</string>
+    <string name="work_search_organizations">Search organizations</string>
+    <string name="work_no_organizations_match">No organizations match</string>
+    <string name="work_no_matches">No matches</string>
+    <string name="work_remove_named">Remove %1$s</string>
+    <string name="work_create_organization">Create organization</string>
+    <string name="work_searching">Searching…</string>
+    <string name="work_ls_conversations">Conversations</string>
+    <string name="work_ls_opportunity">Opportunity Identified</string>
+    <string name="work_ls_proposal">Proposal Out</string>
+    <string name="work_ls_negotiation">Active Negotiation</string>
+    <string name="work_ls_waiting">Waiting on External Factor</string>
+    <string name="work_ls_won">Closed Won</string>
+    <string name="work_ls_lost">Closed Lost</string>
+    <string name="work_start_lead">Start a lead</string>
+    <string name="work_start_lead_label">%1$s. %2$s. Start a lead.</string>
+    <string name="work_touch_contact">Contact form</string>
+    <string name="work_touch_support">Support case</string>
+    <string name="work_touch_pricing">Pricing request</string>
+    <string name="work_touch_readiness">Readiness assessment</string>
+    <string name="work_couldnt_search">Couldn’t search: %1$s</string>
+    <string name="work_error_required" translatable="false">%1$s is required.</string>
+    <string name="work_error_too_long" translatable="false">%1$s is at most %2$d characters.</string>
+    <string name="work_filed_from_note">Filed from a Quick Note</string>
+    <string name="work_send_to">Send to</string>
+    <string name="work_choose_conversation">Choose a conversation</string>
+    <string name="work_triage_message">Message</string>
+    <string name="work_triage_doc">Doc</string>
+    <string name="work_document_title">Document title</string>
+    <string name="work_send_message">Send message</string>
+    <string name="work_create_document">Create document</string>
+    <string name="work_conversation_label">Conversation</string>
+    <string name="work_no_conversations_match">No conversations match that search.</string>
+    <string name="work_filter_board">Filter the board</string>
+    <string name="work_held_by">Held by</string>
+    <string name="work_people">People</string>
+    <string name="work_any_agent">Any agent</string>
+    <string name="work_any_side">Any side</string>
+    <string name="work_side">Side</string>
+    <string name="work_any_date">Any date</string>
+    <string name="work_filter_contacts">Filter Contacts</string>
+    <string name="work_any">Any</string>
+    <string name="work_organization_named">Organization: %1$s</string>
+    <string name="work_country">Country</string>
+    <string name="work_partner">Partner</string>
+    <string name="work_existing_client">Existing client</string>
+    <string name="work_signals_status">Signals status</string>
+    <string name="work_language">Language</string>
+    <string name="work_outreach_to_notify">To notify</string>
+    <string name="work_outreach_notified">Notified</string>
+    <string name="work_outreach_replied">Replied</string>
+    <string name="work_outreach_interested">Interested</string>
+    <string name="work_outreach_not_interested">Not interested</string>
+    <string name="work_filter_organizations">Filter Organizations</string>
+    <string name="work_agency">Agency</string>
+    <string name="work_industry">Industry</string>
+    <!-- The Board's hidden columns (MobileProjectBoardView.filterMenu). -->
+    <string name="work_columns">Columns</string>
+    <plurals name="work_cards_in_hidden_columns">
+        <item quantity="one">%d cards in hidden columns</item>
+        <item quantity="other">%d cards in hidden columns</item>
+    </plurals>
+    <!-- The new-issue composer's picture (MobileNewIssueView). -->
+    <string name="work_attach_image">Attach image</string>
+    <string name="work_attaching">Attaching…</string>
+    <!-- The contact editor (MobileContactEditorView) and the contact page's Details. -->
+    <string name="work_edit">Edit</string>
+    <string name="work_edit_contact">Edit contact</string>
+    <string name="work_field_addresses">Addresses, one per line</string>
+    <string name="work_email_placeholder" translatable="false">name@example.com</string>
+    <string name="work_birthday">Birthday</string>
+    <string name="work_month">Month</string>
+    <string name="work_day">Day</string>
+    <string name="work_year">Year</string>
+    <string name="work_characteristics">Characteristics</string>
+    <!-- Contact add, merge and delete (MobileContactView), the partner pane (MobilePartnerDetailView) -->
+    <string name="work_add_contact">Add contact</string>
+    <string name="work_merge_ellipsis">Merge…</string>
+    <string name="work_deleting">Deleting…</string>
+    <string name="work_contact_delete_message">Its leads and projects stay. This can’t be undone.</string>
+    <string name="work_merge_contact">Merge contact</string>
+    <string name="work_duplicate">Duplicate</string>
+    <string name="work_merge">Merge</string>
+    <string name="work_merging">Merging…</string>
+    <string name="work_merge_title">Merge “%1$s” and “%2$s”?</string>
+    <string name="work_merge_contact_message">The older one keeps every link and address, and the other is deleted for good.</string>
+    <string name="work_no_partner_projects">No projects with this partner yet.</string>
+    <string name="work_no_partner_leads">No open leads with this partner.</string>
+    <string name="work_website">Website</string>
+    <string name="work_open_website">Open website %1$s</string>
+    <!-- Edit organization, Merge and Delete on the Partner pane (MobilePartnerDetailView, OrganizationDraft) -->
+    <string name="work_edit_organization">Edit organization</string>
+    <string name="work_merge_organization">Merge organization</string>
+    <string name="work_merge_organization_message">The older one keeps every link, and the other is deleted for good.</string>
+    <string name="work_organization_delete_message">The organization is deleted. This can’t be undone.</string>
+    <string name="work_legal_name">Legal name</string>
+    <string name="work_city">City</string>
+    <string name="work_linkedin">LinkedIn</string>
+    <string name="work_domain">Domain</string>
+    <!-- A subject's Overview and Talk (MobileSubjectOverviewView, MobileGoalsDecisions, WorkInteractions) -->
+    <string name="work_talk">Talk</string>
+    <string name="work_history">History</string>
+    <string name="work_goals">Goals</string>
+    <string name="work_answers">Answers</string>
+    <string name="work_decisions">Decisions</string>
+    <string name="work_related_subjects">Related subjects</string>
+    <string name="work_won_from">Won from</string>
+    <string name="work_no_subject_contacts">No contacts.</string>
+    <string name="work_offers">Offers</string>
+    <string name="work_licenses">Licenses</string>
+    <string name="work_no_offers">No offers.</string>
+    <string name="work_no_licenses">No licenses.</string>
+    <string name="work_untitled_offer">Untitled offer</string>
+    <string name="work_license">License</string>
+    <string name="work_license_product">Product</string>
+    <string name="work_license_product_signals">Signals</string>
+    <string name="work_license_product_other">Other</string>
+    <string name="work_license_plan">Plan</string>
+    <string name="work_license_plan_starter">Starter</string>
+    <string name="work_license_plan_pro">Pro</string>
+    <string name="work_license_plan_partner">Partner</string>
+    <string name="work_license_seats">Seats</string>
+    <string name="work_license_amount">Amount</string>
+    <string name="work_license_start">Start</string>
+    <string name="work_license_renewal">Renewal</string>
+    <string name="work_license_payment">Payment</string>
+    <string name="work_license_payment_invoice">Invoice</string>
+    <string name="work_license_payment_stripe">Stripe</string>
+    <string name="work_license_billing">Billing</string>
+    <string name="work_license_interval_month">Monthly</string>
+    <string name="work_license_interval_year">Yearly</string>
+    <string name="work_license_interval_one_time">One time</string>
+    <string name="work_license_status">Status</string>
+    <string name="work_license_active">Active</string>
+    <string name="work_license_signals_org">Signals organization</string>
+    <string name="work_license_usage">Usage</string>
+    <string name="work_license_usage_on">Usage on</string>
+    <string name="work_license_sessions">Sessions, 30 days</string>
+    <string name="work_license_runs">Runs, 30 days</string>
+    <string name="work_license_projects">Projects</string>
+    <string name="work_valid_until">Valid until %1$s</string>
+    <string name="work_renews_on">Renews %1$s</string>
+    <string name="work_offer_expires">Offer expires %1$s</string>
+    <string name="work_license_renews">License renews %1$s</string>
+    <string name="work_license_renewal_passed">License renewal passed %1$s</string>
+    <string name="work_inactive">Inactive</string>
+    <plurals name="work_n_seats">
+        <item quantity="one">%d seat</item>
+        <item quantity="other">%d seats</item>
+    </plurals>
+    <string name="work_ctx_team">Team</string>
+    <string name="work_ctx_agents">Agents</string>
+    <string name="work_ctx_work">Work</string>
+    <string name="work_relationship">Relationship</string>
+    <string name="work_relationship_client">Client</string>
+    <string name="work_relationship_partner">Partner</string>
+    <string name="work_relationship_prospect">Prospect</string>
+    <string name="work_when">When</string>
+    <string name="work_listed">Listed</string>
+    <string name="work_not_listed">Not listed yet</string>
+    <string name="work_no_date_yet">No date yet</string>
+    <plurals name="work_open_tasks_n">
+        <item quantity="one">%d open task</item>
+        <item quantity="other">%d open tasks</item>
+    </plurals>
+    <string name="work_ctx_repo">Repository linked</string>
+    <string name="work_ctx_no_repo">No repository linked</string>
+    <string name="work_n_around">%1$d around</string>
+    <string name="work_all_members">All %1$s members</string>
+    <string name="work_responsible_suggested">Responsible (suggested)</string>
+    <string name="work_loading_agent">Loading agent…</string>
+    <string name="work_agent_not_in_roster">Agent not in the roster.</string>
+    <string name="work_no_agent">None attached. @mention an agent to bring it in.</string>
+    <string name="work_show_all">Show all</string>
+    <string name="work_new_goal_label">New Goal</string>
+    <string name="work_record_decision_label">Record Decision</string>
+    <string name="work_goal_met">Met</string>
+    <string name="work_goal_drop">Drop</string>
+    <string name="work_goal_dropped">Dropped</string>
+    <string name="work_late_day">Late, %1$s</string>
+    <string name="work_via">via %1$s</string>
+    <string name="work_untitled_project">Untitled project</string>
+    <string name="work_untitled_lead">Untitled lead</string>
+    <string name="work_untitled_interaction">Untitled interaction</string>
+    <string name="work_ix_call">Call</string>
+    <string name="work_ix_web">Web</string>
+    <string name="work_ix_note">Note</string>
+    <string name="work_from_the_lead">From the lead</string>
+    <string name="work_n_min">%1$d min</string>
+    <string name="work_sent_on">Sent %1$s</string>
+    <string name="work_new_goal">New goal</string>
+    <string name="work_goal_prompt">What the project is aiming at</string>
+    <string name="work_target_date">Target date</string>
+    <string name="work_by">By</string>
+    <string name="work_owner">Owner</string>
+    <string name="work_record_decision">Record decision</string>
+    <string name="work_decision_prompt">What was settled</string>
+    <plurals name="work_n_people">
+        <item quantity="one">1 person</item>
+        <item quantity="other">%d people</item>
+    </plurals>
+    <string name="work_ix_all_types">All types</string>
+    <string name="work_ix_meetings">Meetings</string>
+    <string name="work_ix_emails">Emails</string>
+    <string name="work_ix_n_of_n">%1$d of %2$d interactions</string>
+    <string name="work_ix_filter">Filter interactions by type</string>
+    <string name="work_ix_nothing_filed">Nothing filed under %s yet.</string>
+    <string name="work_ix_no_match">No %s match this subject.</string>
+    <string name="work_ix_occurred">Occurred</string>
+    <string name="work_ix_duration">Duration</string>
+    <string name="work_ix_n_minutes">%d minutes</string>
+    <string name="work_ix_summary">Summary</string>
+    <string name="work_ix_transcript_preview">Transcript preview</string>
+    <string name="work_ix_no_summary">No summary was filed for this interaction.</string>
+    <string name="work_ix_open_source">Open source</string>
+    <string name="work_no_contacts_match">No contacts match</string>
+    <string name="work_log" translatable="false">Log</string>
+    <string name="work_ix_date_time" translatable="false">Date and time</string>
+    <string name="work_search_leads" translatable="false">Search leads</string>
+    <string name="work_no_leads_match" translatable="false">No leads match</string>
+    <string name="work_search_projects" translatable="false">Search projects</string>
+    <string name="work_no_projects_match" translatable="false">No projects match</string>
+    <string name="work_fields_internal">Internal</string>
+    <string name="work_fields_end_date">End date</string>
+    <string name="work_event_sign_up">Sign-up</string>
+    <string name="work_event_open_sign_up">Open sign-up %s</string>
+    <string name="work_event_image_for">Image for %s</string>
+    <string name="work_event_not_on_website">Not on the website yet.</string>
+    <string name="work_revert" translatable="false">Revert</string>
+    <string name="work_fields_load_failed" translatable="false">Couldn’t load the record</string>
+    <string name="work_fields_basic" translatable="false">Basic information</string>
+    <string name="work_fields_evid" translatable="false">EVID</string>
+    <string name="work_fields_relationships" translatable="false">Relationships</string>
+    <string name="work_fields_timeline" translatable="false">Timeline</string>
+    <string name="work_fields_project_notes" translatable="false">Project notes</string>
+    <string name="work_fields_contract" translatable="false">Contract</string>
+    <string name="work_fields_analytics" translatable="false">Analytics</string>
+    <string name="work_fields_authentication" translatable="false">Authentication</string>
+    <string name="work_fields_specs" translatable="false">Specs</string>
+    <string name="work_fields_technical" translatable="false">Technical</string>
+    <string name="work_fields_research" translatable="false">Research</string>
+    <string name="work_fields_design" translatable="false">Design</string>
+    <string name="work_fields_one_contact" translatable="false">1 contact</string>
+    <string name="work_fields_n_contacts" translatable="false">%d contacts</string>
+    <string name="work_fields">Fields</string>
+    <string name="work_make_responsible">Make responsible</string>
+    <string name="work_hand_off">Hand off</string>
+    <string name="work_hand_off_menu">Hand off…</string>
+    <string name="work_hand_off_to">Hand off to</string>
+    <string name="work_agent">Agent</string>
+    <string name="work_done_when">Done when</string>
+    <string name="work_deliverable">Deliverable</string>
+    <string name="work_done_when_placeholder">What is true when this is finished</string>
+    <string name="work_deliverable_placeholder">A pull request, a document, a message</string>
+    <string name="work_handed_off_to">Handed off to %1$s</string>
+    <string name="work_take_this_task">Take this task: %1$s</string>
+    <string name="work_done_when_line">Done when: %1$s</string>
+    <string name="work_deliverable_line">Deliverable: %1$s</string>
+    <string name="work_nothing_said">Nothing said about this yet.</string>
+    <string name="work_answer_in_talk">Answer it in Talk.</string>
+    <string name="work_answered_options">Answered: %1$s</string>
+    <string name="work_withdrawn_line">Withdrawn.</string>
+    <string name="work_new_kind">New %1$s</string>
+    <string name="work_edit_kind">Edit %1$s</string>
+    <string name="work_has_start_date">Has a start date</string>
+    <string name="work_has_end_date">Has an end date</string>
+    <string name="work_repository">Repository</string>
+    <string name="work_link_github_repository">Link GitHub repository…</string>
+    <string name="work_field_end_date">End date</string>
+    <string name="work_field_url">URL</string>
+    <string name="work_field_description">Description</string>
+    <string name="work_ps_active">Active</string>
+    <string name="work_ps_paused">Paused</string>
+    <string name="work_ps_archived">Archived</string>
+    <string name="work_win_lead">Win lead</string>
+    <string name="work_win">Win</string>
+    <string name="work_winning">Winning…</string>
+    <string name="work_open_tasks_header">Open tasks</string>
+    <string name="work_project_started_lead_open">Project started. The lead is still open.</string>
+    <string name="work_win_menu">Win…</string>
+    <string name="work_rename_kind">Rename %1$s</string>
+    <string name="work_rename">Rename</string>
+    <string name="work_add_a_name_first">Add a name first.</string>
+    <string name="work_star">Star</string>
+    <string name="work_unstar">Unstar</string>
+    <string name="work_mute">Mute</string>
+    <string name="work_unmute">Unmute</string>
+    <string name="work_open_menu">Open</string>
+    <string name="work_open_talk">Open talk</string>
+    <string name="work_open_history">Open history</string>
+    <string name="work_open_tasks">Open tasks</string>
+    <string name="work_new_task_menu">New task</string>
+    <string name="work_open_issues">Open issues</string>
+    <string name="work_new_issue_menu">New issue</string>
+    <string name="work_edit_details">Edit details</string>
+    <string name="work_rename_menu">Rename…</string>
+    <string name="work_meet_about_this">Meet about this</string>
+    <string name="work_open_in_core">Open full record</string>
+    <string name="work_new_project_menu">New project…</string>
+    <string name="work_new_lead_menu">New lead…</string>
+    <plurals name="work_n_tasks_stayed_on_lead">
+        <item quantity="one">%d task stayed on the lead.</item>
+        <item quantity="other">%d tasks stayed on the lead.</item>
+    </plurals>
+    <string name="work_activity_window">Latest 30 entries · Past 7 days</string>
+    <string name="work_no_activity_week">No activity this week.</string>
+    <string name="work_activity_partial">Couldn’t read some activity. Refresh to try again.</string>
+    <string name="work_filter_unowned">Filter Unowned</string>
+    <string name="work_subjects_header">Subjects</string>
+    <string name="work_show_all_subjects">Show all subjects</string>
+    <string name="work_sort">Sort</string>
+    <string name="work_sort_busiest">Busiest First</string>
+    <string name="work_sort_alphabetical">Alphabetical</string>
+    <string name="work_status_all">All</string>
+    <string name="work_turn_sales_on">Turn Sales on</string>
+    <string name="work_turn_sales_on_footer">The lead pipeline, sales touches in Inbox, and open leads on your list. Follows your account.</string>
+    <string name="work_set_github_username">Set your GitHub username</string>
+    <string name="work_your_github_username">Your GitHub username</string>
+    <string name="work_github_placeholder">octocat</string>
+    <string name="work_finds_issues">Finds the issues assigned to you.</string>
+    <string name="work_filter_the_tasks" translatable="false">Filter the tasks</string>
+    <string name="work_no_organization" translatable="false">No organization</string>
+    <string name="work_offer_status">Status</string>
+    <string name="work_offer_unsent">Unsent changes</string>
+    <string name="work_offer_for">For</string>
+    <string name="work_offer_valid_until">Valid until</string>
+    <string name="work_offer_lines">Lines</string>
+    <string name="work_offer_no_lines">No lines.</string>
+    <string name="work_offer_totals">Totals</string>
+    <string name="work_offer_versions">Versions</string>
+    <string name="work_offer_actions">Actions</string>
+    <string name="work_offer_share_link">Share link</string>
+    <string name="work_offer_duplicate">Duplicate</string>
+    <string name="work_offer_untitled_line">Untitled line</string>
+    <string name="work_offer_line_optional">%1$s (optional)</string>
+    <string name="work_offer_subtotal">Subtotal</string>
+    <string name="work_offer_discount">Discount, %1$s%%</string>
+    <string name="work_offer_total">Total</string>
+    <string name="work_offer_tax">Tax, %1$s%%</string>
+    <string name="work_offer_optional">Optional</string>
+    <string name="work_offer_recurring">Recurring</string>
+    <string name="work_offer_indicative">Indicative, %1$s</string>
+    <string name="work_offer_eur_binding">EUR is binding.</string>
+    <string name="work_offer_no_rate">No rate for %1$s.</string>
+    <string name="work_offer_accepted">Accepted</string>
+    <string name="work_offer_read">Read</string>
+    <string name="work_offer_version">Version %1$d</string>
+    <string name="work_offer_accepted_by">Accepted by</string>
+    <string name="work_offer_email">Email</string>
+    <string name="work_offer_record_accept">Record accept</string>
+    <string name="work_offer_record_reject">Record reject</string>
+    <string name="work_offer_accepted_on">Accepted %1$s</string>
+    <string name="work_offer_status_draft">Draft</string>
+    <string name="work_offer_status_sent">Sent</string>
+    <string name="work_offer_status_viewed">Viewed</string>
+    <string name="work_offer_status_accepted">Accepted</string>
+    <string name="work_offer_status_declined">Declined</string>
+    <string name="work_offer_status_expired">Expired</string>
+    <string name="work_offer_status_rejected">Rejected</string>
+</resources>

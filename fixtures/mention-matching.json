@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "unicode-letter-before-handle",
+      "text": "é@ana",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "unicode-letter-after-handle",
+      "text": "@anaé",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "decomposed-letter-before-handle",
+      "text": "á@ana",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "standalone-mark-before-handle",
+      "text": "́@ana",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "combining-mark-after-handle",
+      "text": "@aná",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "astral-unicode-letter-before-handle",
+      "text": "𐐀@ana",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "unicode-number-before-handle",
+      "text": "𝟠@ana",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "unicode-number-after-handle",
+      "text": "@ana𝟠",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "punctuation-bounds-a-handle",
+      "text": "(@ana), then @ana!",
+      "candidates": ["ana@example.com"],
+      "mentions": ["ana@example.com"]
+    },
+    {
+      "name": "punctuation-with-combining-mark-after-handle",
+      "text": "@ana!́",
+      "candidates": ["ana@example.com"],
+      "mentions": ["ana@example.com"]
+    },
+    {
+      "name": "dot-is-part-of-a-handle",
+      "text": "@ana.silva",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "underscore-is-part-of-a-handle",
+      "text": "@ana_silva",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "plus-and-hyphen-are-part-of-a-handle",
+      "text": "@ana+team and @ana-team",
+      "candidates": ["ana@example.com"],
+      "mentions": []
+    },
+    {
+      "name": "case-insensitive-local-part",
+      "text": "Please ask @ANA today.",
+      "candidates": ["Ana@example.com"],
+      "mentions": ["Ana@example.com"]
+    },
+    {
+      "name": "local-part-address",
+      "text": "Ask @ada.silva today.",
+      "candidates": ["ada.silva@example.com"],
+      "mentions": ["ada.silva@example.com"]
+    },
+    {
+      "name": "full-address",
+      "text": "Ask @ada@example.com!",
+      "candidates": ["ada@example.com"],
+      "mentions": ["ada@example.com"]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "triage": [
+    { "kind": "task", "label": "Task", "titleCaption": "Task title", "action": "Create task" },
+    { "kind": "issue", "label": "Issue", "titleCaption": "Issue title", "action": "Create issue" },
+    { "kind": "message", "label": "Message", "titleCaption": null, "action": "Send message" },
+    { "kind": "doc", "label": "Doc", "titleCaption": "Document title", "action": "Create document" }
+  ]
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Settings › Account › Picture and Connected agents
+  (workspace/settings/AccountSections.kt). English and pt-BR are the iOS
+  catalog's (Resources/Localizable.xcstrings). A sentence the catalog has
+  without pt-BR is here only, so pt-BR shows the English iOS shows. Errors
+  and the joined lines stay English, translatable="false".
+-->
+<resources>
+    <string name="account_picture">Picture</string>
+    <string name="account_picture_initials">Showing your initials</string>
+    <string name="account_picture_visible">Visible to your colleagues</string>
+    <string name="account_picture_choose">Choose Picture…</string>
+    <string name="account_picture_change">Change Picture…</string>
+    <string name="account_picture_remove">Remove picture</string>
+    <string name="account_picture_uploading">Uploading…</string>
+    <string name="account_picture_removing">Removing…</string>
+    <string name="account_picture_footer">Visible to colleagues, not guests.</string>
+    <string name="account_picture_unreadable" translatable="false">That file isn’t a picture Starlings can read.</string>
+
+    <string name="account_agents">Connected agents</string>
+    <string name="account_agents_none">None</string>
+    <string name="account_agents_no_calls">No calls yet.</string>
+    <string name="account_agents_resume">Resume</string>
+    <string name="account_agents_pause">Pause</string>
+    <string name="account_agents_revoke">Revoke</string>
+    <string name="account_agents_paused">Paused</string>
+    <string name="account_agents_reads">Reads</string>
+    <string name="account_agents_reads_writes">Reads and writes</string>
+    <string name="account_agents_scope_no_calls">%1$s · no calls yet</string>
+    <string name="account_agents_joined" translatable="false">%1$s · %2$s</string>
+    <string name="account_agents_replayed">Replayed</string>
+    <string name="account_connector_name">Connector name</string>
+    <string name="account_connector_address">Connector address</string>
+    <string name="account_connect_claude">How to connect Claude</string>
+    <string name="account_copy">Copy</string>
+    <string name="account_copied">Copied</string>
+</resources>

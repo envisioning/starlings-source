@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "events": [
+    {
+      "id": "abcdef12-0000-4000-8000-000000000001",
+      "slug": "starlings-at-work-abcdef12",
+      "title": "Starlings at work",
+      "description": "A live call where Starlings runs a real project. Bring a question.",
+      "body": "## What happens\n\nWe run a real project in a Starlings room, live.",
+      "image_url": "https://images.example.test/starlings-at-work.png",
+      "attendance": "online",
+      "duration_minutes": 45,
+      "starts_at": "2099-10-20T15:00:00.000Z",
+      "ends_at": "2099-10-20T15:45:00.000Z",
+      "time_zone": "Europe/Amsterdam",
+      "room_slug": "rosa",
+      "cta_url": "https://site.example/interest?source=artificial-insights",
+      "cta_label": "Ask about a pilot",
+      "follow_up_note": "Thanks for coming. The notes are on the event page.",
+      "registration_count": 1
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "subject": {
+    "kind": "partner",
+    "id": "aaaaaaaa-0000-4000-8000-000000000003"
+  },
+  "type": "event",
+  "text": "New support case SC-14: Pilot access (Cleo Example)",
+  "idempotency_key": "crm:support-case:aaaaaaaa-0000-4000-8000-000000000006:created"
+}

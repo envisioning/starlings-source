@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "kinds": {
+    "project": {
+      "tasks": { "field": "project_id" },
+      "issues": true,
+      "documents": { "docsKind": "project" },
+      "meetings": { "kind": "project", "hosted": true },
+      "calendarEvents": true,
+      "slack": true,
+      "granola": true,
+      "talk": true
+    },
+    "lead": {
+      "tasks": { "field": "lead_id" },
+      "issues": false,
+      "documents": { "docsKind": "lead" },
+      "meetings": { "kind": "lead", "hosted": true },
+      "calendarEvents": true,
+      "slack": true,
+      "granola": true,
+      "talk": true
+    },
+    "organization": {
+      "tasks": { "field": "organization_id" },
+      "issues": false,
+      "documents": { "docsKind": "organization" },
+      "meetings": { "kind": "organization", "hosted": true },
+      "calendarEvents": true,
+      "slack": true,
+      "granola": true,
+      "talk": true
+    },
+    "event": {
+      "tasks": { "field": "event_id" },
+      "issues": false,
+      "documents": null,
+      "meetings": { "kind": "event", "hosted": false },
+      "calendarEvents": false,
+      "slack": false,
+      "granola": false,
+      "talk": true
+    }
+  },
+  "with": {
+    "tasks": ["project", "lead", "organization", "event"],
+    "issues": ["project"],
+    "documents": ["project", "lead", "organization"],
+    "meetings": ["project", "lead", "organization", "event"],
+    "hostedMeetings": ["project", "lead", "organization"],
+    "calendarEvents": ["project", "lead", "organization"],
+    "slack": ["project", "lead", "organization"],
+    "granola": ["project", "lead", "organization"],
+    "talk": ["project", "lead", "organization", "event"]
+  }
+}

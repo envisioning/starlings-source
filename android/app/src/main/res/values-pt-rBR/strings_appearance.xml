@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appearance_section">Aparência</string>
+    <string name="appearance_auto">Sistema</string>
+    <string name="appearance_light">Claro</string>
+    <string name="appearance_dark">Escuro</string>
+    <string name="appearance_grid_texture">Textura de grade</string>
+    <string name="appearance_this_phone_only">Só neste telefone.</string>
+
+    <string name="notifications_channels">Canais</string>
+    <string name="notifications_every_channel_message">Toda mensagem de canal</string>
+    <string name="notifications_channel_footer">Desligado avisa só quando um canal cita você.</string>
+    <string name="app_icon_section">Ícone do app</string>
+    <string name="app_icon_footer">Escolha o ícone do Starlings na Tela de Início e na Biblioteca de Apps.</string>
+    <string name="app_icon_lime_black_detail">Fundo lima, marca preta</string>
+    <string name="app_icon_black_lime_detail">Fundo preto, marca lima</string>
+    <string name="app_icon_black_white_detail">Fundo preto, marca branca</string>
+    <string name="app_icon_label">Ícone do app, %1$s</string>
+    <string name="app_icon_selected">Selecionado</string>
+</resources>

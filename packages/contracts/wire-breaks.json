@@ -1,0 +1,50 @@
+[
+  {
+    "type": "SignalsAccountDetail",
+    "field": "$type",
+    "reason": "Decided by MZ, 2026-11-05: Signals is no record in Starlings. No client at v7.2.8 decodes this shape; only the web's removed Signals view read it.",
+    "ships_in": "7.2.10"
+  },
+  {
+    "type": "SignalsAccountRow",
+    "field": "$type",
+    "reason": "Decided by MZ, 2026-11-05: Signals is no record in Starlings. No client at v7.2.8 decodes this shape; only the web's removed Signals view read it.",
+    "ships_in": "7.2.10"
+  },
+  {
+    "type": "SignalsAccountUpdate",
+    "field": "$type",
+    "reason": "Decided by MZ, 2026-11-05: Signals is no record in Starlings. No client at v7.2.8 decodes this shape; only the web's removed Signals view read it.",
+    "ships_in": "7.2.10"
+  },
+  {
+    "type": "SignalsAccountsResponse",
+    "field": "$type",
+    "reason": "Decided by MZ, 2026-11-05: Signals is no record in Starlings. No client at v7.2.8 decodes this shape; only the web's removed Signals view read it.",
+    "ships_in": "7.2.10"
+  },
+  {
+    "type": "SignalsOutreachUpdate",
+    "field": "$type",
+    "reason": "Decided by MZ, 2026-11-05: Signals is no record in Starlings. No client at v7.2.8 decodes this shape; only the web's removed Signals view read it.",
+    "ships_in": "7.2.10"
+  },
+  {
+    "type": "SignalsPeopleResponse",
+    "field": "$type",
+    "reason": "Decided by MZ, 2026-11-05: Signals is no record in Starlings. No client at v7.2.8 decodes this shape; only the web's removed Signals view read it.",
+    "ships_in": "7.2.10"
+  },
+  {
+    "type": "SignalsPerson",
+    "field": "$type",
+    "reason": "Decided by MZ, 2026-11-05: Signals is no record in Starlings. No client at v7.2.8 decodes this shape; only the web's removed Signals view read it.",
+    "ships_in": "7.2.10"
+  },
+  {
+    "type": "SignalsReviewItem",
+    "field": "$type",
+    "reason": "Decided by MZ, 2026-11-05: Signals is no record in Starlings. No client at v7.2.8 decodes this shape; only the web's removed Signals view read it.",
+    "ships_in": "7.2.10"
+  }
+]

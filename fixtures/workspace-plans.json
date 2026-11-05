@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "plans": [
+    { "id": "free", "label": "Free", "projectLimit": 1, "unattendedWorkflows": false },
+    { "id": "starter", "label": "Starter", "projectLimit": null, "unattendedWorkflows": false },
+    { "id": "pro", "label": "Pro", "projectLimit": null, "unattendedWorkflows": true }
+  ],
+  "defaultPlan": "pro",
+  "errorCodes": { "projectLimit": "plan_project_limit", "projectFrozen": "plan_project_frozen" },
+  "words": { "projectLimit": "Free includes one project.", "projectFrozen": "This project is read-only on Free.", "askAdmin": "Ask an admin to upgrade.", "upgrade": "Upgrade" },
+  "upgradeURL": "https://site.example/pricing"
+}

@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "profile",
+      "title": "Add your photo",
+      "roles": ["member"],
+      "capability": "ownProfile",
+      "required": true,
+      "route": "/settings#settings-account",
+      "doneWhen": "Your profile has a picture."
+    },
+    {
+      "id": "look",
+      "title": "Check your workspace’s look",
+      "roles": ["admin"],
+      "capability": "adminOverview",
+      "required": true,
+      "route": "/admin/people",
+      "doneWhen": "An admin saved the name, the accent or the mark."
+    },
+    {
+      "id": "membership",
+      "title": "Choose who can join",
+      "roles": ["admin"],
+      "capability": "adminOverview",
+      "required": true,
+      "route": "/admin/people",
+      "doneWhen": "Who can join was chosen at signup, or the workspace signs people in by their email domain."
+    },
+    {
+      "id": "invite",
+      "title": "Invite your team",
+      "roles": ["admin"],
+      "capability": "adminOverview",
+      "required": true,
+      "route": "/admin/people",
+      "doneWhen": "Someone has an invitation, or a second person signed in."
+    },
+    {
+      "id": "project",
+      "title": "Start your first project",
+      "roles": ["admin"],
+      "capability": "crmWork",
+      "required": true,
+      "route": "/work",
+      "doneWhen": "The workspace has a project."
+    },
+    {
+      "id": "calendar",
+      "title": "Connect your calendar",
+      "roles": ["admin", "member"],
+      "capability": "calendar",
+      "required": true,
+      "route": "/settings#settings-calendar",
+      "doneWhen": "Your calendar is connected."
+    },
+    {
+      "id": "assistant",
+      "title": "Connect your agent",
+      "roles": ["admin", "member"],
+      "capability": "ownProfile",
+      "required": true,
+      "route": "/help/howto/connect-an-agent-over-mcp",
+      "doneWhen": "You connected an agent over MCP."
+    },
+    {
+      "id": "agent",
+      "title": "Add your first agent",
+      "roles": ["admin"],
+      "capability": "agents",
+      "required": true,
+      "route": "/admin/agents",
+      "doneWhen": "The workspace has an agent besides the one Starlings runs."
+    },
+    {
+      "id": "call",
+      "title": "Hold a call",
+      "roles": ["admin"],
+      "capability": "hosting",
+      "required": false,
+      "route": "/",
+      "doneWhen": "The workspace held its first call."
+    },
+    {
+      "id": "apps",
+      "title": "Get the apps",
+      "roles": ["admin", "member"],
+      "capability": "ownProfile",
+      "required": false,
+      "route": "https://site.example/download",
+      "doneWhen": "You signed in on the Mac or iPhone app."
+    }
+  ]
+}

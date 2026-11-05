@@ -1,0 +1,16 @@
+{
+  "name": "@starlings/extension",
+  "private": true,
+  "license": "FSL-1.1-ALv2",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "sh ../scripts/with-gate-lock.sh vitest run"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.1",
+    "jsdom": "30.1.0",
+    "vitest": "4.1.10"
+  }
+}

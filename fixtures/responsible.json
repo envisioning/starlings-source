@@ -1,0 +1,31 @@
+{
+  "contract": "responsible",
+  "version": 1,
+  "about": [
+    "Who answers for a project or a lead (docs/OWNERSHIP.md). A name, never a",
+    "permission. Core stores the chosen person (projects/leads.responsible_email,",
+    "core#155); a D1 workspace stores the same column. When nobody chose, the",
+    "subject shows a suggestion, marked as one. TypeScript:",
+    "packages/contracts/src/responsible.ts. Swift: Sources/Responsible.swift,",
+    "reading this same file."
+  ],
+  "rules": [
+    "KINDS: project and lead only. An event or a partner answers null.",
+    "CHOSEN: a stored responsible_email wins, lowercased, source chosen.",
+    "SUGGESTED: otherwise the person assigned the most open tasks on the",
+    "subject (status pending, in_progress, review or blocked), source",
+    "suggested. Ties go to the address first in alphabetical order.",
+    "NONE: no chosen person and no assigned open task answers null.",
+    "Core keeps no creator, so the creator is not an input."
+  ],
+  "cases": [
+    { "name": "chosen wins over open tasks", "subject": { "kind": "project", "responsible_email": "Ada@example.com" }, "tasks": [{ "assignee_email": "bo@example.com", "status": "pending" }], "expect": { "email": "ada@example.com", "source": "chosen" } },
+    { "name": "most open tasks is suggested", "subject": { "kind": "project", "responsible_email": null }, "tasks": [{ "assignee_email": "bo@example.com", "status": "pending" }, { "assignee_email": "cy@example.com", "status": "in_progress" }, { "assignee_email": "Bo@example.com", "status": "review" }], "expect": { "email": "bo@example.com", "source": "suggested" } },
+    { "name": "finished tasks do not count", "subject": { "kind": "lead", "responsible_email": null }, "tasks": [{ "assignee_email": "bo@example.com", "status": "completed" }, { "assignee_email": "bo@example.com", "status": "cancelled" }, { "assignee_email": "cy@example.com", "status": "blocked" }], "expect": { "email": "cy@example.com", "source": "suggested" } },
+    { "name": "a tie goes to the first address", "subject": { "kind": "lead", "responsible_email": null }, "tasks": [{ "assignee_email": "cy@example.com", "status": "pending" }, { "assignee_email": "bo@example.com", "status": "pending" }], "expect": { "email": "bo@example.com", "source": "suggested" } },
+    { "name": "proposed and unassigned tasks do not count", "subject": { "kind": "project", "responsible_email": null }, "tasks": [{ "assignee_email": "bo@example.com", "status": "proposed" }, { "assignee_email": null, "status": "pending" }], "expect": null },
+    { "name": "no tasks, nobody chosen", "subject": { "kind": "project" }, "tasks": [], "expect": null },
+    { "name": "an event answers null", "subject": { "kind": "event", "responsible_email": "ada@example.com" }, "tasks": [], "expect": null },
+    { "name": "a partner answers null", "subject": { "kind": "organization", "responsible_email": null }, "tasks": [{ "assignee_email": "bo@example.com", "status": "pending" }], "expect": null }
+  ]
+}

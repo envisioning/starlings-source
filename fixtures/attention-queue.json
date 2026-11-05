@@ -1,0 +1,11 @@
+{
+  "now": "2026-10-04T12:00:00Z",
+  "rows": [
+    { "id": "question:newer", "kind": "question", "created_at": "2026-10-02T10:00:00Z", "default_by": null },
+    { "id": "decision:later", "kind": "decision", "created_at": "2026-10-01T10:00:00Z", "default_by": "2026-10-06" },
+    { "id": "question:older", "kind": "question", "created_at": "2026-10-01T10:00:00Z", "default_by": null },
+    { "id": "decision:sooner", "kind": "decision", "created_at": "2026-10-01T10:00:00Z", "default_by": "2026-10-05" },
+    { "id": "decision:overdue", "kind": "decision", "created_at": "2026-10-03T10:00:00Z", "default_by": "2026-10-03" }
+  ],
+  "expected": ["decision:overdue", "decision:sooner", "decision:later", "question:older", "question:newer"]
+}

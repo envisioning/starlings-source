@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The guest join flow, the call screen and the signed-out welcome
+  (MainActivity.kt, CallScreen.kt): sentences from the iOS catalog,
+  Resources/Localizable.xcstrings, with its pt-BR values. A sentence iOS
+  leaves in English everywhere is translatable="false" here too.
+-->
+<resources>
+    <!-- iOS/MobileFirstRunCard.swift and EnvisioningWelcomeShell. -->
+    <string name="welcome_product" translatable="false">Starlings</string>
+    <string name="welcome_subtitle">Join a meeting or sign in to your workspace.</string>
+    <string name="welcome_email">Email address</string>
+    <string name="welcome_room">Room name</string>
+    <string name="welcome_paste">Paste</string>
+    <string name="welcome_paste_hint">Pastes a meeting room from the clipboard</string>
+    <string name="welcome_privacy">Starlings does not record audio or video. Your host’s device writes a transcript, and only that text is kept.</string>
+    <string name="welcome_or" translatable="false">or</string>
+    <string name="welcome_version">Version %1$s · Build %2$s</string>
+    <string name="welcome_unable" translatable="false">Unable to continue: %1$s</string>
+    <string name="guest_name_missing">Add your name to continue.</string>
+    <string name="guest_email_invalid">Enter a valid email address.</string>
+    <string name="guest_room_invalid">Room names need 2–40 letters, numbers, or hyphens.</string>
+    <!-- iOS/JoinView.swift. -->
+    <string name="join_title">Join</string>
+    <string name="prejoin_flip">Flip</string>
+    <string name="ended_lasted">Lasted %1$s</string>
+    <string name="ended_room">Room · %1$s</string>
+    <string name="ended_transcript">Transcript · your host keeps it</string>
+    <string name="duration_minutes" translatable="false">%1$dm %2$ds</string>
+    <string name="duration_seconds" translatable="false">%1$ds</string>
+    <string name="ended_back_to_room">Back to this room</string>
+    <string name="ended_join_another">Join another room</string>
+    <!-- iOS/MobileCallView.swift and Sources/MeetingQuality.swift. -->
+    <string name="quality_label" translatable="false">Connection quality: %1$s</string>
+    <string name="quality_excellent">Excellent</string>
+    <string name="quality_good">Good</string>
+    <string name="quality_poor">Poor</string>
+    <string name="quality_lost">Lost</string>
+    <string name="quality_measuring">Measuring…</string>
+    <string name="end_confirm_title">End the meeting for everyone?</string>
+    <string name="end_for_everyone">End for everyone</string>
+    <plurals name="end_confirm_others">
+        <item quantity="one">%d other person is still in the room.</item>
+        <item quantity="other">%d other people are still in the room.</item>
+    </plurals>
+    <string name="call_cancel">Cancel</string>
+    <!-- iOS/MobileDeviceMenus.swift. -->
+    <string name="device_options">%1$s options</string>
+    <string name="device_mics_later">Microphones are listed once the call has audio</string>
+    <string name="device_front_camera">Front camera</string>
+    <string name="device_back_camera">Back camera</string>
+    <!-- More's Lower all hands, iOS/MobileCallView.swift. The catalog has "Lower all hands (1)"; iOS writes the other counts in English. -->
+    <plurals name="hands_lower_all">
+        <item quantity="one">Lower all hands (%1$d)</item>
+        <item quantity="other">Lower all hands (%1$d)</item>
+    </plurals>
+    <string name="hands_lower_failed" translatable="false">Couldn’t lower the hands.</string>
+</resources>

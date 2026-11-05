@@ -1,0 +1,257 @@
+// Production shape with every Envisioning-specific value replaced by a
+// placeholder. Copy to `wrangler.jsonc` and work through the `replace-with-…`
+// entries; the local and test variants (`wrangler.local.jsonc`,
+// `wrangler.test.jsonc`) already point at loopback and need nothing.
+//
+// Nothing in this file is a secret. Secrets go in `.dev.vars` locally and in
+// `wrangler secret put` in production — see `.dev.vars.example`.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "meet",
+  // Your Cloudflare account. Pinned because wrangler cannot resolve it from an
+  // OAuth token alone once you have belonged to more than one account.
+  "account_id": "replace-with-your-cloudflare-account-id",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "routes": [{ "pattern": "replace-with-your-worker-host", "custom_domain": true }],
+  // The five-minute pass: reminders, syncs and retention (src/index.ts).
+  "triggers": { "crons": ["*/5 * * * *"] },
+  "assets": {
+    "directory": "../../web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": true
+  },
+  "vars": {
+    "ENVIRONMENT": "production",
+    // Where the SPA is served and where the API answers. The same host in a
+    // single-Worker deploy; two hosts if you front the API separately.
+    "WEB_ORIGIN": "https://replace-with-your-worker-host",
+    "PUBLIC_API_ORIGIN": "https://replace-with-your-worker-host",
+    // The host invite and room links name; often the same as WEB_ORIGIN.
+    "PUBLIC_WEB_ORIGIN": "https://replace-with-your-public-host",
+    // Your Apple team, when you ship the native apps. Empty: this host names no app.
+    "NATIVE_APPLE_TEAM_ID": "",
+    // LiveKit Cloud project, or your own SFU. `scripts/` runs one on loopback
+    // for local work — see the Run locally section of the README.
+    "LIVEKIT_URL": "wss://replace-with-your-livekit-host",
+    // Google OAuth clients: the Web one signs in the browser, the Native one
+    // the Mac and iOS apps. Both live in the same Google Cloud project.
+    "GOOGLE_WEB_CLIENT_ID": "replace-with-google-web-client-id",
+    // The Google connector grant: its own Google Cloud project (docs/CONFIGURATION.md §3d-bis).
+    "GOOGLE_CONNECTOR_CLIENT_ID": "",
+    "GOOGLE_NATIVE_CLIENT_ID": "replace-with-google-native-client-id",
+    "GOOGLE_NATIVE_CLIENT_ID_STARLINGS": "replace-with-google-starlings-native-client-id",
+    // Who owns a permanent room, as `{ "<owner email>": "<slug>" }`. This is
+    // the whole room list: a slug that is not here 404s. Sign-in is also gated
+    // on the identity domains in `packages/contracts/src/deployment.ts`, so
+    // change those to your own before the first owner can sign in at all.
+    // Your organisation's Google Workspace domains, comma separated. Nobody
+    // signs in until this names at least one (docs/ACCESS.md slice 3).
+    "IDENTITY_DOMAINS": "example.com",
+    "SIGN_IN_DOMAIN": "example.com",
+    "OWNER_ROOM_MAP": "{\"replace-with-owner@example.com\":\"replace-with-slug\"}",
+    "ROOT_ADMIN_EMAILS": "replace-with-owner@example.com",
+    // The internal room: one permanent room whose audience is Envisioning
+    // rather than the public, so a recurring internal meeting has a door that
+    // is not a person's. Use `{ "*": "<slug>" }` to let every verified member
+    // host it, or a specific email key for one host. Blank or `{}` means no
+    // internal room, which is the default.
+    // See docs/adr/0001-internal-room.md.
+    "INTERNAL_ROOM_MAP": "{}",
+    // The TestFlight invite an old iOS build is pointed at (src/client-version.ts).
+    // Blank means no link. The downloads themselves are the product site's.
+    "IOS_TESTFLIGHT_URL": "",
+    "MIN_RECOMMENDED_VERSION_MACOS": "",
+    "MIN_RECOMMENDED_VERSION_IOS": "",
+    // The Android floor and update page (#1237). Blank: no banner, no link.
+    "MIN_RECOMMENDED_VERSION_ANDROID": "",
+    "ANDROID_UPDATE_URL": "",
+    // The CRM half of the product — see docs/MEETING_LOG.md. Meet works
+    // without it: the Work surface answers `not_configured` and booking has no
+    // upstream, while rooms, transcription, summaries, email, threads and
+    // calendar are unaffected. Set CRM_SYNC_MODE to "off", or simply leave
+    // INTERNAL_REQUEST_SECRET unset, and the sync never runs.
+    // Where records live: "d1" (the default when unset) or "core". Only
+    // "core" takes CORE_API_ORIGIN and CORE_WEB_ORIGIN; the deploy check
+    // refuses either one beside "d1". There is no default Core.
+    "WORK_STORE": "d1",
+    // Where rooms and Quick Notes live: "eu" for a new workspace.
+    "DO_JURISDICTION": "eu",
+    // Docs Worker origin, for the Worker's own token exchange behind the Docs
+    // routes (/api/docs/*, /api/docs-service/*). Needs the DOCS_INTERNAL_SECRET
+    // secret, shared with that Worker; without it those routes answer
+    // `not_configured` and nothing else is affected.
+    "DOCS_ORIGIN": "https://replace-with-your-docs-host",
+    // Granola notes ride the same CRM wire (docs/GRANOLA_BRIDGE.md). Nothing
+    // is configured here: both halves are secrets (GRANOLA_API_KEY and
+    // GRANOLA_WEBHOOK_SECRET), and each absent one fails the bridge closed.
+    "CRM_SYNC_MODE": "off",
+    // Workers AI. `fallback` writes a deterministic summary with no model call,
+    // which is what the local and test configs use.
+    "SUMMARY_MODE": "ai",
+    "SUMMARY_MODEL": "@cf/meta/llama-3.1-8b-instruct-fp8",
+    // Notes come from Claude when the ANTHROPIC_API_KEY secret is set — action
+    // items first, decisions, summary, in the meeting's language — and from
+    // SUMMARY_MODEL on Workers AI otherwise (docs/AMBIENT_CAPTURE.md §3).
+    "NOTES_MODEL": "claude-sonnet-5",
+    // A mail forwarded to calendar@ becomes proposed events through the same
+    // key; a smaller model reads a mail fine, and answers faster.
+    "CALENDAR_EXTRACT_MODEL": "claude-sonnet-5",
+    // Task suggestions read a chunk of live transcript, so they get the bigger
+    // model — the small one restates sentences instead of reading the room.
+    "TASK_SUGGEST_MODE": "ai",
+    "TASK_SUGGEST_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    // `owner/repo` that in-app bug reports file into. Blank fails those closed
+    // with `not_configured`, which is the right default for a fork.
+    "GITHUB_ISSUES_REPO": "",
+    // The GitHub connector (docs/GITHUB_CONNECTOR.md): the Starlings App,
+    // reached over the GITHUB binding to the token broker in starlings-auth;
+    // an admin connects an installation from Admin. `GITHUB_SYNC_ENABLED` is
+    // the kill switch; off means the hourly pass enqueues nothing.
+    "GITHUB_SYNC_ENABLED": "off",
+    // Agents are peers with no device: one `people` row each, derived from this
+    // map. Adding one is a deploy, not a migration. Empty object for none.
+    // See docs/AGENTS_SURFACE.md.
+    "AGENT_ROSTER": "{}",
+    // `on`: this Worker takes mail at `<slug>.<local>@<suffix>`. `off`: no inbound addresses.
+    "INBOUND_EMAIL": "off",
+    // Public contact@ / support@ door: the domain whose Email Routing rule sends these two addresses to this Worker. Independent of INBOUND_EMAIL. Empty: closed.
+    "SUPPORT_EMAIL_DOMAIN": "",
+    // The app channel door (#1176): where a member's reply to an app user goes, and the hosts a report's attachments_url may name. Empty: closed.
+    "APP_INTAKE_REPLY_URL": "",
+    "APP_INTAKE_ALLOWED_ATTACHMENT_HOSTS": "",
+    // A second host that also serves this workspace, a comma list. Blank for none.
+    "WORKSPACE_ORIGIN_ALIASES": "",
+    "PAGE_REDIRECT_FROM": "",
+    "PAGE_REDIRECT_TO": "",
+    "PLAUSIBLE_DOMAIN": "",
+    "GOOGLE_CALENDAR_CLIENT_ID": "",
+    "WORKSPACE_NAME": "replace-with-your-organisation-name",
+    // Which suite your members use for calendar and mail: `google` or `microsoft`.
+    "WORKSPACE_SUITE": "google",
+    "GLOBAL_INTEREST_CALENDAR_TITLE": "",
+    "SUPPORT_HQ_ORIGIN": "",
+    "CORE_API_ORIGIN": "",
+    "CORE_WEB_ORIGIN": "",
+    "KEEP_ORIGIN": "",
+    "WORK_STORE_SUBJECTS": "d1",
+    "WORK_STORE_TASKS": "d1",
+    "WORK_STORE_GOALS": "d1",
+    "WORK_STORE_INTERACTIONS": "d1",
+    "BOOKING_STORE": "d1",
+    "GRANOLA_SUGGEST_MODE": "off",
+    "GRANOLA_SUGGEST_MODEL": "",
+    "SLACK_IMPORT_ENABLED": "off",
+    "MAIL_FROM": "replace-with-your-name <hello@replace-with-your-domain>",
+    "OPS_ALERT_EMAIL": "replace-with-owner@example.com"
+  },
+  // Burst guards on the routes anyone can POST without signing in. Windows are
+  // 10s or 60s only, so these stop a flood, not a patient abuser — Turnstile is
+  // what covers the rest, once TURNSTILE_SECRET_KEY and VITE_TURNSTILE_SITE_KEY
+  // exist together. Native knocks skip the widget; presence heartbeats never
+  // get one. `namespace_id` is a local label, not a Cloudflare resource.
+  "ratelimits": [
+    { "name": "FEEDBACK_LIMIT", "namespace_id": "1001", "simple": { "limit": 3, "period": 60 } },
+    // Keyed on room + address: a venue's Wi-Fi is one address,
+    // and a room of a hundred has to be able to knock in a minute and to
+    // heartbeat every 15 s (400/min). The 99-guard and Turnstile bound abuse.
+    { "name": "JOIN_LIMIT", "namespace_id": "1002", "simple": { "limit": 120, "period": 60 } },
+    { "name": "PRESENCE_LIMIT", "namespace_id": "1003", "simple": { "limit": 600, "period": 60 } },
+    { "name": "AGENT_LIMIT", "namespace_id": "1004", "simple": { "limit": 60, "period": 60 } },
+    { "name": "LINK_PREVIEW_LIMITER", "namespace_id": "1005", "simple": { "limit": 30, "period": 60 } },
+    { "name": "MCP_LIMIT", "namespace_id": "1006", "simple": { "limit": 120, "period": 60 } },
+    { "name": "ERROR_EVENT_LIMIT", "namespace_id": "1007", "simple": { "limit": 10, "period": 60 } }
+  ],
+  // Docs Worker in the same account, reached by name (see docs/DOCS.md).
+  // Remove if you do not run Docs; the Docs routes then answer not_configured.
+  "services": [
+    { "binding": "GITHUB", "service": "starlings-auth", "entrypoint": "GithubService", "props": { "origin": "https://replace-with-your-worker-host" } },
+    { "binding": "DOCS", "service": "replace-with-your-docs-worker-name" },
+    { "binding": "KEEP", "service": "replace-with-your-keep-worker-name" }
+  ],
+  // The key that signs support links, from your Secrets Store.
+  "secrets_store_secrets": [
+    { "binding": "SHARED_SUPPORT_LINK_KEY", "store_id": "replace-with-your-secrets-store-id", "secret_name": "SUPPORT_LINK_KEY" }
+  ],
+  "durable_objects": {
+    "bindings": [
+      { "name": "ROOMS", "class_name": "RoomCoordinator" },
+      { "name": "THREADS", "class_name": "ThreadCoordinator" },
+      { "name": "QUICK_NOTES", "class_name": "QuickNotesCoordinator" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["RoomCoordinator"] },
+    { "tag": "v2", "new_sqlite_classes": ["ThreadCoordinator"] },
+    { "tag": "v3", "new_sqlite_classes": ["QuickNotesCoordinator"] }
+  ],
+  "queues": {
+    "producers": [
+      { "binding": "ARTIFACT_JOBS", "queue": "meet-artifact-jobs" },
+      { "binding": "IMPORT_JOBS", "queue": "meet-import-jobs" }
+    ],
+    "consumers": [
+      // A job that fails three times is kept, not deleted: it lands on the dead
+      // queue and an admin replays it (docs/OPERATIONS.md §Dead artifact jobs).
+      { "queue": "meet-artifact-jobs", "max_batch_size": 5, "max_batch_timeout": 10, "max_retries": 3, "dead_letter_queue": "meet-artifact-jobs-dead" },
+      { "queue": "meet-import-jobs", "max_batch_size": 5, "max_batch_timeout": 10, "max_retries": 3, "max_concurrency": 1, "dead_letter_queue": "meet-import-jobs-dead" }
+    ]
+  },
+  // Create these with wrangler, then paste the ids it prints:
+  //   wrangler kv namespace create CALENDAR_TOKENS
+  //   wrangler kv namespace create CORE_CACHE
+  //   wrangler d1 create meet-usage
+  //   wrangler r2 bucket create meet-downloads
+  //   wrangler r2 bucket create meet-avatars
+  //   wrangler r2 bucket create meet-attachments
+  //   wrangler r2 bucket create meet-backups
+  //   wrangler queues create meet-artifact-jobs
+  //   wrangler queues create meet-artifact-jobs-dead
+  //   wrangler queues create meet-import-jobs
+  //   wrangler queues create meet-import-jobs-dead
+  "kv_namespaces": [
+    {
+      "binding": "CALENDAR_TOKENS",
+      "id": "replace-with-your-kv-namespace-id"
+    },
+    {
+      "binding": "CORE_CACHE",
+      "id": "replace-with-your-core-cache-kv-namespace-id"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "USAGE",
+      "database_name": "meet-usage",
+      "database_id": "replace-with-your-d1-database-id",
+      "migrations_dir": "./migrations"
+    }
+  ],
+  "r2_buckets": [
+    { "binding": "DOWNLOADS", "bucket_name": "meet-downloads" },
+    // Profile pictures, private to members. Its own bucket rather than a prefix
+    // in `meet-downloads`: that one has a public path in front of it.
+    { "binding": "AVATARS", "bucket_name": "meet-avatars" },
+    // Files people attach to a conversation. Private to one thread's members,
+    // and deleted when the message is withdrawn.
+    { "binding": "ATTACHMENTS", "bucket_name": "meet-attachments" },
+    // Nightly copies of the database. Private, and not reachable from a route.
+    { "binding": "BACKUPS", "bucket_name": "meet-backups" }
+  ],
+  "ai": { "binding": "AI" },
+  "observability": {
+    "enabled": true,
+    // Successful requests are intentionally quiet. Keep application failures
+    // and the low-volume operational logs, without also storing one platform
+    // invocation event for every Worker and Durable Object call.
+    // Keep a small sample of application failures for diagnosis. Successful
+    // polling traffic is not useful enough to retain at full volume.
+    "logs": { "enabled": true, "invocation_logs": false, "head_sampling_rate": 0.01 },
+    // Traces create multiple spans per request (including binding calls), so
+    // they multiply the event count without helping this low-volume service.
+    "traces": { "enabled": false }
+  }
+}

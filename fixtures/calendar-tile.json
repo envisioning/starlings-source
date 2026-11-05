@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "_comment": "What a timed calendar tile says under its title (meet#610). Mac and iPhone read it through CalendarTileDetail (Tests/CalendarTileFixtureTests.swift); the web through web/src/calendar-tile.ts. Change this file first. The zone name is written from the offset (GMT, GMT+2, GMT-5, GMT+5:30), never asked of the platform.",
+  "timeLabels": [
+    {
+      "name": "same zone: just the range",
+      "start": "2026-10-01T10:05:00Z",
+      "end": "2026-10-01T12:05:00Z",
+      "originZone": "Europe/London",
+      "viewerZone": "Europe/London",
+      "expect": "11:05 – 13:05"
+    },
+    {
+      "name": "no zone on the event: just the range",
+      "start": "2026-10-01T10:05:00Z",
+      "end": "2026-10-01T12:05:00Z",
+      "originZone": null,
+      "viewerZone": "Europe/Berlin",
+      "expect": "12:05 – 14:05"
+    },
+    {
+      "name": "another zone with the same offset that day: no bracket",
+      "start": "2026-10-01T10:05:00Z",
+      "end": "2026-10-01T12:05:00Z",
+      "originZone": "Europe/London",
+      "viewerZone": "Europe/Lisbon",
+      "expect": "11:05 – 13:05"
+    },
+    {
+      "name": "the Fantastical example: made in GMT, read at +2",
+      "start": "2026-10-01T10:05:00Z",
+      "end": "2026-10-01T12:05:00Z",
+      "originZone": "Atlantic/Reykjavik",
+      "viewerZone": "Europe/Berlin",
+      "expect": "12:05 – 14:05 (10:05 GMT)"
+    },
+    {
+      "name": "a summer-time zone names its offset that day",
+      "start": "2026-10-01T10:05:00Z",
+      "end": "2026-10-01T12:05:00Z",
+      "originZone": "Europe/London",
+      "viewerZone": "Europe/Berlin",
+      "expect": "12:05 – 14:05 (11:05 GMT+1)"
+    },
+    {
+      "name": "a half-hour offset keeps its minutes",
+      "start": "2026-10-01T10:05:00Z",
+      "end": "2026-10-01T12:05:00Z",
+      "originZone": "Asia/Kolkata",
+      "viewerZone": "Europe/Berlin",
+      "expect": "12:05 – 14:05 (15:35 GMT+5:30)"
+    },
+    {
+      "name": "west of Greenwich",
+      "start": "2026-10-01T10:05:00Z",
+      "end": "2026-10-01T12:05:00Z",
+      "originZone": "America/New_York",
+      "viewerZone": "Europe/Berlin",
+      "expect": "12:05 – 14:05 (06:05 GMT-4)"
+    }
+  ],
+  "rows": [
+    { "name": "a short tile is the title alone", "height": 20, "titleHeight": 14, "rowHeight": 12, "padding": 6, "hasLocation": true, "expect": { "time": false, "location": false } },
+    { "name": "one pixel short of a row is still the title alone", "height": 31, "titleHeight": 14, "rowHeight": 12, "padding": 6, "hasLocation": true, "expect": { "time": false, "location": false } },
+    { "name": "room for one row: the time", "height": 32, "titleHeight": 14, "rowHeight": 12, "padding": 6, "hasLocation": true, "expect": { "time": true, "location": false } },
+    { "name": "room for two rows: time and location", "height": 44, "titleHeight": 14, "rowHeight": 12, "padding": 6, "hasLocation": true, "expect": { "time": true, "location": true } },
+    { "name": "no location to show: the extra room stays empty", "height": 80, "titleHeight": 14, "rowHeight": 12, "padding": 6, "hasLocation": false, "expect": { "time": true, "location": false } }
+  ],
+  "places": [
+    { "name": "a place wins", "location": "Rua Garrett 12", "platform": "zoom", "expect": "Rua Garrett 12" },
+    { "name": "no place: the platform", "location": "", "platform": "zoom", "expect": "Zoom" },
+    { "name": "blank place: the platform", "location": "   ", "platform": "google_meet", "expect": "Google Meet" },
+    { "name": "our own room", "location": "", "platform": "envisioning", "expect": "Starlings" },
+    { "name": "teams", "location": "", "platform": "teams", "expect": "Teams" },
+    { "name": "some other link", "location": "", "platform": "other", "expect": "Meeting link" },
+    { "name": "nothing to say", "location": "", "platform": "none", "expect": null }
+  ]
+}

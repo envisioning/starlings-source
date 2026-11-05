@@ -1,0 +1,24 @@
+{
+  "name": "@keep/crypto",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "description": "The client-side half of Keep: everything that touches a key. WebCrypto only, runs in a browser or Node.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@keep/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.1",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
+  }
+}

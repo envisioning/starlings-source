@@ -1,0 +1,29 @@
+// The build settings every target starts from: this file, then the version,
+// then an overlay when one exists. project.yml names this file as its config.
+//
+// The values here are the public default: an unsigned local build with no team,
+// a workspace on this machine, no native Google sign-in and no update feed.
+// Envisioning's values are in Config/Envisioning/Identity.xcconfig, which stays
+// in the private repository. A build for another team writes its own file at
+// that path with the same settings. docs/agents/areas/apple.md has the list.
+//
+// "//" starts a comment in an xcconfig, so a URL here spells it "/$()/".
+
+#include "Version.xcconfig"
+
+// DEVELOPMENT_TEAM has no default. XcodeGen would write an empty value into
+// the project's TargetAttributes.
+CODE_SIGNING_ALLOWED = NO
+// The folder that holds Starlings.entitlements and StarlingsiOS.entitlements.
+STARLINGS_ENTITLEMENTS_DIR = Config
+
+MEET_API_ENDPOINT = http:/$()/127.0.0.1:8787/api
+MEET_WEB_ORIGIN = http:/$()/127.0.0.1:5173
+
+MEET_GOOGLE_NATIVE_CLIENT_ID =
+MEET_GOOGLE_REDIRECT_SCHEME =
+
+// Empty: the app has no update check, and update-app.sh reads no feed.
+STARLINGS_UPDATE_FEED_URL =
+
+#include? "Envisioning/Identity.xcconfig"

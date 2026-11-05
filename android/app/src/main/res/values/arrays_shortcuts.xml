@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The names the Assistant matches a shortcut's feature by (res/xml/shortcuts.xml):
+  the App Intent's title and the control's name, both from the catalog. Each
+  name is a localized string, so pt-BR reads its own.
+-->
+<resources>
+    <string-array name="shortcut_join_next_names">
+        <item>@string/shortcut_join_next</item>
+        <item>@string/control_join_name</item>
+    </string-array>
+    <string-array name="shortcut_new_note_names">
+        <item>@string/shortcut_new_note</item>
+        <item>@string/control_note_name</item>
+    </string-array>
+</resources>

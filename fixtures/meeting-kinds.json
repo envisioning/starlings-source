@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "kinds": [
+    { "kind": "uncategorized", "label": "Unfiled", "subject": null },
+    { "kind": "status", "label": "Status", "subject": null },
+    { "kind": "lead", "label": "Lead", "subject": "lead" },
+    { "kind": "project", "label": "Project", "subject": "project" },
+    { "kind": "internal", "label": "Internal", "subject": null },
+    { "kind": "partner", "label": "Partner", "subject": "organization" },
+    { "kind": "event", "label": "Event", "subject": "event" },
+    { "kind": "personal", "label": "Personal", "subject": null }
+  ]
+}

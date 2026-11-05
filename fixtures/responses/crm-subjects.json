@@ -1,0 +1,23 @@
+{
+  "subjects": [
+    {
+      "open_tasks": 2,
+      "overdue_tasks": 1,
+      "has_repo": true,
+      "agent_email": "pilot-agent@example.test",
+      "responsible_email": "owner@example.com",
+      "responsible_set_by": "owner@example.com",
+      "responsible_set_at": "2026-09-30T09:00:00.000Z",
+      "organization_logo_url": "https://img.example.test/org.png",
+      "organization_id": "aaaaaaaa-0000-4000-8000-000000000003",
+      "organization_name": "Example Partners",
+      "internal": false,
+      "id": "aaaaaaaa-0000-4000-8000-000000000001",
+      "kind": "project",
+      "title": "Pilot programme",
+      "subtitle": "Example Partners · Active",
+      "status": "Active"
+    }
+  ],
+  "has_more": false
+}

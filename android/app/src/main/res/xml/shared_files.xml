@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  What can leave the app through its FileProvider: a call log, only when the
+  person shares one, and the camera's photo and clip targets in cache/capture/, which
+  the camera app writes and the composer reads and deletes
+  (workspace/team/ThreadCapture.kt), and a meeting transcript in
+  cache/transcripts/ while the host shares it (host/TranscriptShare.kt).
+-->
+<paths>
+    <files-path name="diagnostics" path="diagnostics/" />
+    <cache-path name="capture" path="capture/" />
+    <cache-path name="transcripts" path="transcripts/" />
+</paths>

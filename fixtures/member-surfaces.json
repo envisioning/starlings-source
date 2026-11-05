@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "surfaces": [
+    { "id": "home", "title": "Home", "path": "/" },
+    { "id": "calendar", "title": "Calendar", "path": "/calendar" },
+    { "id": "work", "title": "Work", "path": "/work" },
+    { "id": "team", "title": "Team", "path": "/team" },
+    { "id": "docs", "title": "Docs", "path": "/docs" }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "kindLabels": {
+    "subject": "Subject",
+    "person": "Person",
+    "agent": "Agent",
+    "contact": "Contact",
+    "thread": "Conversation",
+    "document": "Document",
+    "folder": "Folder",
+    "event": "Event",
+    "task": "Task",
+    "issue": "Issue",
+    "goal": "Goal",
+    "decision": "Decision",
+    "milestone": "Milestone",
+    "call": "Call",
+    "core": "Records",
+    "destination": "Go to",
+    "settings": "Settings",
+    "verb": "Do"
+  },
+  "settingsTitles": { "account": "Account", "home": "Home", "work": "Work", "calendar": "Calendar", "appearance": "Appearance", "about": "About" },
+  "verbTitles": { "new-task": "New task", "new-issue": "New issue", "new-document": "New document", "start-room": "Start room", "open-internal-room": "Open Team Room" },
+  "personVerbTitles": { "message": "Message", "wave": "Wave", "call": "Call" },
+  "subjectVerbTitles": { "new-task": "New task", "new-issue": "New issue", "new-document": "New document", "start-room": "Meet about this" }
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The iOS icons' fills (Resources/*.icon/icon.json): the accent and the dark canvas. -->
+<resources>
+    <color name="launcher_lime">#FFD6F249</color>
+    <color name="launcher_graphite">#FF202128</color>
+</resources>

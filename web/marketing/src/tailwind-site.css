@@ -1,0 +1,28 @@
+/*
+ * The product site's Tailwind entry. The site draws the workspace's own
+ * components (ui/, the rail, the thread, Home), so their classes must be
+ * generated here too. Tailwind scans from the Vite root (web/marketing), so
+ * web/src is named as a source; without it a class used only in an app file,
+ * such as a tab's active state, is missing from the site's CSS.
+ */
+@import "../../src/tailwind.css";
+@source "../../src";
+
+/* Keep's home tile: a password shown, then sealed as dots, on a loop (features.tsx, areaFigure). */
+@keyframes keep-shown {
+  0%, 35% { opacity: 1; }
+  45%, 90% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes keep-sealed {
+  0%, 35% { opacity: 0; }
+  45%, 90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* The Messages home tile: three exchanges, each shown for a third of the cycle (features.tsx, MESSAGE_EXCHANGES). */
+@keyframes exchange-turn {
+  0%, 30% { opacity: 1; }
+  33.4%, 96.6% { opacity: 0; }
+  100% { opacity: 1; }
+}

@@ -1,0 +1,35 @@
+{
+  "ok": true,
+  "interactions": [
+    {
+      "id": "aaaaaaaa-0000-4000-8000-000000000007",
+      "title": "Pilot kickoff",
+      "type": "meeting",
+      "occurred_at": "2026-09-30T09:00:00.000Z",
+      "created_at": "2026-09-30T09:00:00.000Z",
+      "summary_preview": "Summary We agreed on the smaller pilot.",
+      "summary_markdown": "## Summary\n\nWe agreed on the smaller pilot.",
+      "transcript_preview": "Ada: let us start with the scope.",
+      "duration_minutes": null,
+      "project_id": "aaaaaaaa-0000-4000-8000-000000000001",
+      "lead_id": null,
+      "event_id": null,
+      "organization_id": "aaaaaaaa-0000-4000-8000-000000000003",
+      "source": "meet_envisioning",
+      "channel": null,
+      "status": "completed",
+      "url": "https://envisioning.starlings.example/r/example",
+      "contacts": [
+        {
+          "id": "aaaaaaaa-0000-4000-8000-000000000008",
+          "name": "Cleo Example",
+          "email": "cleo@client.test"
+        }
+      ],
+      "meeting_kind": "project",
+      "granola_note_id": "not_example",
+      "transcript_document_id": null,
+      "subject_title": "Pilot programme"
+    }
+  ]
+}

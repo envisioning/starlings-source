@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The share target (share/ShareActivity.kt), from Resources/Localizable.xcstrings. -->
+<resources>
+    <string name="sharesheet_save_to_docs">Save to Docs</string>
+    <string name="sharesheet_quick_note">Quick Note</string>
+    <string name="sharesheet_close">Close</string>
+    <string name="sharesheet_save">Save</string>
+    <string name="sharesheet_done">Done</string>
+    <string name="sharesheet_title">Title</string>
+    <string name="sharesheet_note">Note</string>
+    <string name="sharesheet_saves_to">Saves to %1$s.</string>
+    <string name="sharesheet_not_a_page">Share a web page to save it.</string>
+    <string name="sharesheet_sign_in_first">Open Starlings and sign in first.</string>
+    <string name="sharesheet_saved">Saved</string>
+    <string name="sharesheet_saved_later">Saved. Starlings files it in Docs next time you open the app.</string>
+    <string name="sharesheet_note_saved">Saved to Quick Notes.</string>
+    <string name="sharesheet_note_later">Saved, sends later</string>
+    <string name="sharesheet_copy">Copy</string>
+    <string name="sharesheet_copied">Copied</string>
+    <string name="sharesheet_copy_error">Copy error</string>
+    <!-- The Docs history line a saved link carries (StarlingsAPI.saveDocsLink). -->
+    <string name="sharesheet_saved_from">Saved from Starlings</string>
+</resources>

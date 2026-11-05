@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "groups": ["goals", "submission", "tasks", "issues", "contacts", "offers", "licenses", "decisions", "documents", "history", "related"],
+  "layout": {
+    "project": ["goals", "tasks", "issues", "contacts", "decisions", "documents", "history", "related"],
+    "lead": ["submission", "tasks", "contacts", "offers", "licenses", "decisions", "documents", "history", "related"],
+    "organization": ["tasks", "contacts", "offers", "licenses", "decisions", "documents", "history", "related"],
+    "event": ["tasks", "decisions"]
+  },
+  "needs": { "issues": "repo", "documents": "docs", "offers": "offers", "licenses": "licenses" },
+  "showAll": { "tasks": "tasks", "issues": "issues", "decisions": "interactions", "documents": "documents", "history": "interactions" }
+}

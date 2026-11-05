@@ -1,0 +1,48 @@
+Starlings
+Copyright 2026 Envisioning
+
+This product includes software developed at Envisioning
+(https://envisioning.com).
+
+Licensed under the Functional Source License, Version 1.1, ALv2 Future
+License (FSL-1.1-ALv2). See LICENSE. Each version becomes available under
+the Apache License, Version 2.0 on the second anniversary of its release.
+The Starlings Subject Spec in standard/ is Apache-2.0 (standard/LICENSE).
+
+"Envisioning", the Envisioning mark, Octa, and the Envisioning name and
+logos are trademarks of Envisioning. The licence grants rights to
+the software in this repository; it grants no rights to those marks. A
+fork is welcome to use this code and expected to use its own name.
+
+This product bundles or depends on third-party software:
+
+  LiveKit Swift SDK (https://github.com/livekit/client-sdk-swift)
+    Apache License 2.0
+  LiveKit WebRTC XCFramework (https://github.com/livekit/webrtc-xcframework)
+    MIT License, Copyright (c) 2021 WebRTC SDKs
+  FluidAudio (https://github.com/FluidInference/FluidAudio)
+    Apache License 2.0
+  SwiftProtobuf (https://github.com/apple/swift-protobuf)
+    Apache License 2.0
+  EnvisioningUI (https://github.com/envisioning/envisioning-ui)
+    MIT License, Copyright (c) 2026 Envisioning
+  CoreKit (https://github.com/envisioning/core-kit)
+    MIT License, Copyright (c) 2026 Envisioning
+  Envisioning Octa (https://github.com/envisioning/envisioning-octa)
+    SIL Open Font License 1.1, Copyright 2026 Envisioning, with
+    Reserved Font Name "Envisioning Octa"
+  Inter (https://github.com/rsms/inter), in web/public/fonts and
+  web/marketing/og/fonts
+    SIL Open Font License 1.1, Copyright (c) 2016 The Inter Project Authors
+  flag-icons (https://github.com/lipis/flag-icons), copied into
+  Resources/Flags and web/public/flags by scripts/sync-country-flags.mjs
+    MIT License, Copyright (c) 2013 Panayiotis Lipiridis
+
+The OFL texts sit next to the fonts in web/public/fonts and
+web/marketing/og/fonts. The other license texts are distributed with those
+packages.
+
+The web client loads @livekit/krisp-noise-filter on demand. It is not open
+source: LiveKit's terms of service govern it, and it only runs against a
+LiveKit Cloud project. Without it, the client falls back to the browser's
+own noise suppression (web/src/noise-filter.ts).

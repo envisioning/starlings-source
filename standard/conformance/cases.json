@@ -1,0 +1,465 @@
+{
+  "suite": "starlings-subject-spec",
+  "version": "0.4.0",
+  "about": "Conformance cases for the Starlings Subject Spec. An implementation conforms when it passes every case. See SPEC.md §Conformance for the rules each section checks.",
+  "subjectKinds": [
+    "project",
+    "lead",
+    "organization",
+    "event"
+  ],
+  "doorKinds": [
+    "subject",
+    "person",
+    "agent",
+    "contact",
+    "thread",
+    "document",
+    "event",
+    "task",
+    "issue"
+  ],
+  "doors": {
+    "valid": [
+      {
+        "door": "subject:project:acme",
+        "parsed": {
+          "to": "subject",
+          "subjectKind": "project",
+          "id": "acme"
+        }
+      },
+      {
+        "door": "subject:lead:globex-2026",
+        "parsed": {
+          "to": "subject",
+          "subjectKind": "lead",
+          "id": "globex-2026"
+        }
+      },
+      {
+        "door": "subject:organization:7f3a9c2e",
+        "parsed": {
+          "to": "subject",
+          "subjectKind": "organization",
+          "id": "7f3a9c2e"
+        }
+      },
+      {
+        "door": "subject:event:summit:2026",
+        "parsed": {
+          "to": "subject",
+          "subjectKind": "event",
+          "id": "summit:2026"
+        }
+      },
+      {
+        "door": "person:ada@example.com",
+        "parsed": {
+          "to": "person",
+          "id": "ada@example.com"
+        }
+      },
+      {
+        "door": "agent:scout@example.com",
+        "parsed": {
+          "to": "agent",
+          "id": "scout@example.com"
+        }
+      },
+      {
+        "door": "contact:c_17",
+        "parsed": {
+          "to": "contact",
+          "id": "c_17"
+        }
+      },
+      {
+        "door": "thread:dm:ada",
+        "parsed": {
+          "to": "thread",
+          "id": "dm:ada"
+        }
+      },
+      {
+        "door": "document:doc_42",
+        "parsed": {
+          "to": "document",
+          "id": "doc_42"
+        }
+      },
+      {
+        "door": "event:evt_9",
+        "parsed": {
+          "to": "event",
+          "id": "evt_9"
+        }
+      },
+      {
+        "door": "task:4b1d",
+        "parsed": {
+          "to": "task",
+          "id": "4b1d"
+        }
+      },
+      {
+        "door": "issue:acme/site#12",
+        "parsed": {
+          "to": "issue",
+          "id": "acme/site#12"
+        }
+      }
+    ],
+    "aliased": [
+      {
+        "door": "subject:partner:7f3a9c2e",
+        "parsed": {
+          "to": "subject",
+          "subjectKind": "organization",
+          "id": "7f3a9c2e"
+        },
+        "written": "subject:organization:7f3a9c2e"
+      }
+    ],
+    "invalid": [
+      "",
+      "subject",
+      "subject:",
+      "subject:acme",
+      "subject:project:",
+      "subject:client:acme",
+      "person:",
+      ":ada",
+      "room:team",
+      "Person:ada@example.com"
+    ],
+    "productOnly": [
+      "destination:calendar",
+      "settings:home",
+      "verb:new-task",
+      "folder:folder_1",
+      "core:org_1"
+    ]
+  },
+  "decisions": {
+    "valid": [
+      {
+        "name": "a decision from a meeting",
+        "record": {
+          "id": "dec_1",
+          "subject_kind": "lead",
+          "subject_id": "globex-2026",
+          "body": "We quote the discovery phase at a fixed price.",
+          "source": "meeting",
+          "source_ref": "mtg_7",
+          "goal_id": null,
+          "decided_by_name": "Ada Lovelace",
+          "decided_by_email": "ada@example.com",
+          "decided_at": "2026-10-03T14:00:00Z"
+        }
+      },
+      {
+        "name": "a manual decision with every nullable field null",
+        "record": {
+          "id": "dec_2",
+          "subject_kind": "project",
+          "subject_id": "acme",
+          "body": "The launch moves to November.",
+          "source": "manual",
+          "source_ref": null,
+          "goal_id": null,
+          "decided_by_name": null,
+          "decided_by_email": null,
+          "decided_at": "2026-10-01T09:30:00Z"
+        }
+      },
+      {
+        "name": "an implementation's extra field is allowed",
+        "record": {
+          "id": "dec_3",
+          "subject_kind": "organization",
+          "subject_id": "7f3a9c2e",
+          "body": "We renew the partnership for one year.",
+          "source": "agent",
+          "source_ref": "claude.ai",
+          "goal_id": "goal_2",
+          "decided_by_name": "Ada Lovelace",
+          "decided_by_email": "ada@example.com",
+          "decided_at": "2026-09-30T16:00:00Z",
+          "subject_title": "Northwind"
+        }
+      }
+    ],
+    "invalid": [
+      {
+        "name": "an unknown subject kind",
+        "record": {
+          "id": "dec_4",
+          "subject_kind": "client",
+          "subject_id": "acme",
+          "body": "x",
+          "source": "manual",
+          "source_ref": null,
+          "goal_id": null,
+          "decided_by_name": null,
+          "decided_by_email": null,
+          "decided_at": "2026-10-01T09:30:00Z"
+        }
+      },
+      {
+        "name": "an unknown source",
+        "record": {
+          "id": "dec_5",
+          "subject_kind": "project",
+          "subject_id": "acme",
+          "body": "x",
+          "source": "email",
+          "source_ref": null,
+          "goal_id": null,
+          "decided_by_name": null,
+          "decided_by_email": null,
+          "decided_at": "2026-10-01T09:30:00Z"
+        }
+      },
+      {
+        "name": "a missing body",
+        "record": {
+          "id": "dec_6",
+          "subject_kind": "project",
+          "subject_id": "acme",
+          "source": "manual",
+          "source_ref": null,
+          "goal_id": null,
+          "decided_by_name": null,
+          "decided_by_email": null,
+          "decided_at": "2026-10-01T09:30:00Z"
+        }
+      },
+      {
+        "name": "a nullable field left out instead of null",
+        "record": {
+          "id": "dec_7",
+          "subject_kind": "project",
+          "subject_id": "acme",
+          "body": "x",
+          "source": "manual",
+          "goal_id": null,
+          "decided_by_name": null,
+          "decided_by_email": null,
+          "decided_at": "2026-10-01T09:30:00Z"
+        }
+      },
+      {
+        "name": "a body longer than 2000 characters",
+        "bodyLength": 2001,
+        "record": {
+          "id": "dec_8",
+          "subject_kind": "project",
+          "subject_id": "acme",
+          "body": "",
+          "source": "manual",
+          "source_ref": null,
+          "goal_id": null,
+          "decided_by_name": null,
+          "decided_by_email": null,
+          "decided_at": "2026-10-01T09:30:00Z"
+        }
+      }
+    ]
+  },
+  "subjects": {
+    "valid": [
+      {
+        "name": "a project with a subtitle",
+        "record": {
+          "id": "acme",
+          "kind": "project",
+          "title": "Acme site relaunch",
+          "subtitle": "Acme · Active",
+          "last_activity_at": "2026-10-02T17:10:00Z"
+        }
+      },
+      {
+        "name": "a lead with no subtitle and no activity",
+        "record": {
+          "id": "globex-2026",
+          "kind": "lead",
+          "title": "Globex discovery",
+          "subtitle": null
+        }
+      },
+      {
+        "name": "an implementation's extra field is allowed",
+        "record": {
+          "id": "7f3a9c2e",
+          "kind": "organization",
+          "title": "Northwind",
+          "subtitle": null,
+          "last_activity_at": null,
+          "open_tasks": 3
+        }
+      }
+    ],
+    "invalid": [
+      {
+        "name": "an unknown kind",
+        "record": {
+          "id": "acme",
+          "kind": "client",
+          "title": "Acme",
+          "subtitle": null
+        }
+      },
+      {
+        "name": "a missing title",
+        "record": {
+          "id": "acme",
+          "kind": "project",
+          "subtitle": null
+        }
+      },
+      {
+        "name": "a subtitle left out instead of null",
+        "record": {
+          "id": "acme",
+          "kind": "project",
+          "title": "Acme"
+        }
+      }
+    ]
+  },
+  "tasks": {
+    "valid": [
+      {
+        "name": "an open task on a lead",
+        "record": {
+          "id": "task_1",
+          "title": "Send the proposal",
+          "notes": null,
+          "status": "pending",
+          "subject_kind": "lead",
+          "subject_id": "globex-2026",
+          "assignee_name": "Ada Lovelace",
+          "assignee_email": "ada@example.com",
+          "due_date": "2026-10-07",
+          "goal_id": null,
+          "updated_at": "2026-10-03T09:00:00Z"
+        }
+      },
+      {
+        "name": "a task an agent proposed",
+        "record": {
+          "id": "task_2",
+          "title": "Send the proposal",
+          "notes": null,
+          "status": "proposed",
+          "subject_kind": "lead",
+          "subject_id": "globex-2026",
+          "assignee_name": null,
+          "assignee_email": null,
+          "due_date": "2026-10-07",
+          "goal_id": null,
+          "updated_at": "2026-10-03T09:00:00Z"
+        }
+      },
+      {
+        "name": "a task on no subject",
+        "record": {
+          "id": "task_3",
+          "title": "Send the proposal",
+          "notes": null,
+          "status": "pending",
+          "subject_kind": null,
+          "subject_id": null,
+          "assignee_name": "Ada Lovelace",
+          "assignee_email": "ada@example.com",
+          "due_date": null,
+          "goal_id": null,
+          "updated_at": "2026-10-03T09:00:00Z"
+        }
+      },
+      {
+        "name": "an implementation's extra field is allowed",
+        "record": {
+          "id": "task_4",
+          "title": "Send the proposal",
+          "notes": null,
+          "status": "completed",
+          "subject_kind": "lead",
+          "subject_id": "globex-2026",
+          "assignee_name": "Ada Lovelace",
+          "assignee_email": "ada@example.com",
+          "due_date": "2026-10-07",
+          "goal_id": null,
+          "updated_at": "2026-10-03T09:00:00Z",
+          "priority": "high"
+        }
+      }
+    ],
+    "invalid": [
+      {
+        "name": "an unknown status",
+        "record": {
+          "id": "task_5",
+          "title": "Send the proposal",
+          "notes": null,
+          "status": "done",
+          "subject_kind": "lead",
+          "subject_id": "globex-2026",
+          "assignee_name": "Ada Lovelace",
+          "assignee_email": "ada@example.com",
+          "due_date": "2026-10-07",
+          "goal_id": null,
+          "updated_at": "2026-10-03T09:00:00Z"
+        }
+      },
+      {
+        "name": "a subject kind without a subject id",
+        "record": {
+          "id": "task_6",
+          "title": "Send the proposal",
+          "notes": null,
+          "status": "pending",
+          "subject_kind": "lead",
+          "subject_id": null,
+          "assignee_name": "Ada Lovelace",
+          "assignee_email": "ada@example.com",
+          "due_date": "2026-10-07",
+          "goal_id": null,
+          "updated_at": "2026-10-03T09:00:00Z"
+        }
+      },
+      {
+        "name": "a due date with a time",
+        "record": {
+          "id": "task_7",
+          "title": "Send the proposal",
+          "notes": null,
+          "status": "pending",
+          "subject_kind": "lead",
+          "subject_id": "globex-2026",
+          "assignee_name": "Ada Lovelace",
+          "assignee_email": "ada@example.com",
+          "due_date": "2026-10-07T12:00:00+00:00",
+          "goal_id": null,
+          "updated_at": "2026-10-03T09:00:00Z"
+        }
+      },
+      {
+        "name": "a missing title",
+        "record": {
+          "id": "task_8",
+          "notes": null,
+          "status": "pending",
+          "subject_kind": "lead",
+          "subject_id": "globex-2026",
+          "assignee_name": "Ada Lovelace",
+          "assignee_email": "ada@example.com",
+          "due_date": "2026-10-07",
+          "goal_id": null,
+          "updated_at": "2026-10-03T09:00:00Z"
+        }
+      }
+    ]
+  }
+}

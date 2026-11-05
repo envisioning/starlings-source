@@ -1,0 +1,423 @@
+{
+  "contract": "upcoming-tiers",
+  "version": 1,
+  "about": [
+    "The shared definition of what 'upcoming' means, for Mac, iOS, and web.",
+    "One feed (GET /api/calendar/upcoming) answers two different questions --",
+    "'what should I do now' and 'what is on my plate' -- and the bug this table",
+    "exists to prevent is answering the first with the head of the second. Every",
+    "client implements `classifyUpcoming` and must reproduce these rows exactly.",
+    "Swift: Sources/MeetingFocus.swift. TypeScript: packages/contracts/src/upcoming.ts.",
+    "Product knobs: packages/contracts/src/upcoming-config.json."
+  ],
+  "rules": [
+    "AGENDA: a timed event is on the agenda when it has an end still ahead of",
+    "`now`, a real title (not '', 'block', 'blank' or '(no title)'), and a",
+    "readable start on today or tomorrow. All-day and Hidden-from-Next events",
+    "are excluded from Upcoming.",
+    "Sorted by start, falling back to end, with",
+    "undated and farther-ahead events omitted and ties broken by id.",
+    "TIER: purely temporal, and anchored to civil days in `timeZone` -- never to a",
+    "duration. now = started and not ended. today = starts later on today's date.",
+    "tomorrow = starts on tomorrow's date. Farther-ahead and unscheduled events",
+    "stay in Calendar rather than appearing on this two-day surface.",
+    "FOCUS: the hero slot -- the countdown, the call to action. It is the first",
+    "agenda event that is tier `now` or `today`. Nothing else",
+    "may ever occupy it. A null focus is a closed day:",
+    "the surface collapses the hero to a summary and renders the rest as a list.",
+    "Note what focus does NOT require: a join link. An in-person meeting is still",
+    "what is next; it simply has no button.",
+    "MEMBER: Home shows only events the member organizes or attends and has not",
+    "declined, applied to each copy before copies collapse. An event on the",
+    "member's own calendar (`primary`, or `acct:<account>:primary`) stays unless",
+    "the guest row marked `self` says `declined`; an event there with no guests",
+    "(an own block, a flight) stays. An event on a subscribed feed (`sub:`) stays:",
+    "the member switched the feed on for Upcoming. An event on any other calendar",
+    "(a colleague's, a shared or imported Google calendar) is dropped: there",
+    "Google's `self` marks that calendar's owner, and an event the member is on",
+    "also sits on their own calendar. A row with no `attendees` field carries no",
+    "participation facts and is not judged. Swift `MeetingFocus.isMemberEvent`,",
+    "TypeScript `isMemberEvent`, Kotlin `Upcoming.isMemberEvent`.",
+    "JOIN WINDOW: the hero's button exists only from `joinWindowMinutes` before",
+    "the start (upcoming-config.json) until the end. Outside it the hero is a",
+    "countdown, and the room card's Start holds the accent instead -- one accent",
+    "per screen. Inside it the button carries the countdown and joins in the app:",
+    "your own room as host, a colleague's Meet room as a knock, anything else",
+    "through its own app. Swift `MeetingFocus.canJoin`, TypeScript `canJoin`."
+  ],
+  "eventFields": {
+    "id": "stable identity, and the tie-break for equal starts",
+    "title": "checked against the placeholder list",
+    "start": "ISO 8601, or null for an event with no readable start",
+    "end": "ISO 8601; an event with no readable end is never on the agenda",
+    "allDay": "all-day events are always excluded from upcoming",
+    "demoted": "owner-wide 'Hide from Next'; excluded from Upcoming, remains in Calendar",
+    "joinable": "has a video link; affects the call to action, never the tiering",
+    "calendarId": "optional; the feed's calendar id: `primary`, `acct:<account>:primary`, `sub:<feed>`, or another Google calendar id",
+    "attendees": "optional; the guest list as `{ status, self }` rows, `[]` for no guests. Absent: the row is not judged by the member rule"
+  },
+  "expectFields": {
+    "canJoin": "optional; by event id, whether `canJoin(event, now)` is true. Only the events listed are checked."
+  },
+  "cases": [
+    {
+      "name": "an in-progress meeting holds the hero",
+      "now": "2026-08-19T14:10:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "review", "title": "Design review", "start": "2026-08-19T14:00:00Z", "end": "2026-08-19T15:00:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "sam", "title": "1:1 with Sam", "start": "2026-08-19T16:00:00Z", "end": "2026-08-19T16:30:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "standup", "title": "Standup", "start": "2026-08-20T09:00:00Z", "end": "2026-08-20T09:15:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["review", "sam", "standup"],
+        "tiers": { "review": "now", "sam": "today", "standup": "tomorrow" },
+        "focus": "review",
+        "counts": { "now": 1, "today": 1, "tomorrow": 1, "ahead": 0, "unscheduled": 0, "agenda": 3 }
+      }
+    },
+    {
+      "name": "the hero's button appears ten minutes before the start",
+      "notes": "The join window is a rule about one event, not the plan: on the edge (exactly ten minutes out) the button is there; one minute farther it is not; a running meeting keeps it until the end.",
+      "now": "2026-08-19T14:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "running", "title": "Design review", "start": "2026-08-19T13:30:00Z", "end": "2026-08-19T14:30:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "soon", "title": "Kickoff", "start": "2026-08-19T14:04:00Z", "end": "2026-08-19T14:30:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "edge", "title": "Roadmap", "start": "2026-08-19T14:10:00Z", "end": "2026-08-19T14:40:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "later", "title": "1:1 with Sam", "start": "2026-08-19T14:11:00Z", "end": "2026-08-19T14:40:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["running", "soon", "edge", "later"],
+        "tiers": { "running": "now", "soon": "today", "edge": "today", "later": "today" },
+        "focus": "running",
+        "counts": { "now": 1, "today": 3, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 4 },
+        "canJoin": { "running": true, "soon": true, "edge": true, "later": false }
+      }
+    },
+    {
+      "name": "the soonest of today's when nothing is running",
+      "now": "2026-08-19T10:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "late", "title": "Roadmap", "start": "2026-08-19T16:00:00Z", "end": "2026-08-19T16:30:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "soon", "title": "Kickoff", "start": "2026-08-19T11:00:00Z", "end": "2026-08-19T11:30:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["soon", "late"],
+        "tiers": { "soon": "today", "late": "today" },
+        "focus": "soon",
+        "counts": { "now": 0, "today": 2, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 2 }
+      }
+    },
+    {
+      "name": "a closed day: tomorrow's first meeting never takes the hero",
+      "notes": "The whole reason this table exists. At seven in the evening the day is over, and the hero must say so rather than counting down fourteen hours to a standup.",
+      "now": "2026-08-19T19:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "standup", "title": "Standup", "start": "2026-08-20T09:00:00Z", "end": "2026-08-20T09:15:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "board", "title": "Board prep", "start": "2026-08-20T11:00:00Z", "end": "2026-08-20T12:00:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["standup", "board"],
+        "tiers": { "standup": "tomorrow", "board": "tomorrow" },
+        "focus": null,
+        "counts": { "now": 0, "today": 0, "tomorrow": 2, "ahead": 0, "unscheduled": 0, "agenda": 2 }
+      }
+    },
+    {
+      "name": "the compact card points to the rest of day before farther dates",
+      "notes": "The first three today rows fit in Home; the fourth is still today, so its affordance is the rest of today rather than a farther-ahead count.",
+      "now": "2026-08-19T09:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "today-1", "title": "Standup", "start": "2026-08-19T10:00:00Z", "end": "2026-08-19T10:30:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "today-2", "title": "Design review", "start": "2026-08-19T11:00:00Z", "end": "2026-08-19T12:00:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "today-3", "title": "Client call", "start": "2026-08-19T13:00:00Z", "end": "2026-08-19T13:30:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "today-4", "title": "Wrap-up", "start": "2026-08-19T15:00:00Z", "end": "2026-08-19T15:30:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "tomorrow", "title": "Tomorrow's standup", "start": "2026-08-20T09:00:00Z", "end": "2026-08-20T09:30:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["today-1", "today-2", "today-3", "today-4", "tomorrow"],
+        "tiers": { "today-1": "today", "today-2": "today", "today-3": "today", "today-4": "today", "tomorrow": "tomorrow" },
+        "focus": "today-1",
+        "counts": { "now": 0, "today": 4, "tomorrow": 1, "ahead": 0, "unscheduled": 0, "agenda": 5 }
+      }
+    },
+    {
+      "name": "twenty minutes before a meeting is still not today, if the meeting is tomorrow",
+      "notes": "Day-anchored, not duration-anchored. Same clock distance as a meeting in twenty minutes, categorically different meaning.",
+      "now": "2026-08-19T23:50:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "midnight", "title": "Tokyo sync", "start": "2026-08-20T00:10:00Z", "end": "2026-08-20T00:40:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["midnight"],
+        "tiers": { "midnight": "tomorrow" },
+        "focus": null,
+        "counts": { "now": 0, "today": 0, "tomorrow": 1, "ahead": 0, "unscheduled": 0, "agenda": 1 }
+      }
+    },
+    {
+      "name": "a hidden meeting is omitted while later meetings remain",
+      "now": "2026-08-19T08:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "flight", "title": "Ana flies to Berlin", "start": "2026-08-19T09:00:00Z", "end": "2026-08-19T10:00:00Z", "allDay": false, "demoted": true, "joinable": false },
+        { "id": "sync", "title": "Platform sync", "start": "2026-08-19T11:00:00Z", "end": "2026-08-19T12:00:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["sync"],
+        "tiers": { "sync": "today" },
+        "focus": "sync",
+        "counts": { "now": 0, "today": 1, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 1 }
+      }
+    },
+    {
+      "name": "a day of only hidden events is empty in Upcoming",
+      "now": "2026-08-19T08:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "flight", "title": "Ana flies to Berlin", "start": "2026-08-19T09:00:00Z", "end": "2026-08-19T10:00:00Z", "allDay": false, "demoted": true, "joinable": false },
+        { "id": "allhands", "title": "All hands (optional)", "start": "2026-08-19T13:00:00Z", "end": "2026-08-19T14:00:00Z", "allDay": false, "demoted": true, "joinable": true }
+      ],
+      "expect": {
+        "agenda": [],
+        "tiers": {},
+        "focus": null,
+        "counts": { "now": 0, "today": 0, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 0 }
+      }
+    },
+    {
+      "name": "an in-person meeting is still what is next",
+      "notes": "iOS and web used to require a video link to take the hero, so lunch with a client was invisible and the 15:00 Zoom claimed to be next.",
+      "now": "2026-08-19T08:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "lunch", "title": "Lunch with Ana", "start": "2026-08-19T12:00:00Z", "end": "2026-08-19T13:00:00Z", "allDay": false, "demoted": false, "joinable": false },
+        { "id": "zoom", "title": "Vendor call", "start": "2026-08-19T15:00:00Z", "end": "2026-08-19T16:00:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["lunch", "zoom"],
+        "tiers": { "lunch": "today", "zoom": "today" },
+        "focus": "lunch",
+        "counts": { "now": 0, "today": 2, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 2 }
+      }
+    },
+    {
+      "name": "placeholder rows are not meetings",
+      "now": "2026-08-19T08:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "p1", "title": "Block", "start": "2026-08-19T09:00:00Z", "end": "2026-08-19T10:00:00Z", "allDay": false, "demoted": false, "joinable": false },
+        { "id": "p2", "title": "blank", "start": "2026-08-19T10:00:00Z", "end": "2026-08-19T10:30:00Z", "allDay": false, "demoted": false, "joinable": false },
+        { "id": "p3", "title": "(no title)", "start": "2026-08-19T11:00:00Z", "end": "2026-08-19T11:30:00Z", "allDay": false, "demoted": false, "joinable": false },
+        { "id": "p4", "title": "   ", "start": "2026-08-19T11:30:00Z", "end": "2026-08-19T11:45:00Z", "allDay": false, "demoted": false, "joinable": false },
+        { "id": "retro", "title": "Retro", "start": "2026-08-19T12:00:00Z", "end": "2026-08-19T13:00:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["retro"],
+        "tiers": { "retro": "today" },
+        "focus": "retro",
+        "counts": { "now": 0, "today": 1, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 1 }
+      }
+    },
+    {
+      "name": "all-day events never appear in upcoming",
+      "notes": "All-day events are excluded whether they are today or tomorrow; the timed meeting remains the next event.",
+      "now": "2026-08-19T08:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "offsite", "title": "Offsite", "start": "2026-08-19T00:00:00Z", "end": "2026-08-20T00:00:00Z", "allDay": true, "demoted": false, "joinable": false },
+        { "id": "holiday", "title": "Company holiday", "start": "2026-08-20T00:00:00Z", "end": "2026-08-21T00:00:00Z", "allDay": true, "demoted": false, "joinable": false },
+        { "id": "kickoff", "title": "Kickoff", "start": "2026-08-19T14:00:00Z", "end": "2026-08-19T15:00:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["kickoff"],
+        "tiers": { "kickoff": "today" },
+        "focus": "kickoff",
+        "counts": { "now": 0, "today": 1, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 1 }
+      }
+    },
+    {
+      "name": "an ended meeting leaves, a running one stays",
+      "now": "2026-08-19T12:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "over", "title": "Retro", "start": "2026-08-19T10:00:00Z", "end": "2026-08-19T11:00:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "running", "title": "Roadmap", "start": "2026-08-19T11:30:00Z", "end": "2026-08-19T12:30:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["running"],
+        "tiers": { "running": "now" },
+        "focus": "running",
+        "counts": { "now": 1, "today": 0, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 1 }
+      }
+    },
+    {
+      "name": "farther-ahead events stay in Calendar",
+      "now": "2026-08-19T09:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "inside", "title": "Quarterly review", "start": "2026-08-25T09:00:00Z", "end": "2026-08-25T10:00:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "outside", "title": "Next sprint planning", "start": "2026-08-27T09:00:00Z", "end": "2026-08-27T10:00:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": [],
+        "tiers": {},
+        "focus": null,
+        "counts": { "now": 0, "today": 0, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 0 }
+      }
+    },
+    {
+      "name": "an event with no readable start sorts last and never takes the hero",
+      "now": "2026-08-19T09:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "tbc", "title": "Investor intro (date to confirm)", "start": null, "end": "2026-08-26T00:00:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "today", "title": "Weekly", "start": "2026-08-19T15:00:00Z", "end": "2026-08-19T16:00:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["today"],
+        "tiers": { "today": "today" },
+        "focus": "today",
+        "counts": { "now": 0, "today": 1, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 1 }
+      }
+    },
+    {
+      "name": "an event with no readable end is not on the agenda at all",
+      "now": "2026-08-19T09:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "broken", "title": "Imported event", "start": "2026-08-19T15:00:00Z", "end": null, "allDay": false, "demoted": false, "joinable": false }
+      ],
+      "expect": {
+        "agenda": [],
+        "tiers": {},
+        "focus": null,
+        "counts": { "now": 0, "today": 0, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 0 }
+      }
+    },
+    {
+      "name": "day boundaries follow the viewer's own zone, not UTC",
+      "notes": "Eight in the evening in California is already tomorrow in UTC. Tiering off UTC would empty the hero mid-evening for anyone west of Greenwich.",
+      "now": "2026-08-20T03:00:00Z",
+      "timeZone": "America/Los_Angeles",
+      "events": [
+        { "id": "tonight", "title": "Late review", "start": "2026-08-20T04:30:00Z", "end": "2026-08-20T05:00:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "morning", "title": "Standup", "start": "2026-08-20T15:00:00Z", "end": "2026-08-20T15:15:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["tonight", "morning"],
+        "tiers": { "tonight": "today", "morning": "tomorrow" },
+        "focus": "tonight",
+        "counts": { "now": 0, "today": 1, "tomorrow": 1, "ahead": 0, "unscheduled": 0, "agenda": 2 }
+      }
+    },
+    {
+      "name": "two meetings at the same minute keep a stable order",
+      "now": "2026-08-19T09:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "b-side", "title": "Interview", "start": "2026-08-19T10:00:00Z", "end": "2026-08-19T11:00:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "a-side", "title": "Debrief", "start": "2026-08-19T10:00:00Z", "end": "2026-08-19T11:00:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["a-side", "b-side"],
+        "tiers": { "a-side": "today", "b-side": "today" },
+        "focus": "a-side",
+        "counts": { "now": 0, "today": 2, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 2 }
+      }
+    },
+    {
+      "name": "an empty feed is a closed day, not a broken one",
+      "now": "2026-08-19T09:00:00Z",
+      "timeZone": "UTC",
+      "events": [],
+      "expect": {
+        "agenda": [],
+        "tiers": {},
+        "focus": null,
+        "counts": { "now": 0, "today": 0, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 0 }
+      }
+    },
+    {
+      "name": "the counts a closed day's summary is written from",
+      "notes": "'Day's done -- 3 tomorrow, first at 09:00' comes from `counts` plus the head of the tomorrow tier. No surface recomputes it.",
+      "now": "2026-08-19T21:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "t1", "title": "Standup", "start": "2026-08-20T09:00:00Z", "end": "2026-08-20T09:15:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "t2", "title": "Design review", "start": "2026-08-20T11:00:00Z", "end": "2026-08-20T12:00:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "t3", "title": "1:1 with Sam", "start": "2026-08-20T15:00:00Z", "end": "2026-08-20T15:30:00Z", "allDay": false, "demoted": false, "joinable": true },
+        { "id": "later", "title": "Quarterly review", "start": "2026-08-22T09:00:00Z", "end": "2026-08-22T10:00:00Z", "allDay": false, "demoted": false, "joinable": true }
+      ],
+      "expect": {
+        "agenda": ["t1", "t2", "t3"],
+        "tiers": { "t1": "tomorrow", "t2": "tomorrow", "t3": "tomorrow" },
+        "focus": null,
+        "counts": { "now": 0, "today": 0, "tomorrow": 3, "ahead": 0, "unscheduled": 0, "agenda": 3 }
+      }
+    },
+    {
+      "name": "only events the member is part of: a colleague's flights stay off Home",
+      "notes": "A closed evening with two flights on a colleague's calendar and one meeting of the member's tomorrow. The summary reads '1 tomorrow, first at 09:00' -- it counts the same filtered set.",
+      "now": "2026-10-09T20:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "flight-1", "title": "KL1403 AMS to CDG", "start": "2026-10-10T07:15:00Z", "end": "2026-10-10T08:30:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "ada@example.com", "attendees": [] },
+        { "id": "flight-2", "title": "KL2413 CDG to GRU", "start": "2026-10-10T10:35:00Z", "end": "2026-10-10T22:00:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "ada@example.com", "attendees": [] },
+        { "id": "team-sync", "title": "Team sync", "start": "2026-10-10T09:00:00Z", "end": "2026-10-10T09:30:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "ada@example.com", "attendees": [{ "status": "accepted", "self": true }, { "status": "accepted", "self": false }] },
+        { "id": "my-sync", "title": "Team sync", "start": "2026-10-10T09:00:00Z", "end": "2026-10-10T09:30:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "primary", "attendees": [{ "status": "accepted", "self": false }, { "status": "accepted", "self": true }] }
+      ],
+      "expect": {
+        "agenda": ["my-sync"],
+        "tiers": { "my-sync": "tomorrow" },
+        "focus": null,
+        "counts": { "now": 0, "today": 0, "tomorrow": 1, "ahead": 0, "unscheduled": 0, "agenda": 1 }
+      }
+    },
+    {
+      "name": "on the member's own calendar: organized, invited and own blocks stay, declined leaves",
+      "notes": "A declined invitation is not the member's to attend. An event with no guests (a block, a flight on the own calendar) is the member's own. A second account's primary calendar is the member's own too.",
+      "now": "2026-10-09T08:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "organized", "title": "Design review", "start": "2026-10-09T09:00:00Z", "end": "2026-10-09T10:00:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "primary", "attendees": [{ "status": "accepted", "self": true }, { "status": "needsAction", "self": false }] },
+        { "id": "invited", "title": "1:1 with Bo", "start": "2026-10-09T10:00:00Z", "end": "2026-10-09T10:30:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "primary", "attendees": [{ "status": "accepted", "self": false }, { "status": "needsAction", "self": true }] },
+        { "id": "declined", "title": "Vendor pitch", "start": "2026-10-09T11:00:00Z", "end": "2026-10-09T12:00:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "primary", "attendees": [{ "status": "accepted", "self": false }, { "status": "declined", "self": true }] },
+        { "id": "own-flight", "title": "KL1001 AMS to LHR", "start": "2026-10-09T13:00:00Z", "end": "2026-10-09T14:15:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "primary", "attendees": [] },
+        { "id": "second-account", "title": "Board prep", "start": "2026-10-09T15:00:00Z", "end": "2026-10-09T16:00:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "acct:a1:primary", "attendees": [{ "status": "tentative", "self": true }] },
+        { "id": "second-declined", "title": "Advisory call", "start": "2026-10-09T16:00:00Z", "end": "2026-10-09T16:30:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "acct:a1:primary", "attendees": [{ "status": "declined", "self": true }] }
+      ],
+      "expect": {
+        "agenda": ["organized", "invited", "own-flight", "second-account"],
+        "tiers": { "organized": "today", "invited": "today", "own-flight": "today", "second-account": "today" },
+        "focus": "organized",
+        "counts": { "now": 0, "today": 4, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 4 }
+      }
+    },
+    {
+      "name": "shared and imported Google calendars leave, subscribed feeds stay",
+      "notes": "A shared team calendar, a colleague's calendar on a second account and an imported holiday calendar are not the member's. A Starlings .ics subscription stays: the member switched it on for Upcoming. A row with no calendar id, or with no attendees field, is not judged.",
+      "now": "2026-10-09T08:00:00Z",
+      "timeZone": "UTC",
+      "events": [
+        { "id": "team-calendar", "title": "Offsite planning", "start": "2026-10-09T09:00:00Z", "end": "2026-10-09T10:00:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "team@group.calendar.google.com", "attendees": [] },
+        { "id": "colleague-second", "title": "Ana's dentist", "start": "2026-10-09T10:00:00Z", "end": "2026-10-09T11:00:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "acct:a1:ana@example.net", "attendees": [{ "status": "accepted", "self": true }] },
+        { "id": "imported", "title": "Bank holiday drinks", "start": "2026-10-09T17:00:00Z", "end": "2026-10-09T19:00:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "en.dutch#holiday@group.v.calendar.google.com", "attendees": [] },
+        { "id": "feed", "title": "Conference talk", "start": "2026-10-09T12:00:00Z", "end": "2026-10-09T13:00:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "sub:feed-1", "attendees": [] },
+        { "id": "no-calendar", "title": "Lunch", "start": "2026-10-09T13:00:00Z", "end": "2026-10-09T14:00:00Z", "allDay": false, "demoted": false, "joinable": false, "attendees": [] },
+        { "id": "no-facts", "title": "Review", "start": "2026-10-09T14:00:00Z", "end": "2026-10-09T15:00:00Z", "allDay": false, "demoted": false, "joinable": false, "calendarId": "team@group.calendar.google.com" }
+      ],
+      "expect": {
+        "agenda": ["feed", "no-calendar", "no-facts"],
+        "tiers": { "feed": "today", "no-calendar": "today", "no-facts": "today" },
+        "focus": "feed",
+        "counts": { "now": 0, "today": 3, "tomorrow": 0, "ahead": 0, "unscheduled": 0, "agenda": 3 }
+      }
+    }
+  ]
+}

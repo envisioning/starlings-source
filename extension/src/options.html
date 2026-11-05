@@ -1,0 +1,15 @@
+<!doctype html>
+<meta charset="utf-8">
+<title data-i18n="pairingTitle"></title>
+<style>
+  body { font: 13px -apple-system, system-ui, sans-serif; margin: 16px; width: 360px; color: #222; }
+  label { display: block; margin-bottom: 6px; font-weight: 600; }
+  input { width: 100%; box-sizing: border-box; padding: 6px 8px; font: inherit; }
+  p { color: #666; margin: 8px 0 0; }
+  .ok { color: #2a7; } .bad { color: #c33; }
+</style>
+<label for="token" data-i18n="pairingToken"></label>
+<input id="token" type="text" autocomplete="off" spellcheck="false" data-i18n-placeholder="pairingPlaceholder">
+<p data-i18n="pairingHelp"></p>
+<p id="status" role="status"></p>
+<script src="options.js"></script>

@@ -1,0 +1,556 @@
+{
+  "contract": "home-layout",
+  "version": 1,
+  "about": [
+    "The shared definition of what Home is made of and the order it is drawn in,",
+    "for Mac, iOS, and web. Home is one screen on three surfaces, and the bug",
+    "this table exists to prevent is each surface keeping its own hardcoded stack:",
+    "a card the phone has and the browser lacks, or an order the Mac chose in",
+    "2025 and the phone chose in 2026.",
+    "The person owns module order and visibility; `recent` is fixed last but",
+    "can be hidden from Settings > Home. The Worker stores it once",
+    "(`/api/home/preferences`) and every client reads the same answer.",
+    "Swift: Sources/HomeLayout.swift. TypeScript: packages/contracts/src/home-layout.ts."
+  ],
+  "rules": [
+    "MODULES: the eight below, by stable id. Nothing else is a module: the clock",
+    "stays at the top and the version line at the bottom of every Home; the",
+    "Mac's WAITING ROOM is host state, drawn only while a room is being hosted,",
+    "and the Mac's destination buttons are chrome. A surface that has no way to",
+    "draw a module draws nothing for it and keeps its place in the order.",
+    "DEFAULT: the `modules` list, in that order, with each `enabledByDefault`.",
+    "VISIBLE: the enabled modules, in order, less any module `workModules` lists",
+    "while none of its work modules is on in the workspace (meet#990). No work",
+    "modules at all (an older Worker) draws every enabled module. Settings only",
+    "offers ungated modules, enabled or not. `visibleCases` pin Home; `offeredCases` pin Settings.",
+    "RESOLVE: given a stored list of {id, enabled}, keep the first occurrence of",
+    "each known id in stored order; drop unknown ids and later duplicates. A",
+    "module the stored list does not mention is inserted, walking the missing",
+    "ones in default order, after the nearest module that precedes it in the",
+    "default order and is present by then; when none is, at the front. It takes",
+    "its default `enabled`. A module with `canHide` false",
+    "is enabled whatever the stored list says. `recent` always moves to the",
+    "last module position, even when old or stored preferences put it earlier.",
+    "LEGACY: a stored `starred` module maps to `recent`. If both old ids are",
+    "stored, combine visibility with OR; its position is the final module",
+    "position, after all other modules. A stored `invitations` module (retired",
+    "2026-10-06: calendar invitations and events from email are INBOX sources)",
+    "is an unknown id and drops.",
+    "QUICK ACCESS (`recent`): one list combines owner-level starred rows and this device's",
+    "recent rows. Starred rows keep the starred endpoint's order and lead;",
+    "recent-only rows keep device recency order. Each kind/id appears once.",
+    "The recent source contributes at most eight rows; every resolved starred",
+    "row remains.",
+    "PLACEMENT: `recent` is the final card before the version line. It spans",
+    "both module columns in wide layouts and uses one column in narrow layouts.",
+    "Its shortcuts stay in one horizontal row and scroll when needed.",
+    "EMPTY: `enabled` decides whether a module may draw, never whether it has",
+    "anything to draw.",
+    "SHOW: whether a visible module draws once it has answered is",
+    "`showsEmpty` OR it has content (meet#1033). `showsEmpty` true: the room,",
+    "Quick Notes (the capture is the card) and Upcoming (the calendar state is",
+    "the card) draw empty. `showsEmpty` false: Inbox, Work, Commercial, Events",
+    "and Quick Access draw nothing when they have nothing to list. Content is",
+    "the rows the card would list: Inbox its unread conversations and INBOX",
+    "items, Work its overdue and due-today tasks, Commercial a summary, Events",
+    "an upcoming published event, Quick Access a starred or recent row. A",
+    "failed read is not content: the last known rows stand. No surface keeps",
+    "its own list of which cards draw empty. `showCases` pin it.",
+    "INBOX AND WORK: the `messages` module (titled Inbox) holds what is new:",
+    "unread conversations and every INBOX item, calendar invitations and events",
+    "from email among them, except unfiled Quick Notes (their",
+    "own module). The `work` module holds only what you already own: your",
+    "overdue and due-today tasks. A new thing never lands in Work.",
+    "INBOX ORDER: decisions and questions first, in the order the Worker gave;",
+    "then every other row, conversations and INBOX items alike, newest first.",
+    "Ties keep the order given. 'and N more' opens Work's INBOX.",
+    "COLUMNS: with two columns, `packColumns` assigns each module to one:",
+    "modules sorted tallest first (ties keep the person's order) go to the",
+    "shorter column, a module adds its height plus the gap; a module with no",
+    "height yet goes to the currently shorter column. The person's order is",
+    "kept inside each column. Every surface uses this packer with its own",
+    "measured heights. Once Home has settled, a placement holds while heights",
+    "change, so a late answer does not move a card, until the columns are",
+    "LOPSIDED: a card in the taller column, plus the gap, is at most half the",
+    "difference between the columns, so the taller column could give that card",
+    "away and still be the taller. A measured card with no column is lopsided",
+    "too. A lopsided Home packs again. A packer result is never lopsided, so a",
+    "repack is final until heights change. Quick Access is not packed: it sits",
+    "below.",
+    "DENSITY: `rows` is the most rows a list module draws before 'and N more',",
+    "and the number of placeholder rows it draws while it waits for its first",
+    "answer, so the wait and the answer are the same height. Every surface reads",
+    "it from here; none keeps its own count. `null` means the module is not a",
+    "capped list: notes measure their own page (`QuickNotePage`), commercial and",
+    "the agenda draw their own shapes, the room and quick access are fixed",
+    "furniture. The agenda's `home_following_rows` stays on",
+    "/api/calendar/preferences; only where Settings shows it moves."
+  ],
+  "modules": [
+    {
+      "id": "messages",
+      "title": "Inbox",
+      "detail": "What is new: unread conversations, decisions, requests and invitations",
+      "enabledByDefault": true,
+      "rows": 3,
+      "canHide": true,
+      "showsEmpty": false
+    },
+    { "id": "work", "title": "Work", "detail": "Everything assigned to you", "enabledByDefault": true, "rows": 5, "canHide": true, "showsEmpty": false },
+    {
+      "id": "commercial",
+      "title": "Commercial",
+      "detail": "Offers, sales, pipeline, and new licenses",
+      "enabledByDefault": true,
+      "rows": null,
+      "canHide": true,
+      "showsEmpty": false
+    },
+    { "id": "notes", "title": "Quick Notes", "detail": "Capture now, file later", "enabledByDefault": true, "rows": null, "canHide": true, "showsEmpty": true },
+    { "id": "agenda", "title": "Upcoming", "detail": "What is next, and the rest of today", "enabledByDefault": true, "rows": null, "canHide": true, "showsEmpty": true },
+    { "id": "events", "title": "Events", "detail": "Upcoming events", "enabledByDefault": true, "rows": 3, "canHide": true, "showsEmpty": false },
+    { "id": "room", "title": "Your room", "detail": "Start, join, and share the room", "enabledByDefault": true, "rows": null, "canHide": false, "showsEmpty": true },
+    { "id": "recent", "title": "Quick access", "detail": "Starred and recently opened items", "enabledByDefault": true, "rows": null, "canHide": true, "showsEmpty": false }
+  ],
+  "workModules": {
+    "events": ["events"],
+    "commercial": ["offers", "licenses"]
+  },
+  "cases": [
+    {
+      "name": "nothing stored is the default",
+      "stored": null,
+      "expect": [
+        { "id": "messages", "enabled": true },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true },
+        { "id": "notes", "enabled": true },
+        { "id": "agenda", "enabled": true },
+        { "id": "events", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ]
+    },
+    {
+      "name": "an empty list is the default too",
+      "stored": [],
+      "expect": [
+        { "id": "messages", "enabled": true },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true },
+        { "id": "notes", "enabled": true },
+        { "id": "agenda", "enabled": true },
+        { "id": "events", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ]
+    },
+    {
+      "name": "stored order wins, and a hidden module stays in its place",
+      "stored": [
+        { "id": "agenda", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "messages", "enabled": true },
+        { "id": "invitations", "enabled": false },
+        { "id": "notes", "enabled": false },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true }
+      ],
+      "expect": [
+        { "id": "agenda", "enabled": true },
+        { "id": "events", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "messages", "enabled": true },
+        { "id": "notes", "enabled": false },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ]
+    },
+    {
+      "name": "an unknown id is dropped",
+      "stored": [
+        { "id": "weather", "enabled": true },
+        { "id": "messages", "enabled": true },
+        { "id": "invitations", "enabled": true },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true },
+        { "id": "notes", "enabled": true },
+        { "id": "agenda", "enabled": true },
+        { "id": "room", "enabled": true }
+      ],
+      "expect": [
+        { "id": "messages", "enabled": true },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true },
+        { "id": "notes", "enabled": true },
+        { "id": "agenda", "enabled": true },
+        { "id": "events", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ]
+    },
+    {
+      "name": "a duplicate keeps its first position and first answer",
+      "stored": [
+        { "id": "notes", "enabled": false },
+        { "id": "messages", "enabled": true },
+        { "id": "notes", "enabled": true },
+        { "id": "invitations", "enabled": true },
+        { "id": "work", "enabled": true },
+        { "id": "agenda", "enabled": true },
+        { "id": "room", "enabled": true }
+      ],
+      "expect": [
+        { "id": "notes", "enabled": false },
+        { "id": "messages", "enabled": true },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true },
+        { "id": "agenda", "enabled": true },
+        { "id": "events", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ]
+    },
+    {
+      "name": "a module the stored list predates lands after its default neighbour",
+      "stored": [
+        { "id": "agenda", "enabled": true },
+        { "id": "messages", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "notes", "enabled": true }
+      ],
+      "expect": [
+        { "id": "agenda", "enabled": true },
+        { "id": "events", "enabled": true },
+        { "id": "messages", "enabled": true },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "notes", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ]
+    },
+    {
+      "name": "a missing module with no present predecessor goes to the front",
+      "stored": [
+        { "id": "room", "enabled": true },
+        { "id": "agenda", "enabled": false }
+      ],
+      "expect": [
+        { "id": "messages", "enabled": true },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true },
+        { "id": "notes", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "agenda", "enabled": false },
+        { "id": "events", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ]
+    },
+    {
+      "name": "the room cannot be hidden",
+      "stored": [
+        { "id": "messages", "enabled": false },
+        { "id": "invitations", "enabled": false },
+        { "id": "work", "enabled": false },
+        { "id": "commercial", "enabled": true },
+        { "id": "notes", "enabled": false },
+        { "id": "agenda", "enabled": false },
+        { "id": "room", "enabled": false }
+      ],
+      "expect": [
+        { "id": "messages", "enabled": false },
+        { "id": "work", "enabled": false },
+        { "id": "commercial", "enabled": true },
+        { "id": "notes", "enabled": false },
+        { "id": "agenda", "enabled": false },
+        { "id": "events", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ]
+    },
+    {
+      "name": "the retired invitations module drops and keeps no place",
+      "stored": [
+        { "id": "invitations", "enabled": false },
+        { "id": "agenda", "enabled": true },
+        { "id": "messages", "enabled": false }
+      ],
+      "expect": [
+        { "id": "agenda", "enabled": true },
+        { "id": "events", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "messages", "enabled": false },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true },
+        { "id": "notes", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ]
+    },
+    {
+      "name": "legacy starred folds into recent, pins it last, and combines visibility",
+      "stored": [
+        { "id": "starred", "enabled": false },
+        { "id": "messages", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ],
+      "expect": [
+        { "id": "messages", "enabled": true },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": true },
+        { "id": "notes", "enabled": true },
+        { "id": "agenda", "enabled": true },
+        { "id": "events", "enabled": true },
+        { "id": "room", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ]
+    }
+  ],
+  "packCases": [
+    {
+      "name": "tallest first to the shorter column, unmeasured to the shorter one",
+      "gap": 16,
+      "modules": ["messages", "commercial", "work", "notes", "agenda", "events"],
+      "heights": { "messages": 280, "commercial": 190, "work": 145, "notes": 640, "agenda": 150, "events": 0 },
+      "expectRight": ["messages", "commercial", "agenda", "events"]
+    },
+    {
+      "name": "equal heights alternate in the person's order",
+      "gap": 16,
+      "modules": ["messages", "work", "agenda", "events"],
+      "heights": { "messages": 100, "work": 100, "agenda": 100, "events": 100 },
+      "expectRight": ["work", "events"]
+    },
+    {
+      "name": "three tall cards and two short ones split two against three",
+      "gap": 16,
+      "modules": ["notes", "room", "messages", "work", "agenda"],
+      "heights": { "notes": 110, "room": 150, "messages": 360, "work": 360, "agenda": 420 },
+      "expectRight": ["messages", "work"]
+    }
+  ],
+  "lopsidedCases": [
+    {
+      "name": "two short cards beside three tall ones are lopsided",
+      "gap": 16,
+      "heights": { "notes": 110, "room": 150, "messages": 360, "work": 360, "agenda": 420 },
+      "left": ["notes", "room"],
+      "right": ["messages", "work", "agenda"],
+      "expect": true
+    },
+    {
+      "name": "a difference smaller than twice every taller card holds",
+      "gap": 16,
+      "heights": { "messages": 300, "notes": 250, "work": 200, "agenda": 180 },
+      "left": ["messages", "notes"],
+      "right": ["work", "agenda"],
+      "expect": false
+    },
+    {
+      "name": "a measured card with no column is lopsided",
+      "gap": 16,
+      "heights": { "messages": 100, "work": 100 },
+      "left": ["messages"],
+      "right": [],
+      "expect": true
+    },
+    {
+      "name": "an unmeasured card does not count",
+      "gap": 16,
+      "heights": { "messages": 100, "work": 100, "events": 0 },
+      "left": ["messages"],
+      "right": ["work", "events"],
+      "expect": false
+    }
+  ],
+  "recentMergeCases": [
+    {
+      "name": "starred rows lead, duplicates collapse by kind and id, and same-id different-kind rows remain",
+      "starred": [
+        { "kind": "person", "id": "shared" },
+        { "kind": "thread", "id": "shared" }
+      ],
+      "recent": [
+        { "kind": "person", "id": "shared" },
+        { "kind": "thread", "id": "shared" },
+        { "kind": "person", "id": "recent-only" }
+      ],
+      "expect": [
+        { "kind": "person", "id": "shared" },
+        { "kind": "thread", "id": "shared" },
+        { "kind": "person", "id": "recent-only" }
+      ]
+    }
+  ],
+  "inboxOrderCases": [
+    {
+      "name": "invitations, decisions and questions lead in the given order; the rest is newest first",
+      "rows": [
+        { "id": "thread-old", "pinned": false, "at": 100 },
+        { "id": "invitation", "pinned": true, "at": 10 },
+        { "id": "decision-b", "pinned": true, "at": 50 },
+        { "id": "interest", "pinned": false, "at": 300 },
+        { "id": "question-a", "pinned": true, "at": 400 },
+        { "id": "thread-new", "pinned": false, "at": 200 }
+      ],
+      "expect": ["invitation", "decision-b", "question-a", "interest", "thread-new", "thread-old"]
+    },
+    {
+      "name": "equal times keep the given order",
+      "rows": [
+        { "id": "booking", "pinned": false, "at": 100 },
+        { "id": "thread", "pinned": false, "at": 100 }
+      ],
+      "expect": ["booking", "thread"]
+    }
+  ],
+  "visibleCases": [
+    {
+      "name": "every work module on draws every module",
+      "workModules": ["sales", "partners", "events", "support", "offers", "licenses"],
+      "expect": ["messages", "work", "commercial", "notes", "agenda", "events", "room", "recent"]
+    },
+    {
+      "name": "no events and no commercial work modules hide Events and Commercial",
+      "workModules": ["sales", "partners", "support"],
+      "expect": ["messages", "work", "notes", "agenda", "room", "recent"]
+    },
+    {
+      "name": "one commercial work module is enough for Commercial",
+      "workModules": ["offers"],
+      "expect": ["messages", "work", "commercial", "notes", "agenda", "room", "recent"]
+    },
+    {
+      "name": "an older Worker that names no work modules draws everything",
+      "workModules": null,
+      "expect": ["messages", "work", "commercial", "notes", "agenda", "events", "room", "recent"]
+    }
+  ],
+  "showCases": [
+    {
+      "name": "a Home with nothing to list draws the room, Quick Notes and Upcoming",
+      "content": [],
+      "expect": ["notes", "agenda", "room"]
+    },
+    {
+      "name": "a Home with unread conversations and work due draws Inbox and Work first",
+      "content": ["messages", "work"],
+      "expect": ["messages", "work", "notes", "agenda", "room"]
+    },
+    {
+      "name": "every module with content draws every module",
+      "content": ["messages", "work", "commercial", "notes", "agenda", "events", "room", "recent"],
+      "expect": ["messages", "work", "commercial", "notes", "agenda", "events", "room", "recent"]
+    }
+  ],
+  "offeredCases": [
+    {
+      "name": "base workspace offers neither Events nor Commercial",
+      "stored": null,
+      "workModules": [],
+      "expect": ["messages", "work", "notes", "agenda", "room", "recent"]
+    },
+    {
+      "name": "Events on offers Events, not Commercial",
+      "stored": null,
+      "workModules": ["events"],
+      "expect": ["messages", "work", "notes", "agenda", "events", "room", "recent"]
+    },
+    {
+      "name": "a commercial work module offers Commercial, not Events",
+      "stored": null,
+      "workModules": ["licenses"],
+      "expect": ["messages", "work", "commercial", "notes", "agenda", "room", "recent"]
+    },
+    {
+      "name": "an older Worker offers every module",
+      "stored": null,
+      "workModules": null,
+      "expect": ["messages", "work", "commercial", "notes", "agenda", "events", "room", "recent"]
+    },
+    {
+      "name": "a disabled module is still offered in Settings",
+      "stored": [
+        { "id": "messages", "enabled": true },
+        { "id": "work", "enabled": true },
+        { "id": "commercial", "enabled": false },
+        { "id": "notes", "enabled": true },
+        { "id": "agenda", "enabled": true },
+        { "id": "events", "enabled": false },
+        { "id": "room", "enabled": true },
+        { "id": "recent", "enabled": true }
+      ],
+      "workModules": ["events", "offers"],
+      "expect": ["messages", "work", "commercial", "notes", "agenda", "events", "room", "recent"]
+    }
+  ],
+  "moveCases": [
+    {
+      "name": "moving Work down skips hidden Commercial and leaves it in place",
+      "layout": null,
+      "workModules": [],
+      "id": "work",
+      "direction": "down",
+      "expect": ["messages", "notes", "commercial", "work", "agenda", "events", "room", "recent"]
+    },
+    {
+      "name": "moving Agenda down skips hidden Events and leaves it in place",
+      "layout": null,
+      "workModules": [],
+      "id": "agenda",
+      "direction": "down",
+      "expect": ["messages", "work", "commercial", "notes", "room", "events", "agenda", "recent"]
+    },
+    {
+      "name": "moving Notes up skips hidden Commercial",
+      "layout": null,
+      "workModules": [],
+      "id": "notes",
+      "direction": "up",
+      "expect": ["messages", "notes", "commercial", "work", "agenda", "events", "room", "recent"]
+    },
+    {
+      "name": "a hidden module cannot move",
+      "layout": null,
+      "workModules": [],
+      "id": "commercial",
+      "direction": "up",
+      "expect": ["messages", "work", "commercial", "notes", "agenda", "events", "room", "recent"]
+    },
+    {
+      "name": "the last offered module cannot move through Quick Access",
+      "layout": null,
+      "workModules": [],
+      "id": "room",
+      "direction": "down",
+      "expect": ["messages", "work", "commercial", "notes", "agenda", "events", "room", "recent"]
+    },
+    {
+      "name": "Quick Access cannot move",
+      "layout": null,
+      "workModules": [],
+      "id": "recent",
+      "direction": "up",
+      "expect": ["messages", "work", "commercial", "notes", "agenda", "events", "room", "recent"]
+    },
+    {
+      "name": "an older Worker keeps the old adjacent move",
+      "layout": null,
+      "workModules": null,
+      "id": "work",
+      "direction": "down",
+      "expect": ["messages", "commercial", "work", "notes", "agenda", "events", "room", "recent"]
+    },
+    {
+      "name": "a hidden disabled row keeps its saved visibility",
+      "layout": [
+        { "id": "commercial", "enabled": false }
+      ],
+      "workModules": [],
+      "id": "work",
+      "direction": "down",
+      "expect": ["messages", "notes", "commercial", "work", "agenda", "events", "room", "recent"]
+    }
+  ]
+}

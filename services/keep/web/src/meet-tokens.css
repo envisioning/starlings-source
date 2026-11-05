@@ -1,0 +1,274 @@
+/* Copied from Meet's web/src/styles.css by scripts/sync-meet-ui.mjs. Do not edit. */
+/*
+ * Meet's global CSS. Cascade layers, lowest first: Tailwind's
+ * theme, base, components, utilities (declared once in tailwind.css, which
+ * main.tsx imports first). Here:
+ * - Unlayered: @font-face, the tokens, @keyframes, and the coarse-pointer
+ *   field font. None of these competes with a utility, except the field
+ *   font, which must win.
+ * - `@layer base`: element resets and the global element laws.
+ * - `@layer components`: `.md` typography and short task-row exits.
+ * A utility beats every rule in base and components whatever the
+ * specificity. A rule here that must beat a utility stays unlayered.
+ */
+
+@font-face {
+  font-family: "Envisioning Octa";
+  src: url("/fonts/EnvisioningOcta-VF.woff2") format("woff2-variations");
+  /* Home's clock waits for Octa rather than flash the fallback face. */
+  font-display: block;
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 100% 125%;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/InterVariable.woff2") format("woff2-variations");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100 900;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-synthesis: none;
+  color: var(--ink);
+  background: var(--surface-bg);
+  --accent: #d6f249;
+  /* Hovered accent, in lockstep with `MeetColors.accentHover` (Mac) so the same
+     CTA lights up the same way on both surfaces. */
+  --accent-hover: #e0f76f;
+  --accent-down: #aacc00;
+  /* The accent as a *mark* — the Envisioning glyph — rather than as a fill. A fill
+     carries its own dark ink, so brand lime works on either canvas; a mark is
+     ink itself, and #d6f249 was picked to sit on the dark one. Against a light
+     page the mark steps down to #aacc00. See docs/DESIGN.md. */
+  --accent-mark: var(--accent);
+  /* Link and mention ink in prose. The mark passes on the dark canvas; on a
+     light page #aacc00 is about 1.85:1, so prose links take the ink there and
+     the underline says "link". */
+  --md-link: var(--accent-mark);
+  /* The accent as a filled call to action. Lime on a dark canvas; on a light
+     one the whole ramp steps down a rung — the lime's ink contrast is fine
+     either way, but on white the button reads as a highlighter rather than a
+     control. Resting becomes what used to be the pressed state, so press gets
+     a rung of its own below it. See docs/DESIGN.md. */
+  --accent-cta: var(--accent);
+  --accent-cta-hover: var(--accent-hover);
+  --accent-cta-down: var(--accent-down);
+  /* Boolean controls are the one repeated state that is intentionally
+     accent-filled: on is obvious without relying on a platform default. */
+  --toggle-on: var(--accent-cta);
+  --toggle-on-hover: var(--accent-cta-hover);
+  --toggle-on-ink: var(--on-accent);
+  /* The surface ladder — neutral gray, no hue. Depth is the only thing these
+     encode; see docs/DESIGN.md. */
+  /* The corner scale from EnvisioningUI, the same three rungs the Mac app takes
+     from the package and the iOS app has always drawn: a field, a control, a
+     card. Stated here as pixels because the browser cannot link a Swift
+     package — keep them in step with `MeetRadius`. */
+  --radius-field: 12px;
+  --radius-control: 14px;
+  --radius-card: 18px;
+
+  --surface: #292a32;
+  --surface-bg: #202128;
+  --surface-raised: #343640;
+  --surface-sunken: #1a1b21;
+  --text-muted: #a3a3a3;
+  --line: rgb(var(--veil-rgb) / 0.1);
+  /* The whole hover vocabulary: one rung up the surface ladder, expressed as a
+     white veil so a rule never has to name the colour it is lifting. Matches
+     `MeetColors.hoverLift` on Mac. Apply as a layer, not a replacement:
+       background-image: linear-gradient(var(--hover-lift), var(--hover-lift));
+     which keeps whatever `background` the element already had underneath.
+     See docs/DESIGN.md. */
+  --hover-lift: rgb(var(--veil-rgb) / 0.06);
+  --hover-border: rgb(var(--veil-rgb) / 0.2);
+  /* The resting surface of a control that carries no accent. `--line` alone
+     left a secondary button the same colour as the card behind it, so a button
+     and the panel it sat on were one shape. A control has a face, and it is one
+     rung off whatever it sits on — the same veil idea as `--hover-lift`, held
+     one step below it so hover still has somewhere to go. */
+  --control-fill: rgb(var(--veil-rgb) / 0.08);
+  --control-line: rgb(var(--veil-rgb) / 0.22);
+  --focus: var(--accent);
+  /* Presence's third value: neither neutral (it would wash out next to
+     `--accent`'s available dot) nor a new hue — a fixed shade of the accent
+     ramp, the same idea `CalendarLayerPalette` uses. Non-adaptive on purpose,
+     same value dark and light. Kept in lockstep with MeetColors (Mac) and
+     StarlingsMobileColors (iOS). See the accent budget in docs/DESIGN.md. */
+  --busy: #9cbf2e;
+  --presence-in-meeting: #667c4a;
+  --layer-events: #c8e63c;
+  --layer-milestones: #9cbf2e;
+  --layer-tasks: #7c9455;
+  --layer-availability: #667c4a;
+  /* The one danger colour across every appearance and client. Treatments
+     below use alpha/compositing; they never introduce a light-mode red. */
+  --danger: #ff6361;
+  /* Aliases referenced across components; previously undefined and resolving
+     to `unset` by accident. */
+  --ink: #fafafa;
+  --muted: var(--text-muted);
+  /* Footer metadata sits closer to the page canvas without using transparency. */
+  --footer-meta-ink: color-mix(in srgb, var(--muted) 82%, var(--surface-bg));
+  --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-raised: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  /* The ink channels as bare components, so a rule can ask for a *translucent*
+     ink — `rgb(var(--ink-rgb) / 0.72)` — without naming the theme's colour. A
+     literal `rgba(250, 250, 250, …)` is invisible the moment the page goes
+     light, which is what most of this file used to be. */
+  --ink-rgb: 250 250 250;
+  --muted-rgb: 163 163 163;
+  /* The veil every lift, line and control face composites. Not white: the
+     dark rungs carry a little blue (#202128 → #343640), and a white veil over
+     them lands on a neutral gray, which is how secondary buttons and the
+     chosen row drifted off the ladder. This is white pushed toward the
+     rungs' own hue, so a veil lightens without desaturating. */
+  --veil-rgb: 222 226 255;
+  /* What sits *on* an accent fill. Accent is lime in both themes, so this is
+     dark ink in both — never `--surface`, which turns white in light mode and
+     leaves the one CTA on the page unreadable. */
+  --on-accent: #1a1a1a;
+  /* Text that crosses video or a scrim and has to carry its own contrast. */
+  --on-media: #fafafa;
+  /* Flying reactions invert with the page appearance. The opposite-ink keyline
+     keeps the mark legible over a dark or light video frame. */
+  --reaction-foreground: #fafafa;
+  --reaction-outline: #000;
+  /* A pressed control: one rung beyond `--hover-lift`, same compositing trick. */
+  --press-lift: rgb(var(--veil-rgb) / 0.08);
+  /* Neutral "this one is chosen", for a selection the accent budget does not
+     cover — a day that is merely selected rather than the thing you came for. */
+  --selected: #3f414d;
+  --selected-border: rgb(var(--muted-rgb) / 0.55);
+  /* Text and soft failure treatments stay the same red; only alpha changes. */
+  --danger-ink: var(--danger);
+  --error-bg: color-mix(in srgb, var(--danger) 28%, transparent);
+  --error-border: color-mix(in srgb, var(--danger) 35%, transparent);
+}
+
+/* The same four-rung ladder used by Mac and iOS. Auto is intentionally the
+   browser's default, while an explicit data-theme wins over the media query. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  color: var(--ink);
+  background: var(--surface-bg);
+  /* Neutral gray, no hue — the same rule the dark rungs state above. A tinted
+     canvas reads as a colour decision nobody made, and the ladder is only ever
+     allowed to encode depth. It climbs toward white because that is what
+     elevation means on a light page. */
+  --surface-bg: #efefef;
+  --surface: #f6f6f6;
+  --surface-raised: #ffffff;
+  --surface-sunken: #e4e4e4;
+  --text-muted: #5c5c5c;
+  --ink-rgb: 26 26 26;
+  --muted-rgb: 92 92 92;
+  --veil-rgb: 0 0 0;
+  --line: rgb(0 0 0 / 0.14);
+  --hover-lift: rgb(0 0 0 / 0.06);
+  --hover-border: rgb(0 0 0 / 0.26);
+  --control-fill: rgb(0 0 0 / 0.05);
+  --control-line: rgb(0 0 0 / 0.24);
+  --press-lift: rgb(var(--veil-rgb) / 0.09);
+  --focus: #6d8500;
+  --ink: #1a1a1a;
+  --muted: #5c5c5c;
+  --reaction-foreground: #1a1a1a;
+  --reaction-outline: #fff;
+  --accent-down: #aacc00;
+  --accent-mark: #aacc00;
+  --md-link: var(--ink);
+  --accent-cta: #aacc00;
+  --accent-cta-hover: #bfe000;
+  --accent-cta-down: #91ad00;
+  --busy: #9cbf2e;
+  --presence-in-meeting: #667c4a;
+  --layer-events: #c8e63c;
+  --layer-milestones: #9cbf2e;
+  --layer-tasks: #7c9455;
+  --layer-availability: #667c4a;
+  --selected: #dcdcdc;
+  --selected-border: rgb(var(--muted-rgb) / 0.45);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 10px -4px rgb(0 0 0 / 0.10);
+  --shadow-raised: 0 2px 4px rgb(0 0 0 / 0.06), 0 12px 28px -8px rgb(0 0 0 / 0.16);
+}
+
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] {
+    color-scheme: light;
+    color: var(--ink);
+    background: var(--surface-bg);
+    /* Neutral gray, no hue — the same rule the dark rungs state above. A tinted
+       canvas reads as a colour decision nobody made, and the ladder is only ever
+       allowed to encode depth. It climbs toward white because that is what
+       elevation means on a light page. */
+    --surface-bg: #efefef;
+    --surface: #f6f6f6;
+    --surface-raised: #ffffff;
+    --surface-sunken: #e4e4e4;
+    --text-muted: #5c5c5c;
+    --ink-rgb: 26 26 26;
+    --muted-rgb: 92 92 92;
+    --veil-rgb: 0 0 0;
+    --line: rgb(0 0 0 / 0.14);
+    --hover-lift: rgb(0 0 0 / 0.06);
+    --hover-border: rgb(0 0 0 / 0.26);
+    --control-fill: rgb(0 0 0 / 0.05);
+    --control-line: rgb(0 0 0 / 0.24);
+    --press-lift: rgb(var(--veil-rgb) / 0.09);
+    --focus: #6d8500;
+    --ink: #1a1a1a;
+    --muted: #5c5c5c;
+    --reaction-foreground: #1a1a1a;
+    --reaction-outline: #fff;
+    --accent-down: #aacc00;
+    --accent-mark: #aacc00;
+    --md-link: var(--ink);
+    --accent-cta: #aacc00;
+    --accent-cta-hover: #bfe000;
+    --accent-cta-down: #91ad00;
+    --busy: #9cbf2e;
+    --presence-in-meeting: #667c4a;
+    --layer-events: #c8e63c;
+    --layer-milestones: #9cbf2e;
+    --layer-tasks: #7c9455;
+    --layer-availability: #667c4a;
+    --selected: #dcdcdc;
+    --selected-border: rgb(var(--muted-rgb) / 0.45);
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 10px -4px rgb(0 0 0 / 0.10);
+    --shadow-raised: 0 2px 4px rgb(0 0 0 / 0.06), 0 12px 28px -8px rgb(0 0 0 / 0.16);
+  }
+}
+
+/* Touch has no pointer to follow, and a tapped control keeps `:hover` until you
+   tap somewhere else — so on a phone the last thing you touched sits there
+   looking hovered. Blanking the tokens makes every lift-based rule inert instead
+   of us having to guard each one, which is the reason hover is expressed through
+   tokens in the first place. */
+@media (hover: none) {
+  :root {
+    --hover-lift: transparent;
+    --hover-border: var(--line);
+    --accent-hover: var(--accent);
+    --accent-cta-hover: var(--accent-cta);
+  }
+}
+
+/* Increase Contrast. The hairlines that encode depth at 10% become lines,
+   and muted text steps up to ink. The same rule `MeetColors` applies on the
+   Mac under the high-contrast appearance. */
+@media (prefers-contrast: more) {
+  :root {
+    --line: rgb(var(--ink-rgb) / 0.55);
+    --control-line: rgb(var(--ink-rgb) / 0.7);
+    --hover-border: rgb(var(--ink-rgb) / 0.8);
+    --selected-border: rgb(var(--ink-rgb) / 0.9);
+    --text-muted: var(--ink);
+    --muted: var(--ink);
+  }
+}

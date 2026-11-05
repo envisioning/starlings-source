@@ -1,0 +1,99 @@
+{
+  "sources": [
+    {
+      "source": "decision",
+      "title": "Decisions",
+      "detail": "A question an agent asked you, with options and a recommendation. Leaves when you answer it or it is withdrawn.",
+      "default_on": true,
+      "partial": "decisions"
+    },
+    {
+      "source": "question",
+      "title": "Questions",
+      "detail": "An agent question assigned to you. Leaves when answered, dismissed or withdrawn. Answer from Inbox or its conversation.",
+      "default_on": true,
+      "partial": "questions"
+    },
+    {
+      "source": "card",
+      "title": "Agent work to check",
+      "detail": "A card an agent moved to Review or Blocked, for the person who handed it off. Leaves when the card moves on.",
+      "default_on": true,
+      "partial": "agent work"
+    },
+    {
+      "source": "followup",
+      "title": "Follow-ups to send",
+      "detail": "After a call with people outside the team, a drafted follow-up and the tasks it proposed. Leaves when you approve or dismiss it, or after a week.",
+      "default_on": true,
+      "partial": "follow-ups"
+    },
+    { "source": "talk", "title": "Unread talk", "detail": "A subject conversation with something unread. Leaves when read.", "default_on": true, "partial": "talk" },
+    {
+      "source": "guest",
+      "title": "Guest messages",
+      "detail": "A guest or an organization wrote on a subject you can see, and nobody here has answered. Leaves when someone replies or you dismiss it.",
+      "default_on": true,
+      "partial": "guest messages"
+    },
+    {
+      "source": "support",
+      "title": "Starlings support",
+      "detail": "Starlings support answered a question you asked in Help. Leaves when you read it.",
+      "default_on": true,
+      "partial": "Starlings support"
+    },
+    { "source": "task", "title": "Proposed tasks", "detail": "A proposed task. Leaves when accepted or declined.", "default_on": true, "partial": "proposed tasks" },
+    { "source": "note", "title": "Quick Notes", "detail": "A note not yet filed. Leaves when filed or deleted.", "default_on": true, "partial": "notes" },
+    {
+      "source": "sales",
+      "title": "Sales touches",
+      "detail": "A CRM touch with no lead yet, with Sales on. Leaves when a lead starts or it is dismissed.",
+      "default_on": true,
+      "partial": "sales touches"
+    },
+    {
+      "source": "comment",
+      "title": "Document comments",
+      "detail": "An open comment thread on a document about your subjects. Leaves when resolved.",
+      "default_on": true,
+      "partial": "comments"
+    },
+    {
+      "source": "booking",
+      "title": "Bookings",
+      "detail": "A guest booked, moved or cancelled a time on your page. Leaves when filed, dismissed, or the meeting starts.",
+      "default_on": true,
+      "partial": "bookings"
+    },
+    {
+      "source": "invitation",
+      "title": "Calendar invitations",
+      "detail": "Someone invited you to an event. Leaves when you accept, decline or say maybe, or when the event ends.",
+      "default_on": true,
+      "partial": "calendar invitations"
+    },
+    {
+      "source": "forwarded",
+      "title": "Events from email",
+      "detail": "An event read from mail you forwarded to calendar@. Leaves when you add or discard it, or after a week.",
+      "default_on": true,
+      "partial": "events from email"
+    },
+    { "source": "interest", "title": "Interest", "detail": "A company filled in /interest, for admins. Leaves when dismissed.", "default_on": true, "partial": "interest" },
+    {
+      "source": "submission",
+      "title": "Form submissions",
+      "detail": "Someone filled in one of the workspace’s public forms, for the people the form names. Leaves when dismissed.",
+      "default_on": true,
+      "partial": "form submissions"
+    },
+    {
+      "source": "commercial",
+      "title": "Offers and licenses",
+      "detail": "An offer that expires within a week, or a license that renews within 30 days, on a lead or organization you can see, with Sales on. Leaves when it is decided or renewed, or when dismissed.",
+      "default_on": true,
+      "partial": "offers and licenses"
+    }
+  ]
+}

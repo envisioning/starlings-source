@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Favorites, every area (workspace/Favorites.kt). Copy from Resources/Localizable.xcstrings. -->
+<resources>
+    <string name="favorites_star">Star</string>
+    <string name="favorites_unstar">Unstar</string>
+</resources>
